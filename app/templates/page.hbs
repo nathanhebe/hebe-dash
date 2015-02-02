@@ -51,8 +51,9 @@
             <p class="bold marginTL">Compare performance for Key indicator over time:</p>
             <div class="chart marginTL">
                 <!--<img class="sampleImage" src="images/SampleChart2.png" />-->
-
-                {{heat-map data=indicator}}
+                {{#if indicator.currentValue}}
+                    {{heat-map data=indicator}}
+                {{/if}}
             </div>
         </div>
 

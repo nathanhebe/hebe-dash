@@ -2,11 +2,13 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     targetValue: null,
     currentValue: null,
     previousValue: null,
-
+    chartID: function () {
+        return 'Chart' + this.get('ID');
+    }.property(),
     _dataValues: null,
     dataValues: function () {
-        if (this._dataValues != null) {
-            return this._dataValues;
+        if (this.get('_dataValues') != null) {
+            return this.get('_dataValues');
         } else {
             var obj = this;
             $.ajax({

@@ -560,6 +560,12 @@ body, html {
             padding-top:($margin-main / 4);
             /*padding-bottom:0px;*/
 
+            .indicatorChart {
+                width:90%;
+                padding:0px;
+                margin:0px;
+            }
+
             .sampleImage {
                 width: 100%;
             }
