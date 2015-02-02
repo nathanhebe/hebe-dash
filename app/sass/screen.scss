@@ -1,0 +1,858 @@
+﻿/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/css3/transform";
+@import "compass/css3/animation";
+
+@font-face {
+    font-family: 'letra';
+    src: url('../fonts/letrapro.eot');
+    src: url('../fonts/letrapro.eot?#iefix') format('embedded-opentype'), url('../fonts/letrapro.woff') format('woff'), url('../fonts/letrapro.ttf') format('truetype'), url('../fonts/letrapro.svg#letra_proheadline') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@mixin animate($property, $duration, $easing) {
+    @include transition-property($property);
+    @include transition-duration($duration);
+    @include transition-timing-function($easing);
+}
+
+//http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
+//http://codepen.io/cballenar/pen/tdznk
+@mixin alpha-me($var1, $var2, $var3: null, $var4: null) {
+    // Set variables for global use
+    $property: $var1;
+    $attributes: null;
+    $color: null;
+    $color-bg: null;
+
+    // Check if $var2 is a color
+    @if ( type-of($var2) == color ) {
+        // Set default background if not specified
+        @if not $var3 {
+            $var3: #FFFFFF;
+        }
+        // Update variables
+        $color: $var2;
+        $color-bg: $var3;
+
+
+        // Otherwise it should be the attributes
+    }
+    @else if ( type-of($var2) != color ) {
+        // Set default background if not specified
+        @if not $var4 {
+            $var4: #FFFFFF;
+        }
+        // Update variables
+        $attributes: $var2;
+        $color: $var3;
+        $color-bg: $var4;
+
+    }
+    // Extract alpha channel from color
+    $percent: alpha($color) * 100%;
+
+    // Make color opaque
+    $opaque: opacify($color, 1);
+
+    // Blend color with background.
+    $color-solid: mix($opaque, $color-bg, $percent);
+
+    // Return built style with solid color and transparent color
+    #{$property}: #{$attributes} $color-solid;
+    #{$property}: #{$attributes} $color;
+}
+
+@mixin center($axis: "both") {
+    position: absolute;
+
+    @if $axis == "y" {
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    @if $axis == "x" {
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    @if $axis == "both" {
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+@import "_grid";
+
+
+$color-bg: #F7F7F7; // base background white?
+/*$color-bg-light: #979797; // used for borders/spacers and knocked-back text etc*/
+$color-bg-light: #E7E7E7; // used for borders/spacers and knocked-back text etc
+$color-grey-darker: #CCCCCC; //used for table lines / borders etc
+$color-bg-main: #0065B7; // header / footer blue
+$color-highlight: #00447C; // header buttons etc
+$color-font-light: #ffffff;
+$color-font-main: #000000;
+$color-font-link: #4A90E2;
+$font-family-main: Helvetica Neue;
+$font-size-title: 190%;
+$font-size-heading: 160%;
+$font-size-heading-sub: 140%;
+$font-size-main: 100%;
+$font-size-small: 80%;
+$font-weight-heavy: 700;
+$font-weight-bold: 500;
+$font-weight-normal: 400;
+$font-weight-light: 300;
+$margin-main: 2em; //40px;
+$height-column: 60px;
+$border-main: solid 2px $color-bg-light;
+$border-thin-dark: solid 1px $color-grey-darker;
+
+body, html {
+    font-family: $font-family-main;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #fff;
+    color: $color-font-main;
+    font-size: 110%;
+    line-height: 1em;
+    font-weight: $font-weight-light;
+
+    a {
+        text-decoration: none;
+        font-weight: normal;
+        color: $color-font-link;
+    }
+}
+
+.ember-view {
+    height:100%;
+    width:100%;
+}
+
+#MainWrapper {
+    color: $color-font-main;
+    background-color: $color-bg;
+    max-width: 1440px;
+    height: 100%;
+    margin: 0px auto;
+    overflow: auto;
+    /* ADDITIONAL GRID STYLES */
+    .col {
+        padding-top: ($margin-main / 2);
+        padding-bottom: ($margin-main / 2);
+        height: $height-column;
+
+        &.alignL {
+            padding-left: 0px;
+            text-align: left;
+        }
+
+        &.alignR {
+            padding-right: 0px;
+            text-align: right;
+        }
+        /*&.floatVertical {
+            margin-top: $margin-main/4;
+            margin-bottom:$margin-main/4;
+            padding-top:$margin-main/4;
+            height: $height-column - ($margin-main/2);
+        }*/
+    }
+    /* END ADDITIONAL GRID STYLES */
+    .noWrap {
+        white-space: nowrap;
+    }
+
+    .bold {
+        font-weight: $font-weight-bold;
+    }
+
+    .clear {
+        clear: both;
+        height: 0px;
+    }
+
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
+    }
+
+    .centered {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .relative {
+        position:relative;
+    }
+
+    .border {
+        border: $border-main;
+    }
+
+    .borderL {
+        border-left: $border-main;
+    }
+
+    .borderT {
+        border-top: $border-main;
+    }
+
+    .borderR {
+        border-right: $border-main;
+    }
+
+    .borderB {
+        border-bottom: $border-main;
+    }
+
+    .radiusT {
+        @include border-top-radius(10px);
+    }
+
+    .radiusR {
+        @include border-right-radius(10px);
+    }
+
+    .radiusB {
+        @include border-bottom-radius(10px);
+    }
+
+    .radiusL {
+        @include border-left-radius(10px);
+    }
+
+    .radiusR_XL {
+        @include border-right-radius(100px);
+    }
+
+    .radiusL_XL {
+        @include border-left-radius(100px);
+    }
+
+    .radiusTR {
+        @include border-top-right-radius(10px);
+    }
+
+    .marginLXL {
+        margin-left: ($margin-main);
+    }
+
+    .marginTXL {
+        margin-top: ($margin-main);
+    }
+
+    .marginRXL {
+        margin-right: ($margin-main);
+    }
+
+    .marginBXL {
+        margin-bottom: ($margin-main);
+    }
+
+
+    .marginLL {
+        margin-left: ($margin-main / 2);
+    }
+
+    .marginTL {
+        margin-top: ($margin-main / 2);
+    }
+
+    .marginRL {
+        margin-right: ($margin-main / 2);
+    }
+
+    .marginBL {
+        margin-bottom: ($margin-main / 2);
+    }
+
+    .marginLS {
+        margin-left: ($margin-main / 4);
+    }
+
+    .marginTS {
+        margin-top: ($margin-main / 4);
+    }
+
+    .marginRS {
+        margin-right: ($margin-main / 4);
+    }
+
+    .marginBS {
+        margin-bottom: ($margin-main / 4);
+    }
+
+    .marginLXS {
+        margin-left: ($margin-main / 8);
+    }
+
+    .marginTXS {
+        margin-top: ($margin-main / 8);
+    }
+
+    .marginRXS {
+        margin-right: ($margin-main / 8);
+    }
+
+    .marginBXS {
+        margin-bottom: ($margin-main / 8);
+    }
+
+    .paddingTS {
+        padding-top: ($margin-main / 4);
+    }
+
+    .paddingRS {
+        padding-right: ($margin-main / 4);
+    }
+
+    .paddingBS {
+        padding-bottom: ($margin-main / 4);
+    }
+
+    .paddingLS {
+        padding-left: ($margin-main / 4);
+    }
+
+    .paddingTL {
+        padding-top: ($margin-main / 2);
+    }
+
+    .paddingRL {
+        padding-right: ($margin-main / 2);
+    }
+
+    .paddingBL {
+        padding-bottom: ($margin-main / 2);
+    }
+
+    .paddingLL {
+        padding-left: ($margin-main / 2);
+    }
+
+    .paddingTNone {
+        padding-top: 0px;
+    }
+
+    .paddingRNone {
+        padding-right: 0px;
+    }
+
+    .paddingBNone {
+        padding-bottom: 0px;
+    }
+
+    .paddingLNone {
+        padding-left: 0px;
+    }
+
+    .alignC, .center {
+        text-align: center;
+    }
+
+    .alignL {
+        text-align: left;
+    }
+
+    .alignR {
+        text-align: right;
+    }
+
+    .textOnly {
+        display: none;
+    }
+
+    .noAnimation {
+        @include transition-property(none);
+        @include transition-duration(0s);
+        @include transition-timing-function(none);
+    }
+
+    * {
+        @include box-sizing(border-box);
+    }
+
+
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: $font-weight-normal;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    h1 {
+        font-size: $font-size-title;
+    }
+
+    h2 {
+        font-size: $font-size-heading-sub;
+        margin-bottom: $margin-main;
+    }
+
+    .button {
+        text-align: center;
+        background: $color-highlight;
+        color: $color-font-light;
+        @include border-radius(8px);
+    }
+
+    .smallText {
+        font-size: $font-size-small;
+        line-height: 1.5em;
+    }
+
+
+    #NHSEnglandLogo {
+    }
+
+    header, footer, section {
+        padding: $margin-main;
+        overflow: auto;
+    }
+
+    header, footer {
+        color: $color-font-light;
+        background-color: $color-bg-main;
+    }
+
+    header {
+        height: 165px;
+    }
+
+    footer {
+        height: 658px;
+    }
+
+    #MainContent {
+    }
+
+    &.boardReport {
+
+        .red {
+            background-color: #D0021B;
+        }
+
+        .redAmber {
+            background-color: #EB8D57;
+        }
+
+        .amber {
+            background-color: #F5A623;
+        }
+
+        .amberGreen {
+            background-color: #DADA36;
+        }
+
+        .green {
+            background-color: #7ED321;
+        }
+
+        .blue {
+            background-color: #0065B7;
+        }
+
+        .missing {
+            background-color: $color-bg-light;
+        }
+
+        .seperator {
+            position:absolute;
+            border: solid 1px #E7E7E7;
+            top:10%;
+            bottom:10%;
+            left:0px;
+
+            &.right {
+                right:0px;
+                left:auto;
+            }
+        }
+
+        .accordionHandle {
+            background-image: url(../images/IndicatorTriangle_right@2x.png);
+            background-size: 25%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            width: 30%;
+            display: inline-block;
+            cursor: pointer;
+
+            &.active {
+                background-image: url(../images/IndicatorTriangle_down@2x.png);
+            }
+        }
+
+        .accordionContent {
+            display: none;
+        }
+
+        .noBackground {
+            background: none;
+        }
+
+        .indicator {
+            position: relative;
+            color: $color-font-light;
+
+            .currentValue {
+                font-size: $font-size-heading;
+            }
+
+            .previousValue {
+                /*margin:($margin-main / 4) 0;*/
+                border-left: $border-main;
+                font-size: $font-size-small;
+                padding-left: ($margin-main / 4);
+            }
+
+            .icon {
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+
+            &.up, &.even, &.down {
+                background-image: url(../images/IndicatorArrow_up@2x.png);
+                background-size: 40%;
+                background-position: 90% center;
+                background-repeat: no-repeat;
+
+                &.even {
+                    background-image: url(../images/IndicatorArrow_even@2x.png);
+                }
+
+                &.down {
+                    background-image: url(../images/IndicatorArrow_down@2x.png);
+                }
+            }
+        }
+
+        .chart {
+            padding-top:($margin-main / 4);
+            /*padding-bottom:0px;*/
+
+            .sampleImage {
+                width: 100%;
+            }
+
+            .left {
+                width: 49%;
+
+                &:first-of-type {
+                    text-align: right;
+                }
+            }
+
+            .col {
+                padding-top: 0px;
+                padding-bottom: 0px;
+                height:80px;
+                line-height:80px;
+            }
+
+            .blockRow {
+                &.blockRow1 {
+                    .block {
+                        width: 100%;
+                        padding-left: 15%;
+                    }
+                }
+
+                &.blockRow5 {
+                    .block {
+                        &:first-of-type {
+                            margin-left: 0;
+                        }
+
+                        width: 18%;
+                        margin-left: 2%;
+                    }
+                }
+            }
+
+            .block {
+                position: relative;
+                height: 80px;
+                line-height: 80px;
+                padding-left: 3%;
+                color: $color-font-light;
+                text-align: left;
+                float: left;
+                @include border-radius(5px);
+
+                .currentValue {
+                    font-size: $font-size-title;
+                }
+
+                .previousValue {
+                    position: absolute;
+                    right: 10%;
+                    bottom: 15%;
+                    line-height: 1em;
+                }
+
+                a {
+                    color: $color-font-light;
+                }
+            }
+        }
+
+        .reportIndex {
+            .row {
+                .col {
+                    height:auto;
+
+                    p {
+                        padding-bottom:$margin-main / 2;
+                    }
+                }
+            }
+        }
+
+        .finance {
+
+            .group {
+                .row {
+                    .col {
+                        padding-top: ($margin-main / 2) + ($margin-main / 8);
+                        font-weight: $font-weight-bold;
+
+                        &:first-of-type {
+                            font-weight: $font-weight-normal;
+                        }
+
+                        &:last-of-type {
+                            padding-top: ($margin-main / 2);
+                            font-weight: $font-weight-normal;
+                        }
+                    }
+
+                    &:first-of-type {
+                        margin-top: $margin-main / 4;
+
+                        .col {
+                            font-weight: $font-weight-normal;
+
+                            &:first-of-type {
+                                font-weight: $font-weight-bold;
+                            }
+                        }
+                    }
+
+                    &:last-of-type {
+                        .col {
+                            border-bottom: $border-main;
+                            height: 70px;
+
+                            &:last-of-type {
+                                border-bottom: none;
+                                height: auto;
+                            }
+                        }
+                    }
+                }
+            }
+
+            table {
+                width: 100%;
+                border-collapse: separate;
+
+                &:first-of-type {
+                    thead {
+                        th {
+                            padding-top: 0px;
+                        }
+                    }
+                }
+
+                tr {
+
+                    td, th {
+                        text-align: center;
+                        padding: ($margin-main/2) ($margin-main / 4);
+                        border-left: $border-thin-dark;
+                        font-weight: $font-weight-bold;
+
+                        &:first-of-type {
+                            text-align: left;
+                            font-weight: $font-weight-light;
+                        }
+
+                        &:last-of-type {
+                            border-left: none;
+                        }
+
+                        &.indicator {
+                            font-size: $font-size-heading-sub;
+                        }
+                    }
+
+                    &:nth-child(even) {
+                        td {
+                            border-top: $border-thin-dark;
+                            border-bottom: $border-thin-dark;
+
+                            &:first-of-type {
+                                border-left: none;
+                            }
+                        }
+                    }
+                }
+
+                thead {
+                    tr {
+                        th {
+                            border: none;
+                            font-weight: $font-weight-normal;
+                            padding-top: $margin-main;
+
+                            &:first-of-type {
+                                font-weight: $font-weight-bold;
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr:first-of-type {
+                        background-color: $color-bg-light;
+
+                        td {
+                            border-top: $border-thin-dark;
+
+                            &:last-of-type {
+                                @include border-top-right-radius(10px);
+                            }
+                        }
+                    }
+
+                    tr:last-of-type {
+                        background-color: $color-bg-light;
+
+                        td {
+                            border-bottom: $border-thin-dark;
+                        }
+
+                        td:first-of-type {
+                            border-left: $border-thin-dark;
+                            font-weight: $font-weight-bold;
+                            text-transform: uppercase;
+                        }
+
+                        td:last-of-type {
+                            @include border-bottom-right-radius(10px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+/*@include keyframes(LocationLoading){
+    0% {
+        background-image: url('/img/location@2x.png');
+    }
+
+    50% {
+        background-image: url('/img/location_loading@2x.png');
+    }
+
+    100% {
+        background-image: url('/img/location@2x.png');
+    }
+}
+
+@include keyframes(AddressLoading){
+    0% {
+        background-image: url('/img/search@2x.png');
+    }
+
+    50% {
+        background-image: url('/img/search_loading@2x.png');
+    }
+
+    100% {
+        background-image: url('/img/search@2x.png');
+    }
+}*/
+
+
+
+
+/*********************
+RETINA
+Include retina-specific overrides - most likely, 2x image alternatives
+*********************/
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Retina-specific stuff here */
+    @import "_retina";
+}
+
+
+/*********************
+MOBILE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*********************/
+
+@media only screen and (min-width: 0px) and (max-width: 270px) {
+    // styles in 768up.scss
+    @import "breakpoints/270lower";
+}
+
+@media only screen and (min-width: 271px) and (max-width: 321px) {
+    // styles in 768up.scss
+    @import "breakpoints/320lower";
+}
+
+@media only screen and /* (min-width: 322px) and*/ (max-width: 400px) {
+    // styles in 768up.scss
+    @import "breakpoints/400lower";
+}
+
+@media only screen and (min-width: 401px) {
+    // styles in 768up.scss
+    @import "breakpoints/768lower";
+}
+
+@media only screen and (max-height: 440px) {
+    // styles for iPhone 4 & lower
+    @import "breakpoints/440Heightlower";
+}
+// end of media query
+

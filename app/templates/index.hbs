@@ -1,0 +1,54 @@
+<div id="MainWrapper" class="boardReport">
+    <header></header>
+    <section id="MainContent" class="reportIndex">
+        <div class="row borderB paddingBL">
+            <div class="col span_6">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="col span_3 smallText">
+                Last updated 12/11/2014
+            </div>
+            <div class="col span_3 button">
+                Produce Report for Print
+            </div>
+        </div>
+        <div class="row marginTL">
+
+            {{#each annex in annexes}}
+            <div class="col span_4">
+                <h2>{{annex.Title}}</h2>
+                <p>{{annex.SubTitle}}</p>
+                {{#each page in annex.pages}}
+                <p>{{#link-to 'page' annex.ID page.ID }}{{page.Title}}{{/link-to}}</p>
+                {{/each}}
+            </div>
+            {{/each}}
+
+            <!--<div class="col span_4">
+                <h2>Annex A</h2>
+                <p>NHS England Performance Report</p>
+                <p><a href="Performance.html">Performance Summary</a></p>
+            </div>
+            <div class="col span_4">
+                <h2 class="weight500">Annex B</h2>
+                <p>Indicators of NHS Performance</p>
+                <p><a href="">Constitution (1)</a></p>
+                <p><a href="">Constitution (2)</a></p>
+                <p><a href="">Experience (1)</a></p>
+                <p><a href="">Experience (2)</a></p>
+                <p><a href="">Outcomes</a></p>
+                <p><a href="">Inequalities</a></p>
+                <p><a href="">Others</a></p>
+                <p><a href="">Finance</a></p>
+            </div>
+            <div class="col four">
+                <h2>Annex C</h2>
+                <p>Supplementary Finance Tables</p>
+                <p><a href="">Summary</a></p>
+                <p><a href="">QIPP Summary</a></p>
+                <p><a href="">Running costs</a></p>
+                <p><a href="">Programme costs</a></p>
+            </div>-->
+        </div>
+    </section>
+</div>

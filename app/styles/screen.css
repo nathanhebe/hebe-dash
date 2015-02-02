@@ -1,0 +1,1005 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-core-1.1.0.alpha.1/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: 'letra';
+  src: url("../fonts/letrapro.eot");
+  src: url("../fonts/letrapro.eot?#iefix") format("embedded-opentype"), url("../fonts/letrapro.woff") format("woff"), url("../fonts/letrapro.ttf") format("truetype"), url("../fonts/letrapro.svg#letra_proheadline") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/**
+ * Gridpak Beta SCSS 
+ *
+ * Generator - http://gridpak.com/
+ * Created by @erskinedesign
+ */
+/* Reusable column setup */
+/* line 21, ../sass/_grid.scss */
+.col {
+  border: 0px solid transparent;
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-clip: padding-box !important;
+  -webkit-background-clip: padding-box !important;
+  background-clip: padding-box !important;
+}
+
+/* 1. 12 Column Grid 0px - Infinity 
+----------------------------------------------------------------------------- 
+
+Span 1:    8.33333333333%
+Span 2:    16.6666666667%
+Span 3:    25.0%
+Span 4:    33.3333333333%
+Span 5:    41.6666666667%
+Span 6:    50.0%
+Span 7:    58.3333333333%
+Span 8:    66.6666666667%
+Span 9:    75.0%
+Span 10:    83.3333333333%
+Span 11:    91.6666666667%
+Span 12:    100%
+
+----------------------------------------------------------------------------- */
+@media screen and (min-width: 0px) {
+  /* line 62, ../sass/_grid.scss */
+  .col {
+    margin-left: 0%;
+    padding: 0 1%;
+  }
+
+  /* --- Gridpak variables ---*/
+  /* line 74, ../sass/_grid.scss */
+  .row {
+    overflow: auto;
+  }
+
+  /* line 78, ../sass/_grid.scss */
+  .row .col:first-child {
+    margin-left: 0;
+  }
+
+  /*
+  Add your semantic classnames in alongside their corresponding spans here. e.g.
+  
+  .span_3,
+  .my_semantic_class_name {
+      ...
+  }
+  
+  */
+  /* line 92, ../sass/_grid.scss */
+  .span_1 {
+    width: 8.33333333%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  /* line 94, ../sass/_grid.scss */
+  .span_1.insideMarginR {
+    width: 7.33333333%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 1%;
+  }
+
+  /* line 98, ../sass/_grid.scss */
+  .span_2 {
+    width: 16.66666667%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 101, ../sass/_grid.scss */
+  .span_3 {
+    width: 25%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 104, ../sass/_grid.scss */
+  .span_4 {
+    width: 33.33333333%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 107, ../sass/_grid.scss */
+  .span_5 {
+    width: 41.66666667%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 110, ../sass/_grid.scss */
+  .span_6 {
+    width: 50%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 113, ../sass/_grid.scss */
+  .span_7 {
+    width: 58.33333333%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 116, ../sass/_grid.scss */
+  .span_8 {
+    width: 66.66666667%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  /* line 118, ../sass/_grid.scss */
+  .span_8.insideMarginR {
+    width: 65.66666667%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 1%;
+  }
+
+  /* line 122, ../sass/_grid.scss */
+  .span_9 {
+    width: 75%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 125, ../sass/_grid.scss */
+  .span_10 {
+    width: 83.33333333%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 128, ../sass/_grid.scss */
+  .span_11 {
+    width: 91.66666667%;
+    border-left-width: 0;
+    padding: 0 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  /* line 131, ../sass/_grid.scss */
+  .span_12 {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+/*$color-bg-light: #979797; // used for borders/spacers and knocked-back text etc*/
+/* line 132, ../sass/screen.scss */
+body, html {
+  font-family: Helvetica Neue;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  background: #fff;
+  color: #000000;
+  font-size: 110%;
+  line-height: 1em;
+  font-weight: 300;
+}
+/* line 144, ../sass/screen.scss */
+body a, html a {
+  text-decoration: none;
+  font-weight: normal;
+  color: #4A90E2;
+}
+
+/* line 151, ../sass/screen.scss */
+.ember-view {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 156, ../sass/screen.scss */
+#MainWrapper {
+  color: #000000;
+  background-color: #F7F7F7;
+  max-width: 1440px;
+  height: 100%;
+  margin: 0px auto;
+  overflow: auto;
+  /* ADDITIONAL GRID STYLES */
+  /* END ADDITIONAL GRID STYLES */
+}
+/* line 164, ../sass/screen.scss */
+#MainWrapper .col {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  height: 60px;
+  /*&.floatVertical {
+      margin-top: $margin-main/4;
+      margin-bottom:$margin-main/4;
+      padding-top:$margin-main/4;
+      height: $height-column - ($margin-main/2);
+  }*/
+}
+/* line 169, ../sass/screen.scss */
+#MainWrapper .col.alignL {
+  padding-left: 0px;
+  text-align: left;
+}
+/* line 174, ../sass/screen.scss */
+#MainWrapper .col.alignR {
+  padding-right: 0px;
+  text-align: right;
+}
+/* line 186, ../sass/screen.scss */
+#MainWrapper .noWrap {
+  white-space: nowrap;
+}
+/* line 190, ../sass/screen.scss */
+#MainWrapper .bold {
+  font-weight: 500;
+}
+/* line 194, ../sass/screen.scss */
+#MainWrapper .clear {
+  clear: both;
+  height: 0px;
+}
+/* line 199, ../sass/screen.scss */
+#MainWrapper .left {
+  float: left;
+}
+/* line 203, ../sass/screen.scss */
+#MainWrapper .right {
+  float: right;
+}
+/* line 207, ../sass/screen.scss */
+#MainWrapper .centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 212, ../sass/screen.scss */
+#MainWrapper .relative {
+  position: relative;
+}
+/* line 216, ../sass/screen.scss */
+#MainWrapper .border {
+  border: solid 2px #E7E7E7;
+}
+/* line 220, ../sass/screen.scss */
+#MainWrapper .borderL {
+  border-left: solid 2px #E7E7E7;
+}
+/* line 224, ../sass/screen.scss */
+#MainWrapper .borderT {
+  border-top: solid 2px #E7E7E7;
+}
+/* line 228, ../sass/screen.scss */
+#MainWrapper .borderR {
+  border-right: solid 2px #E7E7E7;
+}
+/* line 232, ../sass/screen.scss */
+#MainWrapper .borderB {
+  border-bottom: solid 2px #E7E7E7;
+}
+/* line 236, ../sass/screen.scss */
+#MainWrapper .radiusT {
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+/* line 240, ../sass/screen.scss */
+#MainWrapper .radiusR {
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+/* line 244, ../sass/screen.scss */
+#MainWrapper .radiusB {
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+/* line 248, ../sass/screen.scss */
+#MainWrapper .radiusL {
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+/* line 252, ../sass/screen.scss */
+#MainWrapper .radiusR_XL {
+  -moz-border-radius-topright: 100px;
+  -webkit-border-top-right-radius: 100px;
+  border-top-right-radius: 100px;
+  -moz-border-radius-bottomright: 100px;
+  -webkit-border-bottom-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+/* line 256, ../sass/screen.scss */
+#MainWrapper .radiusL_XL {
+  -moz-border-radius-topleft: 100px;
+  -webkit-border-top-left-radius: 100px;
+  border-top-left-radius: 100px;
+  -moz-border-radius-bottomleft: 100px;
+  -webkit-border-bottom-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+/* line 260, ../sass/screen.scss */
+#MainWrapper .radiusTR {
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+/* line 264, ../sass/screen.scss */
+#MainWrapper .marginLXL {
+  margin-left: 2em;
+}
+/* line 268, ../sass/screen.scss */
+#MainWrapper .marginTXL {
+  margin-top: 2em;
+}
+/* line 272, ../sass/screen.scss */
+#MainWrapper .marginRXL {
+  margin-right: 2em;
+}
+/* line 276, ../sass/screen.scss */
+#MainWrapper .marginBXL {
+  margin-bottom: 2em;
+}
+/* line 281, ../sass/screen.scss */
+#MainWrapper .marginLL {
+  margin-left: 1em;
+}
+/* line 285, ../sass/screen.scss */
+#MainWrapper .marginTL {
+  margin-top: 1em;
+}
+/* line 289, ../sass/screen.scss */
+#MainWrapper .marginRL {
+  margin-right: 1em;
+}
+/* line 293, ../sass/screen.scss */
+#MainWrapper .marginBL {
+  margin-bottom: 1em;
+}
+/* line 297, ../sass/screen.scss */
+#MainWrapper .marginLS {
+  margin-left: 0.5em;
+}
+/* line 301, ../sass/screen.scss */
+#MainWrapper .marginTS {
+  margin-top: 0.5em;
+}
+/* line 305, ../sass/screen.scss */
+#MainWrapper .marginRS {
+  margin-right: 0.5em;
+}
+/* line 309, ../sass/screen.scss */
+#MainWrapper .marginBS {
+  margin-bottom: 0.5em;
+}
+/* line 313, ../sass/screen.scss */
+#MainWrapper .marginLXS {
+  margin-left: 0.25em;
+}
+/* line 317, ../sass/screen.scss */
+#MainWrapper .marginTXS {
+  margin-top: 0.25em;
+}
+/* line 321, ../sass/screen.scss */
+#MainWrapper .marginRXS {
+  margin-right: 0.25em;
+}
+/* line 325, ../sass/screen.scss */
+#MainWrapper .marginBXS {
+  margin-bottom: 0.25em;
+}
+/* line 329, ../sass/screen.scss */
+#MainWrapper .paddingTS {
+  padding-top: 0.5em;
+}
+/* line 333, ../sass/screen.scss */
+#MainWrapper .paddingRS {
+  padding-right: 0.5em;
+}
+/* line 337, ../sass/screen.scss */
+#MainWrapper .paddingBS {
+  padding-bottom: 0.5em;
+}
+/* line 341, ../sass/screen.scss */
+#MainWrapper .paddingLS {
+  padding-left: 0.5em;
+}
+/* line 345, ../sass/screen.scss */
+#MainWrapper .paddingTL {
+  padding-top: 1em;
+}
+/* line 349, ../sass/screen.scss */
+#MainWrapper .paddingRL {
+  padding-right: 1em;
+}
+/* line 353, ../sass/screen.scss */
+#MainWrapper .paddingBL {
+  padding-bottom: 1em;
+}
+/* line 357, ../sass/screen.scss */
+#MainWrapper .paddingLL {
+  padding-left: 1em;
+}
+/* line 361, ../sass/screen.scss */
+#MainWrapper .paddingTNone {
+  padding-top: 0px;
+}
+/* line 365, ../sass/screen.scss */
+#MainWrapper .paddingRNone {
+  padding-right: 0px;
+}
+/* line 369, ../sass/screen.scss */
+#MainWrapper .paddingBNone {
+  padding-bottom: 0px;
+}
+/* line 373, ../sass/screen.scss */
+#MainWrapper .paddingLNone {
+  padding-left: 0px;
+}
+/* line 377, ../sass/screen.scss */
+#MainWrapper .alignC, #MainWrapper .center {
+  text-align: center;
+}
+/* line 381, ../sass/screen.scss */
+#MainWrapper .alignL {
+  text-align: left;
+}
+/* line 385, ../sass/screen.scss */
+#MainWrapper .alignR {
+  text-align: right;
+}
+/* line 389, ../sass/screen.scss */
+#MainWrapper .textOnly {
+  display: none;
+}
+/* line 393, ../sass/screen.scss */
+#MainWrapper .noAnimation {
+  -moz-transition-property: none;
+  -o-transition-property: none;
+  -webkit-transition-property: none;
+  transition-property: none;
+  -moz-transition-duration: 0s;
+  -o-transition-duration: 0s;
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+  -moz-transition-timing-function: none;
+  -o-transition-timing-function: none;
+  -webkit-transition-timing-function: none;
+  transition-timing-function: none;
+}
+/* line 399, ../sass/screen.scss */
+#MainWrapper * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 405, ../sass/screen.scss */
+#MainWrapper h1, #MainWrapper h2, #MainWrapper h3, #MainWrapper h4, #MainWrapper h5, #MainWrapper h6 {
+  font-weight: 400;
+  margin: 0px;
+  padding: 0px;
+}
+/* line 411, ../sass/screen.scss */
+#MainWrapper h1 {
+  font-size: 190%;
+}
+/* line 415, ../sass/screen.scss */
+#MainWrapper h2 {
+  font-size: 140%;
+  margin-bottom: 2em;
+}
+/* line 420, ../sass/screen.scss */
+#MainWrapper .button {
+  text-align: center;
+  background: #00447C;
+  color: #ffffff;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+/* line 427, ../sass/screen.scss */
+#MainWrapper .smallText {
+  font-size: 80%;
+  line-height: 1.5em;
+}
+/* line 436, ../sass/screen.scss */
+#MainWrapper header, #MainWrapper footer, #MainWrapper section {
+  padding: 2em;
+  overflow: auto;
+}
+/* line 441, ../sass/screen.scss */
+#MainWrapper header, #MainWrapper footer {
+  color: #ffffff;
+  background-color: #0065B7;
+}
+/* line 446, ../sass/screen.scss */
+#MainWrapper header {
+  height: 165px;
+}
+/* line 450, ../sass/screen.scss */
+#MainWrapper footer {
+  height: 658px;
+}
+/* line 459, ../sass/screen.scss */
+#MainWrapper.boardReport .red {
+  background-color: #D0021B;
+}
+/* line 463, ../sass/screen.scss */
+#MainWrapper.boardReport .redAmber {
+  background-color: #EB8D57;
+}
+/* line 467, ../sass/screen.scss */
+#MainWrapper.boardReport .amber {
+  background-color: #F5A623;
+}
+/* line 471, ../sass/screen.scss */
+#MainWrapper.boardReport .amberGreen {
+  background-color: #DADA36;
+}
+/* line 475, ../sass/screen.scss */
+#MainWrapper.boardReport .green {
+  background-color: #7ED321;
+}
+/* line 479, ../sass/screen.scss */
+#MainWrapper.boardReport .blue {
+  background-color: #0065B7;
+}
+/* line 483, ../sass/screen.scss */
+#MainWrapper.boardReport .missing {
+  background-color: #E7E7E7;
+}
+/* line 487, ../sass/screen.scss */
+#MainWrapper.boardReport .seperator {
+  position: absolute;
+  border: solid 1px #E7E7E7;
+  top: 10%;
+  bottom: 10%;
+  left: 0px;
+}
+/* line 494, ../sass/screen.scss */
+#MainWrapper.boardReport .seperator.right {
+  right: 0px;
+  left: auto;
+}
+/* line 500, ../sass/screen.scss */
+#MainWrapper.boardReport .accordionHandle {
+  background-image: url(../images/IndicatorTriangle_right@2x.png);
+  background-size: 25%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 30%;
+  display: inline-block;
+  cursor: pointer;
+}
+/* line 509, ../sass/screen.scss */
+#MainWrapper.boardReport .accordionHandle.active {
+  background-image: url(../images/IndicatorTriangle_down@2x.png);
+}
+/* line 514, ../sass/screen.scss */
+#MainWrapper.boardReport .accordionContent {
+  display: none;
+}
+/* line 518, ../sass/screen.scss */
+#MainWrapper.boardReport .noBackground {
+  background: none;
+}
+/* line 522, ../sass/screen.scss */
+#MainWrapper.boardReport .indicator {
+  position: relative;
+  color: #ffffff;
+}
+/* line 526, ../sass/screen.scss */
+#MainWrapper.boardReport .indicator .currentValue {
+  font-size: 160%;
+}
+/* line 530, ../sass/screen.scss */
+#MainWrapper.boardReport .indicator .previousValue {
+  /*margin:($margin-main / 4) 0;*/
+  border-left: solid 2px #E7E7E7;
+  font-size: 80%;
+  padding-left: 0.5em;
+}
+/* line 537, ../sass/screen.scss */
+#MainWrapper.boardReport .indicator .icon {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+/* line 543, ../sass/screen.scss */
+#MainWrapper.boardReport .indicator.up, #MainWrapper.boardReport .indicator.even, #MainWrapper.boardReport .indicator.down {
+  background-image: url(../images/IndicatorArrow_up@2x.png);
+  background-size: 40%;
+  background-position: 90% center;
+  background-repeat: no-repeat;
+}
+/* line 549, ../sass/screen.scss */
+#MainWrapper.boardReport .indicator.up.even, #MainWrapper.boardReport .indicator.even.even, #MainWrapper.boardReport .indicator.down.even {
+  background-image: url(../images/IndicatorArrow_even@2x.png);
+}
+/* line 553, ../sass/screen.scss */
+#MainWrapper.boardReport .indicator.up.down, #MainWrapper.boardReport .indicator.even.down, #MainWrapper.boardReport .indicator.down.down {
+  background-image: url(../images/IndicatorArrow_down@2x.png);
+}
+/* line 559, ../sass/screen.scss */
+#MainWrapper.boardReport .chart {
+  padding-top: 0.5em;
+  /*padding-bottom:0px;*/
+}
+/* line 563, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .sampleImage {
+  width: 100%;
+}
+/* line 567, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .left {
+  width: 49%;
+}
+/* line 570, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .left:first-of-type {
+  text-align: right;
+}
+/* line 575, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .col {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 80px;
+  line-height: 80px;
+}
+/* line 584, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .blockRow.blockRow1 .block {
+  width: 100%;
+  padding-left: 15%;
+}
+/* line 591, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .blockRow.blockRow5 .block {
+  width: 18%;
+  margin-left: 2%;
+}
+/* line 592, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .blockRow.blockRow5 .block:first-of-type {
+  margin-left: 0;
+}
+/* line 602, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .block {
+  position: relative;
+  height: 80px;
+  line-height: 80px;
+  padding-left: 3%;
+  color: #ffffff;
+  text-align: left;
+  float: left;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 612, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .block .currentValue {
+  font-size: 190%;
+}
+/* line 616, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .block .previousValue {
+  position: absolute;
+  right: 10%;
+  bottom: 15%;
+  line-height: 1em;
+}
+/* line 623, ../sass/screen.scss */
+#MainWrapper.boardReport .chart .block a {
+  color: #ffffff;
+}
+/* line 631, ../sass/screen.scss */
+#MainWrapper.boardReport .reportIndex .row .col {
+  height: auto;
+}
+/* line 634, ../sass/screen.scss */
+#MainWrapper.boardReport .reportIndex .row .col p {
+  padding-bottom: 1em;
+}
+/* line 645, ../sass/screen.scss */
+#MainWrapper.boardReport .finance .group .row .col {
+  padding-top: 1.25em;
+  font-weight: 500;
+}
+/* line 649, ../sass/screen.scss */
+#MainWrapper.boardReport .finance .group .row .col:first-of-type {
+  font-weight: 400;
+}
+/* line 653, ../sass/screen.scss */
+#MainWrapper.boardReport .finance .group .row .col:last-of-type {
+  padding-top: 1em;
+  font-weight: 400;
+}
+/* line 659, ../sass/screen.scss */
+#MainWrapper.boardReport .finance .group .row:first-of-type {
+  margin-top: 0.5em;
+}
+/* line 662, ../sass/screen.scss */
+#MainWrapper.boardReport .finance .group .row:first-of-type .col {
+  font-weight: 400;
+}
+/* line 665, ../sass/screen.scss */
+#MainWrapper.boardReport .finance .group .row:first-of-type .col:first-of-type {
+  font-weight: 500;
+}
+/* line 672, ../sass/screen.scss */
+#MainWrapper.boardReport .finance .group .row:last-of-type .col {
+  border-bottom: solid 2px #E7E7E7;
+  height: 70px;
+}
+/* line 676, ../sass/screen.scss */
+#MainWrapper.boardReport .finance .group .row:last-of-type .col:last-of-type {
+  border-bottom: none;
+  height: auto;
+}
+/* line 685, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table {
+  width: 100%;
+  border-collapse: separate;
+}
+/* line 691, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table:first-of-type thead th {
+  padding-top: 0px;
+}
+/* line 699, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tr td, #MainWrapper.boardReport .finance table tr th {
+  text-align: center;
+  padding: 1em 0.5em;
+  border-left: solid 1px #CCCCCC;
+  font-weight: 500;
+}
+/* line 705, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tr td:first-of-type, #MainWrapper.boardReport .finance table tr th:first-of-type {
+  text-align: left;
+  font-weight: 300;
+}
+/* line 710, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tr td:last-of-type, #MainWrapper.boardReport .finance table tr th:last-of-type {
+  border-left: none;
+}
+/* line 714, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tr td.indicator, #MainWrapper.boardReport .finance table tr th.indicator {
+  font-size: 140%;
+}
+/* line 720, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tr:nth-child(even) td {
+  border-top: solid 1px #CCCCCC;
+  border-bottom: solid 1px #CCCCCC;
+}
+/* line 724, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tr:nth-child(even) td:first-of-type {
+  border-left: none;
+}
+/* line 733, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table thead tr th {
+  border: none;
+  font-weight: 400;
+  padding-top: 2em;
+}
+/* line 738, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table thead tr th:first-of-type {
+  font-weight: 500;
+}
+/* line 746, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tbody tr:first-of-type {
+  background-color: #E7E7E7;
+}
+/* line 749, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tbody tr:first-of-type td {
+  border-top: solid 1px #CCCCCC;
+}
+/* line 752, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tbody tr:first-of-type td:last-of-type {
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+/* line 758, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tbody tr:last-of-type {
+  background-color: #E7E7E7;
+}
+/* line 761, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tbody tr:last-of-type td {
+  border-bottom: solid 1px #CCCCCC;
+}
+/* line 765, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tbody tr:last-of-type td:first-of-type {
+  border-left: solid 1px #CCCCCC;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+/* line 771, ../sass/screen.scss */
+#MainWrapper.boardReport .finance table tbody tr:last-of-type td:last-of-type {
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/*@include keyframes(LocationLoading){
+    0% {
+        background-image: url('/img/location@2x.png');
+    }
+
+    50% {
+        background-image: url('/img/location_loading@2x.png');
+    }
+
+    100% {
+        background-image: url('/img/location@2x.png');
+    }
+}
+
+@include keyframes(AddressLoading){
+    0% {
+        background-image: url('/img/search@2x.png');
+    }
+
+    50% {
+        background-image: url('/img/search_loading@2x.png');
+    }
+
+    100% {
+        background-image: url('/img/search@2x.png');
+    }
+}*/
+/*********************
+RETINA
+Include retina-specific overrides - most likely, 2x image alternatives
+*********************/
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Retina-specific stuff here */
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Retina-specific styles
+  ******************************************************************/
+}
+/*********************
+MOBILE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*********************/
+@media only screen and (min-width: 0px) and (max-width: 270px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 321px and lower Stylesheet
+  ******************************************************************/
+}
+@media only screen and (min-width: 271px) and (max-width: 321px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 320px and lower Stylesheet
+  ******************************************************************/
+}
+@media only screen and (max-width: 400px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 768px and up Stylesheet
+  ******************************************************************/
+}
+@media only screen and (min-width: 401px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 768px and up Stylesheet
+  ******************************************************************/
+}
+@media only screen and (max-height: 440px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 321px and lower Stylesheet
+  ******************************************************************/
+}
