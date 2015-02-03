@@ -1,0 +1,193 @@
+<div id="MainWrapper" class="boardReport">
+    <header>
+        <div class="row">
+            <div class="col span_1 backLink">{{#link-to 'application' }}<img src="images/BackArrow@2x.png" />{{/link-to}}</div>
+            <h1 class="col span_8">{{Title}}</h1>
+            <div class="button col span_3">Product Report for Print</div>
+            <!--<div class="button column two">Filter by</div>-->
+        </div>
+    </header>
+
+
+    <section id="MainContent">
+        {{#if SubTitle}}
+            <h2>{{SubTitle}}</h2>
+        {{/if}}
+
+        <div class="finance">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Local QIPP </th>
+                        <th>Plan &pound;m</th>
+                        <th>Actual &pound;m</th>
+                        <th>Var &pound;m</th>
+                        <th>Achieved %</th>
+                        <th>Plan &pound;m</th>
+                        <th>% of allocation</th>
+                        <th>Forecast &pound;m</th>
+                        <th>Var &pound;m</th>
+                        <th>Acheived %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>North</td>
+                        <td>139.5</td>
+                        <td>141.4</td>
+                        <td>2.0</td>
+                        <td class="indicator red">101.4 %</td>
+                        <td>338.1</td>
+                        <td>1.6%</td>
+                        <td>317.6</td>
+                        <td>(20.5)</td>
+                        <td class="indicator red">93.9 %</td>
+                    </tr>
+                    <tr>
+                        <td>Midlands & East</td>
+                        <td>139.5</td>
+                        <td>141.4</td>
+                        <td>2.0</td>
+                        <td class="indicator green">101.4 %</td>
+                        <td>338.1</td>
+                        <td>1.6%</td>
+                        <td>317.6</td>
+                        <td>(20.5)</td>
+                        <td class="indicator amber">93.9 %</td>
+                    </tr>
+                    <tr>
+                        <td>London</td>
+                        <td>139.5</td>
+                        <td>141.4</td>
+                        <td>2.0</td>
+                        <td class="indicator amber">101.4 %</td>
+                        <td>338.1</td>
+                        <td>1.6%</td>
+                        <td>317.6</td>
+                        <td>(20.5)</td>
+                        <td class="indicator red">93.9 %</td>
+                    </tr>
+                    <tr>
+                        <td>South</td>
+                        <td>139.5</td>
+                        <td>141.4</td>
+                        <td>2.0</td>
+                        <td class="indicator amber">101.4 %</td>
+                        <td>338.1</td>
+                        <td>1.6%</td>
+                        <td>317.6</td>
+                        <td>(20.5)</td>
+                        <td class="indicator red">93.9 %</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Total</td>
+                        <td>664.8</td>
+                        <td>611.0</td>
+                        <td>(53.8)</td>
+                        <td class="indicator amber">91.9 %</td>
+                        <td>1,609.4</td>
+                        <td>2.4%</td>
+                        <td>1,407.5</td>
+                        <td>(201.7)</td>
+                        <td class="indicator red">87.5 %</td>
+                    </tr>
+                    <!--<tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>-->
+                </tbody>
+            </table>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Direct Commisioning QIPP</th>
+                        <th>Plan &pound;m</th>
+                        <th>Actual &pound;m</th>
+                        <th>Var &pound;m</th>
+                        <th>Achieved %</th>
+                        <th>Plan &pound;m</th>
+                        <th>% of allocation</th>
+                        <th>Forecast &pound;m</th>
+                        <th>Var &pound;m</th>
+                        <th>Acheived %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>North</td>
+                        <td>139.5</td>
+                        <td>141.4</td>
+                        <td>2.0</td>
+                        <td class="indicator red">101.4 %</td>
+                        <td>338.1</td>
+                        <td>1.6%</td>
+                        <td>317.6</td>
+                        <td>(20.5)</td>
+                        <td class="indicator red">93.9 %</td>
+                    </tr>
+                    <tr>
+                        <td>Midlands & East</td>
+                        <td>139.5</td>
+                        <td>141.4</td>
+                        <td>2.0</td>
+                        <td class="indicator green">101.4 %</td>
+                        <td>338.1</td>
+                        <td>1.6%</td>
+                        <td>317.6</td>
+                        <td>(20.5)</td>
+                        <td class="indicator amber">93.9 %</td>
+                    </tr>
+                    <tr>
+                        <td>London</td>
+                        <td>139.5</td>
+                        <td>141.4</td>
+                        <td>2.0</td>
+                        <td class="indicator amber">101.4 %</td>
+                        <td>338.1</td>
+                        <td>1.6%</td>
+                        <td>317.6</td>
+                        <td>(20.5)</td>
+                        <td class="indicator red">93.9 %</td>
+                    </tr>
+                    <tr>
+                        <td>South</td>
+                        <td>139.5</td>
+                        <td>141.4</td>
+                        <td>2.0</td>
+                        <td class="indicator amber">101.4 %</td>
+                        <td>338.1</td>
+                        <td>1.6%</td>
+                        <td>317.6</td>
+                        <td>(20.5)</td>
+                        <td class="indicator red">93.9 %</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Total</td>
+                        <td>664.8</td>
+                        <td>611.0</td>
+                        <td>(53.8)</td>
+                        <td class="indicator amber">91.9 %</td>
+                        <td>1,609.4</td>
+                        <td>2.4%</td>
+                        <td>1,407.5</td>
+                        <td>(201.7)</td>
+                        <td class="indicator red">87.5 %</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+
+
+
+</div>

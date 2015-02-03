@@ -41,10 +41,12 @@
             <div class="col span_1 insideMarginR borderT borderB borderR  radiusR">
                 <div class="currentValue">{{indicator.currentValue.Value}}</div>
             </div>
-            <div class="col span_1 radiusL indicator amber">
-                <div class="currentValue">{{indicator.currentVal}}%</div>
+            <div {{bindAttr class="indicator.ragColour :col :span_1 :radiusL :indicator"}}>
+                <div class="currentValue">
+                    {{indicator.currentVal}}%
+                </div>
             </div>
-            <div class="col span_1 indicator paddingLNone amber radiusR_XL even">
+            <div {{bindAttr class="indicator.ragColour :col :span_1 :indicator :paddingLNone :radiusR_XL indicator.trend"}}>
                 <div class="previousValue">{{indicator.previousVal}}%</div>
             </div>
         </div>
