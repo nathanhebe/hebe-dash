@@ -1,0 +1,157 @@
+<div id="MainWrapper" class="boardReport">
+    <header>
+        <div class="row">
+            <div class="col span_1 backLink">{{#link-to 'application' }}<img src="images/BackArrow@2x.png" />{{/link-to}}</div>
+            <h1 class="col span_8">{{Title}}</h1>
+            <div class="button col span_3">Product Report for Print</div>
+            <!--<div class="button column two">Filter by</div>-->
+        </div>
+    </header>
+    <section id="MainContent">
+        <h2>{{SubTitle}}</h2>
+
+        <div class="finance">
+            {{rows}}
+
+            {{#if _rows}}
+            {{#each row in _rows}}
+            {{#unless row.ID}}
+            <div class="group">
+                <div class="row">
+                    <div class="col span_7 ">{{row.Title}}</div>
+                    <div class="col span_1 alignC">{{row.Col1}}</div>
+                    <div class="col span_1 alignC">{{row.Col2}}</div>
+                    <div class="col span_1 alignC">{{row.Col3}}</div>
+                    <div class="col span_1 alignC">{{row.Col4}}</div>
+                    <div class="col span_1 alignC">&nbsp;</div>
+                </div>
+                {{else}}
+                <div class="row">
+                    <div class="col borderT span_7">{{row.Title}}</div>
+                    <div class="col borderT span_1 alignC">{{row.Col1}}</div>
+                    <div class="col borderT span_1 alignC">{{row.Col2}}</div>
+                    <div class="col borderT span_1 alignC">{{row.Col3}}</div>
+                    <div class="col borderT span_1 alignC insideMarginR">{{row.Col4}}</div>
+                    <div class="col span_1 indicator amber even marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">{{row.RAG}}</div>
+                    </div>
+                </div>
+                {{/unless}}
+                {{#unless row.ID}}
+            </div>
+            {{/unless}}
+            {{/each}}
+            {{else}}
+            <p>Sorry there isn't any data in this resource yet</p>
+            {{/if}}
+
+
+
+
+            <!--<div class="group">
+                <div class="row">
+                    <div class="col span_7 ">Cumulative Surplus</div>
+                    <div class="col span_1 alignC">Plan &pound;m</div>
+                    <div class="col span_1 alignC">Actual &pound;m</div>
+                    <div class="col span_1 alignC">Var &pound;m</div>
+                    <div class="col span_1 alignC">Var %</div>
+                    <div class="col span_1 alignC">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col borderT span_7">1. Clinical Commissioning groups - year to date</div>
+                    <div class="col borderT span_1 alignC">139.5</div>
+                    <div class="col borderT span_1 alignC">141.4</div>
+                    <div class="col borderT span_1 alignC">2.0</div>
+                    <div class="col borderT span_1 alignC insideMarginR">101.4 %</div>
+                    <div class="col span_1 indicator amber even marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">A</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col borderT span_7">1. Clinical Commissioning groups - year to date</div>
+                    <div class="col borderT span_1 alignC">139.5</div>
+                    <div class="col borderT span_1 alignC">141.4</div>
+                    <div class="col borderT span_1 alignC">2.0</div>
+                    <div class="col borderT span_1 alignC insideMarginR">101.4 %</div>
+                    <div class="col span_1 indicator red down marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">R</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col borderT span_7">1. Clinical Commissioning groups - year to date</div>
+                    <div class="col borderT span_1 alignC">139.5</div>
+                    <div class="col borderT span_1 alignC">141.4</div>
+                    <div class="col borderT span_1 alignC">2.0</div>
+                    <div class="col borderT span_1 alignC insideMarginR">101.4 %</div>
+                    <div class="col span_1 indicator green up marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">G</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col borderT span_7">1. Clinical Commissioning groups - year to date</div>
+                    <div class="col borderT span_1 alignC">139.5</div>
+                    <div class="col borderT span_1 alignC">141.4</div>
+                    <div class="col borderT span_1 alignC">2.0</div>
+                    <div class="col borderT span_1 alignC insideMarginR">101.4 %</div>
+                    <div class="col span_1 indicator amber even marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">A</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="row">
+                    <div class="col span_7 ">QIPP (excluding implied provider efficiencies)</div>
+                    <div class="col span_1 alignC">Plan &pound;m</div>
+                    <div class="col span_1 alignC">Actual &pound;m</div>
+                    <div class="col span_1 alignC">Var &pound;m</div>
+                    <div class="col span_1 alignC">Var %</div>
+                    <div class="col span_1 alignC">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col borderT span_7">1. Clinical Commissioning groups - year to date</div>
+                    <div class="col borderT span_1 alignC">139.5</div>
+                    <div class="col borderT span_1 alignC">141.4</div>
+                    <div class="col borderT span_1 alignC">2.0</div>
+                    <div class="col borderT span_1 alignC insideMarginR">101.4 %</div>
+                    <div class="col span_1 indicator amber even marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">A</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col borderT span_7">1. Clinical Commissioning groups - year to date</div>
+                    <div class="col borderT span_1 alignC">139.5</div>
+                    <div class="col borderT span_1 alignC">141.4</div>
+                    <div class="col borderT span_1 alignC">2.0</div>
+                    <div class="col borderT span_1 alignC insideMarginR">101.4 %</div>
+                    <div class="col span_1 indicator red down marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">R</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col borderT span_7">1. Clinical Commissioning groups - year to date</div>
+                    <div class="col borderT span_1 alignC">139.5</div>
+                    <div class="col borderT span_1 alignC">141.4</div>
+                    <div class="col borderT span_1 alignC">2.0</div>
+                    <div class="col borderT span_1 alignC insideMarginR">101.4 %</div>
+                    <div class="col span_1 indicator green up marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">G</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col borderT span_7">1. Clinical Commissioning groups - year to date</div>
+                    <div class="col borderT span_1 alignC">139.5</div>
+                    <div class="col borderT span_1 alignC">141.4</div>
+                    <div class="col borderT span_1 alignC">2.0</div>
+                    <div class="col borderT span_1 alignC insideMarginR">101.4 %</div>
+                    <div class="col span_1 indicator amber even marginTXS marginBXS radiusR_XL">
+                        <div class="currentValue">A</div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </section>
+
+
+
+</div>

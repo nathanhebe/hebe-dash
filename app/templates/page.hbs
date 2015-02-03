@@ -6,7 +6,8 @@
 <div id="MainWrapper" class="boardReport">
     <header>
         <div class="row">
-            <h1 class="col span_9">{{Title}}</h1>
+            <div class="col span_1 backLink">{{#link-to 'application' }}<img src="images/BackArrow@2x.png" />{{/link-to}}</div>
+            <h1 class="col span_8">{{Title}}</h1>
             <div class="button col span_3">Product Report for Print</div>
             <!--<div class="button column two">Filter by</div>-->
         </div>
@@ -30,7 +31,6 @@
             <div class="col span_2 borderT borderB borderL radiusL">
                 <span class="accordionHandle">&nbsp;</span>
                 {{indicator.dataValues}}
-                {{indicator.TargetDate}}
             </div>
             <div class="col span_7 borderL borderT borderB borderR">{{indicator.Title}}</div>
             <div class="col span_1 insideMarginR borderT borderB borderR  radiusR">
