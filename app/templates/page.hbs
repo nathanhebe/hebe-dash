@@ -27,20 +27,25 @@
         </div>
 
         {{#each indicator in indicators}}
+        
+        {{indicator.dataValues}}
+
+        {{#if indicator.hasValue}}
+
         <div class="row marginTL" {{bind-attr data-indicator-id=indicator.ID}}>
             <div class="col span_2 borderT borderB borderL radiusL">
                 <span class="accordionHandle">&nbsp;</span>
-                {{indicator.dataValues}}
+                {{indicator.currentValue.Year}}
             </div>
             <div class="col span_7 borderL borderT borderB borderR">{{indicator.Title}}</div>
             <div class="col span_1 insideMarginR borderT borderB borderR  radiusR">
                 <div class="currentValue">{{indicator.currentValue.Value}}</div>
             </div>
             <div class="col span_1 radiusL indicator amber">
-                <div class="currentValue">{{indicator.currentValue.Value}}%</div>
+                <div class="currentValue">{{indicator.currentVal}}%</div>
             </div>
             <div class="col span_1 indicator paddingLNone amber radiusR_XL even">
-                <div class="previousValue">{{indicator.previousValue.Value}}%</div>
+                <div class="previousValue">{{indicator.previousVal}}%</div>
             </div>
         </div>
 
@@ -56,6 +61,8 @@
                 {{/if}}
             </div>
         </div>
+
+        {{/if}}
 
         {{/each}}
 

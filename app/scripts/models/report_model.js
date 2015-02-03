@@ -4,9 +4,29 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     previousValue: null,
     _dataValues: null,
 
+    currentVal: function () {
+        var val = parseFloat(this.get('currentValue').Value).toPrecision(3);
+        if (val.length > 3) {
+            val = parseFloat(this.get('currentValue').Value).toPrecision(2);
+        }
+        return val;
+    }.property('currentValue'),
+
+    previousVal: function () {
+        var val = parseFloat(this.get('previousValue').Value).toPrecision(3);
+        if (val.length > 3) {
+            val = parseFloat(this.get('previousValue').Value).toPrecision(2);
+        }
+        return val;
+    }.property('previousValue'),
+
     chartID: function () {
         return 'Chart' + this.get('ID');
     }.property(),
+
+    hasValue: function () {
+        return !(this.get('currentValue') == null);
+    }.property('currentValue'),
 
     dataValues: function () {
         if (this.get('_dataValues') != null) {

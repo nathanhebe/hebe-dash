@@ -1,13 +1,14 @@
 <div id="MainWrapper" class="boardReport">
     <header>
         <div class="row">
-            <h1 class="col span_9">Performance Summary</h1>
+            <div class="col span_1 backLink">{{#link-to 'application' }}<img src="images/BackArrow@2x.png" />{{/link-to}}</div>
+            <h1 class="col span_8">{{Title}}</h1>
             <div class="button col span_3">Product Report for Print</div>
             <!--<div class="button column two">Filter by</div>-->
         </div>
     </header>
     <section id="MainContent">
-        <h2>Performance summary for NHS - November 2014</h2>
+        <h2>{{SubTitle}}</h2>
 
         <div class="row borderT borderB">
             <div class="col span_11 alignL bold">Aspects of NHS constitution</div>
@@ -18,11 +19,9 @@
         </div>
 
         <div class="row borderT marginTL paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">Experience (patient & staff)</div>
-            <div class="col span_1 alignC relative">
-                <div class="seperator"></div>
-                <a href="">View</a>
-                <div class="seperator right"></div>
+            <div class="col span_4 alignL">NHS Constitution</div>
+            <div class="col span_1 alignC borderL borderR relative">
+                {{#link-to 'page' 'annex_b' 'page_1' }}{{page.Title}}View{{/link-to}}
             </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
@@ -57,8 +56,10 @@
         </div>
 
         <div class="row borderT marginTS paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">Experience (patient & staff)</div>
-            <div class="col span_1 borderL borderR alignC"><a href="">View</a></div>
+            <div class="col span_4 alignL">NHS Experience</div>
+            <div class="col span_1 borderL borderR alignC">
+                {{#link-to 'page' 'annex_b' 'page_2' }}{{page.Title}}View{{/link-to}}
+            </div>
             <div class="col span_6 paddingTNone paddingRNone paddingBNone">
                 <div class="blockRow blockRow5">
                     <div class="block red">
@@ -92,8 +93,10 @@
         </div>
 
         <div class="row borderT marginTS paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">Experience (patient & staff)</div>
-            <div class="col span_1 borderL borderR alignC"><a href="">View</a></div>
+            <div class="col span_4 alignL">NHS Outcomes</div>
+            <div class="col span_1 borderL borderR alignC">
+                {{#link-to 'page' 'annex_b' 'page_3' }}{{page.Title}}View{{/link-to}}
+            </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
                     <div class="block red">
@@ -127,8 +130,10 @@
         </div>
 
         <div class="row borderT marginTS paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">Experience (patient & staff)</div>
-            <div class="col span_1 borderL borderR alignC"><a href="">View</a></div>
+            <div class="col span_4 alignL">NHS Inequalities</div>
+            <div class="col span_1 borderL borderR alignC">
+                {{#link-to 'page' 'annex_b' 'page_4' }}{{page.Title}}View{{/link-to}}
+            </div>
             <div class="col span_6 alignC">
                 <p>Information not available</p>
             </div>
@@ -138,8 +143,10 @@
         </div>
 
         <div class="row borderT borderB marginTS paddingBS  chart">
-            <div class="col span_4 alignL">Experience (patient & staff)</div>
-            <div class="col span_1 borderL borderR alignC"><a href="">View</a></div>
+            <div class="col span_4 alignL">NHS Others</div>
+            <div class="col span_1 borderL borderR alignC">
+                {{#link-to 'page' 'annex_b' 'page_5' }}{{page.Title}}View{{/link-to}}
+            </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
                     <div class="block red">
@@ -173,7 +180,7 @@
         </div>
 
 
-        <h2 class="marginTXL">Performance summary for nhs england - november 2014</h2>
+        <!--<h2 class="marginTXL">Performance summary for nhs england - november 2014</h2>
 
 
         <div class="row borderT marginTL paddingTS paddingBS chart">
@@ -297,7 +304,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </section>
 
 
