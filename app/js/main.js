@@ -1,30 +1,36 @@
 
 $(document).ready(function () {
 
-    setTimeout(
-    function () {
+    // dynamic responsive font resizing
+    $(function () {
         $(window).bind('resize', function () {
             resizeMe();
         }).trigger('resize');
-    }, 1000);
+    });
+
+    var ignoreInitialResize = true;
 
     var resizeMe = function () {
-        //Standard height, for which the body font size is correct
-        var preferredWidth = 1440;
-        //Base font size for the page
-        var fontsize = 110;
+        if (ignoreInitialResize) {
+            ignoreInitialResize = false;
+        } else {
+            //Standard height, for which the body font size is correct
+            var preferredWidth = 1440;
+            //Base font size for the page
+            var fontsize = 110;
 
-        //var displayWidth = $(window).width();
-        var displayWidth = $('#MainWrapper').width();
+            //var displayWidth = $(window).width();
+            var displayWidth = $('#MainWrapper').width();
 
-        // we want the size to slow down as the width reduces
-        var difference = preferredWidth - displayWidth;
-        difference = difference /4;
-        displayWidth = displayWidth + difference;
+            // we want the size to slow down as the width reduces
+            var difference = preferredWidth - displayWidth;
+            difference = difference / 4;
+            displayWidth = displayWidth + difference;
 
-        var percentage = displayWidth / preferredWidth;
-        var newFontSize = Math.floor(fontsize * percentage);
-        $("body").css("font-size", newFontSize + '%');
+            var percentage = displayWidth / preferredWidth;
+            var newFontSize = Math.floor(fontsize * percentage);
+            $("body").css("font-size", newFontSize + '%');
+        }
     };
 
     // Indicator Accordion

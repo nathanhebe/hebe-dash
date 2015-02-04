@@ -446,10 +446,17 @@ body, html {
     header {
         height: 165px;
 
+        &.report {
+            background-image:url(../images/NHS-England-Logo.png);
+            background-position:40px center;
+            background-size:250px;
+            background-repeat:no-repeat;
+        }
+
         .backLink {
             img {
-                width:44px;
-                height:44px;
+                width: 44px;
+                height: 44px;
             }
         }
     }
@@ -910,11 +917,11 @@ body, html {
 
                         .col {
                             font-weight: $font-weight-normal;
-                            font-size:$font-size-small;
+                            font-size: $font-size-small;
 
                             &:first-of-type {
                                 font-weight: $font-weight-bold;
-                                font-size:$font-size-main;
+                                font-size: $font-size-main;
                             }
                         }
                     }
@@ -1021,6 +1028,36 @@ body, html {
 
                         td:last-of-type {
                             @include border-bottom-right-radius(10px);
+                        }
+                    }
+                }
+            }
+        }
+
+        .supplimentary {
+
+            table {
+                width: 100%;
+                border-collapse: separate;
+
+                thead {
+                    tr {
+                        th {
+                            border-bottom: $border-main;
+                            border-top: $border-main;
+                            padding-top: $margin-main;
+                            font-weight: $font-weight-bold;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                            border:$border-main;
+                        td {
+                            padding-top: $margin-main / 2;
+                            padding-bottom: $margin-main / 2;
+
                         }
                     }
                 }
