@@ -1,0 +1,41 @@
+<div id="MainWrapper" class="boardReport">
+    <header>
+        <div class="row">
+            <div class="col span_1 backLink">{{#link-to 'index' }}<img src="/images/BackArrow@2x.png" />{{/link-to}}</div>
+            <h1 class="col span_8">{{Title}}</h1>
+            <div class="button col span_3">Product Report for Print</div>
+            <!--<div class="button column two">Filter by</div>-->
+        </div>
+    </header>
+
+
+    <section id="MainContent" class="supplimentary risks">
+        {{#if SubTitle}}
+        <h2>{{SubTitle}}</h2>
+        {{/if}}
+
+        <div class="row borderT borderB">
+            <div class="col span_1"></div>
+            <div class="col span_3">Risk</div>
+            <div class="col span_1">Current status</div>
+            <div class="col span_1">Mitigated</div>
+            <div class="col span_4">Comments</div>
+            <div class="col span_1">Acheive date</div>
+        </div>
+
+        <div class="row borderT borderB">
+            <div class="col span_1"></div>
+            <div class="col span_3">Risk</div>
+            <div class="col span_1 indicator amber even marginTXS marginBXS radiusR_XL">
+                <div class="currentValue">{{row.RAG}}</div>
+            </div>
+            <div class="col span_1">Mitigated</div>
+            <div class="col span_4">Comments</div>
+            <div class="col span_1">Acheive date</div>
+        </div>
+
+    </section>
+
+
+
+</div>

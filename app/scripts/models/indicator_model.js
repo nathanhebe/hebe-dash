@@ -8,9 +8,10 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     _dataValues: null,
 
     currentVal: function () {
+        var val;
         var current = this.get('currentValue');
         if (current !== null && current.Value !== null) {
-            var val = parseFloat(current.Value).toPrecision(3);
+            val = parseFloat(current.Value).toPrecision(3);
             if (val.length > 3) {
                 val = parseFloat(current.Value).toPrecision(2);
             }
@@ -19,9 +20,10 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     }.property('currentValue'),
 
     previousVal: function () {
+        var val;
         var previous = this.get('previousValue');
         if (previous !== null && previous.Value !== null) {
-            var val = parseFloat(previous.Value).toPrecision(3);
+            val = parseFloat(previous.Value).toPrecision(3);
             if (val.length > 3) {
                 val = parseFloat(previous.Value).toPrecision(2);
             }
@@ -38,7 +40,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         var current = this.get('currentValue');
         if (current == null) {
             return false;
-        } else if (current.Value != null && current.Value.indexOf('T00:') == -1) {
+        } else if (current.Value != null && current.Value.indexOf('T00:') === -1) {
             return true;
         } else {
             return false;
@@ -88,7 +90,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             //switch this.get('RAGType')
             var current = this.get('currentValue');
             var previous = this.get('previousValue');
-
+            
             if (current == null || previous == null || current.Value === null || previous.Value === null) {
                 colour = 'blue';
             } else {

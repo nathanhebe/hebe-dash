@@ -27,7 +27,7 @@
         </div>
 
         {{#each indicator in indicators}}
-        
+
         {{indicator.dataValues}}
 
         {{#if indicator.hasValue}}
@@ -41,12 +41,12 @@
             <div class="col span_1 insideMarginR borderT borderB borderR  radiusR">
                 <div class="currentValue">{{indicator.currentValue.Value}}</div>
             </div>
-            <div {{bindAttr class="indicator.ragColour :col :span_1 :radiusL :indicator"}}>
+            <div {{bind-attr class="indicator.ragColour :col :span_1 :radiusL :indicator"}}>
                 <div class="currentValue">
                     {{indicator.currentVal}}%
                 </div>
             </div>
-            <div {{bindAttr class="indicator.ragColour :col :span_1 :indicator :paddingLNone :radiusR_XL indicator.trend"}}>
+            <div {{bind-attr class="indicator.ragColour :col :span_1 :indicator :paddingLNone :radiusR_XL indicator.trend"}}>
                 <div class="previousValue">{{indicator.previousVal}}%</div>
             </div>
         </div>
@@ -59,7 +59,7 @@
             <div class="chart marginTL">
                 <!--<img class="sampleImage" src="images/SampleChart2.png" />-->
                 {{#if indicator.currentValue}}
-                    {{heat-map data=indicator}}
+                {{heat-map data=indicator}}
                 {{/if}}
             </div>
         </div>

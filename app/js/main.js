@@ -29,7 +29,9 @@ $(document).ready(function () {
 
 
     // Indicator Accordion
-    $('body').on('click','.accordionHandle', function () {
+    console.log('adding accordion');
+    $('body').on('click', '.accordionHandle', function () {
+        debugger;
         var indicatorIDContainer = $(this).closest('[data-indicator-id]');
         if (indicatorIDContainer.length > 0) {
             var indicatorID = indicatorIDContainer.attr('data-indicator-id');
