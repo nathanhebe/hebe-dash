@@ -1,8 +1,11 @@
+/* jshint undef: true, unused: true */
+/* global $ */
+
 Dashboard.ReportModel = Ember.Object.extend({
 });
 
 Dashboard.ReportModel.reopenClass({
-    findAll: function (resource_id) {
+    findAll: function (){ //resource_id) {
         var data = {
             resource_id: 'f441a675-1d3c-43d8-aa8d-c1059381c0e8', // the resource id
         };
@@ -24,9 +27,9 @@ Dashboard.ReportModel.reopenClass({
                 types[itemTypeGeneric].push(item);
             });
 
-            types['page'].forEach(function (page) {
+            types.page.forEach(function (page) {
                 var indicators = [];
-                var items = types['indicator'].filterBy('ParentID', page.ID);
+                var items = types.indicator.filterBy('ParentID', page.ID);
                 items.forEach(function (item) {
                     var indicator = Dashboard.IndicatorModel.create(item);
                     indicators.push(indicator);
@@ -34,8 +37,8 @@ Dashboard.ReportModel.reopenClass({
                 page.indicators = indicators;
             });
 
-            types['annex'].forEach(function (annex) {
-                var pageTypes = types['page'].filterBy('ParentID', annex.ID);
+            types.annex.forEach(function (annex) {
+                var pageTypes = types.page.filterBy('ParentID', annex.ID);
                 var pages = [];
                 pageTypes.forEach(function (item) {
                     var page = Dashboard.PageModel.create(item);
@@ -46,7 +49,7 @@ Dashboard.ReportModel.reopenClass({
 
             var report = Dashboard.ReportModel.create({
                 title: 'Sample Board Report',
-                annexes: types['annex']
+                annexes: types.annex
             });
 
             return report;

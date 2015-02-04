@@ -1,3 +1,6 @@
+/* jshint undef: true, unused: true */
+/* global $ */
+
 Dashboard.IndicatorModel = Ember.Object.extend({
     targetValue: null,
     currentValue: null,
@@ -5,17 +8,23 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     _dataValues: null,
 
     currentVal: function () {
-        var val = parseFloat(this.get('currentValue').Value).toPrecision(3);
-        if (val.length > 3) {
-            val = parseFloat(this.get('currentValue').Value).toPrecision(2);
+        var current = this.get('currentValue');
+        if (current !== null && current.Value !== null) {
+            var val = parseFloat(current.Value).toPrecision(3);
+            if (val.length > 3) {
+                val = parseFloat(current.Value).toPrecision(2);
+            }
         }
         return val;
     }.property('currentValue'),
 
     previousVal: function () {
-        var val = parseFloat(this.get('previousValue').Value).toPrecision(3);
-        if (val.length > 3) {
-            val = parseFloat(this.get('previousValue').Value).toPrecision(2);
+        var previous = this.get('previousValue');
+        if (previous !== null && previous.Value !== null) {
+            var val = parseFloat(previous.Value).toPrecision(3);
+            if (val.length > 3) {
+                val = parseFloat(previous.Value).toPrecision(2);
+            }
         }
         return val;
     }.property('previousValue'),
@@ -26,7 +35,14 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
     hasValue: function () {
         // Todo: correcting for bad development data e.g. missing values or some have dates like 1968-01-20T00:00:00
-        return !(this.get('currentValue') == null) && (this.get('currentValue').Value.indexOf('T00:') === -1);
+        var current = this.get('currentValue');
+        if (current == null) {
+            return false;
+        } else if (current.Value != null && current.Value.indexOf('T00:') == -1) {
+            return true;
+        } else {
+            return false;
+        }
     }.property('currentValue'),
 
     dataValues: function () {
@@ -54,14 +70,11 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         switch (this.get('ragColour')) {
             default:
                 return 'even';
-                break;
             case 'green':
             case 'greenAmber':
-                return 'up'
-                break;
+                return 'up';
             case 'red':
                 return 'down';
-                break;
         }
     }.property('_ragColour'),
 
@@ -73,11 +86,14 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         } else {
             var colour = 'blue';
             //switch this.get('RAGType')
-            var current = this.get('currentValue').Value;
-            var previous = this.get('previousValue').Value;
+            var current = this.get('currentValue');
+            var previous = this.get('previousValue');
 
-            if (current == null || previous == null) {
+            if (current == null || previous == null || current.Value === null || previous.Value === null) {
                 colour = 'blue';
+            } else {
+                current = current.Value;
+                previous = previous.Value;
             }
             var ragVal = 1;
             var diff = current - previous;
@@ -99,7 +115,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             return colour;
         }
 
-    }.property('currentVal','previousVal')
+    }.property('currentVal', 'previousVal')
 
 
 

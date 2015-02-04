@@ -1,1 +1,1 @@
-Dashboard.ApplicationAdapter = DS.FixtureAdapter;
+//Dashboard.ApplicationAdapter = DS.FixtureAdapter;

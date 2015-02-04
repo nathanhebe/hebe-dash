@@ -1,8 +1,8 @@
-Dashboard.PageController = Ember.Controller.extend({
+Dashboard.PageController = Ember.ObjectController.extend({
     // the initial value of the `search` property
     search: '',
     _pages: null,
-
+    test: 'testy',
     pages: function () {
         if (this.get('_pages') !== null) {
             return this.get('_pages');
@@ -10,7 +10,7 @@ Dashboard.PageController = Ember.Controller.extend({
             var obj = this;
             Dashboard.ReportModel.findAll()
                 .then(function (report) {
-                    pages = report.annexes.findBy('ID', 'annex_b').pages;
+                    var pages = report.annexes.findBy('ID', 'annex_b').pages;
                     //console.log('pages = ' + pages);
                     obj.set('_pages', pages);
                 });

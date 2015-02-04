@@ -1,5 +1,5 @@
 {
-  "name": "dashboard",
+  "name": "ember-test",
   "version": "0.0.0",
   "dependencies": {
     "ember": "1.6.1",
@@ -7,8 +7,7 @@
     "ember-data": "1.0.0-beta.8",
     "bootstrap-sass-official": "3.1.1",
     "d3": "latest",
-    "c3":  "latest"
-    
+    "c3" :  "latest"
   },
   "resolutions": {
     "ember": "1.6.1"

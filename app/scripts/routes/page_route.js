@@ -15,10 +15,14 @@ Dashboard.PageRoute = Ember.Route.extend({
         return Dashboard.ReportModel.findAll().then(function (report) {
             var page = report.annexes.findBy('ID', annexID).pages.findBy('ID', pageID);
             console.log(page.Type);
-            route.renderTemplate = function() {
+            route.renderTemplate = function () {
                 this.render(page.Type);
-            }
+            };
             return page;
         });
+    },
+    setupController: function (controller, model) {
+        controller.set('model', model);
     }
+
 });

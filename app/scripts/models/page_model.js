@@ -1,3 +1,6 @@
+/* jshint undef: true, unused: true */
+/* global $ */
+
 Dashboard.PageModel = Ember.Object.extend({
     _rows: null,
     rows: function () {

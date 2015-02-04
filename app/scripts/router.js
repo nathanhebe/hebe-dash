@@ -1,6 +1,6 @@
 Dashboard.Router.map(function () {
     this.resource('annex', { path: '/annex/:annexID' }, function () {
-        this.resource('page', { path: 'page/:pageID' })
+        this.resource('page', { path: 'page/:pageID' });
     });
 });
 

@@ -1,11 +1,12 @@
-﻿Dashboard.HeatMapComponent = Ember.Component.extend({
+﻿/* jshint undef: true, unused: true */
+/* global d3, c3 */
+
+Dashboard.HeatMapComponent = Ember.Component.extend({
     //margin: { top: 50, right: 0, bottom: 100, left: 30 },
     //width: 900,
     //height: 280,
 
     draw: function (myData) {
-        var self = this;
-
         //this.set('data', myData);
         //console.log(this.get('data'));
         var chartID = '#' + myData.get('chartID');
@@ -23,7 +24,7 @@
         xAxis.unshift('x');
         lineVals.unshift('Current');
 
-        var chart = c3.generate({
+        c3.generate({
             bindto: chartID,
             size: {
                 width: '1360'
@@ -61,9 +62,9 @@
             },
 
             regions: [
-                    { axis: 'y', start: 0, end: .6, class: 'regionYR' },
-                    { axis: 'y', start: .6, end: .7, class: 'regionYA' },
-                    { axis: 'y', start: .7, class: 'regionYG' },
+                    { axis: 'y', start: 0, end: 0.6, class: 'regionYR' },
+                    { axis: 'y', start: 0.6, end: 0.7, class: 'regionYA' },
+                    { axis: 'y', start: 0.7, class: 'regionYG' },
             ]
         });
 
