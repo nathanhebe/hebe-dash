@@ -25,5 +25,49 @@ Dashboard.PageModel = Ember.Object.extend({
                 break;
         }
         return this.get('_rows');
-    }.property()
+    }.property(),
+
+    _ragStatus: null,
+    ragStatus: function () {
+        //console.log('ragStatus');
+        if (this.get('_ragStatus') !== null) {
+            return this.get('_ragStatus');
+        } else {
+            var status = [
+                {
+                    colour: 'red',
+                    count: 4,
+                    previous: '-2'
+                },
+                {
+                    colour: 'missing',
+                    count: '',
+                    previous: 'N/A'
+                },
+                {
+                    colour: 'amber',
+                    count: 12,
+                    previous: '4'
+                },
+                {
+                    colour: 'missing',
+                    count: '',
+                    previous: 'N/A'
+                },
+                {
+                    colour: 'green',
+                    count: 8,
+                    previous: '2'
+                }
+                //,
+                //{
+                //    colour: 'blue',
+                //    count: 2,
+                //    previous: ''
+                //}
+            ];
+            this.set('_ragStatus', status);
+            return this.get('_ragStatus');
+        }
+    }.property('_ragStatus')
 });
