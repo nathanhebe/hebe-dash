@@ -1,11 +1,12 @@
 
 $(document).ready(function () {
 
-    $(function () {
+    setTimeout(
+    function () {
         $(window).bind('resize', function () {
             resizeMe();
         }).trigger('resize');
-    });
+    }, 1000);
 
     var resizeMe = function () {
         //Standard height, for which the body font size is correct
@@ -26,12 +27,8 @@ $(document).ready(function () {
         $("body").css("font-size", newFontSize + '%');
     };
 
-
-
     // Indicator Accordion
-    console.log('adding accordion');
     $('body').on('click', '.accordionHandle', function () {
-        debugger;
         var indicatorIDContainer = $(this).closest('[data-indicator-id]');
         if (indicatorIDContainer.length > 0) {
             var indicatorID = indicatorIDContainer.attr('data-indicator-id');
