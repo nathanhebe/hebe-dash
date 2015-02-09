@@ -24,6 +24,11 @@ Dashboard.DashboardModel = Ember.Object.extend({
 });
 
 Dashboard.DashboardModel.reopenClass({
+    find: function(dashID){
+        return this.findAll().then(function (data) {
+            return data.filterBy('ID', dashID)[0];
+        });
+    },
     findAll: function () {
         var data = {
             resource_id: 'e8a418c8-c879-4dd9-b36f-ecb9b6d65678', // the resource id

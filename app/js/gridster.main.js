@@ -58,117 +58,42 @@
 //    });
 //}
 
-var initGridster = function () {
 
-    /* 
-    ==========================================================================
-       Cache Rules (Everything Around Me)
-    ========================================================================== 
-    */
+/* 
+==========================================================================
+   Cache Rules (Everything Around Me)
+========================================================================== 
+*/
 
-    $pageWidth = $(window).width();
-    $pageHeight = $(window).height();
-    $body = $("body");
-    $preSite = $body.find('.preSite');
-    $siteWrapper = $("#siteWrapper");
-    $headerWrapper = $("#headerWrapper");
-    $buttonWrapper = $("#buttonWrapper");
-    $menuButton = $("#menuButton");
-    $backButton = $("#backButton");
-    $headerLine = $("#headerLine");
-    $presentation = $('#presentation');
-    $infoButton = $('#infoButton');
-    $infoCross = $('#infoCross');
-    $infoWrapper = $('#infoWrapper');
-    $navWrapper = $("#navWrapper");
-    $navLinks = $('#navWrapper').find('.navA');
-    $addWidget = $("#addWidget");
-    $contentWrapper = $("#contentWrapper");
-    $container = $('#container');
-    $widgetNavWrapper = $("#widgetNavWrapper");
+
+var dashWrapper = (function () {
+    var $pageWidth,
+    $pageHeight,
+    $body,
+    $preSite,
+    $siteWrapper,
+    $headerWrapper,
+    $buttonWrapper,
+    $menuButton,
+    $backButton,
+    $headerLine,
+    $presentation,
+    $infoButton,
+    $infoCross,
+    $infoWrapper,
+    $navWrapper,
+    $navLinks,
+    $addWidget,
+    $contentWrapper,
+    $container,
+    $widgetNavWrapper,
+    $widgetsFit = null;
 
     var gridster = null;
-    /* 
-    ==========================================================================
-       Page Init, Innit?
-    ========================================================================== 
-    */
-
-    // Set preSiteHeight page to be 100% height
-    preSiteHeight();
-
-    // Set $navWrapper to "Closed" on initialization
-    jQuery.data($navWrapper, 'state', 'closed');
-    // Init Menu Dropdown Functionality
-    menuButton();
-
-    // Init Sub Menu drop-down
-    subMenu();
-
-    // Button that goes back to main nav
-    backToNav();
 
     // Init Widget Carousel
     //initWidgetCarousel();
 
-    // Set contentWrapper min-height
-    contentMinHeight();
-
-    // Init Gridster
-    snapPoints();
-
-    gridInit();
-
-    // Presentation Mode functionality
-    presentationMode();
-
-    /* 
-    ==========================================================================
-       Do Stuff
-    ========================================================================== 
-    */
-
-    $('#scrollButton').on('click', function (e) {
-        e.preventDefault();
-        $("html, body").animate({ scrollTop: $('#siteWrapper').offset().top }, 300);
-    });
-
-    // Window Resize event
-    $(window).on('resize', function () {
-        waitForFinalEvent(function () {
-
-            // Redefine the width and height of the window
-            $pageWidth = $(window).width();
-            $pageHeight = $(window).height();
-
-            // reset preSite divs to be 100% height
-            preSiteHeight();
-
-            // Reset contentWrapper min-height
-            contentMinHeight();
-
-            snapPoints();
-        });
-    });
-
-    $infoButton.on('click', function () {
-        TweenMax.to($infoWrapper, 0, { zIndex: '99' });
-        TweenMax.to($infoWrapper, 0.2, { opacity: '1' });
-        $siteWrapper.addClass('blur');
-        $preSite.addClass('blur');
-    });
-
-    $infoCross.on('click', function () {
-        TweenMax.to($infoWrapper, 0, { zIndex: '-1', delay: 0.2 });
-        TweenMax.to($infoWrapper, 0.2, { opacity: '0' });
-        $siteWrapper.removeClass('blur');
-        $preSite.removeClass('blur');
-    });
-    /* 
-    ==========================================================================
-       Here Be Functions...
-    ========================================================================== 
-    */
 
     //Set preSite pages to be 100% height, but still in flow
     function preSiteHeight() {
@@ -188,6 +113,7 @@ var initGridster = function () {
     // Home Menu Dropdown Functionality
     function menuButton() {
         $menuButton.on("click touchstart", function (e) {
+            console.log('Menu Button Click');
             e.preventDefault();
             if (jQuery.data($navWrapper, 'state') == 'closed') {
                 $(this).addClass('menuButtonActive');
@@ -253,7 +179,7 @@ var initGridster = function () {
     }
 
     // Puts the page into full-screen mode and moves the header out da way
-    function presentationMode() {
+    function setupPresentationMode() {
         $presentation.on('click', function () {
             launchFullscreen(document.documentElement);
             TweenMax.to($headerWrapper, 0.2, { opacity: '0' });
@@ -275,14 +201,6 @@ var initGridster = function () {
         } else if (element.msRequestFullscreen) {
             element.msRequestFullscreen();
         }
-    }
-
-    // Listen for changes to the fullscreen API in a bunch of browsers, run exitHandler() when it goes dooown
-    if (document.addEventListener) {
-        document.addEventListener('webkitfullscreenchange', exitHandler, true);
-        document.addEventListener('mozfullscreenchange', exitHandler, true);
-        document.addEventListener('fullscreenchange', exitHandler, true);
-        document.addEventListener('MSFullscreenChange', exitHandler, true);
     }
 
     // When fullscreen changes, bring back the header and ting if it's not fullscreen mode
@@ -450,27 +368,6 @@ var initGridster = function () {
         }
     }
 
-    // Scrolling functionality
-    $(window).on("scroll", function () {
-
-        // Constantly update the distance you've scrolled from the top of the page
-        var topDis = $(document).scrollTop();
-
-        // If there's a preSite div present, hide it when you've scrolled its full height 
-        if ($preSite.length) {
-            $detachHeight = $preSite.height();
-            if (topDis >= $detachHeight) {
-                $preSite.detach();
-                $preSite = '';
-                $siteWrapper.css({ 'top': '0px' });
-                window.scrollTo(0, 0);
-                $contentWrapper.removeClass('overflowX');
-                $headerWrapper.addClass('stickyWrapper');
-                $contentWrapper.addClass('stickyContent');
-            }
-        }
-    });
-
     // Fire functions on final resize event
     var waitForFinalEvent = (function () {
         var timers = {};
@@ -484,4 +381,131 @@ var initGridster = function () {
             timers[uniqueId] = setTimeout(callback, ms);
         };
     })();
-};
+
+
+    // PUBLIC FUNCTIONS
+    // E.G. dashWrapper.init()
+    return {
+        init: function () {
+            this.initDOMVars();
+
+            // Set preSiteHeight page to be 100% height
+            preSiteHeight();
+
+            // Set $navWrapper to "Closed" on initialization
+            jQuery.data($navWrapper, 'state', 'closed');
+            // Init Menu Dropdown Functionality
+            menuButton();
+
+            // Init Sub Menu drop-down
+            subMenu();
+
+            // Button that goes back to main nav
+            backToNav();
+
+            // Set contentWrapper min-height
+            contentMinHeight();
+
+            $infoButton.on('click', function () {
+                TweenMax.to($infoWrapper, 0, { zIndex: '99' });
+                TweenMax.to($infoWrapper, 0.2, { opacity: '1' });
+                $siteWrapper.addClass('blur');
+                $preSite.addClass('blur');
+            });
+
+            $infoCross.on('click', function () {
+                TweenMax.to($infoWrapper, 0, { zIndex: '-1', delay: 0.2 });
+                TweenMax.to($infoWrapper, 0.2, { opacity: '0' });
+                $siteWrapper.removeClass('blur');
+                $preSite.removeClass('blur');
+            });
+
+            $('#scrollButton').on('click', function (e) {
+                e.preventDefault();
+                $("html, body").animate({ scrollTop: $('#siteWrapper').offset().top }, 300);
+            });
+
+            // Window Resize event
+            $(window).on('resize', function () {
+                waitForFinalEvent(function () {
+
+                    // Redefine the width and height of the window
+                    $pageWidth = $(window).width();
+                    $pageHeight = $(window).height();
+
+                    // reset preSite divs to be 100% height
+                    preSiteHeight();
+
+                    // Reset contentWrapper min-height
+                    contentMinHeight();
+
+                    snapPoints();
+                });
+            });
+
+            // Scrolling functionality
+            $(window).on("scroll", function () {
+
+                // Constantly update the distance you've scrolled from the top of the page
+                var topDis = $(document).scrollTop();
+
+                // If there's a preSite div present, hide it when you've scrolled its full height 
+                if ($preSite.length) {
+                    $detachHeight = $preSite.height();
+                    if (topDis >= $detachHeight) {
+                        $preSite.detach();
+                        $preSite = '';
+                        $siteWrapper.css({ 'top': '0px' });
+                        window.scrollTo(0, 0);
+                        $contentWrapper.removeClass('overflowX');
+                        $headerWrapper.addClass('stickyWrapper');
+                        $contentWrapper.addClass('stickyContent');
+                    }
+                }
+            });
+
+
+            // Listen for changes to the fullscreen API in a bunch of browsers, run exitHandler() when it goes dooown
+            if (document.addEventListener) {
+                document.addEventListener('webkitfullscreenchange', exitHandler, true);
+                document.addEventListener('mozfullscreenchange', exitHandler, true);
+                document.addEventListener('fullscreenchange', exitHandler, true);
+                document.addEventListener('MSFullscreenChange', exitHandler, true);
+            }
+
+            setupPresentationMode();
+
+        },
+
+        initDOMVars: function(){
+            $pageWidth = $(window).width();
+            $pageHeight = $(window).height();
+            $body = $("body");
+            $preSite = $body.find('.preSite');
+            $siteWrapper = $("#siteWrapper");
+            $headerWrapper = $("#headerWrapper");
+            $buttonWrapper = $("#buttonWrapper");
+            $menuButton = $("#menuButton");
+            $backButton = $("#backButton");
+            $headerLine = $("#headerLine");
+            $presentation = $('#presentation');
+            $infoButton = $('#infoButton');
+            $infoCross = $('#infoCross');
+            $infoWrapper = $('#infoWrapper');
+            $navWrapper = $("#navWrapper");
+            $navLinks = $('#navWrapper').find('.navA');
+            $addWidget = $("#addWidget");
+            $contentWrapper = $("#contentWrapper");
+            $container = $('#container');
+            $widgetNavWrapper = $("#widgetNavWrapper");
+        },
+
+        initGridster: function () {
+            // Init Gridster
+            snapPoints();
+            gridInit();
+        }
+
+    }
+
+})();

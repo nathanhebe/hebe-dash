@@ -1,9 +1,10 @@
 Dashboard.Router.map(function () {
-    this.resource('annex', { path: '/annex/:annexID' }, function () {
-        this.resource('page', { path: 'page/:pageID' });
+    this.resource('dash', { path: '/dash/:dashID' }, function () {
+        this.resource('annex', { path: '/annex/:annexID' }, function () {
+            this.resource('page', { path: 'page/:pageID' });
+        });
     });
 });
-
 
 //App.Router.map(function () {
 //    this.resource('albums', { path: '/albums' }, function () {
