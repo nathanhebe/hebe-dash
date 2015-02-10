@@ -67,6 +67,7 @@
 
 
 var dashWrapper = (function () {
+    var isInitialized = false;
     var $pageWidth,
     $pageHeight,
     $body,
@@ -251,40 +252,59 @@ var dashWrapper = (function () {
             colCount = 2;
         }
 
-        // Set up grid options, sizes etc
-        gridster = $("#contentWrapper #container").gridster({
+
+        var gridster = $("#DashboardGrid ul").gridster({
             widget_margins: [11, 11],
             widget_base_dimensions: [$e - 22, $e - 22],
             min_cols: $widgetsFit, // Change to colCount for proper serialization
-            autogrow_cols: false, //Change to true for growable table
-            avoid_overlapped_widgets: true,
+            autogrow_cols: false, // Change to true for growable table
+            avoid_overlapped_widgets: true
         }).data('gridster');
 
-
-        $blockNo = 0;
-        $.each(serialization, function () {
-            $blockNo++;
-            gridster.add_widget('<li class="widget cover block' + $blockNo + ' noTouch"></li>', this.size_x, this.size_y, this.col, this.row);
+        $('#WidgetHolder li').each(function () {
+            var widget = $(this);
+            var sizeX = parseInt(widget.attr('data-sizex'));
+            var sizeY = parseInt(widget.attr('data-sizex'));
+            gridster.add_widget(widget, sizeX, sizeY);
         });
 
-        // Time delay on dragging
-        dragTimeout = null;
-        $("#container .gs-w").on('mousedown touchstart', function (e, data) {
-            var self = this;
-            if (!data || !data.start) {
-                gridster.disable();
-                dragTimeout = setTimeout(function () {
-                    gridster.enable();
-                    $(self).trigger(e, [{ start: true }]);
-                    $container.addClass('dragging');
-                }, 300);
-            } else {
-                $(self).addClass('dragging');
-            }
-        }).bind('mouseup  touchend', function () {
-            $siteWrapper.find('.dragging').removeClass('dragging');
-            clearTimeout(dragTimeout);
-        });
+
+
+
+        //// Set up grid options, sizes etc
+        //gridster = $("#contentWrapper #container").gridster({
+        //    widget_margins: [11, 11],
+        //    widget_base_dimensions: [$e - 22, $e - 22],
+        //    min_cols: $widgetsFit, // Change to colCount for proper serialization
+        //    autogrow_cols: false, //Change to true for growable table
+        //    avoid_overlapped_widgets: true,
+        //}).data('gridster');
+
+
+        //$blockNo = 0;
+        //$.each(serialization, function () {
+        //    $blockNo++;
+        //    gridster.add_widget('<li class="widget cover block' + $blockNo + ' noTouch"></li>', this.size_x, this.size_y, this.col, this.row);
+        //});
+
+        //// Time delay on dragging
+        //dragTimeout = null;
+        //$("#container .gs-w").on('mousedown touchstart', function (e, data) {
+        //    var self = this;
+        //    if (!data || !data.start) {
+        //        gridster.disable();
+        //        dragTimeout = setTimeout(function () {
+        //            gridster.enable();
+        //            $(self).trigger(e, [{ start: true }]);
+        //            $container.addClass('dragging');
+        //        }, 300);
+        //    } else {
+        //        $(self).addClass('dragging');
+        //    }
+        //}).bind('mouseup  touchend', function () {
+        //    $siteWrapper.find('.dragging').removeClass('dragging');
+        //    clearTimeout(dragTimeout);
+        //});
     }
 
     // Gridster init function with serial storing, to be used in conjunction with hard-coded blocks in index.php
@@ -387,6 +407,8 @@ var dashWrapper = (function () {
     // E.G. dashWrapper.init()
     return {
         init: function () {
+            console.log('dashWrapper.init');
+
             this.initDOMVars();
 
             // Set preSiteHeight page to be 100% height
@@ -477,7 +499,8 @@ var dashWrapper = (function () {
 
         },
 
-        initDOMVars: function(){
+        initDOMVars: function () {
+            isInitialized = true;
             $pageWidth = $(window).width();
             $pageHeight = $(window).height();
             $body = $("body");
@@ -501,7 +524,14 @@ var dashWrapper = (function () {
         },
 
         initGridster: function () {
+            console.log('init gridster');
             // Init Gridster
+
+            if (!isInitialized) {
+                console.log('DOM Vars require reloading');
+                this.initDOMVars();
+            }
+
             snapPoints();
             gridInit();
         }
