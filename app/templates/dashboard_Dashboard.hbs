@@ -1,28 +1,23 @@
-DASHBOARD
+{{Title}}
 
-<style type="text/css">
-    .gs-w {
-        border:solid 1px red;
-        position:absolute;
-    }
-</style>
-<h1> gridster</h1>
-<div id="DashboardGrid">
-    <ul>
-    </ul>
+
+<div id="contentWrapper" class="contentWrapper overflowX">
+    <ul id="container" class="container"></ul>
 </div>
+
 
 <div id="WidgetHolder">
-    <li class="widget" data-sizex="1" data-sizey="1">test 1</li>
-    <li class="widget" data-sizex="1" data-sizey="1">test 2</li>
-    <li class="widget" data-sizex="1" data-sizey="1">test 3</li>
-    <li class="widget" data-sizex="2" data-sizey="1">test 4</li>
-    <li class="widget" data-sizex="2" data-sizey="2">test 5</li>
-    <li class="widget" data-sizex="1" data-sizey="1">test 6</li>
-    <li class="widget" data-sizex="2" data-sizey="1">test 7</li>
-    <li class="widget" data-sizex="1" data-sizey="1">test 8</li>
-    <li class="widget" data-sizex="1" data-sizey="1">test 9</li>
-    <li class="widget" data-sizex="1" data-sizey="1">test 10</li>
-    <li class="widget" data-sizex="1" data-sizey="1">test 11</li>
-    <li class="widget" data-sizex="1" data-sizey="2">test 12</li>
+    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 1</li>
+    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 2</li>
+    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 3</li>
+    <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 4</li>
+    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 5</li>
+    <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 6</li>
+    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 7</li>
+    <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 8</li>
 </div>
+
+
+{{#each widget in data}}
+    {{widget.Title}}
+{{/each}}

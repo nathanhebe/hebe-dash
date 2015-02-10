@@ -12,10 +12,21 @@ Dashboard.DashboardModel = Ember.Object.extend({
                 case "BoardReport":
                     console.log('Lazy Load Board Report Data Here');
                     this.set('_data', Dashboard.BoardReport.find(item.CKANResourceID));
+                    return this.get('_data');
                     break;
                 case "Dashboard":
                     console.log('Lazy Load Dashboard Data Here');
                     //this.set('_data', Dashboard.BoardReport.find(item.CKANResourceID));
+                    var widgets = [
+                        {
+                            Title: 'Widget 1',
+                            sizeX: 2,
+                            sizeY: 2
+                        }
+                    ];
+                    console.log('Setting Dashboard data: ' + widgets);
+                    this.set('_data', widgets);
+                    return this.get('_data');
                     break;
             }
         }
@@ -24,7 +35,7 @@ Dashboard.DashboardModel = Ember.Object.extend({
 });
 
 Dashboard.DashboardModel.reopenClass({
-    find: function(dashID){
+    find: function (dashID) {
         return this.findAll().then(function (data) {
             return data.filterBy('ID', dashID)[0];
         });
@@ -43,7 +54,8 @@ Dashboard.DashboardModel.reopenClass({
                 var dashboards = [];
                 var result = response.result;
                 result.records.forEach(function (item) {
-                    dashboards.push(item);
+                    var dash = Dashboard.DashboardModel.create(item);
+                    dashboards.push(dash);
                 });
                 return dashboards;
             }

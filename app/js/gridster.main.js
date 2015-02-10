@@ -252,14 +252,21 @@ var dashWrapper = (function () {
             colCount = 2;
         }
 
-
-        var gridster = $("#DashboardGrid ul").gridster({
+        // Set up grid options, sizes etc
+        gridster = $("#contentWrapper #container").gridster({
             widget_margins: [11, 11],
             widget_base_dimensions: [$e - 22, $e - 22],
             min_cols: $widgetsFit, // Change to colCount for proper serialization
-            autogrow_cols: false, // Change to true for growable table
-            avoid_overlapped_widgets: true
+            autogrow_cols: false, //Change to true for growable table
+            avoid_overlapped_widgets: true,
         }).data('gridster');
+
+
+        //$blockNo = 0;
+        //$.each(serialization, function () {
+        //    $blockNo++;
+        //    gridster.add_widget('<li class="widget cover block' + $blockNo + ' noTouch"></li>', this.size_x, this.size_y, this.col, this.row);
+        //});
 
         $('#WidgetHolder li').each(function () {
             var widget = $(this);
@@ -271,40 +278,25 @@ var dashWrapper = (function () {
 
 
 
-        //// Set up grid options, sizes etc
-        //gridster = $("#contentWrapper #container").gridster({
-        //    widget_margins: [11, 11],
-        //    widget_base_dimensions: [$e - 22, $e - 22],
-        //    min_cols: $widgetsFit, // Change to colCount for proper serialization
-        //    autogrow_cols: false, //Change to true for growable table
-        //    avoid_overlapped_widgets: true,
-        //}).data('gridster');
 
-
-        //$blockNo = 0;
-        //$.each(serialization, function () {
-        //    $blockNo++;
-        //    gridster.add_widget('<li class="widget cover block' + $blockNo + ' noTouch"></li>', this.size_x, this.size_y, this.col, this.row);
-        //});
-
-        //// Time delay on dragging
-        //dragTimeout = null;
-        //$("#container .gs-w").on('mousedown touchstart', function (e, data) {
-        //    var self = this;
-        //    if (!data || !data.start) {
-        //        gridster.disable();
-        //        dragTimeout = setTimeout(function () {
-        //            gridster.enable();
-        //            $(self).trigger(e, [{ start: true }]);
-        //            $container.addClass('dragging');
-        //        }, 300);
-        //    } else {
-        //        $(self).addClass('dragging');
-        //    }
-        //}).bind('mouseup  touchend', function () {
-        //    $siteWrapper.find('.dragging').removeClass('dragging');
-        //    clearTimeout(dragTimeout);
-        //});
+        // Time delay on dragging
+        dragTimeout = null;
+        $("#container .gs-w").on('mousedown touchstart', function (e, data) {
+            var self = this;
+            if (!data || !data.start) {
+                gridster.disable();
+                dragTimeout = setTimeout(function () {
+                    gridster.enable();
+                    $(self).trigger(e, [{ start: true }]);
+                    $container.addClass('dragging');
+                }, 300);
+            } else {
+                $(self).addClass('dragging');
+            }
+        }).bind('mouseup  touchend', function () {
+            $siteWrapper.find('.dragging').removeClass('dragging');
+            clearTimeout(dragTimeout);
+        });
     }
 
     // Gridster init function with serial storing, to be used in conjunction with hard-coded blocks in index.php
@@ -505,22 +497,22 @@ var dashWrapper = (function () {
             $pageHeight = $(window).height();
             $body = $("body");
             $preSite = $body.find('.preSite');
-            $siteWrapper = $("#siteWrapper");
+            $siteWrapper = $("#SiteWrapper");
             $headerWrapper = $("#headerWrapper");
             $buttonWrapper = $("#buttonWrapper");
-            $menuButton = $("#menuButton");
-            $backButton = $("#backButton");
+            $menuButton = $("button.menuButton");
+            $backButton = $("button.backButton");
             $headerLine = $("#headerLine");
             $presentation = $('#presentation');
             $infoButton = $('#infoButton');
             $infoCross = $('#infoCross');
             $infoWrapper = $('#infoWrapper');
-            $navWrapper = $("#navWrapper");
-            $navLinks = $('#navWrapper').find('.navA');
+            $navWrapper = $("#SecondNav");
+            $navLinks = $navWrapper.find('button');
             $addWidget = $("#addWidget");
             $contentWrapper = $("#contentWrapper");
             $container = $('#container');
-            $widgetNavWrapper = $("#widgetNavWrapper");
+            $widgetNavWrapper = $("#WidgetNavWrapper");
         },
 
         initGridster: function () {

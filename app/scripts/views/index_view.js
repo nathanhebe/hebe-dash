@@ -1,10 +1,9 @@
 Dashboard.IndexView = Ember.View.extend({
     templateName: 'index',
     owl: null,
-    didInsertElement: function () {
+    afterRenderEvent: function () {
         console.log('Index is Loaded'); // will log 'hello world'
         //initGridster();
-        dashWrapper.init();
         owl = $('#widgetCarousel');
         owl.owlCarousel({
             startPosition: 4

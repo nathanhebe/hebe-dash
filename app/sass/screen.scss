@@ -105,6 +105,7 @@
 @import "_grid";
 
 
+$color-white: #FFFFFF; // white
 $color-bg: #F7F7F7; // base background white?
 /*$color-bg-light: #979797; // used for borders/spacers and knocked-back text etc*/
 $color-bg-light: #E7E7E7; // used for borders/spacers and knocked-back text etc
@@ -153,7 +154,7 @@ body, html {
     width: 100%;
 }
 
-#MainWrapper {
+#SiteWrapper { // #MainWrapper
     color: $color-font-main;
     background-color: $color-bg;
     max-width: 1440px;
@@ -433,7 +434,7 @@ body, html {
     #NHSEnglandLogo {
     }
 
-    header, footer, section {
+    footer, section {
         padding: $margin-main;
         overflow: auto;
     }
@@ -444,13 +445,12 @@ body, html {
     }
 
     header {
-        height: 165px;
 
         &.report {
-            background-image:url(../images/NHS-England-Logo.png);
-            background-position:40px center;
-            background-size:250px;
-            background-repeat:no-repeat;
+            background-image: url(../images/NHS-England-Logo.png);
+            background-position: 40px center;
+            background-size: 250px;
+            background-repeat: no-repeat;
         }
 
         .backLink {
@@ -459,6 +459,17 @@ body, html {
                 height: 44px;
             }
         }
+
+
+
+    @import "_header";
+
+
+
+
+
+
+
     }
 
     footer {
@@ -1053,11 +1064,11 @@ body, html {
 
                 tbody {
                     tr {
-                            border:$border-main;
+                        border: $border-main;
+
                         td {
                             padding-top: $margin-main / 2;
                             padding-bottom: $margin-main / 2;
-
                         }
                     }
                 }
