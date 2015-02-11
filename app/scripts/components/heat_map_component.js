@@ -14,11 +14,11 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
 
         var values = myData.get('_dataValues');
         var xAxis = values.map(function (val) {
-            //return val.Year;
-            return new Date(val.Year.split(/[\.,-\/#!$%\^&\*;:{}=\-_`~() ]/g)[0]);
+            //return val.year;
+            return new Date(val.year.split(/[\.,-\/#!$%\^&\*;:{}=\-_`~() ]/g)[0]);
         });
         var lineVals = values.map(function (val) {
-            return val.Value / 100;
+            return val.value / 100;
         });
 
         xAxis.unshift('x');

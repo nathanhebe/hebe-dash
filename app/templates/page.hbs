@@ -28,18 +28,17 @@
 
         {{#each indicator in indicators}}
 
-        {{indicator.dataValues}}
 
         {{#if indicator.hasValue}}
 
         <div class="row marginTL" {{bind-attr data-indicator-id=indicator.ID}}>
             <div class="col span_2 borderT borderB borderL radiusL">
                 <span class="accordionHandle">&nbsp;</span>
-                {{indicator.currentValue.Year}}
+                {{indicator.currentDate}}
             </div>
             <div class="col span_7 borderL borderT borderB borderR">{{indicator.Title}}</div>
             <div class="col span_1 insideMarginR borderT borderB borderR  radiusR">
-                <div class="currentValue">{{indicator.currentValue.Value}}</div>
+                <div class="currentValue">{{indicator.currentVal}}</div>
             </div>
             <div {{bind-attr class="indicator.ragColour :col :span_1 :radiusL :indicator"}}>
                 <div class="currentValue">
