@@ -1,5 +1,5 @@
 /* jshint undef: true, unused: true */
-/* global $ */
+/* global $, utils */
 
 Dashboard.IndicatorModel = Ember.Object.extend({
     targetValue: null,
@@ -17,7 +17,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             this.get('dataValues');
         }
     }.property('_currentValue'),
-
 
     currentVal: function () {
         if (this.get('_currentVal') != null) {
@@ -91,7 +90,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             if (constitutionIDs.indexOf(obj.get('ID')) !== -1) {
 
                 var rnd = function() {
-                    return Math.floor(Math.random()*(110-88+1)+88).toString();
+                    return utils.random(4,110).toString();
                 };
 
                 var results =
@@ -123,7 +122,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                         previousValue: results[1],
                         _dataValues: results
                     });
-                }, 500);
+                }, 200);
 
                 return obj.get('_dataValues');
 
@@ -145,7 +144,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             }
         }
     }.property(),
-
 
     trend: function () {
         switch (this.get('ragColour')) {
@@ -196,9 +194,11 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             return colour;
         }
 
-    }.property('currentVal', 'previousVal')
+    }.property('currentVal', 'previousVal'),
 
-
+    valueString: function () {
+        return (this.get('ValueType') === 'int' ? '' : this.get('ValueType'));
+    }.property('ValueType')
 
 
 
