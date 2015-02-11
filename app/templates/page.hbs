@@ -36,17 +36,17 @@
                 <span class="accordionHandle">&nbsp;</span>
                 {{indicator.currentDate}}
             </div>
-            <div class="col span_7 borderL borderT borderB borderR">{{indicator.Title}}</div>
+            <div class="col span_7 borderL borderT borderB borderR ellipses">{{indicator.Title}}</div>
             <div class="col span_1 insideMarginR borderT borderB borderR  radiusR">
-                <div class="currentValue">{{indicator.currentVal}}</div>
+                <div class="currentValue">{{indicator.currentVal}}{{indicator.valueString}}</div>
             </div>
             <div {{bind-attr class="indicator.ragColour :col :span_1 :radiusL :indicator"}}>
                 <div class="currentValue">
-                    {{indicator.currentVal}}%
+                    {{indicator.currentVal}}{{indicator.valueString}}
                 </div>
             </div>
             <div {{bind-attr class="indicator.ragColour :col :span_1 :indicator :paddingLNone :radiusR_XL indicator.trend"}}>
-                <div class="previousValue">{{indicator.previousVal}}%</div>
+                <div class="previousValue">{{indicator.previousVal}}{{indicator.valueString}}</div>
             </div>
         </div>
 

@@ -1,5 +1,5 @@
 /* jshint undef: true, unused: true */
-/* global $ */
+/* global $, utils */
 
 Dashboard.PageModel = Ember.Object.extend({
     _rows: null,
@@ -39,8 +39,8 @@ Dashboard.PageModel = Ember.Object.extend({
             var status = [
                 {
                     colour: 'red',
-                    count: 4,
-                    previous: '-2'
+                    count: utils.random(1,4),
+                    previous: utils.random(-6, -1)
                 },
                 {
                     colour: 'missing',
@@ -49,8 +49,8 @@ Dashboard.PageModel = Ember.Object.extend({
                 },
                 {
                     colour: 'amber',
-                    count: 12,
-                    previous: '4'
+                    count: utils.random(3, 11),
+                    previous: '+' + utils.random(1, 6)
                 },
                 {
                     colour: 'missing',
@@ -59,8 +59,8 @@ Dashboard.PageModel = Ember.Object.extend({
                 },
                 {
                     colour: 'green',
-                    count: 8,
-                    previous: '2'
+                    count: utils.random(10, 18),
+                    previous: '+' + utils.random(4, 10)
                 }
                 //,
                 //{

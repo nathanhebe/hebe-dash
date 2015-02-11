@@ -188,6 +188,12 @@ body, html {
         white-space: nowrap;
     }
 
+    .ellipses {
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    overflow: hidden;
+    }
+
     .bold {
         font-weight: $font-weight-bold;
     }

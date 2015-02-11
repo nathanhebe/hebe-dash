@@ -46,7 +46,8 @@ var utils = (function () {
         init: function(){
             setupExtensionFunctions();
         },
-        public_function1: function () {
+        random: function (min,max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
         },
         public_function2: function () {
         }
