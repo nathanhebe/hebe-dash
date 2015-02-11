@@ -3,10 +3,33 @@ BOARD REPORT
 
     {{partial header}}
 
-    <div id="contentWrapper" class="contentWrapper overflowX">
-        <ul id="container" class="container"></ul>
+    <div id="MainWrapper" class="boardReport">
+        <header class="report"></header>
+        <section id="MainContent" class="reportIndex">
+            <div class="row borderB paddingBL">
+                <div class="col span_6">
+                    <h1>{{Title}}</h1>
+                </div>
+                <div class="col span_3 smallText">
+                    Last updated 12/11/2014
+                </div>
+                <div class="col span_3 button">
+                    Produce Report for Print
+                </div>
+            </div>
+            <div class="row marginTL">
+                {{#each annex in data}}
+                <div class="col span_4">
+                    <h2 class="marginBS">{{annex.Title}}</h2>
+                    <p>{{annex.SubTitle}}</p>
+                    {{#each page in annex.pages}}
+                    <p>{{#link-to 'page' annex.ID page.ID }}{{page.Title}}{{/link-to}}</p>
+                    {{/each}}
+                </div>
+                {{/each}}
+            </div>
+        </section>
     </div>
-
 
 
 
