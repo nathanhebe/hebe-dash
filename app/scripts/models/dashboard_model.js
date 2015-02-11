@@ -11,13 +11,13 @@ Dashboard.DashboardModel = Ember.Object.extend({
             switch (this.get('Type')) {
                 case "BoardReport":
                     console.log('Lazy Load Board Report Data Here');
-                    //var annexes = Dashboard.ReportModel.findAll().then(function (report) {
-                    //    var annexes = report.annexes;
-                    //    return annexes;
-                    //});
-                    var annexes;
-                    this.set('_data', annexes);
-                    return this.get('_data');
+                    var resourceID = this.get('CKANResourceID');
+                    if (resourceID != null) {
+                        var obj = this;
+                        Dashboard.ReportModel.find(resourceID).then(function (report) {
+                            obj.set('_data', report);
+                        });
+                    }
                     break;
                 case "Dashboard":
                     console.log('Lazy Load Dashboard Data Here');
