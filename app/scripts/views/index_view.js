@@ -3,7 +3,12 @@ Dashboard.IndexView = Ember.View.extend({
     owl: null,
     afterRenderEvent: function () {
         console.log('Index is Loaded'); // will log 'hello world'
-        //initGridster();
+        if (dashWrapper.isIndexViewAlreadyBeenShow == true && dashWrapper.isInitialized) {
+            console.log('SHOW NAV PAGE');
+            dashWrapper.showNavPage();
+        }
+        dashWrapper.isIndexViewAlreadyBeenShow = true;
+
     }
 
 });

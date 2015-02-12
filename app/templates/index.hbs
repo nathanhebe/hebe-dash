@@ -5,7 +5,7 @@
 
     <section class="mainContent center " style="line-height:2em;">
         <h2>
-            The power of data visualisation at your fingertips
+            NHS England present Board Reports and Dashboards to give you new insight into Performance.
         </h2>
         <br>
         <p>
@@ -14,15 +14,14 @@
             We realise you don't always want to be cluttered, so we've kept everything you'll need in our toolbox.
         </p>
 
-        <h3 class="marginTL bold paddingBS">Favourite Dashboards...</h3>
+        <h2 class="marginTL bold paddingTS marginBS">Favourite Dashboards...</h2>
         <ul id="NavPageLinks">
             {{#each dash in model}}
             <li>{{#link-to 'dash' dash.ID}}{{dash.Title}}{{/link-to}}</li>
             {{/each}}
         </ul>
 
-        <p class="marginTL marginBL">
-
+        <p class="marginTL small">
             <a class="dontShow" href="#" title="">Don't show me this again</a>
         </p>
     </section>

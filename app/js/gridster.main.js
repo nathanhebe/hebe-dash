@@ -67,7 +67,6 @@
 
 
 var dashWrapper = (function () {
-    var isInitialized = false;
     var $pageWidth,
     $pageHeight,
     $body,
@@ -403,9 +402,6 @@ var dashWrapper = (function () {
 
             this.initDOMVars();
 
-            // Set navPageHeight page to be 100% height
-            navPageHeight();
-
             // Set $navWrapper to "Closed" on initialization
             jQuery.data($navWrapper, 'state', 'closed');
             // Init Menu Dropdown Functionality
@@ -434,6 +430,10 @@ var dashWrapper = (function () {
                 $navPage.removeClass('blur');
             });
 
+            ////////////////////////////////////////////
+            // Nav Page
+            // Set navPageHeight page to be 100% height
+            navPageHeight();
             $('#NavPageLinks a').on('click', function (e) {
                 dashWrapper.scrollToSiteWrapper();
             });
@@ -457,25 +457,35 @@ var dashWrapper = (function () {
             });
 
             // Scrolling functionality
-            $(window).on("scroll", function () {
+            //$(window).on("scroll", function () {
 
-                // Constantly update the distance you've scrolled from the top of the page
-                var topDis = $(document).scrollTop();
+            //    // Constantly update the distance you've scrolled from the top of the page
+            //    var topDis = $(document).scrollTop();
 
-                // If there's a navPage div present, hide it when you've scrolled its full height 
-                if ($navPage.length) {
-                    $detachHeight = $navPage.height();
-                    if (topDis >= $detachHeight) {
-                        $navPage.detach();
-                        $navPage = '';
-                        $siteWrapper.css({ 'top': '0px' });
-                        window.scrollTo(0, 0);
-                        $contentWrapper.removeClass('overflowX');
-                        $headerWrapper.addClass('stickyWrapper');
-                        $contentWrapper.addClass('stickyContent');
-                    }
+            //    // If there's a navPage div present, hide it when you've scrolled its full height 
+            //    if ($navPage.length) {
+            //        $detachHeight = $navPage.height();
+            //        if (topDis >= $detachHeight) {
+            //            hideNavPage();
+            //        }
+            //    }
+            //});
+
+            var hideNavPage = function () {
+                $navPage.detach();
+                $navPage = '';
+                $siteWrapper.css({ 'top': '0px' });
+                window.scrollTo(0, 0);
+                $contentWrapper.removeClass('overflowX');
+                $headerWrapper.addClass('stickyWrapper');
+                $contentWrapper.addClass('stickyContent');
+
+                $detachHeight = $navPage.height();
+                if (topDis >= $detachHeight) {
+                    hideNavPage();
                 }
-            });
+            };
+
 
 
             // Listen for changes to the fullscreen API in a bunch of browsers, run exitHandler() when it goes dooown
@@ -490,8 +500,10 @@ var dashWrapper = (function () {
 
         },
 
+        isInitialized: false,
+
         initDOMVars: function () {
-            isInitialized = true;
+            dashWrapper.isInitialized = true;
             $pageWidth = $(window).width();
             $pageHeight = $(window).height();
             $body = $("body");
@@ -515,10 +527,7 @@ var dashWrapper = (function () {
         },
 
         initGridster: function () {
-            console.log('init gridster');
-            // Init Gridster
-
-            if (!isInitialized) {
+            if (!dashWrapper.isInitialized) {
                 console.log('DOM Vars require reloading');
                 this.initDOMVars();
             }
@@ -527,8 +536,28 @@ var dashWrapper = (function () {
             gridInit();
         },
 
-        scrollToSiteWrapper: function(){
+        scrollToSiteWrapper: function () {
             $("html, body").animate({ scrollTop: $siteWrapper.offset().top }, 300);
+        },
+
+        showNavPage: function () {
+            if ($navPage.length == 0) {
+                $navPage = $('#NavPage');
+            }
+            if ($navPage.length) {
+                navPageHeight();
+                $detachHeight = $navPage.height();
+                var topDis = $(document).scrollTop();
+                if (topDis <= $detachHeight) {
+                    $contentWrapper.addClass('overflowX');
+                    $headerWrapper.removeClass('stickyWrapper');
+                    $contentWrapper.removeClass('stickyContent');
+                    $siteWrapper.css({ 'top': $detachHeight });
+                    $("html, body").scrollTop($detachHeight);
+//                    $siteWrapper.animate({ top: $detachHeight }, 300);
+
+                }
+            }
         }
     }
 })();
