@@ -5,10 +5,10 @@ Author:
 Stylesheet: header-and-nav-specific styles
 ******************************************************************/
 $colour-nav-icon-main: #fff;
-$colour-nav-icon-main-hover: #cccccc;
+$colour-nav-icon-main-hover: $color-highlight;
 $colour-nav-icon-second: $color-bg-main;
 $icon-stroke-width: 0;
-$icon-stroke-width-hover:1;
+$icon-stroke-width-hover: 1;
 
 
 .headerWrapper {
@@ -31,15 +31,6 @@ $icon-stroke-width-hover:1;
 
 #TopNav {
 
-    .iconTitle {
-        color: $colour-nav-icon-main;
-        @include animate(all, 1s, linear);
-        font-size: 10px;
-        margin: 0 auto;
-        margin-top: 12px;
-        display: block;
-    }
-
     button {
         display: block;
         border: none;
@@ -47,12 +38,25 @@ $icon-stroke-width-hover:1;
         background: transparent;
         outline: none;
 
-        svg {
+        svg, .iconTitle {
             fill: $colour-nav-icon-main;
+            color: $colour-nav-icon-main;
+            stroke-width: $icon-stroke-width;
+            stroke: $colour-nav-icon-main;
             display: block;
             margin: 0 auto;
-            @include animate(all, 1s, linear);
-            stroke-width:$icon-stroke-width;
+            @include animate(all, 0.5s, linear);
+
+            &.iconTitle {
+                font-size: 10px;
+                margin-top: 12px;
+            }
+        }
+
+        &.menuButton {
+            #Fill-4 {
+                @include scale(1);
+            }
         }
 
         &.backButton, &.presentation, &.infoButton {
@@ -81,7 +85,13 @@ $icon-stroke-width-hover:1;
                 color: $colour-nav-icon-main-hover;
                 fill: $colour-nav-icon-main-hover;
                 stroke: $colour-nav-icon-main-hover;
-                stroke-width:$icon-stroke-width-hover;
+                stroke-width: $icon-stroke-width-hover;
+            }
+
+            &.menuButton {
+                #Fill-4 {
+                    @include scale(0);
+                }
             }
         }
     }

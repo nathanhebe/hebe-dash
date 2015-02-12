@@ -154,7 +154,7 @@ body, html {
     width: 100%;
 }
 
-#SiteWrapper { // #MainWrapper
+#SiteWrapper, #MainWrapper { // #MainWrapper
     color: $color-font-main;
     background-color: $color-bg;
     max-width: 1440px;

@@ -1,4 +1,8 @@
 Dashboard.AnnexRoute = Ember.Route.extend({
+    //renderTemplate : function () {
+    //    this.render('annex', { outlet: 'MainContent', into: 'application' });
+    //    console.log('Rendering ANNEX: ');
+    //},
     model: function (params) {
         var annexID = params.annexID;
         return Dashboard.ReportModel.findAll().then(function (report) {
@@ -14,9 +18,9 @@ Dashboard.PageRoute = Ember.Route.extend({
         var pageID = params.pageID;
         return Dashboard.ReportModel.findAll().then(function (report) {
             var page = report.annexes.findBy('ID', annexID).pages.findBy('ID', pageID);
-            console.log(page.Type);
             route.renderTemplate = function () {
-                this.render(page.Type);
+                this.render(route.currentModel.Type, { outlet: '', into: 'application' });
+                console.log('Rendering Page: ' + route.currentModel.Type);
             };
             return page;
         });

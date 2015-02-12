@@ -1,4 +1,9 @@
 
-
-
-
+<div id="SiteWrapper">
+    <h1>INDEX PAGE</h1>
+    <ul>
+        {{#each dash in model}}
+        <li>{{#link-to 'dash' dash.ID}}{{dash.Title}}{{/link-to}}</li>
+        {{/each}}
+    </ul>
+</div>
