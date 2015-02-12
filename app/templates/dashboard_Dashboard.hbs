@@ -1,23 +1,22 @@
-{{Title}}
+<div id="MainWrapper" class="boardReport">
+        {{Title}}
 
+        <div id="contentWrapper" class="contentWrapper overflowX">
+            <ul id="container" class="container"></ul>
+        </div>
 
-<div id="contentWrapper" class="contentWrapper overflowX">
-    <ul id="container" class="container"></ul>
+        <div id="WidgetHolder">
+            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 1</li>
+            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 2</li>
+            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 3</li>
+            <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 4</li>
+            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 5</li>
+            <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 6</li>
+            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 7</li>
+            <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 8</li>
+        </div>
+
+        {{#each widget in data}}
+        {{widget.Title}}
+        {{/each}}
 </div>
-
-
-<div id="WidgetHolder">
-    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 1</li>
-    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 2</li>
-    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 3</li>
-    <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 4</li>
-    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 5</li>
-    <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 6</li>
-    <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 7</li>
-    <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 8</li>
-</div>
-
-
-{{#each widget in data}}
-    {{widget.Title}}
-{{/each}}

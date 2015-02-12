@@ -181,14 +181,14 @@ button {
 }
 
 /* Pre Site */
-/*.preSite {
+.preSite {
     width: 100%;
     background: $white;
     color: #494949;
     position: absolute;
     top: 0;
     -webkit-transition: -webkit-filter 200ms linear;
-}*/
+}
 
 .infoWrapper {
     width: 100%;
@@ -271,7 +271,7 @@ button {
     }
 }
 
-/*.infoPreSite {
+.infoPreSite {
     text-align: center;
 
     .tutorialTitle {
@@ -324,7 +324,7 @@ button {
             display: inline-block;
         }
     }
-}*/
+}
 
 $colour-nav-icon-main: #fff;
 

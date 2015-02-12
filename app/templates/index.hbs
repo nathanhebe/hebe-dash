@@ -1,9 +1,29 @@
+<div id="NavPage" class="preSite infoPreSite">
+    <header class="center paddingTL">
+        <img class="paddingBL" src="/images/NHS-England-Logo.png" width="200" />
+    </header>
 
-<div id="SiteWrapper">
-    <h1>INDEX PAGE</h1>
-    <ul>
-        {{#each dash in model}}
-        <li>{{#link-to 'dash' dash.ID}}{{dash.Title}}{{/link-to}}</li>
-        {{/each}}
-    </ul>
+    <section class="mainContent center " style="line-height:2em;">
+        <h2>
+            The power of data visualisation at your fingertips
+        </h2>
+        <br>
+        <p>
+            We have given you the power to create, with a set of powerful, easy-to-use tools.
+            <br />
+            We realise you don't always want to be cluttered, so we've kept everything you'll need in our toolbox.
+        </p>
+
+        <h3 class="marginTL bold paddingBS">Favourite Dashboards...</h3>
+        <ul id="NavPageLinks">
+            {{#each dash in model}}
+            <li>{{#link-to 'dash' dash.ID}}{{dash.Title}}{{/link-to}}</li>
+            {{/each}}
+        </ul>
+
+        <p class="marginTL marginBL">
+
+            <a class="dontShow" href="#" title="">Don't show me this again</a>
+        </p>
+    </section>
 </div>

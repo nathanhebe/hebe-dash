@@ -149,12 +149,12 @@ body, html {
     }
 }
 
-.ember-view {
-    height: 100%;
-    width: 100%;
-}
+    body > .ember-view {
+        height: 100%;
+        width: 100%;
+    }
 
-#SiteWrapper, #MainWrapper { // #MainWrapper
+#SiteWrapper, #MainWrapper, #NavPage { // #MainWrapper
     color: $color-font-main;
     background-color: $color-bg;
     max-width: 1440px;
@@ -184,230 +184,11 @@ body, html {
         }*/
     }
     /* END ADDITIONAL GRID STYLES */
-    .noWrap {
-        white-space: nowrap;
-    }
-
-    .ellipses {
-	    text-overflow: ellipsis;
-	    white-space: nowrap;
-	    overflow: hidden;
-    }
-
-    .bold {
-        font-weight: $font-weight-bold;
-    }
-
-    .clear {
-        clear: both;
-        height: 0px;
-    }
-
-    .left {
-        float: left;
-    }
-
-    .right {
-        float: right;
-    }
-
-    .centered {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .relative {
-        position: relative;
-    }
-
-    .border {
-        border: $border-main;
-    }
-
-    .borderL {
-        border-left: $border-main;
-    }
-
-    .borderT {
-        border-top: $border-main;
-    }
-
-    .borderR {
-        border-right: $border-main;
-    }
-
-    .borderB {
-        border-bottom: $border-main;
-    }
-
-    .radiusT {
-        @include border-top-radius(10px);
-    }
-
-    .radiusR {
-        @include border-right-radius(10px);
-    }
-
-    .radiusB {
-        @include border-bottom-radius(10px);
-    }
-
-    .radiusL {
-        @include border-left-radius(10px);
-    }
-
-    .radiusR_XL {
-        @include border-right-radius(100px);
-    }
-
-    .radiusL_XL {
-        @include border-left-radius(100px);
-    }
-
-    .radiusTR {
-        @include border-top-right-radius(10px);
-    }
-
-    .marginLXL {
-        margin-left: ($margin-main);
-    }
-
-    .marginTXL {
-        margin-top: ($margin-main);
-    }
-
-    .marginRXL {
-        margin-right: ($margin-main);
-    }
-
-    .marginBXL {
-        margin-bottom: ($margin-main);
-    }
-
-
-    .marginLL {
-        margin-left: ($margin-main / 2);
-    }
-
-    .marginTL {
-        margin-top: ($margin-main / 2);
-    }
-
-    .marginRL {
-        margin-right: ($margin-main / 2);
-    }
-
-    .marginBL {
-        margin-bottom: ($margin-main / 2);
-    }
-
-    .marginLS {
-        margin-left: ($margin-main / 4);
-    }
-
-    .marginTS {
-        margin-top: ($margin-main / 4);
-    }
-
-    .marginRS {
-        margin-right: ($margin-main / 4);
-    }
-
-    .marginBS {
-        margin-bottom: ($margin-main / 4);
-    }
-
-    .marginLXS {
-        margin-left: ($margin-main / 8);
-    }
-
-    .marginTXS {
-        margin-top: ($margin-main / 8);
-    }
-
-    .marginRXS {
-        margin-right: ($margin-main / 8);
-    }
-
-    .marginBXS {
-        margin-bottom: ($margin-main / 8);
-    }
-
-    .paddingTS {
-        padding-top: ($margin-main / 4);
-    }
-
-    .paddingRS {
-        padding-right: ($margin-main / 4);
-    }
-
-    .paddingBS {
-        padding-bottom: ($margin-main / 4);
-    }
-
-    .paddingLS {
-        padding-left: ($margin-main / 4);
-    }
-
-    .paddingTL {
-        padding-top: ($margin-main / 2);
-    }
-
-    .paddingRL {
-        padding-right: ($margin-main / 2);
-    }
-
-    .paddingBL {
-        padding-bottom: ($margin-main / 2);
-    }
-
-    .paddingLL {
-        padding-left: ($margin-main / 2);
-    }
-
-    .paddingTNone {
-        padding-top: 0px;
-    }
-
-    .paddingRNone {
-        padding-right: 0px;
-    }
-
-    .paddingBNone {
-        padding-bottom: 0px;
-    }
-
-    .paddingLNone {
-        padding-left: 0px;
-    }
-
-    .alignC, .center {
-        text-align: center;
-    }
-
-    .alignL {
-        text-align: left;
-    }
-
-    .alignR {
-        text-align: right;
-    }
-
-    .textOnly {
-        display: none;
-    }
-
-    .noAnimation {
-        @include transition-property(none);
-        @include transition-duration(0s);
-        @include transition-timing-function(none);
-    }
-
     * {
         @include box-sizing(border-box);
     }
 
-
+    @import "_layoutHelpers";
 
     h1, h2, h3, h4, h5, h6 {
         font-weight: $font-weight-normal;
@@ -468,14 +249,7 @@ body, html {
 
 
 
-    @import "_header";
-
-
-
-
-
-
-
+        @import "_header";
     }
 
     footer {
@@ -1083,6 +857,17 @@ body, html {
     }
 }
 
+#NavPage {
+    width: 100%;
+    height: 100%;
+    color: $color-font-main;
+    position: absolute;
+    top: 0;
+    -webkit-transition: -webkit-filter 200ms linear;
+}
+
+
+
 
 
 
@@ -1127,14 +912,12 @@ Include retina-specific overrides - most likely, 2x image alternatives
     @import "_retina";
 }
 
-
 /*********************
 MOBILE
 This are the mobile styles. It's what people see on their phones. If
 you set a great foundation, you won't need to add too many styles in
 the other stylesheets. Remember, keep it light: Speed is Important.
 *********************/
-
 @media only screen and (min-width: 0px) and (max-width: 270px) {
     // styles in 768up.scss
     @import "breakpoints/270lower";
@@ -1160,4 +943,3 @@ the other stylesheets. Remember, keep it light: Speed is Important.
     @import "breakpoints/440Heightlower";
 }
 // end of media query
-

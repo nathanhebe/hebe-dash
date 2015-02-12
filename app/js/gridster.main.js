@@ -71,7 +71,7 @@ var dashWrapper = (function () {
     var $pageWidth,
     $pageHeight,
     $body,
-    $preSite,
+    $navPage,
     $siteWrapper,
     $headerWrapper,
     $buttonWrapper,
@@ -96,12 +96,12 @@ var dashWrapper = (function () {
     //initWidgetCarousel();
 
 
-    //Set preSite pages to be 100% height, but still in flow
-    function preSiteHeight() {
-        $preSite = $body.find('.preSite');
-        // If page has a preSite div, make it full height and set siteWrapper's top value to the same
-        if ($preSite.length) {
-            $preSite.height($pageHeight);
+    //Set navPage pages to be 100% height, but still in flow
+    function navPageHeight() {
+        $navPage = $body.find('#NavPage');
+        // If page has a navPage div, make it full height and set siteWrapper's top value to the same
+        if ($navPage.length) {
+            $navPage.height($pageHeight);
             $siteWrapper.css({ 'top': $pageHeight + 'px' });
         }
     }
@@ -403,8 +403,8 @@ var dashWrapper = (function () {
 
             this.initDOMVars();
 
-            // Set preSiteHeight page to be 100% height
-            preSiteHeight();
+            // Set navPageHeight page to be 100% height
+            navPageHeight();
 
             // Set $navWrapper to "Closed" on initialization
             jQuery.data($navWrapper, 'state', 'closed');
@@ -424,19 +424,18 @@ var dashWrapper = (function () {
                 TweenMax.to($infoWrapper, 0, { zIndex: '99' });
                 TweenMax.to($infoWrapper, 0.2, { opacity: '1' });
                 $siteWrapper.addClass('blur');
-                $preSite.addClass('blur');
+                $navPage.addClass('blur');
             });
 
             $infoCross.on('click', function () {
                 TweenMax.to($infoWrapper, 0, { zIndex: '-1', delay: 0.2 });
                 TweenMax.to($infoWrapper, 0.2, { opacity: '0' });
                 $siteWrapper.removeClass('blur');
-                $preSite.removeClass('blur');
+                $navPage.removeClass('blur');
             });
 
-            $('#scrollButton').on('click', function (e) {
-                e.preventDefault();
-                $("html, body").animate({ scrollTop: $('#siteWrapper').offset().top }, 300);
+            $('#NavPageLinks a').on('click', function (e) {
+                dashWrapper.scrollToSiteWrapper();
             });
 
             // Window Resize event
@@ -447,8 +446,8 @@ var dashWrapper = (function () {
                     $pageWidth = $(window).width();
                     $pageHeight = $(window).height();
 
-                    // reset preSite divs to be 100% height
-                    preSiteHeight();
+                    // reset navPage divs to be 100% height
+                    navPageHeight();
 
                     // Reset contentWrapper min-height
                     contentMinHeight();
@@ -463,12 +462,12 @@ var dashWrapper = (function () {
                 // Constantly update the distance you've scrolled from the top of the page
                 var topDis = $(document).scrollTop();
 
-                // If there's a preSite div present, hide it when you've scrolled its full height 
-                if ($preSite.length) {
-                    $detachHeight = $preSite.height();
+                // If there's a navPage div present, hide it when you've scrolled its full height 
+                if ($navPage.length) {
+                    $detachHeight = $navPage.height();
                     if (topDis >= $detachHeight) {
-                        $preSite.detach();
-                        $preSite = '';
+                        $navPage.detach();
+                        $navPage = '';
                         $siteWrapper.css({ 'top': '0px' });
                         window.scrollTo(0, 0);
                         $contentWrapper.removeClass('overflowX');
@@ -496,7 +495,7 @@ var dashWrapper = (function () {
             $pageWidth = $(window).width();
             $pageHeight = $(window).height();
             $body = $("body");
-            $preSite = $body.find('.preSite');
+            $navPage = $body.find('#NavPage');
             $siteWrapper = $("#SiteWrapper");
             $headerWrapper = $("#headerWrapper");
             $buttonWrapper = $("#buttonWrapper");
@@ -526,8 +525,10 @@ var dashWrapper = (function () {
 
             snapPoints();
             gridInit();
+        },
+
+        scrollToSiteWrapper: function(){
+            $("html, body").animate({ scrollTop: $siteWrapper.offset().top }, 300);
         }
-
     }
-
 })();
