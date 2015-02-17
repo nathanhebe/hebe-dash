@@ -348,7 +348,7 @@ $colour-nav-icon-main: #fff;
 /* Content */
 
 .contentWrapper {
-    background: #fff;
+    height:100%;
     position: relative;
     -webkit-transition: -webkit-filter 200ms linear;
     @include transition(opacity, 0.2s, linear)
@@ -363,7 +363,7 @@ $colour-nav-icon-main: #fff;
 }
 
 #container {
-    background: #fff;
+    height:100%;
 }
 
 .widget {

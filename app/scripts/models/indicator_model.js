@@ -87,42 +87,103 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             // Hardcoded Constitutionn Values for demo (no data)
             var constitutionIDs = ['125', '126', '127', '128', '129', '130', '131', '132', '133', '134', '135', '136', '137', '138', '139', '140', '141', '142', '143', '144', '145'];
 
+
+
+            var constitutionData = [
+
+                { indicator_id: '125', year: '2015-01-01', value: '97' },
+                { indicator_id: '126', year: '2015-01-01', value: '89' },
+                { indicator_id: '127', year: '2015-01-01', value: '95' },
+                { indicator_id: '128', year: '2015-01-01', value: '93' },
+                { indicator_id: '129', year: '2015-01-01', value: '381.00' },
+                { indicator_id: '130', year: '2015-01-01', value: '99' },
+                { indicator_id: '131', year: '2015-01-01', value: '93' },
+                { indicator_id: '132', year: '2015-01-01', value: '94' },
+                { indicator_id: '133', year: '2015-01-01', value: '94' },
+                { indicator_id: '134', year: '2015-01-01', value: '98' },
+                { indicator_id: '135', year: '2015-01-01', value: '96' },
+                { indicator_id: '136', year: '2015-01-01', value: '1.00' },
+                { indicator_id: '137', year: '2015-01-01', value: '97' },
+                { indicator_id: '138', year: '2015-01-01', value: '83' },
+                { indicator_id: '139', year: '2015-01-01', value: '94' },
+                { indicator_id: '140', year: '2015-01-01', value: '89' },
+                { indicator_id: '141', year: '2015-01-01', value: '72' },
+                { indicator_id: '142', year: '2015-01-01', value: '68' },
+                { indicator_id: '143', year: '2015-01-01', value: '94' },
+                { indicator_id: '144', year: '2015-01-01', value: '247.00' },
+                { indicator_id: '145', year: '2015-01-01', value: '4' },
+
+                { indicator_id: '125', year: '2014', value: '97' },
+                { indicator_id: '126', year: '2014', value: '88' },
+                { indicator_id: '127', year: '2014', value: '95' },
+                { indicator_id: '128', year: '2014', value: '93' },
+                { indicator_id: '129', year: '2014', value: '362.00' },
+                { indicator_id: '130', year: '2014', value: '99' },
+                { indicator_id: '131', year: '2014', value: '95' },
+                { indicator_id: '132', year: '2014', value: '94' },
+                { indicator_id: '133', year: '2014', value: '90' },
+                { indicator_id: '134', year: '2014', value: '98' },
+                { indicator_id: '135', year: '2014', value: '96' },
+                { indicator_id: '136', year: '2014', value: '1.00' },
+                { indicator_id: '137', year: '2014', value: '97' },
+                { indicator_id: '138', year: '2014', value: '84' },
+                { indicator_id: '139', year: '2014', value: '94' },
+                { indicator_id: '140', year: '2014', value: '90' },
+                { indicator_id: '141', year: '2014', value: '721' },
+                { indicator_id: '142', year: '2014', value: '70' },
+                { indicator_id: '143', year: '2014', value: '94' },
+                { indicator_id: '144', year: '2014', value: '205.00' },
+                { indicator_id: '145', year: '2014', value: '5' }
+            ];
+
+
             if (constitutionIDs.indexOf(obj.get('ID')) !== -1) {
 
-                var rnd = function() {
-                    return utils.random(4,110).toString();
+                var rnd = function () {
+                    return utils.random(4, 110).toString();
                 };
 
-                var results =
-                    [{
-                        value: rnd(),
-                        indicator: "28",
-                        year: "2014",
-                        period_of_coverage: "1/1/2014 to 31/3/2014",
-                    }, {
-                        value: rnd(),
-                        indicator: "28",
-                        year: "2013",
-                        period_of_coverage: "1/10/2013 to 31/12/2013",
-                    }, {
-                        value: rnd(),
-                        indicator: "28",
-                        year: "2012",
-                        period_of_coverage: "1/7/2013 to 30/9/2013",
-                    }, {
-                        value: rnd(),
-                        indicator: "28",
-                        year: "2011",
-                        period_of_coverage: "1/4/2013 to 30/6/2013",
-                    }];
+                var results = constitutionData.filterBy('indicator_id', obj.get('ID'));
+                var current = results[0];
+                var previous = results[1];
 
                 setTimeout(function () {
                     obj.setProperties({
-                        _currentValue: results[0],
-                        previousValue: results[1],
+                        _currentValue: current,
+                        previousValue: previous,
                         _dataValues: results
                     });
                 }, 200);
+
+                //[{
+                //    value: rnd(),
+                //    indicator: "28",
+                //    year: "2014",
+                //    period_of_coverage: "1/1/2014 to 31/3/2014",
+                //}, {
+                //    value: rnd(),
+                //    indicator: "28",
+                //    year: "2013",
+                //    period_of_coverage: "1/10/2013 to 31/12/2013",
+                //}, {
+                //    value: rnd(),
+                //    indicator: "28",
+                //    year: "2012",
+                //    period_of_coverage: "1/7/2013 to 30/9/2013",
+                //}, {
+                //    value: rnd(),
+                //    indicator: "28",
+                //    year: "2011",
+                //    period_of_coverage: "1/4/2013 to 30/6/2013",
+                //}];
+
+                //setTimeout(function () {
+                //    obj.setProperties({
+                //        _currentValue: results[0],
+                //        previousValue: results[1],
+                //        _dataValues: results
+                //    });
+                //}, 200);
 
                 return obj.get('_dataValues');
 
@@ -167,7 +228,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             //switch this.get('RAGType')
             var current = this.get('currentValue');
             var previous = this.get('previousValue');
-            
+
             if (current == null || previous == null || current.value === null || previous.value === null) {
                 colour = 'blue';
             } else {
@@ -198,8 +259,103 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
     valueString: function () {
         return (this.get('ValueType') === 'int' ? '' : this.get('ValueType'));
-    }.property('ValueType')
+    }.property('ValueType'),
 
+    regionalInfo: function () {
+        // e.g. https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "dc7afa72-9d36-42da-b66a-851fe3e55855" WHERE "Level description" LIKE 'North Yorkshire' AND "Gender" = 'Female'  
+    },
+
+    calculateRAG: function () {
+
+        /*
+        Type of data (col Q in feedsheet is for ValueType in our config
+        Units (colP in feedsheet would be good for additional metadata on UI for the indicators)
+        Org. Level Data (ColH in feedsheet)
+            - can be used on Dashboards etc to inform to what level data can be drilled down
+
+        PercentChangeValue Add a percent change value (most will be 1% - but at least can be overriden per indicator if required (% Change to use if no CI ColF in Feedsheet))
+
+        Frequency of data (imply the range from E.g type of data)
+
+        
+        3 = ConsitutionalStandard
+        2 = Confidence Intervals
+        1 = standard
+
+        Feedsheet > Current Rag > Rag Classification > Rag Type
+
+        if confidence interval?
+            period of reporting
+                UCI
+
+                LCI
+
+                IMPORTANT - select the operator based on the DESIRED DIRECTION FIELD (e.g. up  = >   down  = <
+                IMPORTANT - The Previous period is defined by RAG Methodology (colX in feedsheet)
+                            - compare this to tType of Data (colN in feedsheet) to decide how far back comparative period
+
+
+
+
+                if(current.LCI > previous 
+
+                if(LCI2 > LCI1) {
+                    green
+                    }
+                else if(UCI1 > UCI2) {
+                    red
+                    }
+                    else {
+                    amber
+                    }
+
+
+            STANDARD
+                SAME AS ABOVE - BUT UCI/LCI ETC ARE CALCULATED BASED ON (% Change to use if no CI COLF FEEDSHEET) (1%)
+                
+                SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE PercentChangeValue FROM THE CONFIG
+
+                (IF DESIRED DIRECTION IS UP)
+                is Val2 > Val1 (+1%) = GREEN
+                Is Val2 < Val -(1%) = red
+                Else Amber
+
+                (IF DESIRED DIRECTION IS DOWN)
+                Is Val2 < Val1 (-1%) = green
+                Va2 > Val2 + 1% = red
+                else Amber
+
+
+
+            CONSTITUTIONAL 
+            SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE PercentChangeValue FROM THE CONFIG
+                e.g. instead of +/- 1%    +/-PercentValue
+
+            (if equalled it - they've achieved it)
+            If the value is less than the stated value  (RAGValue - FEEDSHEET > CURRENT RAG > Col D)
+            Values  change very rarely - ADD TO METADATA
+
+            if(current > RAGValue + 1%) = green
+            else if(current < RAGValue) = red
+            else amber
+
+
+
+        */
+
+    }
+
+    //calculateRAGRating: function() {
+    //    var previous = 1;
+    //    var current = 1;
+    //    var target = 1;
+
+    //    var ragType = 'constitution';
+
+    //    // constitution within 1% of target it is amber
+
+
+    //}
 
 
 

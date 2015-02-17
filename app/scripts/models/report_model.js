@@ -18,7 +18,6 @@ Dashboard.ReportModel.reopenClass({
             function (response) {
                 var result = response.result;
                 var types = {};
-
                 result.records.forEach(function (item) {
                     var itemTypeGeneric = item.Type.split('_')[0]; // e.g. page_finance will be added as 'page' but still contain its true type in its own Type property
                     if (!types[itemTypeGeneric]) {

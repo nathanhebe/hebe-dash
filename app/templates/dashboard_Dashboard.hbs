@@ -1,22 +1,16 @@
-<div id="MainWrapper" class="boardReport">
-        {{Title}}
-
-        <div id="contentWrapper" class="contentWrapper overflowX">
-            <ul id="container" class="container"></ul>
-        </div>
-
-        <div id="WidgetHolder">
-            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 1</li>
-            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 2</li>
-            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 3</li>
-            <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 4</li>
-            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 5</li>
-            <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 6</li>
-            <li class="widget cover noTouch" data-sizex="1" data-sizey="2">Block 7</li>
-            <li class="widget cover noTouch" data-sizex="2" data-sizey="2">Block 8</li>
-        </div>
-
+<div id="MainWrapper" class="dashboard nhsDashboard">
+    <div id="contentWrapper" class="contentWrapper overflowX">
+        <ul id="container" class="container"></ul>
+    </div>
+    <div id="WidgetHolder">
         {{#each widget in data}}
-        {{widget.Title}}
+            <li class="widget widgetIndicator cover noTouch amber" data-sizex="1" data-sizey="1">
+                <div class="icon right IndicatorIcon_chart"></div>
+                <div class="date">Aug-14</div>
+                <h5 class="title">{{widget.Title}}</h5>
+                <div class="currentValue">44</div>
+                <div {{bind-attr class="indicator.ragColour :indicator indicator.trend"}}>&nbsp;</div>
+            </li>
         {{/each}}
+    </div>
 </div>

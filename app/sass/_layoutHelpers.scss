@@ -146,6 +146,22 @@
         margin-bottom: ($margin-main / 8);
     }
 
+    .marginLNone {
+        margin-left: 0px;
+    }
+
+    .marginTNone {
+        margin-top: 0px;
+    }
+
+    .marginRNone {
+        margin-right: 0px;
+    }
+
+    .marginBNone {
+        margin-bottom: 0px;
+    }
+
     .paddingTS {
         padding-top: ($margin-main / 4);
     }
@@ -176,6 +192,10 @@
 
     .paddingLL {
         padding-left: ($margin-main / 2);
+    }
+
+    .paddingRXL {
+        padding-right: $margin-main;
     }
 
     .paddingTNone {

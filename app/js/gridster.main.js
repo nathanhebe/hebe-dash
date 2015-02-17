@@ -254,7 +254,7 @@ var dashWrapper = (function () {
         // Set up grid options, sizes etc
         gridster = $("#contentWrapper #container").gridster({
             widget_margins: [11, 11],
-            widget_base_dimensions: [$e - 22, $e - 22],
+            widget_base_dimensions: [210,210],// [$e - 22, $e - 22],
             min_cols: $widgetsFit, // Change to colCount for proper serialization
             autogrow_cols: false, //Change to true for growable table
             avoid_overlapped_widgets: true,

@@ -115,7 +115,13 @@ $color-highlight: #00447C; // header buttons etc
 $color-font-light: #ffffff;
 $color-font-main: #000000;
 $color-font-link: #4A90E2;
-$font-family-main: Helvetica Neue;
+$color-rag-red: #D0021B;
+$color-rag-red-amber: #EB8D57;
+$color-rag-amber: #FFB800;
+$color-rag-amber-green: #DADA36;
+$color-rag-green: #7ED321;
+$color-rag-blue: #0065B7;
+$font-family-main: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $font-size-title: 190%;
 $font-size-heading: 160%;
 $font-size-heading-sub: 140%;
@@ -149,15 +155,14 @@ body, html {
     }
 }
 
-    body > .ember-view {
-        height: 100%;
-        width: 100%;
-    }
+body > .ember-view {
+    height: 100%;
+    width: 100%;
+}
 
 #SiteWrapper, #MainWrapper, #NavPage { // #MainWrapper
     color: $color-font-main;
     background-color: $color-bg;
-    max-width: 1440px;
     height: 100%;
     margin: 0px auto;
     overflow: auto;
@@ -217,6 +222,35 @@ body, html {
         line-height: 1.5em;
     }
 
+    .red {
+        background-color: $color-rag-red;
+    }
+
+    .redAmber {
+        background-color: $color-rag-red-amber;
+    }
+
+    .amber {
+        background-color: $color-rag-amber;
+    }
+
+    .amberGreen {
+        background-color: $color-rag-amber-green;
+    }
+
+    .green {
+        background-color: $color-rag-green;
+    }
+
+    .blue {
+        background-color: $color-rag-blue;
+    }
+
+    .missing {
+        background-color: $color-bg-light;
+    }
+
+
 
     #NHSEnglandLogo {
     }
@@ -260,34 +294,6 @@ body, html {
     }
 
     &.boardReport {
-
-        .red {
-            background-color: #D0021B;
-        }
-
-        .redAmber {
-            background-color: #EB8D57;
-        }
-
-        .amber {
-            background-color: #F5A623;
-        }
-
-        .amberGreen {
-            background-color: #DADA36;
-        }
-
-        .green {
-            background-color: #7ED321;
-        }
-
-        .blue {
-            background-color: #0065B7;
-        }
-
-        .missing {
-            background-color: $color-bg-light;
-        }
 
         .seperator {
             position: absolute;
@@ -854,6 +860,13 @@ body, html {
                 }
             }
         }
+    }
+
+    &.dashboard {
+        &.nhsDashboard {
+        }
+
+        @import "_widget_styles";
     }
 }
 
