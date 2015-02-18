@@ -361,8 +361,8 @@ body > .ember-view {
 
             &.up, &.even, &.down {
                 background-image: url(../images/IndicatorArrow_up@2x.png);
-                background-size: 40%;
-                background-position: 90% center;
+                background-size: auto 90%;
+                background-position: 95% center;
                 background-repeat: no-repeat;
 
                 &.even {
@@ -866,6 +866,28 @@ body > .ember-view {
                         }
                     }
                 }
+            }
+        }
+
+        .businessArea {
+            .accordionHandle {
+                width:50%;
+            }
+
+            .block {
+                color:$color-font-light;
+                font-size:$font-size-title;
+                height:100%;
+                width:85%;
+                line-height: 60px;
+                padding-left:$margin-main / 4;
+            }
+
+            .summary {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }

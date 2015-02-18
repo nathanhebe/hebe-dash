@@ -3,10 +3,8 @@
         <h2>{{SubTitle}}</h2>
 
         <div class="finance">
-            {{rows}}
-
-            {{#if _rows}}
-            {{#each row in _rows}}
+            {{#if rows}}
+            {{#each row in rows}}
             {{#unless row.ID}}
             <div class="group">
                 <div class="row">
