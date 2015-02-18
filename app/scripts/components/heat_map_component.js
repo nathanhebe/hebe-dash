@@ -6,6 +6,8 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
     //width: 900,
     //height: 280,
 
+    isDrawn: false,
+
     draw: function (myData) {
         //this.set('data', myData);
         //console.log(this.get('data'));
@@ -17,16 +19,15 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         var YMin = 0;
         var YMax = 0;
 
-
         var maxVal = Math.max.apply(values, $.map(values,
                 function (indicatorValue) {
                     return indicatorValue.value;
                 }));
         YMax = maxVal;
+        var ragValue = parseFloat(myData.get('RAGValue'));
 
         if (valueType === '%') {
             maxVal = maxVal / 100;
-
 
             var minVal = Math.min.apply(values, $.map(values,
                 function (indicatorValue) {
@@ -35,31 +36,23 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
 
             minVal = minVal / 100;
 
-            var ragValue = parseFloat(myData.get('RAGValue'));
-            //var amber = ragValue + 0.0099;
-            //var green = ragValue + 0.01;
 
             if (minVal > ragValue) {
-                minVal = (ragValue - 0.01);
-                console.log('SETTING minVal to rag...' + minVal);
+                minVal = ragValue;
             }
 
-            if (maxVal < (ragValue + 0.01)) {
-                maxVal = (ragValue + 0.01);
-                console.log('SETTING maxVal to rag...' + maxVal);
+            if (maxVal < ragValue) {
+                maxVal = ragValue;
             }
+
+
+            minVal = minVal - 0.01;
+            maxVal = maxVal + 0.01;
 
 
             YMax = maxVal;
             YMin = minVal;
-
         }
-
-        //console.log('min = ' + YMin);
-        //console.log('max = ' + YMax);
-
-
-
 
         var xAxis = values.map(function (val) {
             var dateString = (val.year.indexOf('T') === -1 ? val.year : val.year.substr(0, val.year.indexOf('T')));
@@ -114,38 +107,34 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         var regions = [];
         if (myData.get('RAGType') === 'Constitutional') {
             // constitution only...
-            var ragValue = parseFloat(myData.get('RAGValue'));
             var amber = ragValue + 0.0099;
             var green = ragValue + 0.01;
-
+            var opacity = 0.3;
             if (valueType === '%') {
                 regions = [
-                            { axis: 'y', start: 0, end: ragValue, class: 'regionYR' },
-                            { axis: 'y', start: ragValue, end: amber, class: 'regionYA' },
-                            { axis: 'y', start: green, class: 'regionYG' },
+                            { axis: 'y', start: 0, end: ragValue, class: 'regionYR', opacity: opacity },
+                            { axis: 'y', start: ragValue, end: amber, class: 'regionYA', opacity: opacity },
+                            { axis: 'y', start: green, class: 'regionYG', opacity: opacity },
                 ];
             } else {
                 regions = [
-                            { axis: 'y', start: 0, end: ragValue, class: 'regionYG' },
-                            { axis: 'y', start: ragValue, class: 'regionYR' }
+                            { axis: 'y', start: 0, end: ragValue, class: 'regionYG', opacity: opacity },
+                            { axis: 'y', start: ragValue, class: 'regionYR', opacity: opacity }
                 ];
             }
         }
 
-
-
-
-
-
-
         xAxis.unshift('x');
-        lineVals.unshift('Current');
+        lineVals.unshift('Indicator Value');
 
         c3.generate({
             bindto: chartID,
             //size: {
             //    width: '1360'
             //},
+            legend: {
+                hide: true
+            },
             data: {
                 x: 'x',
                 columns: [
@@ -182,12 +171,15 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
                 }
             },
 
+            padding: {
+                right:20
+            },
+
             regions: regions
 
         });
 
-
-
+        d3.select('.c3-axis.c3-axis-x').attr('clip-path', "");
 
 
 
@@ -226,6 +218,10 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         //    svg.attr("width", targetWidth);
         //    svg.attr("height", targetWidth / aspect);
         //});
+
+
+
+        this.set('isDrawn', true);
     },
 
     didInsertElement: function () {
@@ -239,6 +235,21 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         //    row.value = data[i].get('hotttnesss');
         //    hotnessArray.push(row);
         //}
-        this.draw(data);
+
+
+
+        var chartID = '#' + data.get('chartID');
+        var chart = $(chartID);
+
+        var accordionContent = chart.parents('.accordionContent');
+        var handle = accordionContent.siblings('div[data-indicator-id="' + data.get('ID') + '"]');
+        var obj = this;
+        handle.click(function () {
+            if (!obj.get('isDrawn')) {
+                setTimeout(function () {
+                    obj.draw(data);
+                }, 1000);
+            }
+        });
     }
 });

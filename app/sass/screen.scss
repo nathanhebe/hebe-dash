@@ -493,26 +493,26 @@ body > .ember-view {
             /*-- Region --*/
             .c3-region {
                 fill: steelblue;
-                fill-opacity: .1;
+                /*fill-opacity: .9;*/
             }
 
             .c3-region.regionYR {
-                fill: red;
-                fill-opacity: .9;
+                fill: #D0021B;
+                /*fill-opacity: .9;*/
             }
 
             .c3-region.regionYA {
-                fill: yellow;
-                fill-opacity: .1;
+                fill: #F5A623;
+                /*fill-opacity: .9;*/
             }
 
             .c3-region.regionYG {
-                fill: green;
-                fill-opacity: .1;
+                fill: #7ED321;
+                /*fill-opacity: .9;*/
             }
             /*-- Brush --*/
             .c3-brush .extent {
-                fill-opacity: .1;
+                /*fill-opacity: .1;*/
             }
             /*-- Select - Drag --*/
             .c3-dragarea {

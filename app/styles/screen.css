@@ -1087,26 +1087,26 @@ body > .ember-view {
 /* line 494, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-region, #MainWrapper.boardReport .chart .c3-region, #NavPage.boardReport .chart .c3-region {
   fill: steelblue;
-  fill-opacity: .1;
+  /*fill-opacity: .9;*/
 }
 /* line 499, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-region.regionYR, #MainWrapper.boardReport .chart .c3-region.regionYR, #NavPage.boardReport .chart .c3-region.regionYR {
-  fill: red;
-  fill-opacity: .9;
+  fill: #D0021B;
+  /*fill-opacity: .9;*/
 }
 /* line 504, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-region.regionYA, #MainWrapper.boardReport .chart .c3-region.regionYA, #NavPage.boardReport .chart .c3-region.regionYA {
-  fill: yellow;
-  fill-opacity: .1;
+  fill: #F5A623;
+  /*fill-opacity: .9;*/
 }
 /* line 509, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-region.regionYG, #MainWrapper.boardReport .chart .c3-region.regionYG, #NavPage.boardReport .chart .c3-region.regionYG {
-  fill: green;
-  fill-opacity: .1;
+  fill: #7ED321;
+  /*fill-opacity: .9;*/
 }
 /* line 514, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-brush .extent, #MainWrapper.boardReport .chart .c3-brush .extent, #NavPage.boardReport .chart .c3-brush .extent {
-  fill-opacity: .1;
+  /*fill-opacity: .1;*/
 }
 /* line 521, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-legend-item, #MainWrapper.boardReport .chart .c3-legend-item, #NavPage.boardReport .chart .c3-legend-item {

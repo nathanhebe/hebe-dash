@@ -1,4 +1,8 @@
 Dashboard.PageController = Ember.ObjectController.extend({
+
+
+
+
     // the initial value of the `search` property
     search: '',
     _pages: null,
@@ -34,7 +38,7 @@ Dashboard.PageController = Ember.ObjectController.extend({
             pages.forEach(function (page) {
                 var status = page.get('ragStatus');
                 //status.forEach(function (rag) {
-                for(var i = 0; i < status.length; i ++) {
+                for (var i = 0; i < status.length; i++) {
                     var rag = status[i];
                     var colour = rag.colour;
                     //if (rags[colour] === undefined) {
@@ -45,8 +49,8 @@ Dashboard.PageController = Ember.ObjectController.extend({
                             previous: rag.previous
                         };
                     } else {
-                        rags[i].count = parseInt(rags[i].count,10) + parseInt(rag.count,10);
-                        rags[i].previous = parseInt(rags[i].previous,10) + parseInt(rag.previous,10);
+                        rags[i].count = parseInt(rags[i].count, 10) + parseInt(rag.count, 10);
+                        rags[i].previous = parseInt(rags[i].previous, 10) + parseInt(rag.previous, 10);
                     }
                 }
             });
