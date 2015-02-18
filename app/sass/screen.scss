@@ -215,6 +215,7 @@ body > .ember-view {
         background: $color-highlight;
         color: $color-font-light;
         @include border-radius(8px);
+        cursor:pointer;
     }
 
     .smallText {
@@ -294,6 +295,13 @@ body > .ember-view {
     }
 
     &.boardReport {
+
+        &.boardReportSummary {
+            .missing.block {
+                background-color:$color-bg;
+                color:$color-bg;
+            }
+        }
 
         .seperator {
             position: absolute;
@@ -608,9 +616,9 @@ body > .ember-view {
 
 
             .indicatorChart {
-                width: 90%;
+                width: 98%;
                 padding: 0px;
-                margin: 0px;
+                margin: 0px auto;
             }
 
             .sampleImage {

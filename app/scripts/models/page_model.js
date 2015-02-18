@@ -72,5 +72,21 @@ Dashboard.PageModel = Ember.Object.extend({
             this.set('_ragStatus', status);
             return this.get('_ragStatus');
         }
-    }.property('_ragStatus')
+    }.property('_ragStatus'),
+
+    _indicatorsByRAGDESC: null,
+    indicatorsByRAGDESC: function () {
+        var indicators = this.get('indicators');
+
+        //songsController = Ember.ArrayController.create({
+        //    content: songs,
+        //    sortProperties: ['ragColour'],
+        //    sortAscending: false
+        //});
+        debugger;
+        _.sortBy(indicators, function (o) { return o.get('ragColour'); });
+
+        return indicators;
+    }.property()
+
 });

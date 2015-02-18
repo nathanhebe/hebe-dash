@@ -12,6 +12,11 @@ Dashboard.HeaderController = Ember.ObjectController.extend({
         goBackToBoardReport: function(){
             this.get('target').transitionTo('dash', 'dash_2');
             this.get('target').reset();
+        },
+
+        prepareForPrint: function () {
+            window.print();
         }
+
     },
 });

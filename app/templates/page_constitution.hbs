@@ -9,8 +9,8 @@
                 Date
             </div>
             <div class="col span_7 borderL">Aspect of Outcomes</div>
-            <div class="col span_1 borderL">&nbsp;</div>
-            <div class="col span_1">Current</div>
+            <div class="col span_1 borderL">Target</div>
+            <div class="col span_1 borderL">Current</div>
             <div class="col span_1 borderL">Previous</div>
         </div>
 
@@ -24,9 +24,9 @@
                 <span class="accordionHandle">&nbsp;</span>
                 {{indicator.periodOfCoverage}}
             </div>
-            <div class="col span_7 borderL borderT borderB ellipses">{{indicator.Title}}</div>
+            <div class="col span_7 borderL borderT borderB borderR ellipses">{{indicator.Title}}</div>
             <div class="col span_1 insideMarginR borderT borderB borderR  radiusR">
-                <!--<div class="currentValue">{{indicator.getRAGValue}}{{indicator.valueString}}</div>-->
+                <div class="currentValue">{{indicator.getRAGValue}}{{indicator.valueString}}</div>
             </div>
             <div {{bind-attr class="indicator.ragColour :col :span_1 :radiusL :indicator"}}>
                 <div class="currentValue">

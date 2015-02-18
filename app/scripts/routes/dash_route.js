@@ -16,7 +16,8 @@ Dashboard.DashRoute = Ember.Route.extend({
                 var headerController = this.controllerFor('header');
                 headerController.set('model', model);
 
-                route.render('header_' + dashType, {    // the template to render, referenced by name
+                //route.render('header_' + dashType, {    // the template to render, referenced by name
+                    route.render('header_Dashboard', {    // the template to render, referenced by name
                     into: 'application',    // the template to render into, referenced by name
                     outlet: 'header', // the outlet inside `options.template` to render into.
                     view: 'header',      // the view to use for this template, referenced by name
