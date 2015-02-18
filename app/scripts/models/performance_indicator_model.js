@@ -18,21 +18,75 @@ Dashboard.PerformanceIndicatorModel.reopenClass({
             function (response) {
                 var results = response.result.records;
                 var pis = [];
+
+                var nhsCurrent = {
+                    Red: 0,
+                    AmberRed: 0,
+                    Amber: 0,
+                    AmberGreen: 0,
+                    Green: 0,
+                    Missing: 0
+                };
+                var nhsPrevious = {
+                    Red: 0,
+                    AmberRed: 0,
+                    Amber: 0,
+                    AmberGreen: 0,
+                    Green: 0,
+                    Missing: 0
+                };
+
                 var grouped = _.groupBy(results, 'ID');
-                _.each(grouped,function (group) {
-                    var sorted = _.sortBy(group, 'Date').reverse();
-                    var first = _.first(sorted);
-                    var second = sorted[1];
+                _.each(grouped, function (group) {
+                    var sorted = _.sortBy(group, 'Date').reverse(); // sort by date DESC
+                    var current = _.first(sorted);
+                    var previous = sorted[1];
 
                     var indicator = Dashboard.PerformanceIndicatorModel.create({
-                        Title: first.Title,
-                        ID: first.ID,
-                        Current: first,
-                        Previous: second
+                        Title: current.Title,
+                        ID: current.ID,
+                        Current: current,
+                        Previous: previous
                     });
+
+                    nhsCurrent.Red += parseInt(current.Red,10);
+                    nhsCurrent.AmberRed += parseInt(current.AmberRed, 10);
+                    nhsCurrent.Amber += parseInt(current.Amber, 10);
+                    nhsCurrent.AmberGreen += parseInt(current.AmberGreen, 10);
+                    nhsCurrent.Green += parseInt(current.Green, 10);
+                    nhsCurrent.Missing += parseInt(current.Missing, 10);
+
+                    nhsPrevious.Red += parseInt(previous.Red, 10);
+                    nhsPrevious.AmberRed += parseInt(previous.AmberRed, 10);
+                    nhsPrevious.Amber += parseInt(previous.Amber, 10);
+                    nhsPrevious.AmberGreen += parseInt(previous.AmberGreen, 10);
+                    nhsPrevious.Green += parseInt(previous.Green, 10);
+                    nhsPrevious.Missing += parseInt(previous.Missing, 10);
 
                     pis.push(indicator);
                 });
+
+                /*
+                
+                ID
+                Date
+                Title
+                Red
+                AmberRed
+                Amber
+                AmberGreen
+                Green
+                Missing
+                */
+
+                var nhsEnglandTotals = Dashboard.PerformanceIndicatorModel.create({
+                    Title: 'NHS England Totals',
+                    ID: '999',
+                    Current: nhsCurrent,
+                    Previous: nhsPrevious
+                });
+                pis.push(nhsEnglandTotals);
+
                 //results.forEach(function (items) {
                 //    pis.push(Dashboard.PerformanceIndicatorModel.create(items));
                 //});
