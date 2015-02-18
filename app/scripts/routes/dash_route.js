@@ -22,10 +22,8 @@ Dashboard.DashRoute = Ember.Route.extend({
                     view: 'header',      // the view to use for this template, referenced by name
                     controller: headerController, // the controller to use for this template, referenced by name
                     model: model            // the model to set on `options.controller`.
-                })
-
+                });
             }
-
         };
     },
     activate: function (dash, transition) {

@@ -1,5 +1,5 @@
 /* jshint undef: true, unused: true */
-/* global $, utils */
+/* global $, _ */
 
 Dashboard.PerformanceIndicatorModel = Ember.Object.extend({
 });
@@ -16,15 +16,26 @@ Dashboard.PerformanceIndicatorModel.reopenClass({
         })
         .then(
             function (response) {
-                var result = response.result;
+                var results = response.result.records;
                 var pis = [];
-                result.records.forEach(function (item) {
-                    debugger;
+                var grouped = _.groupBy(results, 'ID');
+                _.each(grouped,function (group) {
+                    var sorted = _.sortBy(group, 'Date').reverse();
+                    var first = _.first(sorted);
+                    var second = sorted[1];
 
-                    var grouped = _.groupBy(items, 'ID');
+                    var indicator = Dashboard.PerformanceIndicatorModel.create({
+                        Title: first.Title,
+                        ID: first.ID,
+                        Current: first,
+                        Previous: second
+                    });
 
-                    pis.push(Dashboard.PerformanceIndicatorModel.create(item));
+                    pis.push(indicator);
                 });
+                //results.forEach(function (items) {
+                //    pis.push(Dashboard.PerformanceIndicatorModel.create(items));
+                //});
                 return pis;
             }
         );

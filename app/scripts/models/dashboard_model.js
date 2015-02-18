@@ -1,5 +1,5 @@
 /* jshint undef: true, unused: true */
-/* global $ */
+/* global $, utils */
 
 Dashboard.DashboardModel = Ember.Object.extend({
 
@@ -8,11 +8,12 @@ Dashboard.DashboardModel = Ember.Object.extend({
         if (this.get('_data') != null) {
             return this.get('_data');
         } else {
+            var obj = null;
             switch (this.get('Type')) {
                 case "BoardReport":
                     var resourceID = this.get('CKANResourceID');
                     if (resourceID != null) {
-                        var obj = this;
+                        obj = this;
                         Dashboard.ReportModel.find(resourceID).then(function (report) {
                             obj.set('_data', report);
                         });
@@ -21,7 +22,7 @@ Dashboard.DashboardModel = Ember.Object.extend({
                 case "Dashboard":
                     var resource_id = this.get('CKANResourceID');
                     if (resource_id != null) {
-                        var obj = this;
+                        obj = this;
                         var data = {
                             resource_id: resource_id
                         };
@@ -35,13 +36,12 @@ Dashboard.DashboardModel = Ember.Object.extend({
                                 var result = response.result;
                                 var widgets = [];
 
-                                if (result != null
-                                    && utils.isArray(result.records)) {
+                                if (result != null && utils.isArray(result.records)) {
                                     result.records.forEach(function (item) {
-                                        var itemTypeGeneric = item.Type;
-                                        var widget = Dashboard.WidgetModel.create(item);
+                                        //var itemTypeGeneric = item.Type;
+                                        //var widget = Dashboard.WidgetModel.create(item);
                                         $.extend(item, $.parseJSON(item.Config)); // merge any JSON properties from Config
-                                        delete item.Config //  remove extra properties from CKAN
+                                        delete item.Config; //  remove extra properties from CKAN
                                         widgets.push(item);
                                     });
 

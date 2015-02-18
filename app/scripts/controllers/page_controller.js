@@ -45,8 +45,8 @@ Dashboard.PageController = Ember.ObjectController.extend({
                             previous: rag.previous
                         };
                     } else {
-                        rags[i].count = parseInt(rags[i].count) + parseInt(rag.count);
-                        rags[i].previous = parseInt(rags[i].previous) + parseInt(rag.previous);
+                        rags[i].count = parseInt(rags[i].count,10) + parseInt(rag.count,10);
+                        rags[i].previous = parseInt(rags[i].previous,10) + parseInt(rag.previous,10);
                     }
                 }
             });

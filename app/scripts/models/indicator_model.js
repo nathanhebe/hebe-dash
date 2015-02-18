@@ -1,5 +1,5 @@
 /* jshint undef: true, unused: true */
-/* global $, utils */
+/* global $ */
 
 Dashboard.IndicatorModel = Ember.Object.extend({
     targetValue: null,
@@ -139,9 +139,9 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
             if (constitutionIDs.indexOf(obj.get('ID')) !== -1) {
 
-                var rnd = function () {
-                    return utils.random(4, 110).toString();
-                };
+                //var rnd = function () {
+                //    return utils.random(4, 110).toString();
+                //};
 
                 var results = constitutionData.filterBy('indicator_id', obj.get('ID'));
                 var current = results[0];

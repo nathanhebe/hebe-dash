@@ -1,5 +1,4 @@
 /* jshint undef: true, unused: true */
-/* global $, dashWrapper */
 
 Dashboard.HeaderView = Ember.View.extend({
     owlCarousel: null,
