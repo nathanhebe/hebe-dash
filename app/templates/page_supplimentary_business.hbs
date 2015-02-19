@@ -24,17 +24,22 @@
             {{#unless row.Title}}
                 <h2 class="marginBL marginTL">{{row.BusArea}}</h2>
                 {{else}}
-                    <div class="row border radiusL radiusR marginBS">
-                        <div class="col span_1 paddingLNone paddingRNone paddingTS paddingBS">
-                            <div class="left accordionHandle half center borderR fullHeight">&nbsp;</div>
-                            <div class="left half center paddingTS">{{row.BusArea}}</div>
-                        </div>
-                        <div class="col span_4 borderL">{{row.Title}}</div>
-                        <div class="col span_2 paddingNone">
-                            <div {{bind-attr class="row.Trend row.RAGCode :block :radiusR_XL :indicator"}}>{{row.RAG}}</div>
-                        </div>
-                        <div class="col span_5 small paddingTS"><div class="summary">{{row.Comment}}</div></div>
+                <div class="row border radiusL radiusR marginBS" {{bind-attr data-indicator-id=row.BusArea}}>
+                    <div class="col span_1 paddingLNone paddingRNone paddingTS paddingBS">
+                        <div {{bind-attr class="row.Comment:accordionHandle :left :half :center :borderR :fullHeight"}} >&nbsp;</div>
+                        <div class="left half center paddingTS">{{row.BusArea}}</div>
                     </div>
+                    <div class="col span_4 borderL">{{row.Title}}</div>
+                    <div class="col span_2 paddingNone">
+                        <div {{bind-attr class="row.Trend row.RAGCode :block :radiusR_XL :indicator"}}>{{row.RAG}}</div>
+                    </div>
+                    <div class="col span_5 small paddingTL"><div class="summary">{{row.Comment}}</div></div>
+                    <div class="clear"></div>
+                    <div class="accordionContent paddingLL paddingTL paddingRL paddingBL" {{bind-attr data-indicator-id=row.BusArea}}>
+                        <p class="bold marginTL">Comments:</p>
+                        <p class="marginTL paddingBS small">{{row.Comment}}</p>
+                    </div>
+                </div>
                 {{/unless}}
             {{/each}}
             {{else}}

@@ -105,8 +105,8 @@
 */
 /* line 166, ../sass/gridster.screen.scss */
 body {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  background: #fff;
+  /*font-family: $sans;
+  background: $white;*/
 }
 
 /* line 171, ../sass/gridster.screen.scss */
