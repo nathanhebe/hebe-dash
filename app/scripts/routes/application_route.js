@@ -1,8 +1,13 @@
 Dashboard.ApplicationRoute = Ember.Route.extend({
-    // admittedly, this should be in IndexRoute and not in the
-    // top level ApplicationRoute; we're in transition... :-)
-    model: function () {
-        return Dashboard.ReportModel.findAll();
-        //return ['red', 'yellow', 'blue'];
-    }
+    //model: function () {
+    //    var route = this;
+    //    console.log('ApplicationRoute > model');
+    //    return Dashboard.DashboardModel.findAll();
+    //},
+    //afterModel: function (dashes, transition) {
+    //    console.log('ApplicationRoute > afterModel');
+    //    if (dashes.get('length') > 0) {
+    //        this.transitionTo('dash', dashes.get('firstObject').get('ID'));
+    //    }
+    //}
 });

@@ -105,6 +105,7 @@
 @import "_grid";
 
 
+$color-white: #FFFFFF; // white
 $color-bg: #F7F7F7; // base background white?
 /*$color-bg-light: #979797; // used for borders/spacers and knocked-back text etc*/
 $color-bg-light: #E7E7E7; // used for borders/spacers and knocked-back text etc
@@ -114,7 +115,13 @@ $color-highlight: #00447C; // header buttons etc
 $color-font-light: #ffffff;
 $color-font-main: #000000;
 $color-font-link: #4A90E2;
-$font-family-main: Helvetica Neue;
+$color-rag-red: #D0021B;
+$color-rag-red-amber: #EB8D57;
+$color-rag-amber: #FFB800;
+$color-rag-amber-green: #DADA36;
+$color-rag-green: #7ED321;
+$color-rag-blue: #0065B7;
+$font-family-main: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $font-size-title: 190%;
 $font-size-heading: 160%;
 $font-size-heading-sub: 140%;
@@ -148,15 +155,14 @@ body, html {
     }
 }
 
-.ember-view {
+body > .ember-view {
     height: 100%;
     width: 100%;
 }
 
-#MainWrapper {
+#SiteWrapper, #MainWrapper, #NavPage { // #MainWrapper
     color: $color-font-main;
     background-color: $color-bg;
-    max-width: 1440px;
     height: 100%;
     margin: 0px auto;
     overflow: auto;
@@ -183,230 +189,11 @@ body, html {
         }*/
     }
     /* END ADDITIONAL GRID STYLES */
-    .noWrap {
-        white-space: nowrap;
-    }
-
-    .ellipses {
-	    text-overflow: ellipsis;
-	    white-space: nowrap;
-	    overflow: hidden;
-    }
-
-    .bold {
-        font-weight: $font-weight-bold;
-    }
-
-    .clear {
-        clear: both;
-        height: 0px;
-    }
-
-    .left {
-        float: left;
-    }
-
-    .right {
-        float: right;
-    }
-
-    .centered {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .relative {
-        position: relative;
-    }
-
-    .border {
-        border: $border-main;
-    }
-
-    .borderL {
-        border-left: $border-main;
-    }
-
-    .borderT {
-        border-top: $border-main;
-    }
-
-    .borderR {
-        border-right: $border-main;
-    }
-
-    .borderB {
-        border-bottom: $border-main;
-    }
-
-    .radiusT {
-        @include border-top-radius(10px);
-    }
-
-    .radiusR {
-        @include border-right-radius(10px);
-    }
-
-    .radiusB {
-        @include border-bottom-radius(10px);
-    }
-
-    .radiusL {
-        @include border-left-radius(10px);
-    }
-
-    .radiusR_XL {
-        @include border-right-radius(100px);
-    }
-
-    .radiusL_XL {
-        @include border-left-radius(100px);
-    }
-
-    .radiusTR {
-        @include border-top-right-radius(10px);
-    }
-
-    .marginLXL {
-        margin-left: ($margin-main);
-    }
-
-    .marginTXL {
-        margin-top: ($margin-main);
-    }
-
-    .marginRXL {
-        margin-right: ($margin-main);
-    }
-
-    .marginBXL {
-        margin-bottom: ($margin-main);
-    }
-
-
-    .marginLL {
-        margin-left: ($margin-main / 2);
-    }
-
-    .marginTL {
-        margin-top: ($margin-main / 2);
-    }
-
-    .marginRL {
-        margin-right: ($margin-main / 2);
-    }
-
-    .marginBL {
-        margin-bottom: ($margin-main / 2);
-    }
-
-    .marginLS {
-        margin-left: ($margin-main / 4);
-    }
-
-    .marginTS {
-        margin-top: ($margin-main / 4);
-    }
-
-    .marginRS {
-        margin-right: ($margin-main / 4);
-    }
-
-    .marginBS {
-        margin-bottom: ($margin-main / 4);
-    }
-
-    .marginLXS {
-        margin-left: ($margin-main / 8);
-    }
-
-    .marginTXS {
-        margin-top: ($margin-main / 8);
-    }
-
-    .marginRXS {
-        margin-right: ($margin-main / 8);
-    }
-
-    .marginBXS {
-        margin-bottom: ($margin-main / 8);
-    }
-
-    .paddingTS {
-        padding-top: ($margin-main / 4);
-    }
-
-    .paddingRS {
-        padding-right: ($margin-main / 4);
-    }
-
-    .paddingBS {
-        padding-bottom: ($margin-main / 4);
-    }
-
-    .paddingLS {
-        padding-left: ($margin-main / 4);
-    }
-
-    .paddingTL {
-        padding-top: ($margin-main / 2);
-    }
-
-    .paddingRL {
-        padding-right: ($margin-main / 2);
-    }
-
-    .paddingBL {
-        padding-bottom: ($margin-main / 2);
-    }
-
-    .paddingLL {
-        padding-left: ($margin-main / 2);
-    }
-
-    .paddingTNone {
-        padding-top: 0px;
-    }
-
-    .paddingRNone {
-        padding-right: 0px;
-    }
-
-    .paddingBNone {
-        padding-bottom: 0px;
-    }
-
-    .paddingLNone {
-        padding-left: 0px;
-    }
-
-    .alignC, .center {
-        text-align: center;
-    }
-
-    .alignL {
-        text-align: left;
-    }
-
-    .alignR {
-        text-align: right;
-    }
-
-    .textOnly {
-        display: none;
-    }
-
-    .noAnimation {
-        @include transition-property(none);
-        @include transition-duration(0s);
-        @include transition-timing-function(none);
-    }
-
     * {
         @include box-sizing(border-box);
     }
 
-
+    @import "_layoutHelpers";
 
     h1, h2, h3, h4, h5, h6 {
         font-weight: $font-weight-normal;
@@ -428,6 +215,7 @@ body, html {
         background: $color-highlight;
         color: $color-font-light;
         @include border-radius(8px);
+        cursor:pointer;
     }
 
     .smallText {
@@ -435,11 +223,40 @@ body, html {
         line-height: 1.5em;
     }
 
+    .red {
+        background-color: $color-rag-red;
+    }
+
+    .redAmber {
+        background-color: $color-rag-red-amber;
+    }
+
+    .amber {
+        background-color: $color-rag-amber;
+    }
+
+    .amberGreen {
+        background-color: $color-rag-amber-green;
+    }
+
+    .green {
+        background-color: $color-rag-green;
+    }
+
+    .blue {
+        background-color: $color-rag-blue;
+    }
+
+    .missing {
+        background-color: $color-bg-light;
+    }
+
+
 
     #NHSEnglandLogo {
     }
 
-    header, footer, section {
+    footer, section {
         padding: $margin-main;
         overflow: auto;
     }
@@ -450,13 +267,12 @@ body, html {
     }
 
     header {
-        height: 165px;
 
         &.report {
-            background-image:url(../images/NHS-England-Logo.png);
-            background-position:40px center;
-            background-size:250px;
-            background-repeat:no-repeat;
+            background-image: url(../images/NHS-England-Logo.png);
+            background-position: 40px center;
+            background-size: 250px;
+            background-repeat: no-repeat;
         }
 
         .backLink {
@@ -465,6 +281,10 @@ body, html {
                 height: 44px;
             }
         }
+
+
+
+        @import "_header";
     }
 
     footer {
@@ -476,32 +296,11 @@ body, html {
 
     &.boardReport {
 
-        .red {
-            background-color: #D0021B;
-        }
-
-        .redAmber {
-            background-color: #EB8D57;
-        }
-
-        .amber {
-            background-color: #F5A623;
-        }
-
-        .amberGreen {
-            background-color: #DADA36;
-        }
-
-        .green {
-            background-color: #7ED321;
-        }
-
-        .blue {
-            background-color: #0065B7;
-        }
-
-        .missing {
-            background-color: $color-bg-light;
+        &.boardReportSummary {
+            .missing.block {
+                background-color:$color-bg;
+                color:$color-bg;
+            }
         }
 
         .seperator {
@@ -562,8 +361,8 @@ body, html {
 
             &.up, &.even, &.down {
                 background-image: url(../images/IndicatorArrow_up@2x.png);
-                background-size: 40%;
-                background-position: 90% center;
+                background-size: auto 90%;
+                background-position: 95% center;
                 background-repeat: no-repeat;
 
                 &.even {
@@ -694,26 +493,26 @@ body, html {
             /*-- Region --*/
             .c3-region {
                 fill: steelblue;
-                fill-opacity: .1;
+                /*fill-opacity: .9;*/
             }
 
             .c3-region.regionYR {
-                fill: red;
-                fill-opacity: .9;
+                fill: #D0021B;
+                /*fill-opacity: .9;*/
             }
 
             .c3-region.regionYA {
-                fill: yellow;
-                fill-opacity: .1;
+                fill: #F5A623;
+                /*fill-opacity: .9;*/
             }
 
             .c3-region.regionYG {
-                fill: green;
-                fill-opacity: .1;
+                fill: #7ED321;
+                /*fill-opacity: .9;*/
             }
             /*-- Brush --*/
             .c3-brush .extent {
-                fill-opacity: .1;
+                /*fill-opacity: .1;*/
             }
             /*-- Select - Drag --*/
             .c3-dragarea {
@@ -817,9 +616,9 @@ body, html {
 
 
             .indicatorChart {
-                width: 90%;
+                width: 98%;
                 padding: 0px;
-                margin: 0px;
+                margin: 0px auto;
             }
 
             .sampleImage {
@@ -1059,18 +858,58 @@ body, html {
 
                 tbody {
                     tr {
-                            border:$border-main;
+                        border: $border-main;
+
                         td {
                             padding-top: $margin-main / 2;
                             padding-bottom: $margin-main / 2;
-
                         }
                     }
                 }
             }
         }
+
+        .businessArea {
+            .accordionHandle {
+                width:50%;
+            }
+
+            .block {
+                color:$color-font-light;
+                font-size:$font-size-title;
+                height:100%;
+                width:85%;
+                line-height: 60px;
+                padding-left:$margin-main / 4;
+            }
+
+            .summary {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    &.dashboard {
+        &.nhsDashboard {
+        }
+
+        @import "_widget_styles";
     }
 }
+
+#NavPage {
+    width: 100%;
+    height: 100%;
+    color: $color-font-main;
+    position: absolute;
+    top: 0;
+    -webkit-transition: -webkit-filter 200ms linear;
+}
+
+
 
 
 
@@ -1116,14 +955,12 @@ Include retina-specific overrides - most likely, 2x image alternatives
     @import "_retina";
 }
 
-
 /*********************
 MOBILE
 This are the mobile styles. It's what people see on their phones. If
 you set a great foundation, you won't need to add too many styles in
 the other stylesheets. Remember, keep it light: Speed is Important.
 *********************/
-
 @media only screen and (min-width: 0px) and (max-width: 270px) {
     // styles in 768up.scss
     @import "breakpoints/270lower";
@@ -1149,4 +986,3 @@ the other stylesheets. Remember, keep it light: Speed is Important.
     @import "breakpoints/440Heightlower";
 }
 // end of media query
-

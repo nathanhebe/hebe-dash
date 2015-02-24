@@ -1,0 +1,197 @@
+﻿/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: header-and-nav-specific styles
+******************************************************************/
+$colour-nav-icon-main: #fff;
+$colour-nav-icon-main-hover: $color-highlight;
+$colour-nav-icon-second: $color-bg-main;
+$icon-stroke-width: 0;
+$icon-stroke-width-hover: 1;
+
+
+.headerWrapper {
+    width: 100%;
+    top: 0;
+    position: relative;
+    z-index: 9;
+
+    #NHSEnglandLogo {
+        position: absolute;
+        left: 20px;
+        top: 50px;
+        z-index: 4;
+
+        img {
+            width: 240px;
+        }
+    }
+}
+
+#TopNav {
+
+    button {
+        display: block;
+        border: none;
+        padding: 0;
+        background: transparent;
+        outline: none;
+
+        svg, .iconTitle {
+            fill: $colour-nav-icon-main;
+            color: $colour-nav-icon-main;
+            stroke-width: $icon-stroke-width;
+            stroke: $colour-nav-icon-main;
+            display: block;
+            margin: 0 auto;
+            @include animate(all, 0.5s, linear);
+
+            &.iconTitle {
+                font-size: 10px;
+                margin-top: 12px;
+            }
+        }
+
+        &.menuButton {
+            #Fill-4 {
+                @include scale(1);
+            }
+        }
+
+        &.backButton, &.presentation, &.infoButton {
+            position: absolute;
+            top: 50%;
+            margin-top: -14px;
+
+            &.backButton {
+                margin-left: -14px;
+                left: 50%;
+                opacity: 0;
+                @include scale(0)
+            }
+
+            &.presentation {
+                right: 70px;
+            }
+
+            &.infoButton {
+                right: 20px;
+            }
+        }
+
+        &:hover {
+            svg, .iconTitle {
+                color: $colour-nav-icon-main-hover;
+                fill: $colour-nav-icon-main-hover;
+                stroke: $colour-nav-icon-main-hover;
+                stroke-width: $icon-stroke-width-hover;
+            }
+
+            &.menuButton {
+                #Fill-4 {
+                    @include scale(0);
+                }
+            }
+        }
+    }
+
+    #FirstNav {
+        padding: 41px 0;
+        position: relative;
+        z-index: 2;
+        border-bottom: 1px solid #c4c4c4;
+        background: $color-bg-main;
+    }
+
+    #SecondNav, #WidgetNavWrapper {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        padding: 18px 0;
+        border-bottom: 1px solid #969696;
+        background: $color-white;
+
+        li {
+            display: inline;
+        }
+
+        button {
+            margin: 0 36px;
+            display: inline-block;
+            text-decoration: none;
+
+            .iconTitle {
+                margin-top: 11px;
+                color: $colour-nav-icon-second;
+            }
+
+            svg {
+                fill: $colour-nav-icon-second;
+            }
+        }
+    }
+
+
+    #WidgetNavWrapper {
+        padding: 11px 0;
+
+        .widgetCarousel {
+            width: 55.293%;
+            margin-left: 7.297%;
+        }
+
+        .widgetPrev {
+            width: 15px;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            left: 7.297%;
+            margin-left: -25px;
+            z-index: 99;
+        }
+
+        .widgetNext {
+            width: 15px;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            left: 62.59%;
+            margin-left: 10px;
+            z-index: 99;
+        }
+
+        .widgetItem {
+            width: 124px;
+            height: 75px;
+            background: #e6e6e6;
+            border: 1px solid $colour-nav-icon-main;
+            outline: none;
+            @include border-radius(9px);
+            display: block;
+        }
+
+        .addWidget {
+            height: 75px;
+            background: #fff;
+            color: #38c02e;
+            padding: 0;
+            display: block;
+            position: absolute;
+            left: 70%;
+            top: 50%;
+            margin-top: -37px;
+            border: none;
+
+            span {
+                font-size: 10px;
+                margin: 0 auto;
+                margin-top: 12px;
+                display: block;
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+﻿/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Dashboard-Widget-specific styles
+******************************************************************/
+
+.widget {
+
+    &.widgetIndicator {
+        color: $color-white;
+        @include border-radius(10px);
+        padding: $margin-main /4;
+
+        .date {
+            font-size: $font-size-small;
+        }
+
+        .title {
+            margin: ($margin-main/4) 0;
+            font-size: $font-size-heading-sub;
+            line-height: 1em;
+        }
+
+        .icon {
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+
+            &.IndicatorIcon_chart {
+                width: 108px;
+                height: 21px;
+                background-image: url(../images/IndicatorIcon_chart.png);
+            }
+        }
+
+        &.red {
+        }
+
+        &.amber {
+        }
+
+        &.green {
+        }
+
+        &.blue {
+        }
+    }
+}
+
+.chartModal {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    min-height: 200px;
+    background: $color-bg-main;
+    display: none;
+    /*@include animate(all, 0.5s, linear);*/
+}

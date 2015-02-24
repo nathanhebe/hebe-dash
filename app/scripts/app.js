@@ -17,9 +17,5 @@ Ember.View.reopen({
     },
     afterRenderEvent: function () {
         // implement this hook in your own subclasses and run your jQuery logic there
-        //debugger;
-        //_debugTemplateName: "application"
-        //renderedName: "application"
-
     }
 });

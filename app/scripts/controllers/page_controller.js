@@ -1,4 +1,8 @@
 Dashboard.PageController = Ember.ObjectController.extend({
+
+
+
+
     // the initial value of the `search` property
     search: '',
     _pages: null,
@@ -26,6 +30,65 @@ Dashboard.PageController = Ember.ObjectController.extend({
         //});
 
     }.property('_pages'),
+
+    pageRAGTotals: function () {
+        var pages = this.get('pages');
+        if (pages != null) {
+            var rags = {};
+            pages.forEach(function (page) {
+                var status = page.get('ragStatus');
+                //status.forEach(function (rag) {
+                for (var i = 0; i < status.length; i++) {
+                    var rag = status[i];
+                    var colour = rag.colour;
+                    //if (rags[colour] === undefined) {
+                    if (rags[i] === undefined) {
+                        rags[i] = {
+                            colour: rag.colour,
+                            count: rag.count,
+                            previous: rag.previous
+                        };
+                    } else {
+                        rags[i].count = parseInt(rags[i].count, 10) + parseInt(rag.count, 10);
+                        rags[i].previous = parseInt(rags[i].previous, 10) + parseInt(rag.previous, 10);
+                    }
+                }
+            });
+            rags[1] = {
+                colour: 'missing',
+                count: "",
+                previous: "N/A"
+            };
+            rags[3] = {
+                colour: 'missing',
+                count: "",
+                previous: "N/A"
+            };
+            var tmp = [];
+            for (var key in rags) {
+                tmp.push(rags[key]);
+            }
+            return tmp;
+        }
+        return [];
+    }.property('_pages'),
+
+
+
+    _nhsEnglandRAGTotals: null,
+    nhsEnglandRAGTotals: function () {
+        var obj = this;
+        if (this.get('_nhsEnglandRAGTotals') != null) {
+            return this.get('_nhsEnglandRAGTotals');
+        } else {
+            Dashboard.PerformanceIndicatorModel.findAll().then(function (results) {
+                obj.set('_nhsEnglandRAGTotals', results);
+            });
+        }
+    }.property('_nhsEnglandRAGTotals')
+
+
+
 
     //_hasValues: null,
     //hasValues: function () {
@@ -59,9 +122,9 @@ Dashboard.PageController = Ember.ObjectController.extend({
 
 Ember.Handlebars.helper('ragColour', function (value, options) {
     var val = Handlebars.Utils.escapeExpression(value);
-    var colour = (val === 'G' ? 'green' 
-                    : (val === 'A' ? 'amber' 
-                        : ((val === 'A/R' || val === 'R') ? 'red' 
+    var colour = (val === 'G' ? 'green'
+                    : (val === 'A' ? 'amber'
+                        : ((val === 'A/R' || val === 'R') ? 'red'
                             : 'blue')));
     return new Ember.Handlebars.SafeString(colour);
 });

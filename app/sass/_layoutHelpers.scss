@@ -1,0 +1,249 @@
+﻿    .noWrap {
+        white-space: nowrap;
+    }
+
+    .ellipses {
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    overflow: hidden;
+    }
+
+    .bold {
+        font-weight: $font-weight-bold;
+    }
+
+    .clear {
+        clear: both;
+        height: 0px;
+    }
+
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
+    }
+
+    .centered {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .half {
+        width:50%;
+    }
+
+    .fullHeight {
+        height:100%;
+    }
+
+    .relative {
+        position: relative;
+    }
+
+    .border {
+        border: $border-main;
+    }
+
+    .borderL {
+        border-left: $border-main;
+    }
+
+    .borderT {
+        border-top: $border-main;
+    }
+
+    .borderR {
+        border-right: $border-main;
+    }
+
+    .borderB {
+        border-bottom: $border-main;
+    }
+
+    .radiusT {
+        @include border-top-radius(10px);
+    }
+
+    .radiusR {
+        @include border-right-radius(10px);
+    }
+
+    .radiusB {
+        @include border-bottom-radius(10px);
+    }
+
+    .radiusL {
+        @include border-left-radius(10px);
+    }
+
+    .radiusR_XL {
+        @include border-right-radius(100px);
+    }
+
+    .radiusL_XL {
+        @include border-left-radius(100px);
+    }
+
+    .radiusTR {
+        @include border-top-right-radius(10px);
+    }
+
+    .marginLXL {
+        margin-left: ($margin-main);
+    }
+
+    .marginTXL {
+        margin-top: ($margin-main);
+    }
+
+    .marginRXL {
+        margin-right: ($margin-main);
+    }
+
+    .marginBXL {
+        margin-bottom: ($margin-main);
+    }
+
+    .marginLL {
+        margin-left: ($margin-main / 2);
+    }
+
+    .marginTL {
+        margin-top: ($margin-main / 2);
+    }
+
+    .marginRL {
+        margin-right: ($margin-main / 2);
+    }
+
+    .marginBL {
+        margin-bottom: ($margin-main / 2);
+    }
+
+    .marginLS {
+        margin-left: ($margin-main / 4);
+    }
+
+    .marginTS {
+        margin-top: ($margin-main / 4);
+    }
+
+    .marginRS {
+        margin-right: ($margin-main / 4);
+    }
+
+    .marginBS {
+        margin-bottom: ($margin-main / 4);
+    }
+
+    .marginLXS {
+        margin-left: ($margin-main / 8);
+    }
+
+    .marginTXS {
+        margin-top: ($margin-main / 8);
+    }
+
+    .marginRXS {
+        margin-right: ($margin-main / 8);
+    }
+
+    .marginBXS {
+        margin-bottom: ($margin-main / 8);
+    }
+
+    .marginLNone {
+        margin-left: 0px;
+    }
+
+    .marginTNone {
+        margin-top: 0px;
+    }
+
+    .marginRNone {
+        margin-right: 0px;
+    }
+
+    .marginBNone {
+        margin-bottom: 0px;
+    }
+
+    .paddingTS {
+        padding-top: ($margin-main / 4);
+    }
+
+    .paddingRS {
+        padding-right: ($margin-main / 4);
+    }
+
+    .paddingBS {
+        padding-bottom: ($margin-main / 4);
+    }
+
+    .paddingLS {
+        padding-left: ($margin-main / 4);
+    }
+
+    .paddingTL {
+        padding-top: ($margin-main / 2);
+    }
+
+    .paddingRL {
+        padding-right: ($margin-main / 2);
+    }
+
+    .paddingBL {
+        padding-bottom: ($margin-main / 2);
+    }
+
+    .paddingLL {
+        padding-left: ($margin-main / 2);
+    }
+
+    .paddingRXL {
+        padding-right: $margin-main;
+    }
+
+    .paddingNone {
+        padding: 0px;
+    }
+
+    .paddingTNone {
+        padding-top: 0px;
+    }
+
+    .paddingRNone {
+        padding-right: 0px;
+    }
+
+    .paddingBNone {
+        padding-bottom: 0px;
+    }
+
+    .paddingLNone {
+        padding-left: 0px;
+    }
+
+    .alignC, .center {
+        text-align: center;
+    }
+
+    .alignL {
+        text-align: left;
+    }
+
+    .alignR {
+        text-align: right;
+    }
+
+    .textOnly {
+        display: none;
+    }
+
+    .noAnimation {
+        @include transition-property(none);
+        @include transition-duration(0s);
+        @include transition-timing-function(none);
+    }

@@ -1,0 +1,11 @@
+﻿<div  {{bind-attr id=widget.ID}} class="indicatorChart" ></div>
+
+
+
+<li class="widget widgetIndicator cover noTouch amber" data-sizex="1" data-sizey="1">
+    <div class="icon right IndicatorIcon_chart"></div>
+    <div class="date">Aug-14</div>
+    <h5 {{action "toggleGraph"}} class="title">{{widget.Title}}</h5>
+    <div class="currentValue">44</div>
+    <div {{bind-attr class="indicator.ragColour :indicator indicator.trend"}}>&nbsp;</div>
+</li>

@@ -1,37 +1,114 @@
-<div id="MainWrapper" class="boardReport">
-    <header>
-        <div class="row">
-            <div class="col span_1 backLink">{{#link-to 'application' }}<img src="/images/BackArrow@2x.png" />{{/link-to}}</div>
-            <h1 class="col span_8">{{Title}}</h1>
-            <div class="button col span_3">Product Report for Print</div>
-            <!--<div class="button column two">Filter by</div>-->
-        </div>
-    </header>
+<div id="MainWrapper" class="boardReport boardReportSummary">
     <section id="MainContent">
-        <h2>{{SubTitle}}</h2>
+        <!--<h2>{{SubTitle}}</h2>-->
 
-        <div class="row borderT borderB">
-            <div class="col span_11 alignL bold">Aspects of NHS constitution</div>
+
+
+
+        <!--NHS ENGLAND-->
+        <!--<div class="row marginTXL borderT borderB">
+            <div class="col span_11 alignL bold">Performance Summary for NHS England</div>
             <div class="col span_1 relative">
                 <div class="seperator"></div>
                 No Trend
             </div>
-        </div>
+        </div>-->
 
+        <div class="row">
+            <h2 class="col span_11 marginBNone">Performance Summary for NHS England</h2>
+            <div class="col span_1 marginBNone relative">
+                <div class="seperator"></div>
+                No Trend
+            </div>
+        </div>
+        {{#each indicator in nhsEnglandRAGTotals}}
+        <div class="row borderT marginTL paddingBNone paddingBS chart">
+            <div class="col span_4 alignL">{{indicator.Title}}</div>
+            <div class="col span_1 alignC borderL borderR relative">&nbsp;</div>
+            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
+                <div class="blockRow blockRow5">
+
+                    <div class="red block">
+                        <div class="currentValue">{{indicator.Current.Red}}</div>
+                        <div class="previousValue">{{indicator.Previous.Red}}</div>
+                    </div>
+
+                    <div class="redAmber block">
+                        <div class="currentValue">{{indicator.Current.AmberRed}}</div>
+                        <div class="previousValue">{{indicator.Previous.AmberRed}}</div>
+                    </div>
+
+                    <div class="amber block">
+                        <div class="currentValue">{{indicator.Current.Amber}}</div>
+                        <div class="previousValue">{{indicator.Previous.Amber}}</div>
+                    </div>
+
+                    <div class="amberGreen block">
+                        <div class="currentValue">{{indicator.Current.AmberGreen}}</div>
+                        <div class="previousValue">{{indicator.Previous.AmberGreen}}</div>
+                    </div>
+
+                    <div class="green block">
+                        <div class="currentValue">{{indicator.Current.Green}}</div>
+                        <div class="previousValue">{{indicator.Previous.Green}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col span_1 borderL paddingRNone">
+                <div class="blockRow blockRow1">
+                    <div class="block blue">
+                        <div class="currentValue">5</div>
+                        <div class="previousValue">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--NHS-->
+        <div class="row marginTL borderT paddingTL">
+            <h2 class="col span_11 marginBNone">Performance Summary for NHS</h2>
+            <div class="col span_1 marginBNone relative">
+                <div class="seperator"></div>
+                No Trend
+            </div>
+        </div>
+        <!--<div class="row borderT borderB">
+            <div class="col span_11 alignL bold">Performance Summary for NHS</div>
+            <div class="col span_1 relative">
+                <div class="seperator"></div>
+                No Trend
+            </div>
+        </div>-->
+        <!--Dynamic Page indicators-->
         {{#each page in pages}}
         <div class="row borderT marginTL paddingBNone paddingBS chart">
             <div class="col span_4 alignL">{{page.Title}}</div>
             <div class="col span_1 alignC borderL borderR relative">
-                {{#link-to 'page' 'annex_b' page.ID }}View{{/link-to}}
+            <!--    {{#link-to 'page' 'annex_b' page.ID }}View{{/link-to}}-->
             </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
 
                     {{#each rag in page.ragStatus}}
-                        <div {{bind-attr class="rag.colour :block"}}>
-                            <div class="currentValue">{{rag.count}}</div>
-                            <div class="previousValue">{{rag.previous}}</div>
-                        </div>
+                    <div {{bind-attr class="rag.colour :block"}}>
+                        <div class="currentValue">{{rag.count}}</div>
+                        <div class="previousValue">{{rag.previous}}</div>
+                    </div>
                     {{/each}}
 
                 </div>
@@ -45,12 +122,36 @@
                 </div>
             </div>
         </div>
-
-
-
         {{/each}}
+        <!--end Dynamic Page Indicators-->
+        <!--end NHS-->
 
+        <!--NHS Total-->
+        <div class="row borderT marginTL paddingBNone paddingBS chart">
+            <div class="col span_4 alignL">NHS Total</div>
+            <div class="col span_1 alignC borderL borderR relative">&nbsp;</div>
+            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
+                <div class="blockRow blockRow5">
 
+                    {{#each rag in pageRAGTotals}}
+                    <div {{bind-attr class="rag.colour :block"}}>
+                        <div class="currentValue">{{rag.count}}</div>
+                        <div class="previousValue">{{rag.previous}}</div>
+                    </div>
+                    {{/each}}
+
+                </div>
+            </div>
+            <div class="col span_1 borderL paddingRNone">
+                <div class="blockRow blockRow1">
+                    <div class="block blue">
+                        <div class="currentValue">5</div>
+                        <div class="previousValue">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end NHS Total-->
         <!--<div class="row borderT marginTL paddingBNone paddingBS chart">
             <div class="col span_4 alignL">NHS Constitution</div>
             <div class="col span_1 alignC borderL borderR relative">
@@ -211,16 +312,6 @@
                 </div>
             </div>
         </div>-->
-
-
-
-
-
-
-
-
-
-
         <!--<h2 class="marginTXL">Performance summary for nhs england - november 2014</h2>
 
 

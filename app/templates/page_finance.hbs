@@ -1,20 +1,10 @@
 <div id="MainWrapper" class="boardReport">
-    <header>
-        <div class="row">
-            <div class="col span_1 backLink">{{#link-to 'application' }}<img src="/images/BackArrow@2x.png" />{{/link-to}}</div>
-            <h1 class="col span_8">{{Title}}</h1>
-            <div class="button col span_3">Product Report for Print</div>
-            <!--<div class="button column two">Filter by</div>-->
-        </div>
-    </header>
     <section id="MainContent">
         <h2>{{SubTitle}}</h2>
 
         <div class="finance">
-            {{rows}}
-
-            {{#if _rows}}
-            {{#each row in _rows}}
+            {{#if rows}}
+            {{#each row in rows}}
             {{#unless row.ID}}
             <div class="group">
                 <div class="row">
