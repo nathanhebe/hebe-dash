@@ -1461,20 +1461,37 @@ body > .ember-view {
   border-radius: 10px;
   padding: 0.5em;
 }
-/* line 14, ../sass/_widget_styles.scss */
+/* line 15, ../sass/_widget_styles.scss */
 #SiteWrapper.dashboard .widget.widgetIndicator .date, #MainWrapper.dashboard .widget.widgetIndicator .date, #NavPage.dashboard .widget.widgetIndicator .date {
   font-size: 80%;
 }
-/* line 18, ../sass/_widget_styles.scss */
+/* line 19, ../sass/_widget_styles.scss */
+#SiteWrapper.dashboard .widget.widgetIndicator .title, #MainWrapper.dashboard .widget.widgetIndicator .title, #NavPage.dashboard .widget.widgetIndicator .title {
+  margin: 0.5em 0;
+  font-size: 140%;
+  line-height: 1em;
+}
+/* line 25, ../sass/_widget_styles.scss */
 #SiteWrapper.dashboard .widget.widgetIndicator .icon, #MainWrapper.dashboard .widget.widgetIndicator .icon, #NavPage.dashboard .widget.widgetIndicator .icon {
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
-/* line 22, ../sass/_widget_styles.scss */
+/* line 29, ../sass/_widget_styles.scss */
 #SiteWrapper.dashboard .widget.widgetIndicator .icon.IndicatorIcon_chart, #MainWrapper.dashboard .widget.widgetIndicator .icon.IndicatorIcon_chart, #NavPage.dashboard .widget.widgetIndicator .icon.IndicatorIcon_chart {
   width: 108px;
   height: 21px;
   background-image: url(../images/IndicatorIcon_chart.png);
+}
+/* line 50, ../sass/_widget_styles.scss */
+#SiteWrapper.dashboard .chartModal, #MainWrapper.dashboard .chartModal, #NavPage.dashboard .chartModal {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  min-height: 200px;
+  background: #0065B7;
+  display: none;
+  /*@include animate(all, 0.5s, linear);*/
 }
 
 /* line 903, ../sass/screen.scss */

@@ -4,13 +4,7 @@
     </div>
     <div id="WidgetHolder">
         {{#each widget in data}}
-            <li class="widget widgetIndicator cover noTouch amber" data-sizex="1" data-sizey="1">
-                <div class="icon right IndicatorIcon_chart"></div>
-                <div class="date">Aug-14</div>
-                <h5 class="title">{{widget.Title}}</h5>
-                <div class="currentValue">44</div>
-                <div {{bind-attr class="indicator.ragColour :indicator indicator.trend"}}>&nbsp;</div>
-            </li>
+            {{widget-board-report-indicator widget=widget}}
         {{/each}}
     </div>
 </div>

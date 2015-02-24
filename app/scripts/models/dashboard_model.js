@@ -39,10 +39,11 @@ Dashboard.DashboardModel = Ember.Object.extend({
                                 if (result != null && utils.isArray(result.records)) {
                                     result.records.forEach(function (item) {
                                         //var itemTypeGeneric = item.Type;
-                                        //var widget = Dashboard.WidgetModel.create(item);
                                         $.extend(item, $.parseJSON(item.Config)); // merge any JSON properties from Config
                                         delete item.Config; //  remove extra properties from CKAN
-                                        widgets.push(item);
+                                        var widget = Dashboard.WidgetModel.create(item);
+                                        //widgets.push(item);
+                                        widgets.push(widget);
                                     });
 
                                     var sorted = widgets.sortBy("Order");
