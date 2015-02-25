@@ -170,7 +170,7 @@ body > .ember-view {
     .col {
         padding-top: ($margin-main / 2);
         padding-bottom: ($margin-main / 2);
-        height: $height-column;
+        //height: $height-column;
 
         &.alignL {
             padding-left: 0px;
@@ -832,10 +832,27 @@ body > .ember-view {
 
         .supplimentary {
 
+            .group {
+                width: 100%;
+                display: table;
+                padding: {
+                    top: 0;
+                    bottom: 0;
+                }
+                > .col {
+                    display: table-cell;
+                    float: none;
+                }
+            }
+
             .dataRow {
-                padding-top: ($margin-main / 2);
-                padding-bottom: ($margin-main / 2);
-                height: 60px;
+                padding: {
+                    top: 0;
+                    bottom: 0;
+                }
+                /* padding-top: ($margin-main / 2);
+                padding-bottom: ($margin-main / 2);*/
+                min-height: 60px;
             }
 
             table {
