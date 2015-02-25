@@ -123,37 +123,39 @@ Dashboard.PageModel = Ember.Object.extend({
                                         };
                                         section.groups.push(group);
                                     } else if (record.Type == 'indicator') {
-                                        //// Format the data so it makes sense in the template
+
+                                        var parseRAG = function(rag) {
+                                            switch (rag) {
+                                                case "A/R": {
+                                                    return 'redAmber';
+                                                }
+                                                case "R": {
+                                                    return 'red';
+                                                }
+                                                case "A": {
+                                                    return 'amber';
+                                                }
+                                                case "A/G": {
+                                                    return 'amberGreen';
+                                                }
+                                                case "G": {
+                                                    return 'green';
+                                                }
+                                            }
+                                        };
+
+                                        // Format the data so it makes sense in the template
                                         record.Trend = record.Col3;
-                                        delete record.Col3;
                                         record.RAG = record.Col4;
-
-                                        switch (record.Col4) {
-                                            case "A/R": {
-                                                record.RAGCode = 'redAmber';
-                                                break;
-                                            }
-                                            case "R": {
-                                                record.RAGCode = 'red';
-                                                break;
-                                            }
-                                            case "A": {
-                                                record.RAGCode = 'amber';
-                                                break;
-                                            }
-                                            case "A/G": {
-                                                record.RAGCode = 'amberGreen';
-                                                break;
-                                            }
-                                            case "G": {
-                                                record.RAGCode = 'green';
-                                                break;
-                                            }
-                                        }
-
-                                        delete record.Col4;
                                         record.mitigatedRAG = record.Col5;
-                                        console.log(record);
+                                        record.RAGCode = parseRAG(record.RAG);
+                                        record.mitigatedRAGCode = parseRAG(record.mitigatedRAG);
+                                        record.achieveDate = record.Col6;
+
+                                        delete record.Col3;
+                                        delete record.Col4;
+                                        delete record.Col5;
+                                        delete record.Col6;
 
                                         group.indicators.push(record);
                                     }

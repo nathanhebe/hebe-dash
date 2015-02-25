@@ -29,6 +29,15 @@
                                 <div class="col span_2 paddingNone">
                                     <div {{bind-attr class="indicator.Trend indicator.RAGCode :block :radiusR_XL :indicator"}}>{{indicator.RAG}}</div>
                                 </div>
+                                <div class="col span_1 paddingNone">
+                                    <div {{bind-attr class="indicator.mitigatedRAGCode :block :radiusR_XL :indicator"}}>{{indicator.mitigatedRAG}}</div>
+                                </div>
+                                <div class="col span_4 paddingNone">
+                                    {{indicator.comments}} 
+                                </div>
+                                <div class="col span_2 paddingNone">
+                                    {{indicator.achieveDate}}
+                                </div>
                             </div>
                         {{/each}}
                     </div>
