@@ -606,15 +606,6 @@ body > .ember-view {
                 /*  font-size: 28px !important;*/
             }
 
-
-
-
-
-
-
-
-
-
             .indicatorChart {
                 width: 98%;
                 padding: 0px;
@@ -841,6 +832,12 @@ body > .ember-view {
 
         .supplimentary {
 
+            .dataRow {
+                padding-top: ($margin-main / 2);
+                padding-bottom: ($margin-main / 2);
+                height: 60px;
+            }
+
             table {
                 width: 100%;
                 border-collapse: separate;
@@ -888,6 +885,20 @@ body > .ember-view {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+        }
+
+        .risks {
+            .groupLabel {
+                background: #ECECEC;
+                height: 100%;
+                .verticalText {
+                    -webkit-transform: rotate(-90deg);
+                    -moz-transform: rotate(-90deg);
+                    -ms-transform: rotate(-90deg);
+                    -o-transform: rotate(-90deg);
+                    transform: rotate(-90deg);
+                }
             }
         }
     }

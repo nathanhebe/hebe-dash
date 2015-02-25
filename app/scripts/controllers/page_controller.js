@@ -87,9 +87,6 @@ Dashboard.PageController = Ember.ObjectController.extend({
         }
     }.property('_nhsEnglandRAGTotals')
 
-
-
-
     //_hasValues: null,
     //hasValues: function () {
     //    if (this.get('_hasValues') !=== null && this.get('_hasValues') !=== true) {

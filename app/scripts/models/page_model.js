@@ -10,9 +10,7 @@ Dashboard.PageModel = Ember.Object.extend({
                 case "page_finance_table":
                 case "page_supplimentary_business":
                 case "page_supplimentary_risks":
-                    if (this.get('_rows') !== null) {
-                        return this.get('_rows');
-                    } else {
+                    if (this.get('_rows') === null) {
                         if (this.get('CKANID') !== null) {
                             var obj = this;
                             var ckanID = obj.get('CKANID');
@@ -24,11 +22,10 @@ Dashboard.PageModel = Ember.Object.extend({
                                 obj.setProperties({
                                     _rows: results
                                 });
-                                return obj.get('_rows');
                             });
                         }
                     }
-                    break;
+                    return obj.get('_rows');
             }
         }
         return this.get('_rows');
@@ -91,5 +88,53 @@ Dashboard.PageModel = Ember.Object.extend({
 
     //    return indicators;
     //}.property()
+    _data: null,
+    data: function() {
+        if (this.get('_data') === null) {
+            switch (this.get('Type')) {
+                case "page_finance":
+                    return null;
+                case "page_finance_table":
+                    return null;
+                case "page_supplimentary_business":
+                    return null;
+                case "page_supplimentary_risks":
+                    if (this.get('_data') === null) {
+                        if (this.get('CKANID') !== null) {
+                            var obj = this;
+                            var ckanID = this.get('CKANID');
+                            $.ajax({
+                                url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
+                            }).then(function (response) {
+                                var data = {sections: []};
+                                var section;
+                                var group;
+                                response.result.records.forEach(function(record) {
+                                    if (record.Type == 'section') {
+                                        section = {
+                                            title:  record.SectionTitle,
+                                            groups: []
+                                        };
+                                        data.sections.push(section);
+                                    } else if (record.Type == 'group') {
+                                        group = {
+                                            title: record.GroupTitle,
+                                            indicators:  []
+                                        };
+                                        section.groups.push(group);
+                                    } else if (record.Type == 'indicator') {
+                                        group.indicators.push(record);
+                                    }
+                                });
+                                obj.set('data', data);
 
+                                console.log(data);
+                            });
+                        }
+                    }
+                    return obj.get('_data');
+            }
+        }
+        return this.get('_rows');
+    }.property('_data')
 });
