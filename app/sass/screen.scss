@@ -866,6 +866,15 @@ body > .ember-view {
                 min-height: 60px;
             }
 
+            .block {
+                color:$color-font-light;
+                font-size:$font-size-title;
+                height:100%;
+                width:85%;
+                line-height: 60px;
+                padding-left:$margin-main / 4;
+            }
+
             table {
                 width: 100%;
                 border-collapse: separate;

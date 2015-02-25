@@ -22,8 +22,8 @@
                     <div class="col span_11 group">
                         {{#each indicator in group.indicators}}
                             <div class="dataRow border radiusL radiusR marginBS">
-                                <div class=" col span_4">{{indicator.Col2}}</div>
-                                <div class="col span_2">
+                                <div class="col span_4">{{indicator.Col2}}</div>
+                                <div class="col span_2 paddingNone">
                                     <div {{bind-attr class="indicator.Trend indicator.RAGCode :block :radiusR_XL :indicator"}}>{{indicator.RAG}}</div>
                                 </div>
                             </div>
