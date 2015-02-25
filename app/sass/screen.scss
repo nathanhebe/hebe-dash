@@ -832,12 +832,23 @@ body > .ember-view {
 
         .supplimentary {
 
+            .groupLabel {
+                vertical-align: middle;
+                padding: {
+                    top: 0;
+                    bottom: 0;
+                }
+            }
+
             .group {
                 width: 100%;
                 display: table;
                 padding: {
                     top: 0;
                     bottom: 0;
+                }
+                margin: {
+                    bottom: 2em;
                 }
                 > .col {
                     display: table-cell;

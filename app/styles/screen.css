@@ -1403,18 +1403,25 @@ body > .ember-view {
   border-bottom-right-radius: 10px;
 }
 /* line 835, ../sass/screen.scss */
+#SiteWrapper.boardReport .supplimentary .groupLabel, #MainWrapper.boardReport .supplimentary .groupLabel, #NavPage.boardReport .supplimentary .groupLabel {
+  vertical-align: middle;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/* line 843, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .group, #MainWrapper.boardReport .supplimentary .group, #NavPage.boardReport .supplimentary .group {
   width: 100%;
   display: table;
   padding-top: 0;
   padding-bottom: 0;
+  margin-bottom: 2em;
 }
-/* line 842, ../sass/screen.scss */
+/* line 853, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .group > .col, #MainWrapper.boardReport .supplimentary .group > .col, #NavPage.boardReport .supplimentary .group > .col {
   display: table-cell;
   float: none;
 }
-/* line 848, ../sass/screen.scss */
+/* line 859, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .dataRow, #MainWrapper.boardReport .supplimentary .dataRow, #NavPage.boardReport .supplimentary .dataRow {
   padding-top: 0;
   padding-bottom: 0;
@@ -1422,32 +1429,32 @@ body > .ember-view {
   padding-bottom: ($margin-main / 2);*/
   min-height: 60px;
 }
-/* line 858, ../sass/screen.scss */
+/* line 869, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary table, #MainWrapper.boardReport .supplimentary table, #NavPage.boardReport .supplimentary table {
   width: 100%;
   border-collapse: separate;
 }
-/* line 864, ../sass/screen.scss */
+/* line 875, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary table thead tr th, #MainWrapper.boardReport .supplimentary table thead tr th, #NavPage.boardReport .supplimentary table thead tr th {
   border-bottom: solid 2px #E7E7E7;
   border-top: solid 2px #E7E7E7;
   padding-top: 2em;
   font-weight: 500;
 }
-/* line 874, ../sass/screen.scss */
+/* line 885, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary table tbody tr, #MainWrapper.boardReport .supplimentary table tbody tr, #NavPage.boardReport .supplimentary table tbody tr {
   border: solid 2px #E7E7E7;
 }
-/* line 877, ../sass/screen.scss */
+/* line 888, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary table tbody tr td, #MainWrapper.boardReport .supplimentary table tbody tr td, #NavPage.boardReport .supplimentary table tbody tr td {
   padding-top: 1em;
   padding-bottom: 1em;
 }
-/* line 887, ../sass/screen.scss */
+/* line 898, ../sass/screen.scss */
 #SiteWrapper.boardReport .businessArea .accordionHandle, #MainWrapper.boardReport .businessArea .accordionHandle, #NavPage.boardReport .businessArea .accordionHandle {
   width: 50%;
 }
-/* line 891, ../sass/screen.scss */
+/* line 902, ../sass/screen.scss */
 #SiteWrapper.boardReport .businessArea .block, #MainWrapper.boardReport .businessArea .block, #NavPage.boardReport .businessArea .block {
   color: #ffffff;
   font-size: 190%;
@@ -1456,19 +1463,19 @@ body > .ember-view {
   line-height: 60px;
   padding-left: 0.5em;
 }
-/* line 900, ../sass/screen.scss */
+/* line 911, ../sass/screen.scss */
 #SiteWrapper.boardReport .businessArea .summary, #MainWrapper.boardReport .businessArea .summary, #NavPage.boardReport .businessArea .summary {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 909, ../sass/screen.scss */
+/* line 920, ../sass/screen.scss */
 #SiteWrapper.boardReport .risks .groupLabel, #MainWrapper.boardReport .risks .groupLabel, #NavPage.boardReport .risks .groupLabel {
   background: #ECECEC;
   height: 100%;
 }
-/* line 912, ../sass/screen.scss */
+/* line 923, ../sass/screen.scss */
 #SiteWrapper.boardReport .risks .groupLabel .verticalText, #MainWrapper.boardReport .risks .groupLabel .verticalText, #NavPage.boardReport .risks .groupLabel .verticalText {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -1476,7 +1483,7 @@ body > .ember-view {
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-/* line 923, ../sass/screen.scss */
+/* line 934, ../sass/screen.scss */
 #SiteWrapper.dashboard, #MainWrapper.dashboard, #NavPage.dashboard {
   /******************************************************************
   Site Name:
@@ -1526,7 +1533,7 @@ body > .ember-view {
   /*@include animate(all, 0.5s, linear);*/
 }
 
-/* line 931, ../sass/screen.scss */
+/* line 942, ../sass/screen.scss */
 #NavPage {
   width: 100%;
   height: 100%;
