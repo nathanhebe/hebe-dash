@@ -9,6 +9,7 @@ Dashboard.PageModel = Ember.Object.extend({
                 case "page_finance":
                 case "page_finance_table":
                 case "page_supplimentary_business":
+                case "page_supplimentary_risks":
                     if (this.get('_rows') !== null) {
                         return this.get('_rows');
                     } else {
