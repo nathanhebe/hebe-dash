@@ -4,13 +4,16 @@
         {{#each section in data.sections}}
         <div class="section">
             <h1 class="paddingBL">{{section.title}}</h1>
-            <div class="row borderT borderB marginBL">
-                <div class="col span_1"></div>
-                <div class="col span_3 borderR">Risk</div>
-                <div class="col span_2 borderR">Current status</div>
-                <div class="col span_1 borderR">Mitigated</div>
-                <div class="col span_3 borderR">Comments</div>
-                <div class="col span_2">Achieve date</div>
+            <div class="group">
+                <div class="col span_12 group">
+                    <div class="row borderT borderB marginBL group__headings">
+                        <div class="col span_3 borderR">Risk</div>
+                        <div class="col span_2 borderR">Current status</div>
+                        <div class="col span_1 borderR">Mitigated</div>
+                        <div class="col span_3 borderR">Comments</div>
+                        <div class="col span_2">Achieve date</div>
+                    </div>
+                </div>
             </div>
             {{#each group in section.groups}}
                 <div class="group">
@@ -22,7 +25,7 @@
                     <div class="col span_11 group">
                         {{#each indicator in group.indicators}}
                             <div class="dataRow border radiusL radiusR marginBS">
-                                <div class="col span_4">{{indicator.Col2}}</div>
+                                <div class="col span_3">{{indicator.Col2}}</div>
                                 <div class="col span_2 paddingNone">
                                     <div {{bind-attr class="indicator.Trend indicator.RAGCode :block :radiusR_XL :indicator"}}>{{indicator.RAG}}</div>
                                 </div>

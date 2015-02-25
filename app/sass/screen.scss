@@ -22,6 +22,14 @@
     @include transition-timing-function($easing);
 }
 
+@mixin cf {
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
 //http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
 //http://codepen.io/cballenar/pen/tdznk
 @mixin alpha-me($var1, $var2, $var3: null, $var4: null) {
@@ -855,8 +863,12 @@ body > .ember-view {
                     float: none;
                 }
             }
+                .group__headings {
+                    padding-left: 9.333333333%;
+                }
 
             .dataRow {
+                @include cf;
                 padding: {
                     top: 0;
                     bottom: 0;
