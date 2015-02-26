@@ -88,6 +88,8 @@ var dashWrapper = (function () {
     $container,
     $widgetNavWrapper,
     $widgetsFit = null;
+    var widgetMargin = 11;
+    var widgetWidth = 210;
 
     var gridster = null;
 
@@ -229,22 +231,24 @@ var dashWrapper = (function () {
         //$('#container').width($e*6);
 
         // Hardcoded serial for now, needs to be 'got' from somewhere on page load, and updated on drag finish (as in 'gridInit2' callback)
-        var serialization = [{ "col": 1, "row": 1, "size_x": 2, "size_y": 2 }, { "col": 3, "row": 3, "size_x": 2, "size_y": 2 }, { "col": 8, "row": 1, "size_x": 2, "size_y": 2 }, { "col": 6, "row": 1, "size_x": 2, "size_y": 2 }, { "col": 1, "row": 3, "size_x": 1, "size_y": 2 }, { "col": 5, "row": 1, "size_x": 1, "size_y": 2 }, { "col": 2, "row": 4, "size_x": 1, "size_y": 2 }, { "col": 6, "row": 3, "size_x": 1, "size_y": 2 }, { "col": 3, "row": 2, "size_x": 2, "size_y": 1 }, { "col": 7, "row": 3, "size_x": 2, "size_y": 1 }, { "col": 5, "row": 5, "size_x": 2, "size_y": 1 }, { "col": 7, "row": 4, "size_x": 2, "size_y": 1 }, { "col": 1, "row": 5, "size_x": 1, "size_y": 1 }, { "col": 2, "row": 3, "size_x": 1, "size_y": 1 }, { "col": 5, "row": 4, "size_x": 1, "size_y": 1 }, { "col": 3, "row": 1, "size_x": 1, "size_y": 1 }, { "col": 4, "row": 1, "size_x": 1, "size_y": 1 }, { "col": 5, "row": 3, "size_x": 1, "size_y": 1 }];
+        //var serialization = [{ "col": 1, "row": 1, "size_x": 2, "size_y": 2 }, { "col": 3, "row": 3, "size_x": 2, "size_y": 2 }, { "col": 8, "row": 1, "size_x": 2, "size_y": 2 }, { "col": 6, "row": 1, "size_x": 2, "size_y": 2 }, { "col": 1, "row": 3, "size_x": 1, "size_y": 2 }, { "col": 5, "row": 1, "size_x": 1, "size_y": 2 }, { "col": 2, "row": 4, "size_x": 1, "size_y": 2 }, { "col": 6, "row": 3, "size_x": 1, "size_y": 2 }, { "col": 3, "row": 2, "size_x": 2, "size_y": 1 }, { "col": 7, "row": 3, "size_x": 2, "size_y": 1 }, { "col": 5, "row": 5, "size_x": 2, "size_y": 1 }, { "col": 7, "row": 4, "size_x": 2, "size_y": 1 }, { "col": 1, "row": 5, "size_x": 1, "size_y": 1 }, { "col": 2, "row": 3, "size_x": 1, "size_y": 1 }, { "col": 5, "row": 4, "size_x": 1, "size_y": 1 }, { "col": 3, "row": 1, "size_x": 1, "size_y": 1 }, { "col": 4, "row": 1, "size_x": 1, "size_y": 1 }, { "col": 5, "row": 3, "size_x": 1, "size_y": 1 }];
 
-        // Function for returning the object with the largest column value
-        function getMaxCol(arr, prop) {
-            var max;
-            for (var i = 0 ; i < arr.length ; i++) {
-                if (!max || parseInt(arr[i][prop]) > parseInt(max[prop]))
-                    max = arr[i];
-            }
-            return max;
-        }
+        //// Function for returning the object with the largest column value
+        //function getMaxCol(arr, prop) {
+        //    var max;
+        //    for (var i = 0 ; i < arr.length ; i++) {
+        //        if (!max || parseInt(arr[i][prop]) > parseInt(max[prop]))
+        //            max = arr[i];
+        //    }
+        //    return max;
+        //}
 
-        // Go into the object and get the value of 'col', +1 to that value to account for a double-width widget being the last in line
-        var maxCol = getMaxCol(serialization, "col");
-        var maxCol = maxCol.col;
-        var colCount = maxCol + 1;
+        //// Go into the object and get the value of 'col', +1 to that value to account for a double-width widget being the last in line
+        //var maxCol = getMaxCol(serialization, "col");
+        //var maxCol = maxCol.col;
+        //var colCount = maxCol + 1;
+
+        var colCount = 2;
 
         // This will ensure that there is no horizontal scrolling on 2-column mobile displays
         if ($widgetsFit == 2) {
@@ -253,8 +257,8 @@ var dashWrapper = (function () {
 
         // Set up grid options, sizes etc
         gridster = $("#contentWrapper #container").gridster({
-            widget_margins: [11, 11],
-            widget_base_dimensions: [210,210],// [$e - 22, $e - 22],
+            widget_margins: [widgetMargin, widgetMargin],
+            widget_base_dimensions: [widgetWidth,widgetWidth],// [$e - 22, $e - 22],
             min_cols: $widgetsFit, // Change to colCount for proper serialization
             autogrow_cols: false, //Change to true for growable table
             avoid_overlapped_widgets: true,
@@ -267,16 +271,16 @@ var dashWrapper = (function () {
         //    gridster.add_widget('<li class="widget cover block' + $blockNo + ' noTouch"></li>', this.size_x, this.size_y, this.col, this.row);
         //});
 
-        $('#WidgetHolder li').each(function () {
-            var widget = $(this);
+        //$('#WidgetHolder li').each(function () {
+        $('#WidgetHolder>.ember-view').each(function () {
+            var widget = $(this).find('li:first');
             var sizeX = parseInt(widget.attr('data-sizex'));
             var sizeY = parseInt(widget.attr('data-sizex'));
+            widget.attr('ID', $(this).attr('ID'));
+            widget.addClass('ember-view');
             gridster.add_widget(widget, sizeX, sizeY);
+            $(this).remove();
         });
-
-
-
-
 
         // Time delay on dragging
         dragTimeout = null;
@@ -299,35 +303,35 @@ var dashWrapper = (function () {
     }
 
     // Gridster init function with serial storing, to be used in conjunction with hard-coded blocks in index.php
-    function gridInit2() {
-        $t = 6;
-        $e = Math.ceil($(window).width() / $t);
-        $('#container').width($e * 6);
+    //function gridInit2() {
+    //    $t = 6;
+    //    $e = Math.ceil($(window).width() / $t);
+    //    $('#container').width($e * 6);
 
-        // Initialize Gridster and cache it under the var 'gridster'
-        var gridster = $("#contentWrapper #container").gridster({
-            widget_margins: [11, 11],
-            widget_base_dimensions: [$e - 22, $e - 22],
-            extra_cols: 15,
-            serialize_params: function ($w, wgd) {
-                return {
-                    id: $($w).attr('id'),
-                    col: wgd.col,
-                    row: wgd.row,
-                    size_x: wgd.size_x,
-                    size_y: wgd.size_y
-                };
-            },
-            draggable: {
-                stop: function (event, ui) {
-                    var gridData = gridster.serialize();
-                    var positions = JSON.stringify(gridData);
+    //    // Initialize Gridster and cache it under the var 'gridster'
+    //    var gridster = $("#contentWrapper #container").gridster({
+    //        widget_margins: [11, 11],
+    //        widget_base_dimensions: [$e - 22, $e - 22],
+    //        extra_cols: 15,
+    //        serialize_params: function ($w, wgd) {
+    //            return {
+    //                id: $($w).attr('id'),
+    //                col: wgd.col,
+    //                row: wgd.row,
+    //                size_x: wgd.size_x,
+    //                size_y: wgd.size_y
+    //            };
+    //        },
+    //        draggable: {
+    //            stop: function (event, ui) {
+    //                var gridData = gridster.serialize();
+    //                var positions = JSON.stringify(gridData);
 
-                    alert(positions);
-                }
-            }
-        }).data('gridster');
-    }
+    //                alert(positions);
+    //            }
+    //        }
+    //    }).data('gridster');
+    //}
 
     // Grid Resize functionality, called up there ^^ on window resize
     function gridResize() {
@@ -339,45 +343,50 @@ var dashWrapper = (function () {
     }
 
     // Rudimentary snap points
-    function snapPoints() {
-        if ($pageWidth > 1670) {
-            $widgetsFit = 13;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 1540) {
-            $widgetsFit = 12;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 1410) {
-            $widgetsFit = 11;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 1275) {
-            $widgetsFit = 10;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 1148) {
-            $widgetsFit = 9;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 1030) {
-            $widgetsFit = 8;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 890) {
-            $widgetsFit = 7;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 767) {
-            $widgetsFit = 6;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 599) {
-            $widgetsFit = 5;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 499) {
-            $widgetsFit = 4;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 374) {
-            $widgetsFit = 3;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        } else if ($pageWidth > 200) {
-            $widgetsFit = 2;
-            console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
-        }
+    function snapPointsCalculated() {
+        var $widgetsFit = Math.floor($pageWidth / (widgetWidth + widgetMargin));
+        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
     }
+
+    //function snapPoints() {
+    //    if ($pageWidth > 1670) {
+    //        $widgetsFit = 13;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 1540) {
+    //        $widgetsFit = 12;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 1410) {
+    //        $widgetsFit = 11;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 1275) {
+    //        $widgetsFit = 10;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 1148) {
+    //        $widgetsFit = 9;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 1030) {
+    //        $widgetsFit = 8;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 890) {
+    //        $widgetsFit = 7;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 767) {
+    //        $widgetsFit = 6;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 599) {
+    //        $widgetsFit = 5;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 499) {
+    //        $widgetsFit = 4;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 374) {
+    //        $widgetsFit = 3;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    } else if ($pageWidth > 200) {
+    //        $widgetsFit = 2;
+    //        console.log('this screen size will comfortably fit ' + $widgetsFit + ' widgets.');
+    //    }
+    //}
 
     // Fire functions on final resize event
     var waitForFinalEvent = (function () {
@@ -452,7 +461,7 @@ var dashWrapper = (function () {
                     // Reset contentWrapper min-height
                     contentMinHeight();
 
-                    snapPoints();
+                    snapPointsCalculated();
                 });
             });
 
@@ -532,7 +541,7 @@ var dashWrapper = (function () {
                 this.initDOMVars();
             }
 
-            snapPoints();
+            snapPointsCalculated();
             gridInit();
         },
 
@@ -554,7 +563,7 @@ var dashWrapper = (function () {
                     $contentWrapper.removeClass('stickyContent');
                     $siteWrapper.css({ 'top': $detachHeight });
                     $("html, body").scrollTop($detachHeight);
-//                    $siteWrapper.animate({ top: $detachHeight }, 300);
+                    //                    $siteWrapper.animate({ top: $detachHeight }, 300);
 
                 }
             }

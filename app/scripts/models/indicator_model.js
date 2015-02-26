@@ -231,34 +231,35 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     }.property(),
 
     trend: function () {
+        if (this.get('currentValue') != null) {
+            var current = this.get('currentValue').value;
+            var previous = this.get('previousValue').value;
+            var direction = this.get('DesiredDirection');
 
-        var current = this.get('currentValue').value;
-        var previous = this.get('previousValue').value;
-        var direction = this.get('DesiredDirection');
-
-        console.log('current: ' + current + ', previous: ' + previous);
-        switch (direction) {
-            default:
-                // up
-                if (current === previous) {
-                    return 'even';
-                } else if (current > previous) {
-                    return 'up';
-                } else {
-                    return 'down';
-                }
-                break;
-            case "Down":
-                if (current === previous) {
-                    return 'even';
-                } else if (current < previous) {
-                    return 'up';
-                } else {
-                    return 'down';
-                }
-                break;
+            //console.log('current: ' + current + ', previous: ' + previous);
+            switch (direction) {
+                default:
+                    // up
+                    if (current === previous) {
+                        return 'even';
+                    } else if (current > previous) {
+                        return 'up';
+                    } else {
+                        return 'down';
+                    }
+                    break;
+                case "Down":
+                    if (current === previous) {
+                        return 'even';
+                    } else if (current < previous) {
+                        return 'up';
+                    } else {
+                        return 'down';
+                    }
+                    break;
+            }
         }
-
+        return 'notrend';
 
         //switch (this.get('ragColour')) {
         //    default:
@@ -269,7 +270,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         //    case 'red':
         //        return 'down';
         //}
-    }.property('_ragColour'),
+    }.property('_ragColour','_currentValue'),
 
     _ragColour: null,
 
@@ -312,7 +313,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             return colour;
         }
 
-    }.property('currentVal', 'previousVal'),
+    }.property('_currentVal', '_previousVal'),
 
     valueString: function () {
         return (this.get('ValueType') === 'int' ? '' : this.get('ValueType'));
@@ -401,33 +402,35 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         */
 
         // Constitutional
-        var current = this.get('currentValue').value; //this.get('currentValue').value;
-        //if (this.get('RAGValue') != null && this.get('valueString') == '%') {
-        //    return this.get('RAGValue') * 100;
-        //}
-
-        var ragValue = this.get('RAGValue');
-        ragValue = (this.get('valueString') === '%' ? (ragValue * 100) : ragValue);
-
-
         var rag = 'amber';
+        if (this.get('currentValue') != null) {
+            var current = this.get('currentValue').value; //this.get('currentValue').value;
+            //if (this.get('RAGValue') != null && this.get('valueString') == '%') {
+            //    return this.get('RAGValue') * 100;
+            //}
 
-        var upper = ragValue + 1;
-        //var lower = ragValue - 1;
+            var ragValue = this.get('RAGValue');
+            ragValue = (this.get('valueString') === '%' ? (ragValue * 100) : ragValue);
 
 
-        if (this.get('valueString') !== "%") {
-            if (current > ragValue) {
-                return 'red';
-            } else {
-                return 'green';
+
+            var upper = ragValue + 1;
+            //var lower = ragValue - 1;
+
+
+            if (this.get('valueString') !== "%") {
+                if (current > ragValue) {
+                    return 'red';
+                } else {
+                    return 'green';
+                }
             }
-        }
 
-        if (current > upper) {
-            rag = 'green';
-        } else if (current < ragValue) {
-            rag = 'red';
+            if (current > upper) {
+                rag = 'green';
+            } else if (current < ragValue) {
+                rag = 'red';
+            }
         }
 
         return rag;

@@ -1,11 +1,36 @@
-﻿<div  {{bind-attr id=widget.ID}} class="indicatorChart" ></div>
+﻿<li {{bind-attr class=":widget :widgetIndicator :cover :notouch"}} data-sizex="1" data-sizey="1">
+    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+            <div class="front">
+                <div {{bind-attr class="widget.ragColour :info :radiusT"}}>
+                    <div {{bind-attr id=widget.ID}} class="icon right IndicatorIcon_chart"></div>
+                    <div class="date">Aug-14</div>
+                    <h5  class="title"><!--{{widget.ID}}.-->{{widget.Title}}</h5>
+                </div>
+                <div class="values radiusB paddingTL paddingLXL">
+                    <div class="currentValue left">{{widget.currentVal}}{{widget.valueString}}</div>
+                    <!--<div {{bind-attr class=":indicator widget.trend :up"}}>&nbsp;</div>-->
+                    <div class="indicator up left">&nbsp;</div>
+                </div>
+            </div>
 
 
 
-<li class="widget widgetIndicator cover noTouch amber" data-sizex="1" data-sizey="1">
-    <div class="icon right IndicatorIcon_chart"></div>
-    <div class="date">Aug-14</div>
-    <h5 {{action "toggleGraph"}} class="title">{{widget.Title}}</h5>
-    <div class="currentValue">44</div>
-    <div {{bind-attr class="indicator.ragColour :indicator indicator.trend"}}>&nbsp;</div>
+            <div class="back">
+                <!-- back content -->
+                <div class="widgetOptions">
+                    <button>Explore</button>
+                    <button>Filter</button>
+                    <button>Share</button>
+                    <button {{action "toggleMeta"}}>Meta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="metadata">
+        <h2>{{widget.Title}}</h2>
+        <h5>{{widget.SubTitle}}</h5>
+        <h5>{{widget.Description}}</h5>
+    </div>
 </li>
