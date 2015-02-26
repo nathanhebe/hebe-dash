@@ -130,7 +130,7 @@ body > .ember-view {
         background: $color-highlight;
         color: $color-font-light;
         @include border-radius(8px);
-        cursor:pointer;
+        cursor: pointer;
     }
 
     .smallText {
@@ -166,7 +166,28 @@ body > .ember-view {
         background-color: $color-bg-light;
     }
 
+    /* Fullscreen Modal */
+    .modalHighlightedive {
+        z-index: 4;
+    }
 
+    .fullScreen {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        height: 100%;
+        width: 100%;
+        background-color: $color-white;
+
+        z-index: 2;
+
+        /*@include filter(blur,40px);*/
+        -webkit-transform: translate3d(0, 0, 0);
+        opacity: 0.6;
+    }
+    /* End Fullscreen Modal */
 
     #NHSEnglandLogo {
     }
@@ -213,8 +234,8 @@ body > .ember-view {
 
         &.boardReportSummary {
             .missing.block {
-                background-color:$color-bg;
-                color:$color-bg;
+                background-color: $color-bg;
+                color: $color-bg;
             }
         }
 
@@ -786,16 +807,16 @@ body > .ember-view {
 
         .businessArea {
             .accordionHandle {
-                width:50%;
+                width: 50%;
             }
 
             .block {
-                color:$color-font-light;
-                font-size:$font-size-title;
-                height:100%;
-                width:85%;
+                color: $color-font-light;
+                font-size: $font-size-title;
+                height: 100%;
+                width: 85%;
                 line-height: 60px;
-                padding-left:$margin-main / 4;
+                padding-left: $margin-main / 4;
             }
 
             .summary {

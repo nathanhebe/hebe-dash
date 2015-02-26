@@ -10,7 +10,7 @@ Dashboard.DashRoute = Ember.Route.extend({
             var model = route.currentModel;
             if (model != null) {
                 var dashType = model.Type.decamelize();
-                route.render(dashType);
+                route.render(dashType, { controller: 'BoardReportDashboard', model: model });
 
                 // render the header controller
                 var headerController = this.controllerFor('header');

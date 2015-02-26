@@ -2,6 +2,9 @@
 /* global $ */
 
 Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
+    needs: "dashboard",
+    dashboard: Ember.computed.alias("controllers.dashboard"),
+
     widget: null,
     indicator: null,
     chartModal: null,
@@ -17,6 +20,7 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
         },
         toggleMeta: function () {
             this.displayMeta();
+            this.sendAction('action', "show");
         }
     },
 
@@ -25,6 +29,8 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
     },
 
     displayMeta: function () {
+        //var dashController = this.get('controller').get('parentView').controller;
+
         var el = this.$();
         var dashboardContainer = el.parents('.dashboard');
         if (this.get('chartModal') == null) {
@@ -32,10 +38,7 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
             var popup = $('<div class="chartModal" id="' + this.get('widget.ID') + '"></div>');
             var modal = popup.appendTo(dashboardContainer);
             var meta = el.find('.metadata').clone();
-            modal.append(meta);
-            modal.fadeIn('fast');
-            el.addClass('active');
-            dashboardContainer.append('<div class="fullScreen"></div>');
+            el.addClass('modalHighlighted');
             this.set('chartModal', modal);
         } else {
             var visibleModals = $('.chartModal:visible');
@@ -56,6 +59,10 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
                 this.get('chartModal').fadeIn('fast');
             }
         }
+    },
+
+    showModal: function(){
+        debugger;
     },
 
     displayGraphPopup: function () {

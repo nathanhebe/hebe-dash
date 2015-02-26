@@ -18,7 +18,5 @@ Dashboard.BoardReportDashboardView = Ember.View.extend({
                 dashWrapper.initGridster();
             }); 
         }
-        //var that = this;
     }.observes('controller.model.data.@each')
-
 });

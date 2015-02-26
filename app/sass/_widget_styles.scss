@@ -12,10 +12,6 @@ Stylesheet: Dashboard-Widget-specific styles
         background: transparent;
         z-index: 1;
 
-        &.active {
-            z-index: 4;
-        }
-
         .info {
             width: 100%;
             height: 150px;
@@ -156,23 +152,6 @@ Stylesheet: Dashboard-Widget-specific styles
             @include rotateY(180deg);
         }
     }
-}
-
-.fullScreen {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    height: 100%;
-    width: 100%;
-    background-color: $color-bg-light;
-
-    z-index: 2;
-
-    @include filter(blur,40px);
-    -webkit-transform: translate3d(0, 0, 0);
-    opacity: 0.8;
 }
 
 .chartModal {
