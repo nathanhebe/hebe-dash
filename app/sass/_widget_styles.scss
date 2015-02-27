@@ -4,7 +4,6 @@ Author:
 
 Stylesheet: Dashboard-Widget-specific styles
 ******************************************************************/
-@import "screen";
 
 .widget {
     &.widgetIndicator {
@@ -152,18 +151,4 @@ Stylesheet: Dashboard-Widget-specific styles
             @include rotateY(180deg);
         }
     }
-}
-
-.chartModal {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    z-index: 4;
-    padding: $margin-main/2;
-    min-height: 200px;
-    background: $color-bg;
-    border-top: $border-thin-dark;
-    display: none;
-    /*@include animate(all, 0.5s, linear);*/
 }

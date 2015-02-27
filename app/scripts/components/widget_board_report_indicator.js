@@ -20,7 +20,10 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
         },
         toggleMeta: function () {
             this.displayMeta();
-            this.sendAction('action', "show");
+            this.sendAction('action', "Testy McTest test");
+        },
+        openModal: function (modalName,model) {
+            this.sendAction('action', modalName, model);
         }
     },
 
@@ -59,10 +62,6 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
                 this.get('chartModal').fadeIn('fast');
             }
         }
-    },
-
-    showModal: function(){
-        debugger;
     },
 
     displayGraphPopup: function () {

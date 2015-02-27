@@ -1,4 +1,4 @@
-Dashboard.ApplicationRoute = Ember.Route.extend({
+//Dashboard.ApplicationRoute = Ember.Route.extend({
     //model: function () {
     //    var route = this;
     //    console.log('ApplicationRoute > model');
@@ -10,4 +10,4 @@ Dashboard.ApplicationRoute = Ember.Route.extend({
     //        this.transitionTo('dash', dashes.get('firstObject').get('ID'));
     //    }
     //}
-});
+//});
