@@ -42,14 +42,16 @@ Dashboard.DashRoute = Ember.Route.extend({
         },
 
         openModal: function (modalName, model) {
-            this.controllerFor(modalName).set('model', model);
+            //this.controllerFor(modalName).set('model', model);
             return this.render(modalName, {
                 into: 'application',
-                outlet: 'modal'
+                outlet: 'modal',
+                view: modalName
             });
         },
 
         closeModal: function () {
+            console.log('DashRoute > closeModal');
             return this.disconnectOutlet({
                 outlet: 'modal',
                 parentView: 'application'
