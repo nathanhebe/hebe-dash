@@ -2543,6 +2543,14 @@ body > .ember-view {
   height: 300px;
 }
 
+/* line 20, ../sass/views/_footer.scss */
+.footer__close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  cursor: pointer;
+}
+
 /*@include keyframes(LocationLoading){
     0% {
         background-image: url('/img/location@2x.png');

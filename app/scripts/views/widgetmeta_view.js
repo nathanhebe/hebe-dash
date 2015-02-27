@@ -8,4 +8,8 @@ Dashboard.WidgetMetaView = Ember.View.extend({
             this.get('controller').send('closeModal');
         }
     }
+
+    //click: function () {
+    //    alert('test');
+    //}
 });

@@ -16,3 +16,10 @@
 .footer--visible {
     height: 300px;
 }
+
+.footer__close {
+    position:absolute;
+    top:$margin-main/2;
+    right:$margin-main/2;
+    cursor:pointer;
+}
