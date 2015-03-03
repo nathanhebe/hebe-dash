@@ -7,8 +7,8 @@
 @import "compass/css3/transform";
 @import "compass/css3/animation";
 @import "_mixins";
-@import "_gridster";
 @import "_grid";
+@import "_gridster";
 
 @font-face {
     font-family: 'letra';
@@ -55,7 +55,7 @@ body > .ember-view {
     .col {
         padding-top: ($margin-main / 2);
         padding-bottom: ($margin-main / 2);
-        height: $height-column;
+        //height: $height-column;
 
         &.alignL {
             padding-left: 0px;
@@ -508,15 +508,6 @@ body > .ember-view {
                 /*  font-size: 28px !important;*/
             }
 
-
-
-
-
-
-
-
-
-
             .indicatorChart {
                 width: 98%;
                 padding: 0px;
@@ -743,6 +734,53 @@ body > .ember-view {
 
         .supplimentary {
 
+            .groupLabel {
+                vertical-align: middle;
+                padding: {
+                    top: 0;
+                    bottom: 0;
+                }
+            }
+
+            .group {
+                width: 100%;
+                display: table;
+                padding: {
+                    top: 0;
+                    bottom: 0;
+                }
+                margin: {
+                    bottom: 2em;
+                }
+                > .col {
+                    display: table-cell;
+                    float: none;
+                }
+            }
+                .group__headings {
+                    padding-left: 9.333333333%;
+                }
+
+            .dataRow {
+                @include cf;
+                padding: {
+                    top: 0;
+                    bottom: 0;
+                }
+                /* padding-top: ($margin-main / 2);
+                padding-bottom: ($margin-main / 2);*/
+                min-height: 60px;
+            }
+
+            .block {
+                color:$color-font-light;
+                font-size:$font-size-title;
+                height:100%;
+                width:85%;
+                line-height: 60px;
+                padding-left:$margin-main / 4;
+            }
+
             table {
                 width: 100%;
                 border-collapse: separate;
@@ -790,6 +828,20 @@ body > .ember-view {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+        }
+
+        .risks {
+            .groupLabel {
+                background: #ECECEC;
+                height: 100%;
+                .verticalText {
+                    -webkit-transform: rotate(-90deg);
+                    -moz-transform: rotate(-90deg);
+                    -ms-transform: rotate(-90deg);
+                    -o-transform: rotate(-90deg);
+                    transform: rotate(-90deg);
+    }
             }
         }
     }

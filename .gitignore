@@ -4,4 +4,5 @@ dist
 .sass-cache
 .tmp
 app/bower_components
-test/bower_components
+test/bower_components.idea/
+*.idea
