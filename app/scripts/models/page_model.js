@@ -5,6 +5,7 @@ Dashboard.PageModel = Ember.Object.extend({
     _rows: null,
     rows: function () {
         if (this.get('_rows') === null) {
+            var obj = this;
             switch (this.get('Type')) {
                 case "page_finance":
                 case "page_finance_table":
@@ -12,7 +13,6 @@ Dashboard.PageModel = Ember.Object.extend({
                 case "page_supplimentary_risks":
                     if (this.get('_rows') === null) {
                         if (this.get('CKANID') !== null) {
-                            var obj = this;
                             var ckanID = obj.get('CKANID');
                             $.ajax({
                                 url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
@@ -89,7 +89,7 @@ Dashboard.PageModel = Ember.Object.extend({
     //    return indicators;
     //}.property()
     _data: null,
-    data: function() {
+    data: function () {
         if (this.get('_data') === null) {
             switch (this.get('Type')) {
                 case "page_finance":
@@ -99,48 +99,43 @@ Dashboard.PageModel = Ember.Object.extend({
                 case "page_supplimentary_business":
                     return null;
                 case "page_supplimentary_risks":
+                    var obj = this;
                     if (this.get('_data') === null) {
                         if (this.get('CKANID') !== null) {
-                            var obj = this;
                             var ckanID = this.get('CKANID');
                             $.ajax({
                                 url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
                             }).then(function (response) {
-                                var data = {sections: []};
+                                var data = { sections: [] };
                                 var section;
                                 var group;
-                                response.result.records.forEach(function(record) {
-                                    if (record.Type == 'section') {
+                                response.result.records.forEach(function (record) {
+                                    if (record.Type === 'section') {
                                         section = {
-                                            title:  record.SectionTitle,
+                                            title: record.SectionTitle,
                                             groups: []
                                         };
                                         data.sections.push(section);
-                                    } else if (record.Type == 'group') {
+                                    } else if (record.Type === 'group') {
                                         group = {
                                             title: record.GroupTitle,
-                                            indicators:  []
+                                            indicators: []
                                         };
                                         section.groups.push(group);
-                                    } else if (record.Type == 'indicator') {
+                                    } else if (record.Type === 'indicator') {
 
-                                        var parseRAG = function(rag) {
+                                        var parseRAG = function (rag) {
                                             switch (rag) {
-                                                case "A/R": {
+                                                case "A/R":
                                                     return 'redAmber';
-                                                }
-                                                case "R": {
+                                                case "R": 
                                                     return 'red';
-                                                }
-                                                case "A": {
+                                                case "A": 
                                                     return 'amber';
-                                                }
-                                                case "A/G": {
+                                                case "A/G": 
                                                     return 'amberGreen';
-                                                }
-                                                case "G": {
+                                                case "G": 
                                                     return 'green';
-                                                }
                                             }
                                         };
 
@@ -171,4 +166,4 @@ Dashboard.PageModel = Ember.Object.extend({
         }
         return this.get('_rows');
     }.property('_data')
-})
+});
