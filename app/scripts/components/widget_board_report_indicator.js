@@ -1,5 +1,5 @@
 ﻿/* jshint undef: true, unused: true */
-/* global $, d3, c3 */
+/* global $ */
 
 Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
 
