@@ -1,0 +1,33 @@
+﻿
+#SiteWrapper {
+    background-color: none;
+
+    .button {
+        display: none;
+    }
+
+    .backLink {
+        display: none;
+    }
+
+    #MainWrapper {
+        .accordionHandle {
+            visibility: hidden;
+        }
+    }
+
+    header {
+        background: none;
+        color: #000;
+
+        #TopNav {
+            button {
+                visibility:hidden;
+            }
+        }
+
+        h1 {
+            margin-left: $margin-main/2;
+        }
+    }
+}

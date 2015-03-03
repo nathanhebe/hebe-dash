@@ -38,6 +38,10 @@
         height:100%;
     }
 
+    .height60 {
+        height:60px;
+    }
+
     .relative {
         position: relative;
     }
@@ -62,32 +66,34 @@
         border-bottom: $border-main;
     }
 
-    .radiusT {
-        @include border-top-radius(10px);
-    }
+    @media only screen {
+        .radiusT {
+            @include border-top-radius(10px);
+        }
 
-    .radiusR {
-        @include border-right-radius(10px);
-    }
+        .radiusR {
+            @include border-right-radius(10px);
+        }
 
-    .radiusB {
-        @include border-bottom-radius(10px);
-    }
+        .radiusB {
+            @include border-bottom-radius(10px);
+        }
 
-    .radiusL {
-        @include border-left-radius(10px);
-    }
+        .radiusL {
+            @include border-left-radius(10px);
+        }
 
-    .radiusR_XL {
-        @include border-right-radius(100px);
-    }
+        .radiusR_XL {
+            @include border-right-radius(100px);
+        }
 
-    .radiusL_XL {
-        @include border-left-radius(100px);
-    }
+        .radiusL_XL {
+            @include border-left-radius(100px);
+        }
 
-    .radiusTR {
-        @include border-top-right-radius(10px);
+        .radiusTR {
+            @include border-top-right-radius(10px);
+        }
     }
 
     .marginLXL {

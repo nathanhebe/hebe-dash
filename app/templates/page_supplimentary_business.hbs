@@ -16,16 +16,13 @@
                 <div class="col span_5">Comment</div>
             </div>
 
-
-
-
             {{#if rows}}
             {{#each row in rows}}
             {{#unless row.Title}}
                 <h2 class="marginBL marginTL">{{row.BusArea}}</h2>
                 {{else}}
                 <div class="row border radiusL radiusR marginBS" {{bind-attr data-indicator-id=row.BusArea}}>
-                    <div class="col span_1 paddingLNone paddingRNone paddingTS paddingBS">
+                    <div class="col span_1 paddingLNone paddingRNone paddingTS paddingBS height60">
                         <div {{bind-attr class="row.Comment:accordionHandle :left :half :center :borderR :fullHeight"}} >&nbsp;</div>
                         <div class="left half center paddingTS">{{row.BusArea}}</div>
                     </div>

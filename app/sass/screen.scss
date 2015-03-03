@@ -937,3 +937,9 @@ the other stylesheets. Remember, keep it light: Speed is Important.
     @import "breakpoints/440Heightlower";
 }
 // end of media query
+
+
+@media print{
+    @page {size: landscape}
+    @import "_print";
+}
