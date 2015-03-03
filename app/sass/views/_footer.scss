@@ -1,0 +1,25 @@
+﻿.footer {
+    color: $color-font-main;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 4;
+    padding: $margin-main/2;
+    min-height: 200px;
+    background: $color-bg;
+    border-top: $border-thin-dark;
+    /*display: none;*/
+    @include animate(all, 0.5s, linear);
+}
+
+.footer--visible {
+    height: 300px;
+}
+
+.footer__close {
+    position:absolute;
+    top:$margin-main/2;
+    right:$margin-main/2;
+    cursor:pointer;
+}

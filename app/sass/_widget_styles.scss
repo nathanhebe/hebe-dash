@@ -6,54 +6,149 @@ Stylesheet: Dashboard-Widget-specific styles
 ******************************************************************/
 
 .widget {
-
     &.widgetIndicator {
         color: $color-white;
-        @include border-radius(10px);
-        padding: $margin-main /4;
+        background: transparent;
+        z-index: 1;
 
-        .date {
-            font-size: $font-size-small;
-        }
+        .info {
+            width: 100%;
+            height: 150px;
+            padding: $margin-main /4;
 
-        .title {
-            margin: ($margin-main/4) 0;
-            font-size: $font-size-heading-sub;
-            line-height: 1em;
-        }
+            .date {
+                font-size: $font-size-small;
+            }
 
-        .icon {
-            background-repeat: no-repeat;
-            background-size: 100% auto;
+            .title {
+                margin: ($margin-main/2) 0;
+                font-size: $font-size-heading-sub;
+                line-height: 1em;
+                font-size: 90%;
+                max-height: 5em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-top: $margin-main / 2;
+                border-top: $border-main;
+                border-color: #000;
+                border-style: dashed;
+                border-top-width: 1px;
+            }
 
-            &.IndicatorIcon_chart {
-                width: 108px;
-                height: 21px;
-                background-image: url(../images/IndicatorIcon_chart.png);
+            .icon {
+                background-repeat: no-repeat;
+                background-size: 100% auto;
+
+                &.IndicatorIcon_chart {
+                    width: 108px;
+                    height: 21px;
+                    background-image: url(../images/IndicatorIcon_chart.png);
+                }
             }
         }
 
-        &.red {
+        .values {
+            width: 100%;
+            background: #fff;
+            height: 60px;
+            color: #000000;
+
+            .currentValue {
+                font-size: $font-size-heading-sub;
+            }
+
+            .indicator {
+                width: 40px;
+                height: 40px;
+                margin: -($margin-main/4) 0 0 ($margin-main/2); // -0.5em 0 0 1em;
+                &.up, &.even, &.down {
+                    background-image: url(../images/IndicatorArrow_black_up@2x.png);
+                    background-size: auto 90%;
+                    background-position: 95% center;
+                    background-repeat: no-repeat;
+
+                    &.even {
+                        background-image: url(../images/IndicatorArrow_black_even@2x.png);
+                    }
+
+                    &.down {
+                        background-image: url(../images/IndicatorArrow_black_down@2x.png);
+                    }
+                }
+            }
         }
 
-        &.amber {
+        .back {
+            @include border-radius(10px);
+            background-color: $color-bg-dark;
+
+            .widgetOptions {
+                width: 100%;
+                height: 100%;
+
+                button {
+                    width: 50%;
+                    height: 50%;
+                    float: left;
+                    background-image: url(../images/Icon_Info@2x.png);
+                    background-size: 40px 40px;
+                    background-position: center ($margin-main/2);
+                    background-repeat: no-repeat;
+                    padding-top: $margin-main + ($margin-main / 2);
+
+                    &:nth-child(2), &:nth-child(3) {
+                        background-color: lighten($color-bg-dark,20);
+                    }
+
+                    &:nth-child(2) {
+                        @include border-top-right-radius(10px);
+                    }
+
+                    &:nth-child(3) {
+                        @include border-bottom-left-radius(10px);
+                    }
+                }
+            }
         }
 
-        &.green {
+        .metadata {
+            display: none;
+        }
+        /* entire container, keeps perspective */
+        .flip-container {
+            perspective: 1000;
+        }
+        /* flip the pane when hovered */
+        .flip-container:hover .flipper, .flip-container.hover .flipper {
+            @include rotateY(180deg);
         }
 
-        &.blue {
+        .flip-container, .front, .back {
+            width: 210px;
+            height: 210px;
+        }
+        /* flip speed goes here */
+        .flipper {
+            @include transition(0.6s);
+            @include transform-style(preserve-3d);
+            position: relative;
+        }
+        /* hide back of pane during swap */
+        .front, .back {
+            @include backface-visibility(hidden);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        /* front pane, placed above back */
+        .front {
+            z-index: 2;
+            /* for firefox 31 */
+            @include rotateY(0deg);
+        }
+        /* back, initially hidden pane */
+        .back {
+            @include rotateY(180deg);
         }
     }
-}
-
-.chartModal {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    min-height: 200px;
-    background: $color-bg-main;
-    display: none;
-    /*@include animate(all, 0.5s, linear);*/
 }

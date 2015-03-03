@@ -1,228 +1,14 @@
 ﻿/* jshint undef: true, unused: true */
-/* global $, d3, c3 */
+/* global $ */
 
 Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
-
-    isDrawn: false,
-
-    //draw: function (myData) {
-    //    //this.set('data', myData);
-    //    //console.log(this.get('data'));
-    //    var chartID = '#' + myData.get('chartID');
-    //    //console.log('Loading C3');
-    //    var valueType = myData.get('valueString');
-    //    var values = myData.get('_dataValues');
-
-    //    var YMin = 0;
-    //    var YMax = 0;
-
-    //    var maxVal = Math.max.apply(values, $.map(values,
-    //            function (indicatorValue) {
-    //                return indicatorValue.value;
-    //            }));
-    //    YMax = maxVal;
-    //    var ragValue = parseFloat(myData.get('RAGValue'));
-
-    //    if (valueType === '%') {
-    //        maxVal = maxVal / 100;
-
-    //        var minVal = Math.min.apply(values, $.map(values,
-    //            function (indicatorValue) {
-    //                return indicatorValue.value;
-    //            }));
-
-    //        minVal = minVal / 100;
-
-
-    //        if (minVal > ragValue) {
-    //            minVal = ragValue;
-    //        }
-
-    //        if (maxVal < ragValue) {
-    //            maxVal = ragValue;
-    //        }
-
-
-    //        minVal = minVal - 0.01;
-    //        maxVal = maxVal + 0.01;
-
-
-    //        YMax = maxVal;
-    //        YMin = minVal;
-    //    }
-
-    //    var xAxis = values.map(function (val) {
-    //        var dateString = (val.year.indexOf('T') === -1 ? val.year : val.year.substr(0, val.year.indexOf('T')));
-    //        return dateString;
-    //        //if (dateString.indexOf('Q') > -1) {
-    //        //    var seperator = '-';
-    //        //    var seperatorLocation = dateString.indexOf(seperator);
-
-    //        //    startYear = dateString.substr(0, seperatorLocation);
-    //        //    secondYear = dateString.substr((seperatorLocation + 1), 2);
-
-    //        //    quarter = dateString.substr((dateString.indexOf('Q') +1), 1);
-
-    //        //    var startMonthDateString = '';
-    //        //    switch (quarter) {
-    //        //        default:
-    //        //            startMonthDateString = startYear + '-' + '04-01';
-    //        //            break;
-    //        //        case "2":
-    //        //            startMonthDateString = startYear + '-' + '07-01';
-    //        //            break;
-    //        //        case "3":
-    //        //            startMonthDateString = startYear + '-' + '10-01';
-    //        //            break;
-    //        //        case "4":
-    //        //            startMonthDateString = (parseInt(startYear,10) + 1) + '-' + '01-01';
-    //        //            break;
-    //        //    }
-    //        //    /*
-    //        //    Q1 = 04-01
-    //        //    Q2 = 07-01
-    //        //    Q3 = 10-01
-    //        //    Q4 = 01-01
-    //        //    */
-
-    //        //    var date = new Date(startMonthDateString);
-
-    //        //    return date;
-    //        //}
-    //        // return new Date(val.year.split(/[\.,-\/#!$%\^&\*;:{}=\-_`~() ]/g)[0]);
-    //    });
-
-    //    var lineVals = values.map(function (val) {
-    //        if (valueType === '%') {
-    //            return val.value / 100;
-    //        } else {
-    //            return val.value;
-    //        }
-    //    });
-
-
-    //    var regions = [];
-    //    if (myData.get('RAGType') === 'Constitutional') {
-    //        // constitution only...
-    //        var amber = ragValue + 0.0099;
-    //        var green = ragValue + 0.01;
-    //        var opacity = 0.3;
-    //        if (valueType === '%') {
-    //            regions = [
-    //                        { axis: 'y', start: 0, end: ragValue, class: 'regionYR', opacity: opacity },
-    //                        { axis: 'y', start: ragValue, end: amber, class: 'regionYA', opacity: opacity },
-    //                        { axis: 'y', start: green, class: 'regionYG', opacity: opacity },
-    //            ];
-    //        } else {
-    //            regions = [
-    //                        { axis: 'y', start: 0, end: ragValue, class: 'regionYG', opacity: opacity },
-    //                        { axis: 'y', start: ragValue, class: 'regionYR', opacity: opacity }
-    //            ];
-    //        }
-    //    }
-
-    //    xAxis.unshift('x');
-    //    lineVals.unshift('Indicator Value');
-
-    //    c3.generate({
-    //        bindto: chartID,
-    //        //size: {
-    //        //    width: '1360'
-    //        //},
-    //        legend: {
-    //            hide: true
-    //        },
-    //        data: {
-    //            x: 'x',
-    //            columns: [
-    //                xAxis,
-    //                lineVals
-    //            ],
-    //            // type: 'spline',
-    //        },
-    //        axis: {
-    //            x: {
-    //                type: 'timeseries',
-    //                tick: {
-    //                    //format: '%Y'
-    //                    //format : '%Y-%m-%d'
-    //                    format: '%b %Y'
-    //                    //format: '%b'
-    //                }
-    //            },
-    //            y: {
-    //                tick: {
-    //                    format: (valueType === '%' ? d3.format(".1%") : null)
-    //                },
-    //                min: YMin,
-    //                max: YMax,
-    //                padding: { top: 18, bottom: 0 }
-    //            }
-    //        },
-
-    //        point: {
-    //            focus: {
-    //                expand: {
-    //                    r: 5
-    //                }
-    //            }
-    //        },
-
-    //        padding: {
-    //            right:20
-    //        },
-
-    //        regions: regions
-
-    //    });
-
-    //    d3.select('.c3-axis.c3-axis-x').attr('clip-path', "");
-
-
-
-
-
-    //    //var chart = $(chartID);
-    //    //var svg = chart.find('svg:first');
-    //    //svg.attr('viewBox', "0 0 1360 350");
-    //    //svg.attr('preserveAspectRatio', "xMidYMid");
-
-    //    //var aspect = 1360 / 350;
-
-    //    //var accordionContent = chart.closest('.accordionContent');
-    //    //var id = accordionContent.attr('data-indicator-id');
-
-    //    //var handle = accordionContent.siblings('.row[data-indicator-id="' + id + '"]').find('.accordionHandle');
-    //    //handle.click(function () {
-    //    //    console.log('resizing chart = ' + accordionContent.width());
-    //    //    var targetWidth = accordionContent.width() - 100;
-    //    //    svg.attr("width", targetWidth);
-    //    //    svg.attr("height", targetWidth / aspect);
-    //    //});
-
-
-
-
-
-
-
-
-
-
-    //    //$(window).on("resize", function () {
-    //    //    console.log('resizing chart');
-    //    //    var targetWidth = svg.parent().width();
-    //    //    svg.attr("width", targetWidth);
-    //    //    svg.attr("height", targetWidth / aspect);
-    //    //});
-
-
-
-    //    this.set('isDrawn', true);
-    //},
+    needs: "dashboard",
+    dashboard: Ember.computed.alias("controllers.dashboard"),
 
     widget: null,
     indicator: null,
+    chartModal: null,
+
     didInsertElement: function () {
         var widget = this.get('controller.widget');
         this.set('widget', widget);
@@ -231,10 +17,52 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
     actions: {
         toggleGraph: function () {
             this.displayGraphPopup();
+        },
+        toggleMeta: function () {
+            this.displayMeta();
+            this.sendAction('action', "Testy McTest test");
+        },
+        openModal: function (modalName,model) {
+            this.sendAction('action', modalName, model);
         }
     },
 
-    chartModal: null,
+    displayFlip: function () {
+        //var el = this.$;
+    },
+
+    displayMeta: function () {
+        //var dashController = this.get('controller').get('parentView').controller;
+
+        var el = this.$();
+        var dashboardContainer = el.parents('.dashboard');
+        if (this.get('chartModal') == null) {
+            // first time displaying chart for this indicator
+            var popup = $('<div class="chartModal" id="' + this.get('widget.ID') + '"></div>');
+            var modal = popup.appendTo(dashboardContainer);
+            var meta = el.find('.metadata').clone();
+            el.addClass('modalHighlighted');
+            this.set('chartModal', modal);
+        } else {
+            var visibleModals = $('.chartModal:visible');
+            if (visibleModals.length > 0) {
+                if (visibleModals.first().attr('ID') == this.get('widget.ID')) {
+                    // currently showing this widget's modal so just fade it out
+                    visibleModals.fadeOut('fast');
+                } else {
+                    // hide any existing charts
+                    var modal = this.get('chartModal');
+                    visibleModals.fadeOut('fast', function () {
+                        // then show this chart
+                        modal.fadeIn('fast');
+                    });
+                }
+            } else {
+                // show this chart
+                this.get('chartModal').fadeIn('fast');
+            }
+        }
+    },
 
     displayGraphPopup: function () {
         if (this.get('chartModal') == null) {
@@ -256,7 +84,6 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
     },
 
     populateChart: function () {
-        Dashboard.HeatMapComponent.create({data:this.get('widget')}).appendTo(this.get('chartModal'));
+        Dashboard.HeatMapComponent.create({ data: this.get('widget') }).appendTo(this.get('chartModal'));
     }
-
 });

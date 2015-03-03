@@ -202,8 +202,20 @@
         padding-left: ($margin-main / 2);
     }
 
+    .paddingTXL {
+        padding-top: $margin-main;
+    }
+
     .paddingRXL {
         padding-right: $margin-main;
+    }
+
+    .paddingBXL {
+        padding-bottom: $margin-main;
+    }
+
+    .paddingLXL {
+        padding-left: $margin-main;
     }
 
     .paddingNone {

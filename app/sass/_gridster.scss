@@ -1,71 +1,5 @@
 ﻿
-/*
-===============================
-    Mixins
-===============================
-*/
 
-/* Transform Mixin to be used with other vals */
-@mixin transform($transforms) {
-    -webkit-transform: $transforms;
-    -moz-transform: $transforms;
-    -ms-transform: $transforms;
-    -o-transform: $transforms;
-    transform: $transforms;
-}
-
-/* Scale mixin */
-@mixin scale($scale) {
-    @include transform(scale($scale));
-}
-
-/* Border Radius mixin */
-@mixin borderRadius($radius) {
-    -webkit-border-radius: $radius;
-    -moz-border-radius: $radius;
-    -ms-border-radius: $radius;
-    -o-border-radius: $radius;
-    border-radius: $radius;
-}
-
-/* Box Shadow Mixin */
-@mixin box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
-    -webkit-box-shadow: $horizontal $vertical $blur $color;
-    -moz-box-shadow: $horizontal $vertical $blur $color;
-    box-shadow: $horizontal $vertical $blur $color;
-}
-
-/* Transition Mixin */
-@mixin transition($transition-property, $transition-time, $method) {
-    -webkit-transition: $transition-property $transition-time $method;
-    -moz-transition: $transition-property $transition-time $method;
-    -ms-transition: $transition-property $transition-time $method;
-    -o-transition: $transition-property $transition-time $method;
-    transition: $transition-property $transition-time $method;
-}
-
-/* CSS3 Filter Mixin */
-@mixin filter($filter-type,$filter-amount) {
-    -webkit-filter: $filter-type+unquote('(#{$filter-amount})');
-    -moz-filter: $filter-type+unquote('(#{$filter-amount})');
-    -ms-filter: $filter-type+unquote('(#{$filter-amount})');
-    -o-filter: $filter-type+unquote('(#{$filter-amount})');
-    filter: $filter-type+unquote('(#{$filter-amount})');
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-
-/* Transition Mixin */
-@mixin transition($transition-property, $transition-time, $method) {
-    -webkit-transition: $transition-property $transition-time $method;
-    -moz-transition: $transition-property $transition-time $method;
-    -ms-transition: $transition-property $transition-time $method;
-    -o-transition: $transition-property $transition-time $method;
-    transition: $transition-property $transition-time $method;
-}
 
 /*
 ===============================
@@ -226,7 +160,7 @@ button {
     }
 
     .signup {
-        @include borderRadius(9px);
+        @include border-radius(9px);
         background: #ebebeb;
         appearance: none;
         -webkit-appearance: none;
@@ -240,7 +174,7 @@ button {
     }
 
     .submit {
-        @include borderRadius(9px);
+        @include border-radius(9px);
         background: #39b3e2;
         padding: 10px 35px;
         color: $white;
@@ -310,7 +244,7 @@ button {
             height: 38px;
             border: 1px solid #979797;
             margin-top: 30px;
-            @include borderRadius(9px);
+            @include border-radius(9px);
             color: $white;
             display: block;
             background: #39b3e2;
@@ -371,7 +305,7 @@ $colour-nav-icon-main: #fff;
     box-sizing: border-box;
     position: absolute;
     @include transition(all, 0.2s, linear);
-    @include borderRadius(9px);
+    @include border-radius(9px);
     border: 1px solid rgba(255,255,255,0.4);
     background-size: 100%;
     @include scale(1)
@@ -392,7 +326,7 @@ $colour-nav-icon-main: #fff;
     position: absolute;
     background-color: #E5E5E5;
     opacity: 1;
-    @include borderRadius(9px);
+    @include border-radius(9px);
     border: 1px solid #ddd;
     opacity: 0.3;
 }
@@ -471,7 +405,6 @@ $colour-nav-icon-main: #fff;
 
 .blur {
     @include filter(blur, 40px);
-    -webkit-transform: translate3d(0, 0, 0);
     opacity: 0.2;
 }
 

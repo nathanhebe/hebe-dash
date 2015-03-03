@@ -9,9 +9,9 @@ Dashboard.DashboardModel = Ember.Object.extend({
             return this.get('_data');
         } else {
             var obj = null;
+            var resourceID = this.get('CKANResourceID');
             switch (this.get('Type')) {
                 case "BoardReport":
-                    var resourceID = this.get('CKANResourceID');
                     if (resourceID != null) {
                         obj = this;
                         Dashboard.ReportModel.find(resourceID).then(function (report) {
@@ -19,12 +19,23 @@ Dashboard.DashboardModel = Ember.Object.extend({
                         });
                     }
                     break;
+                case "BoardReportDashboard":
+                    if (resourceID != null) {
+                        obj = this;
+                        Dashboard.ReportModel.find(resourceID).then(function (report) {
+                            var annexB = report.findBy('ID', 'annex_b');
+                            var pages = annexB.pages;
+                            var constitution = pages.findBy('ID', 'page_1');
+                            var indicators = constitution.indicators;
+                            obj.set('_data', indicators);
+                        });
+                    }
+                    break;
                 case "Dashboard":
-                    var resource_id = this.get('CKANResourceID');
-                    if (resource_id != null) {
+                    if (resourceID != null) {
                         obj = this;
                         var data = {
-                            resource_id: resource_id
+                            resource_id: resourceID
                         };
                         $.ajax({
                             url: 'http://54.154.11.196/api/action/datastore_search',

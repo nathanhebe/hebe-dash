@@ -6,6 +6,9 @@
 @import "compass/css3";
 @import "compass/css3/transform";
 @import "compass/css3/animation";
+@import "_mixins";
+@import "_grid";
+@import "_gridster";
 
 @font-face {
     font-family: 'letra';
@@ -15,134 +18,8 @@
     font-style: normal;
 }
 
+@import "_variables";
 
-@mixin animate($property, $duration, $easing) {
-    @include transition-property($property);
-    @include transition-duration($duration);
-    @include transition-timing-function($easing);
-}
-
-@mixin cf {
-    &:after {
-        content: '';
-        display: table;
-        clear: both;
-    }
-}
-
-//http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
-//http://codepen.io/cballenar/pen/tdznk
-@mixin alpha-me($var1, $var2, $var3: null, $var4: null) {
-    // Set variables for global use
-    $property: $var1;
-    $attributes: null;
-    $color: null;
-    $color-bg: null;
-
-    // Check if $var2 is a color
-    @if ( type-of($var2) == color ) {
-        // Set default background if not specified
-        @if not $var3 {
-            $var3: #FFFFFF;
-        }
-        // Update variables
-        $color: $var2;
-        $color-bg: $var3;
-
-
-        // Otherwise it should be the attributes
-    }
-    @else if ( type-of($var2) != color ) {
-        // Set default background if not specified
-        @if not $var4 {
-            $var4: #FFFFFF;
-        }
-        // Update variables
-        $attributes: $var2;
-        $color: $var3;
-        $color-bg: $var4;
-
-    }
-    // Extract alpha channel from color
-    $percent: alpha($color) * 100%;
-
-    // Make color opaque
-    $opaque: opacify($color, 1);
-
-    // Blend color with background.
-    $color-solid: mix($opaque, $color-bg, $percent);
-
-    // Return built style with solid color and transparent color
-    #{$property}: #{$attributes} $color-solid;
-    #{$property}: #{$attributes} $color;
-}
-
-@mixin center($axis: "both") {
-    position: absolute;
-
-    @if $axis == "y" {
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-
-    @if $axis == "x" {
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-
-    @if $axis == "both" {
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-    }
-}
-
-
-@import "_grid";
-
-
-$color-white: #FFFFFF; // white
-$color-bg: #F7F7F7; // base background white?
-/*$color-bg-light: #979797; // used for borders/spacers and knocked-back text etc*/
-$color-bg-light: #E7E7E7; // used for borders/spacers and knocked-back text etc
-$color-grey-darker: #CCCCCC; //used for table lines / borders etc
-$color-bg-main: #0065B7; // header / footer blue
-$color-highlight: #00447C; // header buttons etc
-$color-font-light: #ffffff;
-$color-font-main: #000000;
-$color-font-link: #4A90E2;
-$color-rag-red: #D0021B;
-$color-rag-red-amber: #EB8D57;
-$color-rag-amber: #FFB800;
-$color-rag-amber-green: #DADA36;
-$color-rag-green: #7ED321;
-$color-rag-blue: #0065B7;
-$font-family-main: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-$font-size-title: 190%;
-$font-size-heading: 160%;
-$font-size-heading-sub: 140%;
-$font-size-main: 100%;
-$font-size-small: 80%;
-$font-weight-heavy: 700;
-$font-weight-bold: 500;
-$font-weight-normal: 400;
-$font-weight-light: 300;
-$margin-main: 2em; //40px;
-$height-column: 60px;
-$border-main: solid 2px $color-bg-light;
-$border-thin-dark: solid 1px $color-grey-darker;
 
 body, html {
     font-family: $font-family-main;
@@ -223,7 +100,7 @@ body > .ember-view {
         background: $color-highlight;
         color: $color-font-light;
         @include border-radius(8px);
-        cursor:pointer;
+        cursor: pointer;
     }
 
     .smallText {
@@ -259,17 +136,38 @@ body > .ember-view {
         background-color: $color-bg-light;
     }
 
+    /* Fullscreen Modal */
+    .modalHighlightedive {
+        z-index: 4;
+    }
 
+    .fullScreen {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        height: 100%;
+        width: 100%;
+        background-color: $color-white;
+
+        z-index: 2;
+
+        /*@include filter(blur,40px);*/
+        -webkit-transform: translate3d(0, 0, 0);
+        opacity: 0.6;
+    }
+    /* End Fullscreen Modal */
 
     #NHSEnglandLogo {
     }
 
-    footer, section {
+    section {
         padding: $margin-main;
         overflow: auto;
     }
 
-    header, footer {
+    header {
         color: $color-font-light;
         background-color: $color-bg-main;
     }
@@ -295,10 +193,6 @@ body > .ember-view {
         @import "_header";
     }
 
-    footer {
-        height: 658px;
-    }
-
     #MainContent {
     }
 
@@ -306,8 +200,8 @@ body > .ember-view {
 
         &.boardReportSummary {
             .missing.block {
-                background-color:$color-bg;
-                color:$color-bg;
+                background-color: $color-bg;
+                color: $color-bg;
             }
         }
 
@@ -917,16 +811,16 @@ body > .ember-view {
 
         .businessArea {
             .accordionHandle {
-                width:50%;
+                width: 50%;
             }
 
             .block {
-                color:$color-font-light;
-                font-size:$font-size-title;
-                height:100%;
-                width:85%;
+                color: $color-font-light;
+                font-size: $font-size-title;
+                height: 100%;
+                width: 85%;
                 line-height: 60px;
-                padding-left:$margin-main / 4;
+                padding-left: $margin-main / 4;
             }
 
             .summary {
@@ -947,7 +841,7 @@ body > .ember-view {
                     -ms-transform: rotate(-90deg);
                     -o-transform: rotate(-90deg);
                     transform: rotate(-90deg);
-                }
+    }
             }
         }
     }
@@ -960,6 +854,7 @@ body > .ember-view {
     }
 }
 
+
 #NavPage {
     width: 100%;
     height: 100%;
@@ -969,11 +864,7 @@ body > .ember-view {
     -webkit-transition: -webkit-filter 200ms linear;
 }
 
-
-
-
-
-
+@import "views/_footer";
 
 /*@include keyframes(LocationLoading){
     0% {

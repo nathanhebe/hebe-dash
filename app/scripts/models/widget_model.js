@@ -10,11 +10,10 @@ Dashboard.WidgetModel = Ember.Object.extend({
             switch (this.get('Type')) {
                 case 'NHSIndicator':
                     if (this.get('IndicatorID') === null) {
-                        return Error('No indicator id for Widget > NHSIndicator ')
+                        return new Error('No indicator id for Widget > NHSIndicator ');
                     }
                     this.set('_data', Dashboard.IndicatorModel.create({ ID: this.get('IndicatorID') }));
                     return this.get('_data');
-                    break;
             }
         }
     }.property('_data')
