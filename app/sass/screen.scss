@@ -198,6 +198,10 @@ body > .ember-view {
 
     &.boardReport {
 
+        #annex_c {
+            display:none;
+        }
+
         &.boardReportSummary {
             .missing.block {
                 background-color: $color-bg;
