@@ -59,7 +59,7 @@ Dashboard.DashRoute = Ember.Route.extend({
         }
     },
 
-    toggleFooter: function (content) {
+    toggleFooter: function (modalName) {
 
         return this.render(modalName, {
             into: 'application',
@@ -71,22 +71,22 @@ Dashboard.DashRoute = Ember.Route.extend({
         // find the footer view
         // call show action
         //App.router.get('applicationController.view')
-        console.log('CONTROLLER ACTION: ' + content);
-        debugger;
-        var el = this.$();
-        if (this._modal == null) {
-            //create modal
-            this._modal = $('<div class="fullScreen"></div>').appendTo(el);
-        }
-        // set content
-        this._modal.append(content);
-        if (this._modalActive) {
-            // hide modal
-            this._modal.fadeIn('fast');
-        } else {
-            // show modal
-            this._modal.fadeOut('fast');
-        }
+        //console.log('CONTROLLER ACTION: ' + content);
+        //debugger;
+        //var el = this.$();
+        //if (this._modal == null) {
+        //    //create modal
+        //    this._modal = $('<div class="fullScreen"></div>').appendTo(el);
+        //}
+        //// set content
+        //this._modal.append(content);
+        //if (this._modalActive) {
+        //    // hide modal
+        //    this._modal.fadeIn('fast');
+        //} else {
+        //    // show modal
+        //    this._modal.fadeOut('fast');
+        //}
     }
 
 });

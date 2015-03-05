@@ -33,25 +33,25 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
 
     displayMeta: function () {
         //var dashController = this.get('controller').get('parentView').controller;
-
+        var modal = null;
         var el = this.$();
         var dashboardContainer = el.parents('.dashboard');
         if (this.get('chartModal') == null) {
             // first time displaying chart for this indicator
             var popup = $('<div class="chartModal" id="' + this.get('widget.ID') + '"></div>');
-            var modal = popup.appendTo(dashboardContainer);
-            var meta = el.find('.metadata').clone();
+            modal = popup.appendTo(dashboardContainer);
+            //var meta = el.find('.metadata').clone();
             el.addClass('modalHighlighted');
             this.set('chartModal', modal);
         } else {
             var visibleModals = $('.chartModal:visible');
             if (visibleModals.length > 0) {
-                if (visibleModals.first().attr('ID') == this.get('widget.ID')) {
+                if (visibleModals.first().attr('ID') === this.get('widget.ID')) {
                     // currently showing this widget's modal so just fade it out
                     visibleModals.fadeOut('fast');
                 } else {
                     // hide any existing charts
-                    var modal = this.get('chartModal');
+                    modal = this.get('chartModal');
                     visibleModals.fadeOut('fast', function () {
                         // then show this chart
                         modal.fadeIn('fast');

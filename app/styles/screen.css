@@ -1594,23 +1594,24 @@ body > .ember-view {
 /* line 20, ../sass/_header.scss */
 #SiteWrapper header .headerWrapper #NHSEnglandLogo, #MainWrapper header .headerWrapper #NHSEnglandLogo, #NavPage header .headerWrapper #NHSEnglandLogo {
   position: absolute;
-  left: 20px;
-  top: 50px;
+  right: 20px;
+  top: 35px;
   z-index: 4;
 }
 /* line 26, ../sass/_header.scss */
 #SiteWrapper header .headerWrapper #NHSEnglandLogo img, #MainWrapper header .headerWrapper #NHSEnglandLogo img, #NavPage header .headerWrapper #NHSEnglandLogo img {
-  width: 240px;
+  width: 130px;
 }
 /* line 34, ../sass/_header.scss */
 #SiteWrapper header #TopNav button, #MainWrapper header #TopNav button, #NavPage header #TopNav button {
   display: block;
   border: none;
+  visibility: hidden;
   padding: 0;
   background: transparent;
   outline: none;
 }
-/* line 41, ../sass/_header.scss */
+/* line 42, ../sass/_header.scss */
 #SiteWrapper header #TopNav button svg, #SiteWrapper header #TopNav button .iconTitle, #MainWrapper header #TopNav button svg, #MainWrapper header #TopNav button .iconTitle, #NavPage header #TopNav button svg, #NavPage header #TopNav button .iconTitle {
   fill: #fff;
   color: #fff;
@@ -1631,12 +1632,12 @@ body > .ember-view {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 50, ../sass/_header.scss */
+/* line 51, ../sass/_header.scss */
 #SiteWrapper header #TopNav button svg.iconTitle, #SiteWrapper header #TopNav button .iconTitle.iconTitle, #MainWrapper header #TopNav button svg.iconTitle, #MainWrapper header #TopNav button .iconTitle.iconTitle, #NavPage header #TopNav button svg.iconTitle, #NavPage header #TopNav button .iconTitle.iconTitle {
   font-size: 10px;
   margin-top: 12px;
 }
-/* line 57, ../sass/_header.scss */
+/* line 58, ../sass/_header.scss */
 #SiteWrapper header #TopNav button.menuButton #Fill-4, #MainWrapper header #TopNav button.menuButton #Fill-4, #NavPage header #TopNav button.menuButton #Fill-4 {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
@@ -1644,13 +1645,13 @@ body > .ember-view {
   -o-transform: scale(1);
   transform: scale(1);
 }
-/* line 62, ../sass/_header.scss */
+/* line 63, ../sass/_header.scss */
 #SiteWrapper header #TopNav button.backButton, #SiteWrapper header #TopNav button.presentation, #SiteWrapper header #TopNav button.infoButton, #MainWrapper header #TopNav button.backButton, #MainWrapper header #TopNav button.presentation, #MainWrapper header #TopNav button.infoButton, #NavPage header #TopNav button.backButton, #NavPage header #TopNav button.presentation, #NavPage header #TopNav button.infoButton {
   position: absolute;
   top: 50%;
   margin-top: -14px;
 }
-/* line 67, ../sass/_header.scss */
+/* line 68, ../sass/_header.scss */
 #SiteWrapper header #TopNav button.backButton.backButton, #SiteWrapper header #TopNav button.presentation.backButton, #SiteWrapper header #TopNav button.infoButton.backButton, #MainWrapper header #TopNav button.backButton.backButton, #MainWrapper header #TopNav button.presentation.backButton, #MainWrapper header #TopNav button.infoButton.backButton, #NavPage header #TopNav button.backButton.backButton, #NavPage header #TopNav button.presentation.backButton, #NavPage header #TopNav button.infoButton.backButton {
   margin-left: -14px;
   left: 50%;
@@ -1661,22 +1662,23 @@ body > .ember-view {
   -o-transform: scale(0);
   transform: scale(0);
 }
-/* line 74, ../sass/_header.scss */
+/* line 75, ../sass/_header.scss */
 #SiteWrapper header #TopNav button.backButton.presentation, #SiteWrapper header #TopNav button.presentation.presentation, #SiteWrapper header #TopNav button.infoButton.presentation, #MainWrapper header #TopNav button.backButton.presentation, #MainWrapper header #TopNav button.presentation.presentation, #MainWrapper header #TopNav button.infoButton.presentation, #NavPage header #TopNav button.backButton.presentation, #NavPage header #TopNav button.presentation.presentation, #NavPage header #TopNav button.infoButton.presentation {
   right: 70px;
 }
-/* line 78, ../sass/_header.scss */
+/* line 79, ../sass/_header.scss */
 #SiteWrapper header #TopNav button.backButton.infoButton, #SiteWrapper header #TopNav button.presentation.infoButton, #SiteWrapper header #TopNav button.infoButton.infoButton, #MainWrapper header #TopNav button.backButton.infoButton, #MainWrapper header #TopNav button.presentation.infoButton, #MainWrapper header #TopNav button.infoButton.infoButton, #NavPage header #TopNav button.backButton.infoButton, #NavPage header #TopNav button.presentation.infoButton, #NavPage header #TopNav button.infoButton.infoButton {
   right: 20px;
+  visibility: hidden;
 }
-/* line 84, ../sass/_header.scss */
+/* line 86, ../sass/_header.scss */
 #SiteWrapper header #TopNav button:hover svg, #SiteWrapper header #TopNav button:hover .iconTitle, #MainWrapper header #TopNav button:hover svg, #MainWrapper header #TopNav button:hover .iconTitle, #NavPage header #TopNav button:hover svg, #NavPage header #TopNav button:hover .iconTitle {
   color: #00447C;
   fill: #00447C;
   stroke: #00447C;
   stroke-width: 1;
 }
-/* line 92, ../sass/_header.scss */
+/* line 94, ../sass/_header.scss */
 #SiteWrapper header #TopNav button:hover.menuButton #Fill-4, #MainWrapper header #TopNav button:hover.menuButton #Fill-4, #NavPage header #TopNav button:hover.menuButton #Fill-4 {
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
@@ -1684,7 +1686,7 @@ body > .ember-view {
   -o-transform: scale(0);
   transform: scale(0);
 }
-/* line 99, ../sass/_header.scss */
+/* line 101, ../sass/_header.scss */
 #SiteWrapper header #TopNav #FirstNav, #MainWrapper header #TopNav #FirstNav, #NavPage header #TopNav #FirstNav {
   padding: 41px 0;
   position: relative;
@@ -1692,7 +1694,7 @@ body > .ember-view {
   border-bottom: 1px solid #c4c4c4;
   background: #0065B7;
 }
-/* line 107, ../sass/_header.scss */
+/* line 109, ../sass/_header.scss */
 #SiteWrapper header #TopNav #SecondNav, #SiteWrapper header #TopNav #WidgetNavWrapper, #MainWrapper header #TopNav #SecondNav, #MainWrapper header #TopNav #WidgetNavWrapper, #NavPage header #TopNav #SecondNav, #NavPage header #TopNav #WidgetNavWrapper {
   width: 100%;
   position: absolute;
@@ -1702,35 +1704,35 @@ body > .ember-view {
   border-bottom: 1px solid #969696;
   background: #FFFFFF;
 }
-/* line 116, ../sass/_header.scss */
+/* line 118, ../sass/_header.scss */
 #SiteWrapper header #TopNav #SecondNav li, #SiteWrapper header #TopNav #WidgetNavWrapper li, #MainWrapper header #TopNav #SecondNav li, #MainWrapper header #TopNav #WidgetNavWrapper li, #NavPage header #TopNav #SecondNav li, #NavPage header #TopNav #WidgetNavWrapper li {
   display: inline;
 }
-/* line 120, ../sass/_header.scss */
+/* line 122, ../sass/_header.scss */
 #SiteWrapper header #TopNav #SecondNav button, #SiteWrapper header #TopNav #WidgetNavWrapper button, #MainWrapper header #TopNav #SecondNav button, #MainWrapper header #TopNav #WidgetNavWrapper button, #NavPage header #TopNav #SecondNav button, #NavPage header #TopNav #WidgetNavWrapper button {
   margin: 0 36px;
   display: inline-block;
   text-decoration: none;
 }
-/* line 125, ../sass/_header.scss */
+/* line 127, ../sass/_header.scss */
 #SiteWrapper header #TopNav #SecondNav button .iconTitle, #SiteWrapper header #TopNav #WidgetNavWrapper button .iconTitle, #MainWrapper header #TopNav #SecondNav button .iconTitle, #MainWrapper header #TopNav #WidgetNavWrapper button .iconTitle, #NavPage header #TopNav #SecondNav button .iconTitle, #NavPage header #TopNav #WidgetNavWrapper button .iconTitle {
   margin-top: 11px;
   color: #0065B7;
 }
-/* line 130, ../sass/_header.scss */
+/* line 132, ../sass/_header.scss */
 #SiteWrapper header #TopNav #SecondNav button svg, #SiteWrapper header #TopNav #WidgetNavWrapper button svg, #MainWrapper header #TopNav #SecondNav button svg, #MainWrapper header #TopNav #WidgetNavWrapper button svg, #NavPage header #TopNav #SecondNav button svg, #NavPage header #TopNav #WidgetNavWrapper button svg {
   fill: #0065B7;
 }
-/* line 137, ../sass/_header.scss */
+/* line 139, ../sass/_header.scss */
 #SiteWrapper header #TopNav #WidgetNavWrapper, #MainWrapper header #TopNav #WidgetNavWrapper, #NavPage header #TopNav #WidgetNavWrapper {
   padding: 11px 0;
 }
-/* line 140, ../sass/_header.scss */
+/* line 142, ../sass/_header.scss */
 #SiteWrapper header #TopNav #WidgetNavWrapper .widgetCarousel, #MainWrapper header #TopNav #WidgetNavWrapper .widgetCarousel, #NavPage header #TopNav #WidgetNavWrapper .widgetCarousel {
   width: 55.293%;
   margin-left: 7.297%;
 }
-/* line 145, ../sass/_header.scss */
+/* line 147, ../sass/_header.scss */
 #SiteWrapper header #TopNav #WidgetNavWrapper .widgetPrev, #MainWrapper header #TopNav #WidgetNavWrapper .widgetPrev, #NavPage header #TopNav #WidgetNavWrapper .widgetPrev {
   width: 15px;
   height: 30px;
@@ -1741,7 +1743,7 @@ body > .ember-view {
   margin-left: -25px;
   z-index: 99;
 }
-/* line 156, ../sass/_header.scss */
+/* line 158, ../sass/_header.scss */
 #SiteWrapper header #TopNav #WidgetNavWrapper .widgetNext, #MainWrapper header #TopNav #WidgetNavWrapper .widgetNext, #NavPage header #TopNav #WidgetNavWrapper .widgetNext {
   width: 15px;
   height: 30px;
@@ -1752,7 +1754,7 @@ body > .ember-view {
   margin-left: 10px;
   z-index: 99;
 }
-/* line 167, ../sass/_header.scss */
+/* line 169, ../sass/_header.scss */
 #SiteWrapper header #TopNav #WidgetNavWrapper .widgetItem, #MainWrapper header #TopNav #WidgetNavWrapper .widgetItem, #NavPage header #TopNav #WidgetNavWrapper .widgetItem {
   width: 124px;
   height: 75px;
@@ -1764,7 +1766,7 @@ body > .ember-view {
   border-radius: 9px;
   display: block;
 }
-/* line 177, ../sass/_header.scss */
+/* line 179, ../sass/_header.scss */
 #SiteWrapper header #TopNav #WidgetNavWrapper .addWidget, #MainWrapper header #TopNav #WidgetNavWrapper .addWidget, #NavPage header #TopNav #WidgetNavWrapper .addWidget {
   height: 75px;
   background: #fff;
@@ -1777,7 +1779,7 @@ body > .ember-view {
   margin-top: -37px;
   border: none;
 }
-/* line 189, ../sass/_header.scss */
+/* line 191, ../sass/_header.scss */
 #SiteWrapper header #TopNav #WidgetNavWrapper .addWidget span, #MainWrapper header #TopNav #WidgetNavWrapper .addWidget span, #NavPage header #TopNav #WidgetNavWrapper .addWidget span {
   font-size: 10px;
   margin: 0 auto;

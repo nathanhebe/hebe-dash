@@ -19,12 +19,12 @@ $icon-stroke-width-hover: 1;
 
     #NHSEnglandLogo {
         position: absolute;
-        left: 20px;
-        top: 50px;
+        right: 20px;
+        top: 35px;
         z-index: 4;
 
         img {
-            width: 240px;
+            width: 130px;
         }
     }
 }
@@ -34,6 +34,7 @@ $icon-stroke-width-hover: 1;
     button {
         display: block;
         border: none;
+        visibility:hidden;
         padding: 0;
         background: transparent;
         outline: none;
@@ -77,6 +78,7 @@ $icon-stroke-width-hover: 1;
 
             &.infoButton {
                 right: 20px;
+                visibility:hidden;
             }
         }
 
