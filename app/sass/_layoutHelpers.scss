@@ -12,6 +12,11 @@
         font-weight: $font-weight-bold;
     }
 
+    .hr {
+        @extend .row;
+        border-top:$border-main;
+    }
+
     .clear {
         clear: both;
         height: 0px;
@@ -258,6 +263,10 @@
 
     .textOnly {
         display: none;
+    }
+
+    .noWrap {
+        white-space:nowrap;
     }
 
     .noAnimation {

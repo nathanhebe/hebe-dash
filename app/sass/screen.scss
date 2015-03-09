@@ -10,14 +10,7 @@
 @import "_grid";
 @import "_gridster";
 
-@font-face {
-    font-family: 'letra';
-    src: url('../fonts/letrapro.eot');
-    src: url('../fonts/letrapro.eot?#iefix') format('embedded-opentype'), url('../fonts/letrapro.woff') format('woff'), url('../fonts/letrapro.ttf') format('truetype'), url('../fonts/letrapro.svg#letra_proheadline') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
+@import "custom_fonts";
 @import "_variables";
 
 
@@ -84,6 +77,7 @@ body > .ember-view {
         font-weight: $font-weight-normal;
         margin: 0px;
         padding: 0px;
+        line-height:1em;
     }
 
     h1 {
@@ -93,6 +87,7 @@ body > .ember-view {
     h2 {
         font-size: $font-size-heading-sub;
         margin-bottom: $margin-main;
+        font-weight:$font-weight-bold;
     }
 
     .button {
@@ -199,7 +194,7 @@ body > .ember-view {
     &.boardReport {
 
         #annex_c {
-            display:none;
+           // display:none;
         }
 
         &.boardReportSummary {
@@ -599,30 +594,41 @@ body > .ember-view {
         .finance {
 
             .group {
+                margin-top:0;
+                padding-top:$margin-main / 2;
+                border-top:$border-main;
+                border-top-width:4px;
+
+                &:first-of-type {
+                    border-top:none;
+                }
+
+                &:before {
+                    @extend .row;
+                    content: ' ';
+                    display:block;
+                }
+
                 .row {
                     .col {
                         padding-top: ($margin-main / 2) + ($margin-main / 8);
-                        font-weight: $font-weight-bold;
 
                         &:first-of-type {
-                            font-weight: $font-weight-normal;
                         }
 
                         &:last-of-type {
                             padding-top: ($margin-main / 2);
-                            font-weight: $font-weight-normal;
                         }
                     }
 
                     &:first-of-type {
                         margin-top: $margin-main / 4;
+                        font-weight:$font-weight-bold;
 
                         .col {
-                            font-weight: $font-weight-normal;
                             font-size: $font-size-small;
 
                             &:first-of-type {
-                                font-weight: $font-weight-bold;
                                 font-size: $font-size-main;
                             }
                         }
@@ -630,7 +636,7 @@ body > .ember-view {
 
                     &:last-of-type {
                         .col {
-                            border-bottom: $border-main;
+                            //border-bottom: $border-main;
                             height: 70px;
 
                             &:last-of-type {

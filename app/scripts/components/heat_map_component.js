@@ -57,42 +57,6 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         var xAxis = values.map(function (val) {
             var dateString = (val.year.indexOf('T') === -1 ? val.year : val.year.substr(0, val.year.indexOf('T')));
             return dateString;
-            //if (dateString.indexOf('Q') > -1) {
-            //    var seperator = '-';
-            //    var seperatorLocation = dateString.indexOf(seperator);
-
-            //    startYear = dateString.substr(0, seperatorLocation);
-            //    secondYear = dateString.substr((seperatorLocation + 1), 2);
-
-            //    quarter = dateString.substr((dateString.indexOf('Q') +1), 1);
-
-            //    var startMonthDateString = '';
-            //    switch (quarter) {
-            //        default:
-            //            startMonthDateString = startYear + '-' + '04-01';
-            //            break;
-            //        case "2":
-            //            startMonthDateString = startYear + '-' + '07-01';
-            //            break;
-            //        case "3":
-            //            startMonthDateString = startYear + '-' + '10-01';
-            //            break;
-            //        case "4":
-            //            startMonthDateString = (parseInt(startYear,10) + 1) + '-' + '01-01';
-            //            break;
-            //    }
-            //    /*
-            //    Q1 = 04-01
-            //    Q2 = 07-01
-            //    Q3 = 10-01
-            //    Q4 = 01-01
-            //    */
-
-            //    var date = new Date(startMonthDateString);
-
-            //    return date;
-            //}
-            // return new Date(val.year.split(/[\.,-\/#!$%\^&\*;:{}=\-_`~() ]/g)[0]);
         });
 
         var lineVals = values.map(function (val) {
@@ -129,9 +93,6 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
 
         c3.generate({
             bindto: chartID,
-            //size: {
-            //    width: '1360'
-            //},
             legend: {
                 hide: true
             },
@@ -141,16 +102,12 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
                     xAxis,
                     lineVals
                 ],
-                // type: 'spline',
             },
             axis: {
                 x: {
                     type: 'timeseries',
                     tick: {
-                        //format: '%Y'
-                        //format : '%Y-%m-%d'
                         format: '%b %Y'
-                        //format: '%b'
                     }
                 },
                 y: {
@@ -162,7 +119,7 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
                     padding: { top: 18, bottom: 0 }
                 }
             },
-
+            grid: { y: { show: true } },
             point: {
                 focus: {
                     expand: {
@@ -176,68 +133,14 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
             },
 
             regions: regions
-
         });
 
         d3.select('.c3-axis.c3-axis-x').attr('clip-path', "");
-
-
-
-
-
-        //var chart = $(chartID);
-        //var svg = chart.find('svg:first');
-        //svg.attr('viewBox', "0 0 1360 350");
-        //svg.attr('preserveAspectRatio', "xMidYMid");
-
-        //var aspect = 1360 / 350;
-
-        //var accordionContent = chart.closest('.accordionContent');
-        //var id = accordionContent.attr('data-indicator-id');
-
-        //var handle = accordionContent.siblings('.row[data-indicator-id="' + id + '"]').find('.accordionHandle');
-        //handle.click(function () {
-        //    console.log('resizing chart = ' + accordionContent.width());
-        //    var targetWidth = accordionContent.width() - 100;
-        //    svg.attr("width", targetWidth);
-        //    svg.attr("height", targetWidth / aspect);
-        //});
-
-
-
-
-
-
-
-
-
-
-        //$(window).on("resize", function () {
-        //    console.log('resizing chart');
-        //    var targetWidth = svg.parent().width();
-        //    svg.attr("width", targetWidth);
-        //    svg.attr("height", targetWidth / aspect);
-        //});
-
-
-
         this.set('isDrawn', true);
     },
 
     didInsertElement: function () {
         var data = this.get('controller.data');
-        //var hotnessArray = [];
-        //for (var i = 0; i < data.length; i++) {
-        //    var date = new Date(data[i].get('timestamp'));
-        //    var row = {};
-        //    row.day = date.getDay() + 1;
-        //    row.hour = date.getHours() + 1;
-        //    row.value = data[i].get('hotttnesss');
-        //    hotnessArray.push(row);
-        //}
-
-
-
         var chartID = '#' + data.get('chartID');
         var chart = $(chartID);
 

@@ -9,8 +9,8 @@
                 Date
             </div>
             <div class="col span_7 borderL">Aspect of Outcomes</div>
-            <div class="col span_1 borderL">&nbsp;</div>
-            <div class="col span_1">Current</div>
+            <div class="col span_1 ">&nbsp;</div>
+            <div class="col span_1 borderL">Current</div>
             <div class="col span_1 borderL">Previous</div>
         </div>
 
@@ -20,7 +20,7 @@
         {{#if indicator.hasValue}}
 
         <div class="row marginTL" {{bind-attr data-indicator-id=indicator.ID}}>
-            <div class="col span_2 borderT borderB borderL radiusL">
+            <div class="col span_2 borderT borderB borderL radiusL noWrap">
                 <span class="accordionHandle">&nbsp;</span>
                 {{indicator.periodOfCoverage}}
             </div>

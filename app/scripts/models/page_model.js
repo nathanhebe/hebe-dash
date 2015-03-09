@@ -18,7 +18,11 @@ Dashboard.PageModel = Ember.Object.extend({
                                 url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
                             })
                             .then(function (response) {
-                                var results = response.result.records;
+                                var results = [];
+                                response.result.records.forEach(function (result) {
+                                    var tmp = Dashboard.DataRowModel.create(result);
+                                    results.push(tmp);
+                                });
                                 obj.setProperties({
                                     _rows: results
                                 });
