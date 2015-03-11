@@ -5,7 +5,7 @@ var utils = (function () {
     }
 
     function setupExtensionFunctions() {
-        console.log('Setting up extension functions');
+        //console.log('Setting up extension functions');
         // str.startsWith
         if (typeof String.prototype.startsWith != 'function') {
             String.prototype.startsWith = function (str) {

@@ -16,21 +16,21 @@ $color-rag-amber-green: #DADA36;
 $color-rag-green: #7ED321;
 $color-rag-blue: #0065B7;
 
-$sansserif: 'Helvetica', 'Arial', 'sans-serif';
+$sansserif: 'Arial', 'sans-serif';
 $helvneue: 'HelveticaNeueLT-Roman', $sansserif;
 $helvneuemed: 'HelveticaNeueLT-Medium', $helvneue;
 $helvneuelight: 'HelveticaNeueLT-Light', $helvneue;
-$font-family-main: $helvneuelight;
+$font-family-main: $sansserif;
 
 $font-size-title: 190%;
 $font-size-heading: 160%;
 $font-size-heading-sub: 140%;
 $font-size-main: 100%;
 $font-size-small: 80%;
-$font-weight-heavy: 800;
+$font-weight-heavy: 600;
 $font-weight-bold: 600;
-$font-weight-normal: 400;
-$font-weight-light: 300;
+$font-weight-normal: 100;
+$font-weight-light: 100;
 $margin-main: 2em; //40px;
 $height-column: 60px;
 $border-main: solid 1px $color-bg-light;

@@ -359,13 +359,11 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
                 if(LCI2 > LCI1) {
                     green
-                    }
-                else if(UCI1 > UCI2) {
+                } else if(UCI1 > UCI2) {
                     red
-                    }
-                    else {
+                } else {
                     amber
-                    }
+                }
 
 
             STANDARD
