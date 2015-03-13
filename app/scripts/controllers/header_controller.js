@@ -1,5 +1,10 @@
 Dashboard.HeaderController = Ember.ObjectController.extend({
 
+    //currentDashID: function () {
+    //    debugger;
+        
+    //}.property(),
+
     actions: {
         goToReports: function () {
             this.get('target').transitionTo('dash', 'dash_1');

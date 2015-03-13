@@ -6,14 +6,14 @@ Dashboard.PageModel = Ember.Object.extend({
     rows: function () {
         if (this.get('_rows') === null) {
             var obj = this;
-            switch (this.get('Type')) {
+            switch (this.get('type')) {
                 case "page_finance":
                 case "page_finance_table":
                 case "page_supplimentary_business":
                 case "page_supplimentary_risks":
                     if (this.get('_rows') === null) {
-                        if (this.get('CKANID') !== null) {
-                            var ckanID = obj.get('CKANID');
+                        if (this.get('ckanID') !== null) {
+                            var ckanID = obj.get('ckanID');
                             $.ajax({
                                 url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
                             })
@@ -95,7 +95,7 @@ Dashboard.PageModel = Ember.Object.extend({
     _data: null,
     data: function () {
         if (this.get('_data') === null) {
-            switch (this.get('Type')) {
+            switch (this.get('type')) {
                 case "page_finance":
                     return null;
                 case "page_finance_table":
@@ -105,8 +105,8 @@ Dashboard.PageModel = Ember.Object.extend({
                 case "page_supplimentary_risks":
                     var obj = this;
                     if (this.get('_data') === null) {
-                        if (this.get('CKANID') !== null) {
-                            var ckanID = this.get('CKANID');
+                        if (this.get('ckanID') !== null) {
+                            var ckanID = this.get('ckanID');
                             $.ajax({
                                 url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
                             }).then(function (response) {
@@ -114,19 +114,19 @@ Dashboard.PageModel = Ember.Object.extend({
                                 var section;
                                 var group;
                                 response.result.records.forEach(function (record) {
-                                    if (record.Type === 'section') {
+                                    if (record.type === 'section') {
                                         section = {
-                                            title: record.SectionTitle,
+                                            title: record.sectionTitle,
                                             groups: []
                                         };
                                         data.sections.push(section);
-                                    } else if (record.Type === 'group') {
+                                    } else if (record.type === 'group') {
                                         group = {
-                                            title: record.GroupTitle,
+                                            title: record.groupTitle,
                                             indicators: []
                                         };
                                         section.groups.push(group);
-                                    } else if (record.Type === 'indicator') {
+                                    } else if (record.type === 'indicator') {
 
                                         var parseRAG = function (rag) {
                                             switch (rag) {
@@ -144,17 +144,17 @@ Dashboard.PageModel = Ember.Object.extend({
                                         };
 
                                         // Format the data so it makes sense in the template
-                                        record.Trend = record.Col3;
-                                        record.RAG = record.Col4;
-                                        record.mitigatedRAG = record.Col5;
-                                        record.RAGCode = parseRAG(record.RAG);
+                                        record.trend = record.col3;
+                                        record.rag = record.col4;
+                                        record.mitigatedRAG = record.col5;
+                                        record.ragCode = parseRAG(record.rag);
                                         record.mitigatedRAGCode = parseRAG(record.mitigatedRAG);
-                                        record.achieveDate = record.Col6;
+                                        record.achieveDate = record.col6;
 
-                                        delete record.Col3;
-                                        delete record.Col4;
-                                        delete record.Col5;
-                                        delete record.Col6;
+                                        delete record.col3;
+                                        delete record.col4;
+                                        delete record.col5;
+                                        delete record.col6;
 
                                         group.indicators.push(record);
                                     }

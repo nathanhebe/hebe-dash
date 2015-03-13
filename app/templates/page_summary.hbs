@@ -1,6 +1,6 @@
 <div id="MainWrapper" class="boardReport boardReportSummary">
     <section id="MainContent">
-        <!--<h2>{{SubTitle}}</h2>-->
+        <!--<h2>{{subTitle}}</h2>-->
 
 
 
@@ -23,34 +23,34 @@
         </div>
         {{#each indicator in nhsEnglandRAGTotals}}
         <div class="row borderT marginTL paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">{{indicator.Title}}</div>
+            <div class="col span_4 alignL">{{indicator.title}}</div>
             <div class="col span_1 alignC borderL borderR relative">&nbsp;</div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
 
                     <div class="red block">
-                        <div class="currentValue">{{indicator.Current.Red}}</div>
-                        <div class="previousValue">{{indicator.Previous.Red}}</div>
+                        <div class="currentValue">{{indicator.current.red}}</div>
+                        <div class="previousValue">{{indicator.previous.red}}</div>
                     </div>
 
                     <div class="redAmber block">
-                        <div class="currentValue">{{indicator.Current.AmberRed}}</div>
-                        <div class="previousValue">{{indicator.Previous.AmberRed}}</div>
+                        <div class="currentValue">{{indicator.current.amberRed}}</div>
+                        <div class="previousValue">{{indicator.previous.amberRed}}</div>
                     </div>
 
                     <div class="amber block">
-                        <div class="currentValue">{{indicator.Current.Amber}}</div>
-                        <div class="previousValue">{{indicator.Previous.Amber}}</div>
+                        <div class="currentValue">{{indicator.current.amber}}</div>
+                        <div class="previousValue">{{indicator.previous.amber}}</div>
                     </div>
 
                     <div class="amberGreen block">
-                        <div class="currentValue">{{indicator.Current.AmberGreen}}</div>
-                        <div class="previousValue">{{indicator.Previous.AmberGreen}}</div>
+                        <div class="currentValue">{{indicator.current.amberGreen}}</div>
+                        <div class="previousValue">{{indicator.previous.amberGreen}}</div>
                     </div>
 
                     <div class="green block">
-                        <div class="currentValue">{{indicator.Current.Green}}</div>
-                        <div class="previousValue">{{indicator.Previous.Green}}</div>
+                        <div class="currentValue">{{indicator.current.Green}}</div>
+                        <div class="previousValue">{{indicator.previous.Green}}</div>
                     </div>
                 </div>
             </div>
@@ -97,9 +97,9 @@
         <!--Dynamic Page indicators-->
         {{#each page in pages}}
         <div class="row borderT marginTL paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">{{page.Title}}</div>
+            <div class="col span_4 alignL">{{page.title}}</div>
             <div class="col span_1 alignC borderL borderR relative">
-            <!--    {{#link-to 'page' 'annex_b' page.ID }}View{{/link-to}}-->
+            <!--    {{#link-to 'page' 'annex_b' page.id }}View{{/link-to}}-->
             </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
@@ -152,293 +152,5 @@
             </div>
         </div>
         <!--end NHS Total-->
-        <!--<div class="row borderT marginTL paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">NHS Constitution</div>
-            <div class="col span_1 alignC borderL borderR relative">
-                {{#link-to 'page' 'annex_b' 'page_1' }}{{page.Title}}View{{/link-to}}
-            </div>
-            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
-                <div class="blockRow blockRow5">
-                    <div class="block red">
-                        <div class="currentValue">2</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block missing">
-                        <div class="previousValue">N/A</div>
-                    </div>
-                    <div class="block amber">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block missing">
-                        <div class="previousValue">N/A</div>
-                    </div>
-                    <div class="block green">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col span_1 borderL paddingRNone">
-                <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row borderT marginTS paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">NHS Experience</div>
-            <div class="col span_1 borderL borderR alignC">
-                {{#link-to 'page' 'annex_b' 'page_2' }}{{page.Title}}View{{/link-to}}
-            </div>
-            <div class="col span_6 paddingTNone paddingRNone paddingBNone">
-                <div class="blockRow blockRow5">
-                    <div class="block red">
-                        <div class="currentValue">2</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block missing">
-                        <div class="previousValue">N/A</div>
-                    </div>
-                    <div class="block amber">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block missing">
-                        <div class="previousValue">N/A</div>
-                    </div>
-                    <div class="block green">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col span_1 borderL paddingRNone">
-                <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row borderT marginTS paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">NHS Outcomes</div>
-            <div class="col span_1 borderL borderR alignC">
-                {{#link-to 'page' 'annex_b' 'page_3' }}{{page.Title}}View{{/link-to}}
-            </div>
-            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
-                <div class="blockRow blockRow5">
-                    <div class="block red">
-                        <div class="currentValue">2</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block missing">
-                        <div class="previousValue">N/A</div>
-                    </div>
-                    <div class="block amber">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block missing">
-                        <div class="previousValue">N/A</div>
-                    </div>
-                    <div class="block green">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col span_1 borderL paddingRNone">
-                <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row borderT marginTS paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">NHS Inequalities</div>
-            <div class="col span_1 borderL borderR alignC">
-                {{#link-to 'page' 'annex_b' 'page_4' }}{{page.Title}}View{{/link-to}}
-            </div>
-            <div class="col span_6 alignC">
-                <p>Information not available</p>
-            </div>
-            <div class="col span_1 borderL">
-                &nbsp;
-            </div>
-        </div>
-
-        <div class="row borderT borderB marginTS paddingBS  chart">
-            <div class="col span_4 alignL">NHS Others</div>
-            <div class="col span_1 borderL borderR alignC">
-                {{#link-to 'page' 'annex_b' 'page_5' }}{{page.Title}}View{{/link-to}}
-            </div>
-            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
-                <div class="blockRow blockRow5">
-                    <div class="block red">
-                        <div class="currentValue">2</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block missing">
-                        <div class="previousValue">N/A</div>
-                    </div>
-                    <div class="block amber">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block missing">
-                        <div class="previousValue">N/A</div>
-                    </div>
-                    <div class="block green">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col span_1 borderL paddingRNone">
-                <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-        <!--<h2 class="marginTXL">Performance summary for nhs england - november 2014</h2>
-
-
-        <div class="row borderT marginTL paddingTS paddingBS chart">
-            <div class="col span_4 alignL">Experience (patient & staff)</div>
-            <div class="col span_1 alignC relative">
-                <div class="seperator"></div>
-                <a href="">View</a>
-                <div class="seperator right"></div>
-            </div>
-            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
-                <div class="blockRow blockRow5">
-                    <div class="block red">
-                        <div class="currentValue">2</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block redAmber">
-                        <div class="currentValue">4</div>
-                        <div class="previousValue">-3</div>
-                    </div>
-                    <div class="block amber">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block amberGreen">
-                        <div class="currentValue">8</div>
-                        <div class="previousValue">-4</div>
-                    </div>
-                    <div class="block green">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col span_1 borderL paddingRNone">
-                <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row borderT marginTL paddingTS paddingBS chart">
-            <div class="col span_4 alignL">Experience (patient & staff)</div>
-            <div class="col span_1 alignC relative">
-                <div class="seperator"></div>
-                <a href="">View</a>
-                <div class="seperator right"></div>
-            </div>
-            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
-                <div class="blockRow blockRow5">
-                    <div class="block red">
-                        <div class="currentValue">2</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block redAmber">
-                        <div class="currentValue">4</div>
-                        <div class="previousValue">-3</div>
-                    </div>
-                    <div class="block amber">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block amberGreen">
-                        <div class="currentValue">8</div>
-                        <div class="previousValue">-4</div>
-                    </div>
-                    <div class="block green">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col span_1 borderL paddingRNone">
-                <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row borderT marginTL paddingTS paddingBS chart">
-            <div class="col span_4 alignL">Experience (patient & staff)</div>
-            <div class="col span_1 alignC relative">
-                <div class="seperator"></div>
-                <a href="">View</a>
-                <div class="seperator right"></div>
-            </div>
-            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
-                <div class="blockRow blockRow5">
-                    <div class="block red">
-                        <div class="currentValue">2</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block redAmber">
-                        <div class="currentValue">4</div>
-                        <div class="previousValue">-3</div>
-                    </div>
-                    <div class="block amber">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                    <div class="block amberGreen">
-                        <div class="currentValue">8</div>
-                        <div class="previousValue">-4</div>
-                    </div>
-                    <div class="block green">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">-1</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col span_1 borderL paddingRNone">
-                <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </section>
-
-
-
 </div>

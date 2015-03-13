@@ -1,35 +1,26 @@
-Dashboard.AnnexRoute = Ember.Route.extend({
-    //renderTemplate : function () {
-    //    this.render('annex', { outlet: 'MainContent', into: 'application' });
-    //    console.log('Rendering ANNEX: ');
-    //},
-    model: function (params) {
-        var annexID = params.annexID;
-        return Dashboard.ReportModel.findAll().then(function (report) {
-            return report.annexes.findBy('ID', annexID);
-        });
-    }
-});
-
 Dashboard.PageRoute = Ember.Route.extend({
     model: function (params) {
-        var route = this;
-        var annexID = this.modelFor('annex').ID;
+        //var route = this;
+        //var annexID = this.modelFor('annex').ID;
         var pageID = params.pageID;
 
-        return Dashboard.ReportModel.findAll().then(function (report) {
-            var page = report
-            .annexes.findBy('ID', annexID)
-            .pages.findBy('ID', pageID);
-            return page;
-        });
+        //return Dashboard.ReportModel.findAll().then(function (report) {
+        //    var page = report
+        //    .annexes.findBy('id', annexID)
+        //    .pages.findBy('ID', pageID);
+        //    return page;
+        //});
+        console.log(this.modelFor('annex'));
+        console.log(this.modelFor('annex').pages);
+        //debugger;
+        return this.modelFor('annex').pages.findBy('id', pageID);
     },
 
     afterModel: function (page, transition) {
         var route = this;
         route.renderTemplate = function () {
             var model = route.currentModel;
-            route.render(model.Type,
+            route.render(model.type,
                 {
                     outlet: '',
                     into: 'application'

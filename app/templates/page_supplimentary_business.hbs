@@ -1,9 +1,7 @@
 <div id="MainWrapper" class="boardReport">
 
     <section id="MainContent">
-        {{#if SubTitle}}
-            <h2>{{SubTitle}}</h2>
-        {{/if}}
+            <h2>{{subTitle}}</h2>
 
         <div class="supplimentary businessArea">
             
@@ -18,23 +16,23 @@
 
             {{#if rows}}
             {{#each row in rows}}
-            {{#unless row.Title}}
-                <h2 class="marginBL marginTL">{{row.BusArea}}</h2>
+            {{#unless row.title}}
+                <h2 class="marginBL marginTL">{{row.busArea}}</h2>
                 {{else}}
-                <div class="row border radiusL radiusR marginBS" {{bind-attr data-indicator-id=row.BusArea}}>
+                <div class="row border radiusL radiusR marginBS" {{bind-attr data-indicator-id=row.busArea}}>
                     <div class="col span_1 paddingLNone paddingRNone paddingTS paddingBS height60">
-                        <div {{bind-attr class="row.Comment:accordionHandle :left :half :center :borderR :fullHeight"}} >&nbsp;</div>
-                        <div class="left half center paddingTS">{{row.BusArea}}</div>
+                        <div {{bind-attr class="row.comment:accordionHandle :left :half :center :borderR :fullHeight"}} >&nbsp;</div>
+                        <div class="left half center paddingTS">{{row.busArea}}</div>
                     </div>
-                    <div class="col span_4 borderL">{{row.Title}}</div>
+                    <div class="col span_4 borderL">{{row.title}}</div>
                     <div class="col span_2 paddingNone">
-                        <div {{bind-attr class="row.Trend row.RAGCode :block :radiusR_XL :indicator"}}>{{row.RAG}}</div>
+                        <div {{bind-attr class="row.trend row.ragCode :block :radiusR_XL :indicator"}}>{{row.rag}}</div>
                     </div>
-                    <div class="col span_5 small paddingTL"><div class="summary">{{row.Comment}}</div></div>
+                    <div class="col span_5 small paddingTL"><div class="summary">{{row.comment}}</div></div>
                     <div class="clear"></div>
-                    <div class="accordionContent paddingLL paddingTL paddingRL paddingBL" {{bind-attr data-indicator-id=row.BusArea}}>
+                    <div class="accordionContent paddingLL paddingTL paddingRL paddingBL" {{bind-attr data-indicator-id=row.busArea}}>
                         <p class="bold marginTL">Comments:</p>
-                        <p class="marginTL paddingBS small">{{row.Comment}}</p>
+                        <p class="marginTL paddingBS small">{{row.comment}}</p>
                     </div>
                 </div>
                 {{/unless}}

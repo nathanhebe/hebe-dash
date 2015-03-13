@@ -3,9 +3,9 @@
         <div class="flipper">
             <div class="front">
                 <div {{bind-attr class="widget.ragColour :info :radiusT"}}>
-                    <div {{bind-attr id=widget.ID}} class="icon right IndicatorIcon_chart"></div>
+                    <div {{bind-attr id=widget.id}} class="icon right IndicatorIcon_chart"></div>
                     <div class="date">Aug-14</div>
-                    <h5  class="title"><!--{{widget.ID}}.-->{{widget.Title}}</h5>
+                    <h5  class="title"><!--{{widget.id}}.-->{{widget.title}}</h5>
                 </div>
                 <div class="values radiusB paddingTL paddingLXL">
                     <div class="currentValue left">{{widget.currentVal}}{{widget.valueString}}</div>
@@ -29,9 +29,9 @@
     </div>
 
     <div class="metadata">
-        <h2>{{widget.Title}}</h2>
-        <h5>{{widget.SubTitle}}</h5>
-        <h5>{{widget.Description}}</h5>
+        <h2>{{widget.title}}</h2>
+        <h5>{{widget.subTitle}}</h5>
+        <h5>{{widget.description}}</h5>
     </div>
 
 </li>

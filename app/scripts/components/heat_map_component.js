@@ -24,7 +24,7 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
                     return indicatorValue.value;
                 }));
         YMax = maxVal;
-        var ragValue = parseFloat(myData.get('RAGValue'));
+        var ragValue = parseFloat(myData.get('ragValue'));
 
         if (valueType === '%') {
             maxVal = maxVal / 100;
@@ -55,7 +55,7 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         }
 
         var xAxis = values.map(function (val) {
-            var dateString = (val.year.indexOf('T') === -1 ? val.year : val.year.substr(0, val.year.indexOf('T')));
+            var dateString = (val.date.indexOf('T') === -1 ? val.date : val.date.substr(0, val.date.indexOf('T')));
             return dateString;
         });
 
@@ -69,7 +69,7 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
 
 
         var regions = [];
-        if (myData.get('RAGType') === 'Constitutional') {
+        if (myData.get('ragType') === 'Constitutional') {
             // constitution only...
             var amber = ragValue + 0.0099;
             var green = ragValue + 0.01;
@@ -145,7 +145,7 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         var chart = $(chartID);
 
         var accordionContent = chart.parents('.accordionContent');
-        var handle = accordionContent.siblings('div[data-indicator-id="' + data.get('ID') + '"]');
+        var handle = accordionContent.siblings('div[data-indicator-id="' + data.get('id') + '"]');
         var obj = this;
         handle.click(function () {
             if (!obj.get('isDrawn')) {

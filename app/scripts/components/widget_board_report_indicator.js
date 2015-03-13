@@ -38,7 +38,7 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
         var dashboardContainer = el.parents('.dashboard');
         if (this.get('chartModal') == null) {
             // first time displaying chart for this indicator
-            var popup = $('<div class="chartModal" id="' + this.get('widget.ID') + '"></div>');
+            var popup = $('<div class="chartModal" id="' + this.get('widget.id') + '"></div>');
             modal = popup.appendTo(dashboardContainer);
             //var meta = el.find('.metadata').clone();
             el.addClass('modalHighlighted');
@@ -46,7 +46,7 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
         } else {
             var visibleModals = $('.chartModal:visible');
             if (visibleModals.length > 0) {
-                if (visibleModals.first().attr('ID') === this.get('widget.ID')) {
+                if (visibleModals.first().attr('id') === this.get('widget.id')) {
                     // currently showing this widget's modal so just fade it out
                     visibleModals.fadeOut('fast');
                 } else {
@@ -67,7 +67,7 @@ Dashboard.WidgetBoardReportIndicatorComponent = Ember.Component.extend({
     displayGraphPopup: function () {
         if (this.get('chartModal') == null) {
             // first time displaying chart for this indicator
-            var popup = $('<div class="chartModal"><h2>THIS IS THE CHART: ' + this.get('widget.IndicatorID') + '</h2></div>');
+            var popup = $('<div class="chartModal"><h2>THIS IS THE CHART: ' + this.get('widget.indicatorID') + '</h2></div>');
             this.set('chartModal', popup.appendTo(this.$().parents('.dashboard')));
             this.populateChart();
         }

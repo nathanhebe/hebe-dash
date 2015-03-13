@@ -3,6 +3,6 @@
 Dashboard.DataRowModel = Ember.Object.extend({
 
     isAppendicesRow: function () {
-        return (this.get('Title').toString().startsWith('*'));
+        return (this.get('title').toString().startsWith('*'));
     }.property()
 });

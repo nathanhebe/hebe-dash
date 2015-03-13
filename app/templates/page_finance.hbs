@@ -1,33 +1,35 @@
 <div id="MainWrapper" class="boardReport">
     <section id="MainContent">
-        <h2>{{SubTitle}}</h2>
+        {{#if subTitle}}
+            <h2>{{subTitle}}</h2>
+        {{/if}}
 
         <div class="finance">
             {{#if rows}}
                 {{#each row in rows}}
-                    {{#unless row.ID}}
+                    {{#unless row.id}}
                         <!--ENDING GROUP-->
                         </div>
                         {{#unless row.isAppendicesRow}}
                             <div class="group">
                                 {{/unless}}
                                 <div class="row">
-                                    <div class="col span_7 ">{{row.Title}}</div>
-                                    <div class="col span_1 alignC">{{row.Col1}}</div>
-                                    <div class="col span_1 alignC">{{row.Col2}}</div>
-                                    <div class="col span_1 alignC">{{row.Col3}}</div>
-                                    <div class="col span_1 alignC">{{row.Col4}}</div>
+                                    <div class="col span_7 ">{{row.title}}</div>
+                                    <div class="col span_1 alignC">{{row.col1}}</div>
+                                    <div class="col span_1 alignC">{{row.col2}}</div>
+                                    <div class="col span_1 alignC">{{row.col3}}</div>
+                                    <div class="col span_1 alignC">{{row.col4}}</div>
                                     <div class="col span_1 alignC">&nbsp;</div>
                                 </div>
                                 {{else}}
                                 <div class="row">
-                                    <div class="col borderT span_7">{{row.Title}}</div>
-                                    <div class="col borderT span_1 alignC">{{row.Col1}}</div>
-                                    <div class="col borderT span_1 alignC">{{row.Col2}}</div>
-                                    <div class="col borderT span_1 alignC">{{row.Col3}}</div>
-                                    <div class="col borderT span_1 alignC insideMarginR">{{row.Col4}}</div>
+                                    <div class="col borderT span_7">{{row.title}}</div>
+                                    <div class="col borderT span_1 alignC">{{row.col1}}</div>
+                                    <div class="col borderT span_1 alignC">{{row.col2}}</div>
+                                    <div class="col borderT span_1 alignC">{{row.col3}}</div>
+                                    <div class="col borderT span_1 alignC insideMarginR">{{row.col4}}</div>
                                     <div class="col span_1 indicator amber even marginTXS marginBXS radiusR_XL">
-                                        <div class="currentValue"><!--{{ragColour row.RAG}}-->{{row.RAG}}</div>
+                                        <div class="currentValue"><!--{{ragColour row.rag}}-->{{row.rag}}</div>
                                     </div>
                                 </div>
                     {{/unless}}

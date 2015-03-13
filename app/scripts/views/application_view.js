@@ -21,7 +21,7 @@ Dashboard.ApplicationView = Ember.View.extend({
     //    that.owlCarousel.destroy();
     //    model.forEach(function (dash) {
     //        //dashPromise.then(function (dash) {
-    //        var dashLink = '<a class=\"item center widgetItem\" href="#/dash/'+dash.ID+'">' + dash.Title + '</a>';
+    //        var dashLink = '<a class=\"item center widgetItem\" href="#/dash/'+dash.id+'">' + dash.Title + '</a>';
     //        that.owlCarousel.addItem(dashLink);
     //        //});
     //    });

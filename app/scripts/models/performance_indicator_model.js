@@ -20,55 +20,55 @@ Dashboard.PerformanceIndicatorModel.reopenClass({
                 var pis = [];
 
                 var nhsCurrent = {
-                    Red: 0,
-                    AmberRed: 0,
-                    Amber: 0,
-                    AmberGreen: 0,
-                    Green: 0,
-                    Missing: 0
+                    red: 0,
+                    amberRed: 0,
+                    amber: 0,
+                    amberGreen: 0,
+                    green: 0,
+                    missing: 0
                 };
                 var nhsPrevious = {
-                    Red: 0,
-                    AmberRed: 0,
-                    Amber: 0,
-                    AmberGreen: 0,
-                    Green: 0,
-                    Missing: 0
+                    red: 0,
+                    amberRed: 0,
+                    amber: 0,
+                    amberGreen: 0,
+                    green: 0,
+                    missing: 0
                 };
 
-                var grouped = _.groupBy(results, 'ID');
+                var grouped = _.groupBy(results, 'id');
                 _.each(grouped, function (group) {
-                    var sorted = _.sortBy(group, 'Date').reverse(); // sort by date DESC
+                    var sorted = _.sortBy(group, 'date').reverse(); // sort by date DESC
                     var current = _.first(sorted);
                     var previous = sorted[1];
 
                     var indicator = Dashboard.PerformanceIndicatorModel.create({
-                        Title: current.Title,
-                        ID: current.ID,
-                        Current: current,
-                        Previous: previous
+                        title: current.title,
+                        id: current.id,
+                        current: current,
+                        previous: previous
                     });
 
-                    nhsCurrent.Red += parseInt(current.Red,10);
-                    nhsCurrent.AmberRed += parseInt(current.AmberRed, 10);
-                    nhsCurrent.Amber += parseInt(current.Amber, 10);
-                    nhsCurrent.AmberGreen += parseInt(current.AmberGreen, 10);
-                    nhsCurrent.Green += parseInt(current.Green, 10);
-                    nhsCurrent.Missing += parseInt(current.Missing, 10);
+                    nhsCurrent.red += parseInt(current.red,10);
+                    nhsCurrent.amberRed += parseInt(current.amberRed, 10);
+                    nhsCurrent.amber += parseInt(current.amber, 10);
+                    nhsCurrent.amberGreen += parseInt(current.amberGreen, 10);
+                    nhsCurrent.green += parseInt(current.green, 10);
+                    nhsCurrent.missing += parseInt(current.missing, 10);
 
-                    nhsPrevious.Red += parseInt(previous.Red, 10);
-                    nhsPrevious.AmberRed += parseInt(previous.AmberRed, 10);
-                    nhsPrevious.Amber += parseInt(previous.Amber, 10);
-                    nhsPrevious.AmberGreen += parseInt(previous.AmberGreen, 10);
-                    nhsPrevious.Green += parseInt(previous.Green, 10);
-                    nhsPrevious.Missing += parseInt(previous.Missing, 10);
+                    nhsPrevious.red += parseInt(previous.red, 10);
+                    nhsPrevious.amberRed += parseInt(previous.amberRed, 10);
+                    nhsPrevious.amber += parseInt(previous.amber, 10);
+                    nhsPrevious.amberGreen += parseInt(previous.amberGreen, 10);
+                    nhsPrevious.green += parseInt(previous.green, 10);
+                    nhsPrevious.missing += parseInt(previous.missing, 10);
 
                     pis.push(indicator);
                 });
 
                 /*
                 
-                ID
+                id
                 Date
                 Title
                 Red
@@ -80,10 +80,10 @@ Dashboard.PerformanceIndicatorModel.reopenClass({
                 */
 
                 var nhsEnglandTotals = Dashboard.PerformanceIndicatorModel.create({
-                    Title: 'NHS England Totals',
-                    ID: '999',
-                    Current: nhsCurrent,
-                    Previous: nhsPrevious
+                    title: 'NHS England Totals',
+                    id: '999',
+                    current: nhsCurrent,
+                    previous: nhsPrevious
                 });
                 pis.push(nhsEnglandTotals);
 

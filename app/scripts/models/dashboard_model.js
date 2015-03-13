@@ -5,17 +5,19 @@ Dashboard.DashboardModel = Ember.Object.extend({
 
     _data: null,
     data: function () {
+        //debugger;
         if (this.get('_data') != null) {
             return this.get('_data');
         } else {
             var obj = null;
-            var resourceID = this.get('CKANResourceID');
-            switch (this.get('Type')) {
+            var resourceID = this.get('ckanResourceID');
+            switch (this.get('type')) {
                 case "BoardReport":
                     if (resourceID != null) {
                         obj = this;
                         Dashboard.ReportModel.find(resourceID).then(function (report) {
                             obj.set('_data', report);
+                            return obj.get('_data');
                         });
                     }
                     break;
@@ -23,9 +25,9 @@ Dashboard.DashboardModel = Ember.Object.extend({
                     if (resourceID != null) {
                         obj = this;
                         Dashboard.ReportModel.find(resourceID).then(function (report) {
-                            var annexB = report.findBy('ID', 'annex_b');
+                            var annexB = report.findBy('id', 'annex_b');
                             var pages = annexB.pages;
-                            var constitution = pages.findBy('ID', 'page_1');
+                            var constitution = pages.findBy('id', 'page_1');
                             var indicators = constitution.indicators;
                             obj.set('_data', indicators);
                         });
@@ -50,14 +52,14 @@ Dashboard.DashboardModel = Ember.Object.extend({
                                 if (result != null && utils.isArray(result.records)) {
                                     result.records.forEach(function (item) {
                                         //var itemTypeGeneric = item.Type;
-                                        $.extend(item, $.parseJSON(item.Config)); // merge any JSON properties from Config
-                                        delete item.Config; //  remove extra properties from CKAN
+                                        $.extend(item, $.parseJSON(item.config)); // merge any JSON properties from Config
+                                        delete item.config; //  remove extra properties from CKAN
                                         var widget = Dashboard.WidgetModel.create(item);
                                         //widgets.push(item);
                                         widgets.push(widget);
                                     });
 
-                                    var sorted = widgets.sortBy("Order");
+                                    var sorted = widgets.sortBy("order");
                                     obj.set('_data', sorted);
                                 }
                             }
@@ -73,7 +75,7 @@ Dashboard.DashboardModel = Ember.Object.extend({
 Dashboard.DashboardModel.reopenClass({
     find: function (dashID) {
         return this.findAll().then(function (data) {
-            return data.filterBy('ID', dashID)[0];
+            return data.filterBy('id', dashID)[0];
         });
     },
     findAll: function () {

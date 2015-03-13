@@ -5,7 +5,7 @@ Dashboard.IndexRoute = Ember.Route.extend({
     },
     afterModel: function (dashes, transition) {
         if (dashes.get('length') > 0) {
-            this.transitionTo('dash', dashes.get('firstObject').get('ID'));
+            this.transitionTo('dash', dashes.get('firstObject').get('id'));
         }
     }
 });

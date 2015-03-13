@@ -7,7 +7,7 @@
     //afterModel: function (dashes, transition) {
     //    console.log('ApplicationRoute > afterModel');
     //    if (dashes.get('length') > 0) {
-    //        this.transitionTo('dash', dashes.get('firstObject').get('ID'));
+    //        this.transitionTo('dash', dashes.get('firstObject').get('id'));
     //    }
     //}
 //});

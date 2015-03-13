@@ -65,7 +65,7 @@ Dashboard.HeaderView = Ember.View.extend({
     //    // add each found dashboard in model into the carousel sub menu
     //    //if (dashType == 'standard') {
     //    //    model.forEach(function (dash) {
-    //    //        var dashLink = '<a class=\"item center widgetItem\" href="#/dash/' + dash.ID + '">' + dash.Title + '</a>';
+    //    //        var dashLink = '<a class=\"item center widgetItem\" href="#/dash/' + dash.id + '">' + dash.Title + '</a>';
     //    //        that.owlCarousel.addItem(dashLink);
     //    //    });
     //    //}

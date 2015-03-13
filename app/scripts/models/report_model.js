@@ -19,7 +19,7 @@ Dashboard.ReportModel.reopenClass({
                 var result = response.result;
                 var types = {};
                 result.records.forEach(function (item) {
-                    var itemTypeGeneric = item.Type.split('_')[0]; // e.g. page_finance will be added as 'page' but still contain its true type in its own Type property
+                    var itemTypeGeneric = item.type.split('_')[0]; // e.g. page_finance will be added as 'page' but still contain its true type in its own Type property
                     if (!types[itemTypeGeneric]) {
                         types[itemTypeGeneric] = [];
                     }
@@ -28,7 +28,7 @@ Dashboard.ReportModel.reopenClass({
 
                 types.page.forEach(function (page) {
                     var indicators = [];
-                    var items = types.indicator.filterBy('ParentID', page.ID);
+                    var items = types.indicator.filterBy('parentID', page.id);
                     items.forEach(function (item) {
                         var indicator = Dashboard.IndicatorModel.create(item);
                         indicators.push(indicator);
@@ -37,7 +37,7 @@ Dashboard.ReportModel.reopenClass({
                 });
 
                 types.annex.forEach(function (annex) {
-                    var pageTypes = types.page.filterBy('ParentID', annex.ID);
+                    var pageTypes = types.page.filterBy('parentID', annex.id);
                     var pages = [];
                     pageTypes.forEach(function (item) {
                         var page = Dashboard.PageModel.create(item);
@@ -72,7 +72,7 @@ Dashboard.ReportModel.reopenClass({
             var types = {};
 
             result.records.forEach(function (item) {
-                var itemTypeGeneric = item.Type.split('_')[0]; // e.g. page_finance will be added as 'page' but still contain its true type in its own Type property
+                var itemTypeGeneric = item.type.split('_')[0]; // e.g. page_finance will be added as 'page' but still contain its true type in its own Type property
                 if (!types[itemTypeGeneric]) {
                     types[itemTypeGeneric] = [];
                 }
@@ -81,7 +81,7 @@ Dashboard.ReportModel.reopenClass({
 
             types.page.forEach(function (page) {
                 var indicators = [];
-                var items = types.indicator.filterBy('ParentID', page.ID);
+                var items = types.indicator.filterBy('parentID', page.id);
                 items.forEach(function (item) {
                     var indicator = Dashboard.IndicatorModel.create(item);
                     indicators.push(indicator);
@@ -90,7 +90,7 @@ Dashboard.ReportModel.reopenClass({
             });
 
             types.annex.forEach(function (annex) {
-                var pageTypes = types.page.filterBy('ParentID', annex.ID);
+                var pageTypes = types.page.filterBy('parentID', annex.id);
                 var pages = [];
                 pageTypes.forEach(function (item) {
                     var page = Dashboard.PageModel.create(item);

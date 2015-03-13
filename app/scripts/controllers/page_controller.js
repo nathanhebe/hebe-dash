@@ -7,7 +7,7 @@ Dashboard.PageController = Ember.ObjectController.extend({
             var obj = this;
             Dashboard.ReportModel.findAll()
                 .then(function (report) {
-                    var pages = report.annexes.findBy('ID', 'annex_b').pages;
+                    var pages = report.annexes.findBy('id', 'annex_b').pages;
                     //console.log('pages = ' + pages);
                     obj.set('_pages', pages);
                 });

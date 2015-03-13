@@ -16,10 +16,10 @@
 
             {{#each annex in annexes}}
             <div class="col span_4">
-                <h2 class="marginBS">{{annex.Title}}</h2>
-                <p>{{annex.SubTitle}}</p>
+                <h2 class="marginBS">{{annex.title}}</h2>
+                <p>{{annex.subTitle}}</p>
                 {{#each page in annex.pages}}
-                <p>{{#link-to 'page' annex.ID page.ID }}{{page.Title}}{{/link-to}}</p>
+                <p>{{#link-to 'page' annex.id page.id }}{{page.title}}{{/link-to}}</p>
                 {{/each}}
             </div>
             {{/each}}
