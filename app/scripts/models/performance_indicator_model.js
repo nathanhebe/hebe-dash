@@ -1,3 +1,4 @@
+/// <reference path="performance_indicator_model.js" />
 /* jshint undef: true, unused: true */
 /* global $, _ */
 

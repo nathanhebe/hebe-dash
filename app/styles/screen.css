@@ -1833,10 +1833,6 @@ body > .ember-view {
   margin-top: 12px;
   display: block;
 }
-/* line 196, ../sass/screen.scss */
-#SiteWrapper.boardReport #annex_c, #MainWrapper.boardReport #annex_c, #NavPage.boardReport #annex_c {
-  display: none;
-}
 /* line 201, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .missing.block, #MainWrapper.boardReport.boardReportSummary .missing.block, #NavPage.boardReport.boardReportSummary .missing.block {
   background-color: #F7F7F7;

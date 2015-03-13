@@ -114,10 +114,14 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         } else {
             var obj = this;
 
+            // Hardcoded Constitutionn Values for demo (no data)
+            var constitutionIDs = ['125', '126', '127', '128', '129', '130', '131', '132', '133', '134', '135', '136', '137', '138', '139', '140', '141', '142', '143', '144', '145', '65'];
+
+            if (constitutionIDs.indexOf(obj.get('id')) !== -1) {
+
                 $.ajax({
-                    //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "a358a675-fabf-4b6b-9163-f88d2b26e776" WHERE "Indicator id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "Year" DESC '
-                    //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "ed59dfc4-3076-4e84-806e-7a47d2321f36" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "year" DESC '
-                    url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "bbbd5e7a-54ae-44d7-9426-8edb02a51cbe" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "date" DESC '
+                    url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "ff58da5b-297e-478a-a3e8-65b54b82d840" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "date" DESC '
+
                 })
                 .then(function (response) {
                     var results = response.result.records;
@@ -128,7 +132,25 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                     });
                     return obj.get('_dataValues');
                 });
+
+            } else {
+
+                $.ajax({
+                    //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "a358a675-fabf-4b6b-9163-f88d2b26e776" WHERE "Indicator id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "Year" DESC '
+                    //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "ed59dfc4-3076-4e84-806e-7a47d2321f36" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "year" DESC '
+                    url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "bbbd5e7a-54ae-44d7-9426-8edb02a51cbe" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "date" DESC '
+                })
+                    .then(function (response) {
+                        var results = response.result.records;
+                        obj.setProperties({
+                            _dataValues: results,
+                            _currentValue: results[0],
+                            previousValue: results[1]
+                        });
+                        return obj.get('_dataValues');
+                    });
             }
+        }
     }.property(),
 
     trend: function () {
