@@ -1,19 +1,40 @@
 Dashboard.PageRoute = Ember.Route.extend({
     model: function (params) {
-        //var route = this;
-        //var annexID = this.modelFor('annex').ID;
+        var dashID = params.dashID;
+        var annexID = params.annexID;
         var pageID = params.pageID;
 
-        //return Dashboard.ReportModel.findAll().then(function (report) {
-        //    var page = report
-        //    .annexes.findBy('id', annexID)
-        //    .pages.findBy('ID', pageID);
-        //    return page;
-        //});
-        console.log(this.modelFor('annex'));
-        console.log(this.modelFor('annex').pages);
-        //debugger;
-        return this.modelFor('annex').pages.findBy('id', pageID);
+        var dash = this.modelFor('dash');
+        if (dash == null) {
+            console.log("the dash root has not previously been loaded so the model isn't setup");
+            // we've likely come to this route directly 
+                // the dash root has not previously been loaded so the model isn't setup
+                // load the model based on the first url segment
+            return Dashboard.DashboardModel.find(dashID).then(function (dash) {
+                console.log('Loaded dash = ' + dash);
+                var resourceID = dash.get('ckanResourceID');
+                if (resourceID != null) {
+                    return Dashboard.ReportModel.find(resourceID).then(function (annexes) {
+                        return annexes.findBy('id', annexID).pages.findBy('id', pageID);
+                    });
+                }
+            });
+        } else {
+            var resourceID = dash.get('ckanResourceID');
+            if (resourceID != null) {
+                var model = Dashboard.ReportModel.find(resourceID).then(function (annexes) {
+                    return annexes.findBy('id', annexID).pages.findBy('id', pageID);
+                });
+                return model;
+            }
+        }
+    },
+
+
+    activate: function (dash, transition) {
+        if (this.currentModel != null) {
+            this.renderTemplate();
+        }
     },
 
     afterModel: function (page, transition) {
