@@ -19,7 +19,7 @@
                 <h2 class="marginBS">{{annex.title}}</h2>
                 <p>{{annex.subTitle}}</p>
                 {{#each page in annex.pages}}
-                <p>{{#link-to 'page' annex.id page.id }}{{page.title}}{{/link-to}}</p>
+                <p>{{#link-to 'page' id annex.id page.id }}{{page.title}}{{/link-to}}</p>
                 {{/each}}
             </div>
             {{/each}}
