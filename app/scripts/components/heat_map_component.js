@@ -55,7 +55,7 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         }
 
         var xAxis = values.map(function (val) {
-            var dateString = (val.date.indexOf('T') === -1 ? val.date : val.date.substr(0, val.date.indexOf('T')));
+            var dateString = (val.start_date.indexOf('T') === -1 ? val.start_date : val.start_date.substr(0, val.start_date.indexOf('T')));
             return dateString;
         });
 

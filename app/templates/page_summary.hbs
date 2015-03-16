@@ -2,18 +2,7 @@
     <section id="MainContent">
         <!--<h2>{{subTitle}}</h2>-->
 
-
-
-
         <!--NHS ENGLAND-->
-        <!--<div class="row marginTXL borderT borderB">
-            <div class="col span_11 alignL bold">Performance Summary for NHS England</div>
-            <div class="col span_1 relative">
-                <div class="seperator"></div>
-                No Trend
-            </div>
-        </div>-->
-
         <div class="row">
             <h2 class="col span_11 marginBNone">Performance Summary for NHS England</h2>
             <div class="col span_1 marginBNone relative">
@@ -24,7 +13,11 @@
         {{#each indicator in nhsEnglandRAGTotals}}
         <div class="row borderT marginTL paddingBNone paddingBS chart">
             <div class="col span_4 alignL">{{indicator.title}}</div>
-            <div class="col span_1 alignC borderL borderR relative">&nbsp;</div>
+            <div class="col span_1 alignC borderL borderR relative">
+                {{#if indicator.id}}
+                    {{#link-to 'page' model.dashID 'annex_d' indicator.id }}View{{/link-to}}
+                {{/if}}
+            </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
 
@@ -49,16 +42,16 @@
                     </div>
 
                     <div class="green block">
-                        <div class="currentValue">{{indicator.current.Green}}</div>
-                        <div class="previousValue">{{indicator.previous.Green}}</div>
+                        <div class="currentValue">{{indicator.current.green}}</div>
+                        <div class="previousValue">{{indicator.previous.green}}</div>
                     </div>
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">
                 <div class="blockRow blockRow1">
                     <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
+                        <div class="currentValue">{{indicator.current.missing}}</div>
+                        <div class="previousValue">{{indicator.previous.missing}}</div>
                     </div>
                 </div>
             </div>
@@ -99,18 +92,16 @@
         <div class="row borderT marginTL paddingBNone paddingBS chart">
             <div class="col span_4 alignL">{{page.title}}</div>
             <div class="col span_1 alignC borderL borderR relative">
-            <!--    {{#link-to 'page' 'annex_b' page.id }}View{{/link-to}}-->
+                {{#link-to 'page' model.dashID page.parentID page.id }}View{{/link-to}}
             </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
-
                     {{#each rag in page.ragStatus}}
-                    <div {{bind-attr class="rag.colour :block"}}>
-                        <div class="currentValue">{{rag.count}}</div>
-                        <div class="previousValue">{{rag.previous}}</div>
-                    </div>
+                        <div {{bind-attr class="rag.colour :block"}}>
+                            <div class="currentValue">{{rag.count}}</div>
+                            <div class="previousValue">{{rag.previous}}</div>
+                        </div>
                     {{/each}}
-
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">

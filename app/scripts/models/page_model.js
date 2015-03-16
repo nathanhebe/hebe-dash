@@ -37,10 +37,10 @@ Dashboard.PageModel = Ember.Object.extend({
 
     _ragStatus: null,
     ragStatus: function () {
-        //console.log('ragStatus');
         if (this.get('_ragStatus') !== null) {
             return this.get('_ragStatus');
         } else {
+
             var status = [
                 {
                     colour: 'red',
