@@ -9,6 +9,9 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     _previousVal: null,
     _dataValues: null,
     _currentDate: null,
+    _periodOfCoverage: null,
+    _trend: null,
+    _ragColour: null,
 
     currentValue: function () {
         if (this.get('_currentValue') != null) {
@@ -28,6 +31,8 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                 val = parseFloat(parseFloat(current.value).toPrecisionDigits(3));
                 this.set('_currentVal', val);
                 return this.get('_currentVal');
+            } else {
+                return 'noData';
             }
             return val;
         }
@@ -43,6 +48,9 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                 val = parseFloat(parseFloat(previous.value).toPrecisionDigits(3));
                 this.set('_previousVal', val);
                 return this.get('_previousVal');
+            } else {
+                //this.set('_previousVal', 'noData');
+                return 'noData';
             }
             return val;
         }
@@ -62,14 +70,13 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         }
     }.property('currentValue'),
 
-    _periodOfCoverage: null,
     periodOfCoverage: function () {
         if (this.get('_periodOfCoverage') != null) {
             return this.get('_periodOfCoverage');
         } else {
             var current = this.get('currentValue');
             if (current != null) {
-                var period_of_coverage = current.period_of_coverage;
+                var period_of_coverage = current.start_date; //current.period_of_coverage;
                 var ragType = this.get('ragType');
                 if (ragType === "Constitutional" && period_of_coverage !== null && period_of_coverage !== '') {
                     this.set('_periodOfCoverage', period_of_coverage);
@@ -80,9 +87,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             }
             return this.get('_periodOfCoverage');
         }
-    }.property('currentDate'),
-
-
+    }.property('currentDate','_currentValue'),
 
     getRAGValue: function () {
         if (this.get('ragValue') !== null && this.get('valueString') === '%') {
@@ -91,12 +96,12 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         return this.get('ragValue');
     }.property('ragValue'),
 
-
     chartID: function () {
         return 'Chart' + this.get('id');
     }.property(),
 
     hasValue: function () {
+        //return true;
         // Todo: correcting for bad development data e.g. missing values or some have dates like 1968-01-20T00:00:00
         var current = this.get('currentValue');
         if (current == null) {
@@ -114,50 +119,58 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         } else {
             var obj = this;
 
-                $.ajax({
-                    //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "a358a675-fabf-4b6b-9163-f88d2b26e776" WHERE "Indicator id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "Year" DESC '
-                    //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "ed59dfc4-3076-4e84-806e-7a47d2321f36" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "year" DESC '
-                    url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "bbbd5e7a-54ae-44d7-9426-8edb02a51cbe" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "date" DESC '
-                })
-                .then(function (response) {
-                    var results = response.result.records;
-                    obj.setProperties({
-                        _dataValues: results,
-                        _currentValue: results[0],
-                        previousValue: results[1]
-                    });
-                    return obj.get('_dataValues');
+            $.ajax({
+                //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "a358a675-fabf-4b6b-9163-f88d2b26e776" WHERE "Indicator id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "Year" DESC '
+                //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "ed59dfc4-3076-4e84-806e-7a47d2321f36" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "year" DESC '
+                //url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "bbbd5e7a-54ae-44d7-9426-8edb02a51cbe" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "date" DESC '
+                url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "56879843-edf2-4b66-a8e1-f27a91befb7a" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
+            })
+            .then(function (response) {
+                var results = response.result.records;
+                obj.setProperties({
+                    _dataValues: results,
+                    _currentValue: results[0],
+                    previousValue: results[1]
                 });
-            }
+                return obj.get('_dataValues');
+            });
+        }
     }.property(),
 
     trend: function () {
-        if (this.get('currentValue') != null && this.get('previousValue') != null) {
-            var current = this.get('currentValue').value;
-            var previous = this.get('previousValue').value;
-            var direction = this.get('desiredDirection');
+        if (this.get('_trend') != null) {
+            return this.get('_trend');
+        } else {
+            if (this.get('currentValue') != null && this.get('previousValue') != null) {
+                var current = this.get('currentValue').value;
+                var previous = this.get('previousValue').value;
+                var direction = this.get('desiredDirection');
 
-            //console.log('current: ' + current + ', previous: ' + previous);
-            switch (direction) {
-                default:
-                    // up
-                    if (current === previous) {
-                        return 'even';
-                    } else if (current > previous) {
-                        return 'up';
-                    } else {
-                        return 'down';
-                    }
-                    break;
-                case "Down":
-                    if (current === previous) {
-                        return 'even';
-                    } else if (current < previous) {
-                        return 'up';
-                    } else {
-                        return 'down';
-                    }
-                    break;
+                //console.log('current: ' + current + ', previous: ' + previous);
+                var trend = 'even';
+                switch (direction) {
+                    default:
+                        // up
+                        if (current === previous) {
+                            trend = 'even';
+                        } else if (current > previous) {
+                            trend = 'up';
+                        } else {
+                            trend = 'down';
+                        }
+                        break;
+                    case "Down":
+                        if (current === previous) {
+                            trend = 'even';
+                        } else if (current < previous) {
+                            trend = 'up';
+                        } else {
+                            trend = 'down';
+                        }
+                        break;
+                }
+                this.set('_trend', trend);
+                return this.get('_trend');
             }
         }
         return 'notrend';
@@ -171,15 +184,13 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         //    case 'red':
         //        return 'down';
         //}
-    }.property('_ragColour', '_currentValue'),
-
-    _ragColour: null,
+    }.property('_ragColour', '_currentValue', '_previousValue'),
 
     ragColour: function () {
-        if (this.get('_ragColour') !== null) {
+        if (this.get('_ragColour') != null) {
             return this.get('_ragColour');
         } else {
-            var colour = 'blue';
+            var colour = null;
             //switch this.get('ragType')
             var current = this.get('currentValue');
             var previous = this.get('previousValue');
@@ -188,8 +199,10 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                 return this.calculateRAG();
             }
 
+            console.log('current = ' + current + ', previous = ' + previous);
+
             if (current == null || previous == null || current.value === null || previous.value === null) {
-                colour = 'blue';
+                return 'blue';
             } else {
                 current = current.value;
                 previous = previous.value;
@@ -210,11 +223,14 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                     colour = 'green';
                 }
             }
-            this.set('_ragColour', colour);
-            return colour;
+            if (colour == null) {
+                return 'blue';
+            } else {
+                this.set('_ragColour', colour);
+                return this.get('_ragColour');
+            }
         }
-
-    }.property('_currentVal', '_previousVal'),
+    }.property('currentVal', 'previousVal'),
 
     valueString: function () {
         return (this.get('valueType') === 'int' ? '' : this.get('valueType'));

@@ -1,8 +1,15 @@
 Dashboard.PageRoute = Ember.Route.extend({
+    dashID: null,
+    annexID: null,
+    pageID: null,
+
     model: function (params) {
         var dashID = params.dashID;
         var annexID = params.annexID;
         var pageID = params.pageID;
+        this.set('dashID', dashID);
+        this.set('annexID', annexID);
+        this.set('pageID', pageID);
 
         var dash = this.modelFor('dash');
         if (dash == null) {
@@ -41,10 +48,17 @@ Dashboard.PageRoute = Ember.Route.extend({
         var route = this;
         route.renderTemplate = function () {
             var model = route.currentModel;
+            model.setProperties({
+                dashID: this.get('dashID'),
+                annexID: this.get('annexID'),
+                pageID: this.get('pageID')
+            });
+
             route.render(model.type,
                 {
                     outlet: '',
-                    into: 'application'
+                    into: 'application',
+                    model: model 
                 });
 
             // render the header controller

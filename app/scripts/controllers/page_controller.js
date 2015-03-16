@@ -1,5 +1,6 @@
 Dashboard.PageController = Ember.ObjectController.extend({
     _pages: null,
+    dashID: null,
     pages: function () {
         if (this.get('_pages') !== null) {
             return this.get('_pages');
@@ -72,9 +73,12 @@ Dashboard.PageController = Ember.ObjectController.extend({
         if (this.get('_nhsEnglandRAGTotals') != null) {
             return this.get('_nhsEnglandRAGTotals');
         } else {
-            Dashboard.PerformanceIndicatorModel.findAll().then(function (results) {
-                obj.set('_nhsEnglandRAGTotals', results);
-            });
+            var resourceID = this.get('ckanID');
+            if (resourceID != null) {
+                Dashboard.PerformanceIndicatorModel.find(resourceID).then(function (results) {
+                    obj.set('_nhsEnglandRAGTotals', results);
+                });
+            }
         }
     }.property('_nhsEnglandRAGTotals')
 
