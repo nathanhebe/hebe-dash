@@ -1,7 +1,7 @@
 // Generated on 2015-02-04 using generator-ember 0.8.5
 'use strict';
 var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
+var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
@@ -104,7 +104,15 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
-            server: '.tmp'
+            server: '.tmp',
+            ckan: {
+                files: [{
+                    dot: true,
+                    src: [
+                        'ckan'
+                    ]
+                }]
+            }
         },
         jshint: {
             options: {
@@ -235,28 +243,42 @@ module.exports = function (grunt) {
             }
         },
         replace: {
-          app: {
-            options: {
-              variables: {
-                ember: 'bower_components/ember/ember.js',
-                ember_data: 'bower_components/ember-data/ember-data.js'
-              }
+            app: {
+                options: {
+                    variables: {
+                        ember: 'bower_components/ember/ember.js',
+                        ember_data: 'bower_components/ember-data/ember-data.js'
+                    }
+                },
+                files: [
+                  { src: '<%= yeoman.app %>/index.html', dest: '.tmp/index.html' }
+                ]
             },
-            files: [
-              {src: '<%= yeoman.app %>/index.html', dest: '.tmp/index.html'}
-            ]
-          },
-          dist: {
-            options: {
-              variables: {
-                ember: 'bower_components/ember/ember.prod.js',
-                ember_data: 'bower_components/ember-data/ember-data.prod.js'
-              }
+            dist: {
+                options: {
+                    variables: {
+                        ember: 'bower_components/ember/ember.prod.js',
+                        ember_data: 'bower_components/ember-data/ember-data.prod.js'
+                    }
+                },
+                files: [
+                    { src: '<%= yeoman.app %>/index.html', dest: '.tmp/index.html' }
+                ]
             },
-            files: [
-              {src: '<%= yeoman.app %>/index.html', dest: '.tmp/index.html'}
-            ]
-          }
+            ckan: {
+                options: {
+                    patterns: [
+                        {
+                            match: /(isLoggedIn = true;)/g,
+                            replacement: 'isLoggedIn = {% if c.userobj %}true{% else %}false{% endif %};'
+                        }
+                    ]
+                },
+                files: [
+                    { src: 'ckan/dashboard.html', dest: 'ckan/dashboard.html' }
+                ]
+            }
+
         },
         // Put files not handled in other tasks here
         copy: {
@@ -273,7 +295,7 @@ module.exports = function (grunt) {
                         ]
                     }
                 ]
-            }, 
+            },
             dist: {
                 files: [
                     {
@@ -288,6 +310,28 @@ module.exports = function (grunt) {
                             'styles/fonts/*'
                         ]
                     }
+                ]
+            },
+            ckan: {
+                expand: true,
+                dot: true,
+                cwd: '<%= yeoman.dist %>',
+                dest: 'ckan',
+                src: ["*.*", "**/*.*"],
+                options: {
+                    processContent: function (content, srcpath) {
+                        return content
+                            .replace(/"images/g, '"/dashboard/images')
+                            .replace(/"scripts/g, '"/dashboard/scripts')
+                            .replace(/"styles/g, '"/dashboard/styles');
+                    }
+                }
+            }
+        },
+        rename: {
+            ckan: {
+                files: [
+                    { src: ['ckan/index.html'], dest: 'ckan/dashboard.html' },
                 ]
             }
         },
@@ -384,4 +428,12 @@ module.exports = function (grunt) {
         'test',
         'build'
     ]);
+
+    grunt.registerTask('ckanBuild', [
+        'build',
+        'clean:ckan',
+        'copy:ckan',
+        'rename:ckan',
+        'replace:ckan',
+    ])
 };

@@ -26,6 +26,12 @@ $icon-stroke-width-hover: 1;
         img {
             width: 130px;
         }
+
+        .header__nhs-logo {
+        }
+
+        .header__logo {
+        }
     }
 }
 
@@ -34,7 +40,7 @@ $icon-stroke-width-hover: 1;
     button {
         display: block;
         border: none;
-        visibility:hidden;
+        visibility: hidden;
         padding: 0;
         background: transparent;
         outline: none;
@@ -78,7 +84,7 @@ $icon-stroke-width-hover: 1;
 
             &.infoButton {
                 right: 20px;
-                visibility:hidden;
+                visibility: hidden;
             }
         }
 

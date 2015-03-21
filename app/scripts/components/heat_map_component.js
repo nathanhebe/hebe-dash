@@ -24,7 +24,7 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
                     return indicatorValue.value;
                 }));
         YMax = maxVal;
-        var ragValue = parseFloat(myData.get('ragValue'));
+        var ragTarget = parseFloat(myData.get('ragTarget'));
 
         if (valueType === '%') {
             maxVal = maxVal / 100;
@@ -37,12 +37,12 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
             minVal = minVal / 100;
 
 
-            if (minVal > ragValue) {
-                minVal = ragValue;
+            if (minVal > ragTarget) {
+                minVal = ragTarget;
             }
 
-            if (maxVal < ragValue) {
-                maxVal = ragValue;
+            if (maxVal < ragTarget) {
+                maxVal = ragTarget;
             }
 
 
@@ -71,19 +71,19 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         var regions = [];
         if (myData.get('ragType') === 'Constitutional') {
             // constitution only...
-            var amber = ragValue + 0.0099;
-            var green = ragValue + 0.01;
+            var amber = ragTarget + 0.0099;
+            var green = ragTarget + 0.01;
             var opacity = 0.3;
             if (valueType === '%') {
                 regions = [
-                            { axis: 'y', start: 0, end: ragValue, class: 'regionYR', opacity: opacity },
-                            { axis: 'y', start: ragValue, end: amber, class: 'regionYA', opacity: opacity },
+                            { axis: 'y', start: 0, end: ragTarget, class: 'regionYR', opacity: opacity },
+                            { axis: 'y', start: ragTarget, end: amber, class: 'regionYA', opacity: opacity },
                             { axis: 'y', start: green, class: 'regionYG', opacity: opacity },
                 ];
             } else {
                 regions = [
-                            { axis: 'y', start: 0, end: ragValue, class: 'regionYG', opacity: opacity },
-                            { axis: 'y', start: ragValue, class: 'regionYR', opacity: opacity }
+                            { axis: 'y', start: 0, end: ragTarget, class: 'regionYG', opacity: opacity },
+                            { axis: 'y', start: ragTarget, class: 'regionYR', opacity: opacity }
                 ];
             }
         }

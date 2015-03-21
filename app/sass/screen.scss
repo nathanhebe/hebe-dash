@@ -49,7 +49,6 @@ body > .ember-view {
         padding-top: ($margin-main / 2);
         padding-bottom: ($margin-main / 2);
         //height: $height-column;
-
         &.alignL {
             padding-left: 0px;
             text-align: left;
@@ -77,7 +76,7 @@ body > .ember-view {
         font-weight: $font-weight-normal;
         margin: 0px;
         padding: 0px;
-        line-height:1em;
+        line-height: 1em;
     }
 
     h1 {
@@ -87,7 +86,7 @@ body > .ember-view {
     h2 {
         font-size: $font-size-heading-sub;
         margin-bottom: $margin-main;
-        font-weight:$font-weight-bold;
+        font-weight: $font-weight-bold;
     }
 
     .button {
@@ -130,7 +129,6 @@ body > .ember-view {
     .missing {
         background-color: $color-bg-light;
     }
-
     /* Fullscreen Modal */
     .modalHighlightedive {
         z-index: 4;
@@ -145,18 +143,12 @@ body > .ember-view {
         height: 100%;
         width: 100%;
         background-color: $color-white;
-
         z-index: 2;
-
         /*@include filter(blur,40px);*/
         -webkit-transform: translate3d(0, 0, 0);
         opacity: 0.6;
     }
     /* End Fullscreen Modal */
-
-    #NHSEnglandLogo {
-    }
-
     section {
         padding: $margin-main;
         overflow: auto;
@@ -191,10 +183,67 @@ body > .ember-view {
     #MainContent {
     }
 
+    .chooseBoardReport {
+        width: auto;
+        font-size: $font-size-small;
+        font-weight: $font-weight-light;
+        position:relative;
+
+        .icon {
+            position:absolute;
+            top:$margin-main/4;
+            right:$margin-main/2;
+        }
+
+        button {
+            padding: $margin-main/2;
+            @include animate(all, 0.1s, linear);
+            width: 100%;
+            text-align:left;
+        }
+
+        .listWrapper {
+            position:relative;
+
+            ul {
+                @include opacity(0);
+                @include animate(all, 0.1s, linear);
+                @include border-bottom-radius(10px);
+                @include border-bottom-radius(10px);
+                top:0px;
+                background: $color-white;
+                width:100%;
+                position: absolute;
+
+                li {
+                    padding: $margin-main / 2;
+                    border-bottom:$border-main;
+                    a {
+                        color:$color-grey-darker;
+                        text-decoration:none;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            button {
+                @include border-bottom-radius(0px);
+            }
+            .listWrapper {
+                ul {
+                    @include opacity(1);
+                    visibility:visible;
+                }
+            }
+        }
+    }
+
+
     &.boardReport {
 
         #annex_c {
-            display:none;
+            display: none;
         }
 
         &.boardReportSummary {
@@ -594,19 +643,19 @@ body > .ember-view {
         .finance {
 
             .group {
-                margin-top:0;
-                padding-top:$margin-main / 2;
-                border-top:$border-main;
-                border-top-width:4px;
+                margin-top: 0;
+                padding-top: $margin-main / 2;
+                border-top: $border-main;
+                border-top-width: 4px;
 
                 &:first-of-type {
-                    border-top:none;
+                    border-top: none;
                 }
 
                 &:before {
                     @extend .row;
                     content: ' ';
-                    display:block;
+                    display: block;
                 }
 
                 .row {
@@ -623,7 +672,7 @@ body > .ember-view {
 
                     &:first-of-type {
                         margin-top: $margin-main / 4;
-                        font-weight:$font-weight-bold;
+                        font-weight: $font-weight-bold;
 
                         .col {
                             font-size: $font-size-small;
@@ -746,6 +795,8 @@ body > .ember-view {
 
             .groupLabel {
                 vertical-align: middle;
+                width: auto;
+
                 padding: {
                     top: 0;
                     bottom: 0;
@@ -755,24 +806,29 @@ body > .ember-view {
             .group {
                 width: 100%;
                 display: table;
+
                 padding: {
                     top: 0;
                     bottom: 0;
                 }
+
                 margin: {
                     bottom: 2em;
                 }
+
                 > .col {
                     display: table-cell;
                     float: none;
                 }
             }
-                .group__headings {
-                    padding-left: 9.333333333%;
-                }
+
+            .group__headings {
+                padding-left: 9.333333333%;
+            }
 
             .dataRow {
                 @include cf;
+
                 padding: {
                     top: 0;
                     bottom: 0;
@@ -783,12 +839,12 @@ body > .ember-view {
             }
 
             .block {
-                color:$color-font-light;
-                font-size:$font-size-title;
-                height:100%;
-                width:85%;
+                color: $color-font-light;
+                font-size: $font-size-title;
+                height: 100%;
+                width: 85%;
                 line-height: 60px;
-                padding-left:$margin-main / 4;
+                padding-left: $margin-main / 4;
             }
 
             table {
@@ -845,13 +901,16 @@ body > .ember-view {
             .groupLabel {
                 background: #ECECEC;
                 height: 100%;
+
                 .verticalText {
                     -webkit-transform: rotate(-90deg);
                     -moz-transform: rotate(-90deg);
                     -ms-transform: rotate(-90deg);
                     -o-transform: rotate(-90deg);
                     transform: rotate(-90deg);
-    }
+                    width: 1em;
+                    margin-top: 4em;
+                }
             }
         }
     }
@@ -949,7 +1008,10 @@ the other stylesheets. Remember, keep it light: Speed is Important.
 // end of media query
 
 
-@media print{
-    @page {size: landscape}
+@media print {
+    @page {
+        size: landscape;
+    }
+
     @import "_print";
 }

@@ -1,4 +1,4 @@
-var utils = (function () {
+﻿var utils = (function () {
     var private_var;
 
     function private_function() {
@@ -29,6 +29,13 @@ var utils = (function () {
                     return result;
                 }
                 return str;
+            };
+        }
+        // str.fixChars
+        if (typeof String.prototype.fixChars != 'function') {
+            String.prototype.fixChars = function (str) {
+                //todo: replace any dodgy characters here
+                return this.replace('ÂŁ', '£');
             };
         }
 

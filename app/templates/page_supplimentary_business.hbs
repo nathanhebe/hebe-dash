@@ -19,38 +19,13 @@
             {{#unless row.title}}
                 <h2 class="marginBL marginTL">{{row.busArea}}</h2>
                 {{else}}
-                <div class="row border radiusL radiusR marginBS" {{bind-attr data-indicator-id=row.busArea}}>
-                    <div class="col span_1 paddingLNone paddingRNone paddingTS paddingBS height60">
-                        <div {{bind-attr class="row.comment:accordionHandle :left :half :center :borderR :fullHeight"}} >&nbsp;</div>
-                        <div class="left half center paddingTS">{{row.busArea}}</div>
-                    </div>
-                    <div class="col span_4 borderL">{{row.title}}</div>
-                    <div class="col span_2 paddingNone">
-                        <div {{bind-attr class="row.trend row.ragCode :block :radiusR_XL :indicator"}}>{{row.rag}}</div>
-                    </div>
-                    <div class="col span_5 small paddingTL"><div class="summary">{{row.comment}}</div></div>
-                    <div class="clear"></div>
-                    <div class="accordionContent paddingLL paddingTL paddingRL paddingBL" {{bind-attr data-indicator-id=row.busArea}}>
-                        <p class="bold marginTL">Comments:</p>
-                        <p class="marginTL paddingBS small">{{row.comment}}</p>
-                    </div>
-                </div>
+                    {{business-area-row row=row}}
                 {{/unless}}
             {{/each}}
             {{else}}
                 <p>Sorry there isn't any data in this resource yet</p>
             {{/if}}
 
-
-
-
-
-
-
-
         </div>
     </section>
-
-
-
 </div>

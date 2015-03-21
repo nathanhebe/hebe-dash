@@ -89,12 +89,12 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         }
     }.property('currentDate','_currentValue'),
 
-    getRAGValue: function () {
-        if (this.get('ragValue') !== null && this.get('valueString') === '%') {
-            return this.get('ragValue') * 100;
+    getRAGTarget: function () {
+        if (this.get('ragTarget') !== null && this.get('valueString') === '%') {
+            return this.get('ragTarget') * 100;
         }
-        return this.get('ragValue');
-    }.property('ragValue'),
+        return this.get('ragTarget');
+    }.property('ragTarget'),
 
     chartID: function () {
         return 'Chart' + this.get('id');
@@ -248,7 +248,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         Org. Level Data (ColH in feedsheet)
             - can be used on Dashboards etc to inform to what level data can be drilled down
 
-        PercentChangeValue Add a percent change value (most will be 1% - but at least can be overriden per indicator if required (% Change to use if no CI ColF in Feedsheet))
+        ragPercentChangeToUse Add a percent change value (most will be 1% - but at least can be overriden per indicator if required (% Change to use if no CI ColF in Feedsheet))
 
         Frequency of data (imply the range from E.g type of data)
 
@@ -286,7 +286,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             STANDARD
                 SAME AS ABOVE - BUT UCI/LCI ETC ARE CALCULATED BASED ON (% Change to use if no CI COLF FEEDSHEET) (1%)
                 
-                SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE PercentChangeValue FROM THE CONFIG
+                SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE ragPercentChangeToUse FROM THE CONFIG
 
                 (IF DESIRED DIRECTION IS UP)
                 is Val2 > Val1 (+1%) = GREEN
@@ -301,15 +301,15 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
 
             CONSTITUTIONAL 
-            SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE PercentChangeValue FROM THE CONFIG
+            SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE ragPercentChangeToUse FROM THE CONFIG
                 e.g. instead of +/- 1%    +/-PercentValue
 
             (if equalled it - they've achieved it)
-            If the value is less than the stated value  (RAGValue - FEEDSHEET > CURRENT RAG > Col D)
+            If the value is less than the stated value  (RAGTarget - FEEDSHEET > CURRENT RAG > Col D)
             Values  change very rarely - ADD TO METADATA
 
-            if(current > RAGValue + 1%) = green
-            else if(current < RAGValue) = red
+            if(current > RAGTarget + 1%) = green
+            else if(current < RAGTarget) = red
             else amber
 
 
@@ -320,21 +320,21 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         var rag = 'amber';
         if (this.get('currentValue') != null) {
             var current = this.get('currentValue').value; //this.get('currentValue').value;
-            //if (this.get('ragValue') != null && this.get('valueString') == '%') {
-            //    return this.get('ragValue') * 100;
+            //if (this.get('ragTarget') != null && this.get('valueString') == '%') {
+            //    return this.get('ragTarget') * 100;
             //}
 
-            var ragValue = this.get('ragValue');
-            ragValue = (this.get('valueString') === '%' ? (ragValue * 100) : ragValue);
+            var ragTarget = this.get('ragTarget');
+            ragTarget = (this.get('valueString') === '%' ? (ragTarget * 100) : ragTarget);
 
 
 
-            var upper = ragValue + 1;
-            //var lower = ragValue - 1;
+            var upper = ragTarget + 1;
+            //var lower = ragTarget - 1;
 
 
             if (this.get('valueString') !== "%") {
-                if (current > ragValue) {
+                if (current > ragTarget) {
                     return 'red';
                 } else {
                     return 'green';
@@ -343,7 +343,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
             if (current > upper) {
                 rag = 'green';
-            } else if (current < ragValue) {
+            } else if (current < ragTarget) {
                 rag = 'red';
             }
         }

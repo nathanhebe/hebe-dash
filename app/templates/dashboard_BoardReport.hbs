@@ -4,13 +4,15 @@
             <div class="col span_6">
                 <h1>{{title}}</h1>
             </div>
-            <div class="col span_3 smallText">
+            <div class="col span_4 smallText paddingTXL">
                 Last updated 11/03/2015
             </div>
             <!--<div class="col span_3 button">
                 Produce Report for Print
             </div>-->
-            <div class="col span_3">&nbsp;</div>
+            <div class="col span_2 marginLNone marginRNone paddingLNone paddingRNone">
+                {{board-report-picker}}
+            </div>
         </div>
         <div class="row marginTL">
             {{#each annex in data}}

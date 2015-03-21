@@ -18,40 +18,9 @@
 
 
         {{#if indicator.hasValue}}
-
-        <div class="row marginTL" {{bind-attr data-indicator-id=indicator.id}}>
-            <div class="col span_2 borderT borderB borderL radiusL noWrap">
-                <span class="accordionHandle">&nbsp;</span>
-                {{indicator.periodOfCoverage}}
-            </div>
-            <div class="col span_7 borderL borderT borderB borderR ellipses">{{indicator.title}}</div>
-            <div class="col span_1 insideMarginR borderT borderB borderR  radiusR">
-                <div class="currentValue">{{indicator.getRAGValue}}{{indicator.valueString}}</div>
-            </div>
-            <div {{bind-attr class="indicator.ragColour :col :span_1 :radiusL :indicator"}}>
-                <div class="currentValue">
-                    {{indicator.currentVal}}{{indicator.valueString}}
-                </div>
-            </div>
-            <div {{bind-attr class="indicator.ragColour :col :span_1 :indicator :paddingLNone :radiusR_XL indicator.trend"}}>
-                <div class="previousValue">{{indicator.previousVal}}{{indicator.valueString}}</div>
-            </div>
-        </div>
-
-
-        <div class="accordionContent" {{bind-attr data-indicator-id=indicator.id}}>
-            <p class="bold marginTL">Comments:</p>
-            <p class="borderB marginTL paddingBS small"><!--Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at semper turpis. Nunc eu tellus tortor. Etiam at condimentum nisl, vitae sagittis orci. Donec id dignissim nunc. Donec elit ante, elei.-->This space for help and comments if required...</p>
-            <p class="bold marginTL">Compare performance for Key indicator over time:</p>
-            <div class="chart marginTL">
-                <!--<img class="sampleImage" src="images/SampleChart2.png" />-->
-                {{#if indicator.currentValue}}
-                {{heat-map data=indicator}}
-                {{/if}}
-            </div>
-        </div>
-
         {{/if}}
+
+            {{render "indicatorrowconstitution" indicator}}
 
         {{/each}}
 
