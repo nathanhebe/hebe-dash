@@ -27,8 +27,8 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         } else {
             var val = 0;
             var current = this.get('currentValue');
-            if (current != null && current.value != null) {
-                val = parseFloat(parseFloat(current.value).toPrecisionDigits(3));
+            if (current != null && current.get('val') != null) {
+                val = parseFloat(parseFloat(current.get('val')).toPrecisionDigits(3));
                 this.set('_currentVal', val);
                 return this.get('_currentVal');
             } else {
@@ -44,8 +44,8 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         } else {
             var val = 0;
             var previous = this.get('previousValue');
-            if (previous != null && previous.value != null) {
-                val = parseFloat(parseFloat(previous.value).toPrecisionDigits(3));
+            if (previous != null && previous.get('val') != null) {
+                val = parseFloat(parseFloat(previous.get('val')).toPrecisionDigits(3));
                 this.set('_previousVal', val);
                 return this.get('_previousVal');
             } else {
@@ -87,7 +87,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             }
             return this.get('_periodOfCoverage');
         }
-    }.property('currentDate','_currentValue'),
+    }.property('currentDate', '_currentValue'),
 
     getRAGTarget: function () {
         if (this.get('ragTarget') !== null && this.get('valueString') === '%') {
@@ -106,7 +106,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         var current = this.get('currentValue');
         if (current == null) {
             return false;
-        } else if (current.value != null && current.value.indexOf('T00:') === -1) {
+        } else if (current.get('val') != null && current.get('val').toString().indexOf('T00:') === -1) {
             return true;
         } else {
             return false;
@@ -126,7 +126,11 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                 url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "56879843-edf2-4b66-a8e1-f27a91befb7a" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
             })
             .then(function (response) {
-                var results = response.result.records;
+                var results = [];
+                var valueType = obj.get('valueType');
+                response.result.records.forEach(function (record) {
+                    results.push(Dashboard.IndicatorValueModel.create(_.extend(record, { valueType: valueType })));
+                });
                 obj.setProperties({
                     _dataValues: results,
                     _currentValue: results[0],
@@ -138,53 +142,37 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     }.property(),
 
     trend: function () {
-        if (this.get('_trend') != null) {
-            return this.get('_trend');
-        } else {
-            if (this.get('currentValue') != null && this.get('previousValue') != null) {
-                var current = this.get('currentValue').value;
-                var previous = this.get('previousValue').value;
-                var direction = this.get('desiredDirection');
+        if (this.get('currentVal') != null && this.get('previousVal') != null) {
+            var current = this.get('currentVal');
+            var previous = this.get('previousVal');
+            var direction = this.get('desiredDirection');
 
-                //console.log('current: ' + current + ', previous: ' + previous);
-                var trend = 'even';
-                switch (direction) {
-                    default:
-                        // up
-                        if (current === previous) {
-                            trend = 'even';
-                        } else if (current > previous) {
-                            trend = 'up';
-                        } else {
-                            trend = 'down';
-                        }
-                        break;
-                    case "Down":
-                        if (current === previous) {
-                            trend = 'even';
-                        } else if (current < previous) {
-                            trend = 'up';
-                        } else {
-                            trend = 'down';
-                        }
-                        break;
-                }
-                this.set('_trend', trend);
-                return this.get('_trend');
+            var trend = 'even';
+            switch (direction) {
+                default:
+                    // up
+                    if (current === previous) {
+                        trend = 'even';
+                    } else if (current > previous) {
+                        trend = 'up';
+                    } else {
+                        trend = 'down';
+                    }
+                    break;
+                case "Down":
+                    if (current === previous) {
+                        trend = 'even';
+                    } else if (current < previous) {
+                        trend = 'up';
+                    } else {
+                        trend = 'down';
+                    }
+                    break;
             }
+            return trend;
         }
         return 'notrend';
-
-        //switch (this.get('ragColour')) {
-        //    default:
-        //        return 'even';
-        //    case 'green':
-        //    case 'greenAmber':
-        //        return 'up';
-        //    case 'red':
-        //        return 'down';
-        //}
-    }.property('_ragColour', '_currentValue', '_previousValue'),
+    }.property('_currentVal', '_previousVal'),
 
     ragColour: function () {
         if (this.get('_ragColour') != null) {
@@ -195,41 +183,46 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             var current = this.get('currentValue');
             var previous = this.get('previousValue');
 
-            if (this.get('ragType') === "Constitutional") {
-                return this.calculateRAG();
-            }
-
-            //console.log('current = ' + current + ', previous = ' + previous);
-
-            if (current == null || previous == null || current.value === null || previous.value === null) {
-                return 'blue';
-            } else {
-                current = current.value;
-                previous = previous.value;
-            }
-            var ragVal = 1;
-            var diff = current - previous;
-            var diffPercent = (diff / previous) * 100;
-
-            if (!isNaN(diffPercent)) {
-                if (diffPercent < -(ragVal)) {
-                    colour = 'red';
-                }
-                else if (diffPercent < 0) {
-                    colour = 'amber';
-                } else if (diffPercent <= ragVal) {
-                    colour = 'amberGreen';
-                } else if (diffPercent > ragVal) {
-                    colour = 'green';
-                }
-            }
-            if (colour == null) {
-                return 'blue';
-            } else {
-                this.set('_ragColour', colour);
-                return this.get('_ragColour');
-            }
+            this.set('_ragColour', this.calculateRAG());
+            return this.get('_ragColour');
         }
+
+
+        //if (this.get('ragType') === "Constitutional") {
+        //    return this.calculateRAG();
+        //}
+
+        ////console.log('current = ' + current + ', previous = ' + previous);
+
+        //if (current == null || previous == null || current.get('val') === null || previous.get('val') === null) {
+        //    return 'blue';
+        //} else {
+        //    current = current.get('val');
+        //    previous = previous.get('val');
+        //}
+        //var ragVal = 1;
+        //var diff = current - previous;
+        //var diffPercent = (diff / previous) * 100;
+
+        //if (!isNaN(diffPercent)) {
+        //    if (diffPercent < -(ragVal)) {
+        //        colour = 'red';
+        //    }
+        //    else if (diffPercent < 0) {
+        //        colour = 'amber';
+        //    } else if (diffPercent <= ragVal) {
+        //        colour = 'amberGreen';
+        //    } else if (diffPercent > ragVal) {
+        //        colour = 'green';
+        //    }
+        //}
+        //if (colour == null) {
+        //    return 'blue';
+        //} else {
+        //    this.set('_ragColour', colour);
+        //    return this.get('_ragColour');
+        //}
+        //}
     }.property('currentVal', 'previousVal'),
 
     valueString: function () {
@@ -241,7 +234,16 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     },
 
     calculateRAG: function () {
-
+        switch (this.get('ragType')) {
+            case "Constitutional":
+                return this.get('constitutionalRAG');
+            case "Standard":
+                return this.get('standardRAG');
+            case "Confidence":
+                return this.get('confidenceRAG');
+            default:
+                return 'noRAG';
+        }
         /*
         Type of data (col Q in feedsheet is for ValueType in our config
         Units (colP in feedsheet would be good for additional metadata on UI for the indicators)
@@ -315,23 +317,23 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
 
         */
+    },
 
-        // Constitutional
-        var rag = 'amber';
+    constitutionalRAG: function () {
+        console.log('constitutionalRAG');
+        var rag = null;
         if (this.get('currentValue') != null) {
-            var current = this.get('currentValue').value; //this.get('currentValue').value;
+            rag = 'amber';
+            var current = this.get('currentValue').get('val'); //this.get('currentValue').get('val');
             //if (this.get('ragTarget') != null && this.get('valueString') == '%') {
             //    return this.get('ragTarget') * 100;
             //}
 
             var ragTarget = this.get('ragTarget');
             ragTarget = (this.get('valueString') === '%' ? (ragTarget * 100) : ragTarget);
-
-
-
+            console.log('ragTarget : ' + ragTarget);
             var upper = ragTarget + 1;
             //var lower = ragTarget - 1;
-
 
             if (this.get('valueString') !== "%") {
                 if (current > ragTarget) {
@@ -347,24 +349,96 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                 rag = 'red';
             }
         }
-
         return rag;
-    }
+    }.property('ragTarget', 'valueString', 'currentValue'),
 
-    //calculateRAGRating: function() {
-    //    var previous = 1;
-    //    var current = 1;
-    //    var target = 1;
+    standardRAG: function () {
+        console.log('standardRAG');
+        //STANDARD
+        //SAME AS ABOVE - BUT UCI/LCI ETC ARE CALCULATED BASED ON (% Change to use if no CI COLF FEEDSHEET) (1%)
 
-    //    var ragType = 'constitution';
+        //SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE ragPercentChangeToUse FROM THE CONFIG
 
-    //    // constitution within 1% of target it is amber
+        //(IF DESIRED DIRECTION IS UP)
+        //is Val2 > Val1 (+1%) = GREEN
+        //Is Val2 < Val -(1%) = red
+        //Else Amber
 
+        //(IF DESIRED DIRECTION IS DOWN)
+        //Is Val2 < Val1 (-1%) = green
+        //Va2 > Val2 + 1% = red
+        //else Amber
+        var rag = null;
+        if (this.get('currentValue') != null && this.get('previousValue') != null) {
+            var current = this.get('currentValue').get('val');
+            var previous = this.get('previousValue').get('val');
+            var direction = this.get('desiredDirection');
+            var percent = (this.get('ragPercentChangeToUse') != null ? this.get('ragPercentChangeToUse') : 0.01);
+            rag = 'amber';
+            if (direction === 'Up') {
+                if (current > (previous * (1 + percent))) {
+                    rag = 'green';
+                } else if (current < (previous * (1 - percent))) {
+                    rag = 'red';
+                }
+            } else {
+                if (current < (previous * (1 - percent))) {
+                    rag = 'green';
+                } else if (current > (previous * (1 + percent))) {
+                    rag = 'red';
+                }
+            }
+        }
+        return rag;
 
-    //}
+    }.property('ragTarget', 'valueString', 'currentValue'),
 
+    confidenceRAG: function () {
+        console.log('confidenceRAG');
+        //period of reporting
+        //UCI
 
+        //LCI
 
+        //IMPORTANT - select the operator based on the DESIRED DIRECTION FIELD (e.g. up  = >   down  = <
+        //IMPORTANT - The Previous period is defined by RAG Methodology (colX in feedsheet)
+        //            - compare this to tType of Data (colN in feedsheet) to decide how far back comparative period
+        //if(current.LCI > previous 
+        //    if(LCI2 > LCI1) {
+        //        green
+        //    } else if(UCI1 > UCI2) {
+        //        red
+        //    } else {
+        //        amber
+        //    }
+
+        var rag = null;
+        if (this.get('currentValue') != null) {
+            var current = this.get('currentValue');
+            var currentVal = current.get('val');
+            var direction = this.get('desiredDirection');
+            var uci = current.get('upperCI');
+            var lci = current.get('lowerCI');
+            console.log('uci:' + uci + ',lci:' + lci + ',val:' + currentVal);
+            rag = 'amber';
+            if (direction === 'Up') {
+                if (currentVal > uci) {
+                    rag = 'green';
+                } else if (currentVal < lci) {
+                    rag = 'red';
+                }
+            } else {
+                if (currentVal < uci) {
+                    rag = 'green';
+                } else if (currentVal > lci) {
+                    rag = 'red';
+                }
+            }
+            console.log('RAG ' + rag);
+
+        }
+        return rag;
+    }.property('ragTarget', 'valueString', 'currentValue')
 });
 
 Dashboard.IndicatorModel.reopenClass({
