@@ -269,8 +269,12 @@ module.exports = function (grunt) {
                 options: {
                     patterns: [
                         {
-                            match: /(isLoggedIn = true;)/g,
+                            match: /(isLoggedIn = false;)/g,
                             replacement: 'isLoggedIn = {% if c.userobj %}true{% else %}false{% endif %};'
+                        },
+                        {
+                            match: /(var ignoreAuth = true;)/g,
+                            replacement: ''
                         }
                     ]
                 },
@@ -323,7 +327,7 @@ module.exports = function (grunt) {
                         return content
                             .replace(/"images/g, '"/dashboard/images')
                             .replace(/"scripts/g, '"/dashboard/scripts')
-                            .replace(/"styles/g, '"/dashboard/styles');
+                            .replace(/"styles\//g, '"/dashboard/styles/');
                     }
                 }
             }

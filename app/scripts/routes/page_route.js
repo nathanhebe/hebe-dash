@@ -1,9 +1,10 @@
-Dashboard.PageRoute = Ember.Route.extend({
+Dashboard.PageRoute = Dashboard.AuthenticatedRoute.extend({
     dashID: null,
     annexID: null,
     pageID: null,
 
     model: function (params) {
+        this._super();
         var dashID = params.dashID;
         var annexID = params.annexID;
         var pageID = params.pageID;
@@ -13,12 +14,12 @@ Dashboard.PageRoute = Ember.Route.extend({
 
         var dash = this.modelFor('dash');
         if (dash == null) {
-            console.log("the dash root has not previously been loaded so the model isn't setup");
+            //console.log("the dash root has not previously been loaded so the model isn't setup");
             // we've likely come to this route directly 
                 // the dash root has not previously been loaded so the model isn't setup
                 // load the model based on the first url segment
             return Dashboard.DashboardModel.find(dashID).then(function (dash) {
-                console.log('Loaded dash = ' + dash);
+                //console.log('Loaded dash = ' + dash);
                 var resourceID = dash.get('ckanResourceID');
                 if (resourceID != null) {
                     return Dashboard.ReportModel.find(resourceID).then(function (annexes) {

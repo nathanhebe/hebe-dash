@@ -1,11 +1,8 @@
 Dashboard.Router.map(function () {
     this.resource('dash', { path: '/:dashID' });
-    //this.resource('dashboard', { path: '/annex' }, function () {
-        //this.resource('annex', { path: '/:annexID' }, function () {
-        //    this.resource('page', { path: '/:pageID' });
-     //});
     this.resource('page', { path: '/:dashID/:annexID/:pageID' });
-    //});
+    this.route('permissions');
+    this.route('login');
 });
 
 Dashboard.Router.reopen({
