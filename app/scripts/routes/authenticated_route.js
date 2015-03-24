@@ -3,7 +3,7 @@ Dashboard.AuthenticatedRoute = Ember.Route.extend({
     hasPermission: false,
 
     model: function () {
-        if (!this.get('hasPermission')) {
+        if (ignoreAuth !== true && !this.get('hasPermission')) {
             // isLoggedIn will be set to true in index.html if in ckan environment and has valid user object
             if (isLoggedIn == null || isLoggedIn === false) {
                 // display error message and instructions to login

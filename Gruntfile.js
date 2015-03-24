@@ -271,6 +271,10 @@ module.exports = function (grunt) {
                         {
                             match: /(isLoggedIn = false;)/g,
                             replacement: 'isLoggedIn = {% if c.userobj %}true{% else %}false{% endif %};'
+                        },
+                        {
+                            match: /(var ignoreAuth = true;)/g,
+                            replacement: ''
                         }
                     ]
                 },
