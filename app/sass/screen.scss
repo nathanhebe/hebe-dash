@@ -187,40 +187,41 @@ body > .ember-view {
         width: auto;
         font-size: $font-size-small;
         font-weight: $font-weight-light;
-        position:relative;
+        position: relative;
 
         .icon {
-            position:absolute;
-            top:$margin-main/4;
-            right:$margin-main/2;
+            position: absolute;
+            top: $margin-main/4;
+            right: $margin-main/2;
         }
 
         button {
             padding: $margin-main/2;
             @include animate(all, 0.1s, linear);
             width: 100%;
-            text-align:left;
+            text-align: left;
         }
 
         .listWrapper {
-            position:relative;
+            position: relative;
 
             ul {
                 @include opacity(0);
                 @include animate(all, 0.1s, linear);
                 @include border-bottom-radius(10px);
                 @include border-bottom-radius(10px);
-                top:0px;
+                top: 0px;
                 background: $color-white;
-                width:100%;
+                width: 100%;
                 position: absolute;
 
                 li {
                     padding: $margin-main / 2;
-                    border-bottom:$border-main;
+                    border-bottom: $border-main;
+
                     a {
-                        color:$color-grey-darker;
-                        text-decoration:none;
+                        color: $color-grey-darker;
+                        text-decoration: none;
                     }
                 }
             }
@@ -230,10 +231,11 @@ body > .ember-view {
             button {
                 @include border-bottom-radius(0px);
             }
+
             .listWrapper {
                 ul {
                     @include opacity(1);
-                    visibility:visible;
+                    visibility: visible;
                 }
             }
         }
@@ -250,6 +252,63 @@ body > .ember-view {
             .missing.block {
                 background-color: $color-bg;
                 color: $color-bg;
+            }
+
+            /* override some of the standard block styles to account for :first-of-type now they're in ember-view componenet tags */
+            .chart .blockRow.blockRow5 {
+                .ember-view {
+                    .block {
+                        margin-left:$margin-main/4;
+
+                        .currentValue {
+
+                        }
+
+                        .previousValue {
+
+                        }
+                    }
+
+                    &:first-of-type {
+                        .block {
+                            /*margin-left:0px;*/
+                        }
+                    }
+                }
+            }
+
+            .columnTitles {
+                padding-top: $margin-main/4;
+                padding-bottom: $margin-main/4;
+                border-top: $border-main;
+                border-bottom: $border-main;
+
+                .col {
+                    padding-top: $margin-main/4;
+                    padding-bottom: $margin-main/4;
+                }
+            }
+
+            .ragTitles {
+                .col {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
+
+                .colHeader {
+                    float: left;
+                    width: 17%;
+                    padding-left: 2%;
+                    border-left: $border-main;
+                    padding-top: $margin-main/4;
+                    padding-bottom: $margin-main/4;
+
+                    &:last-of-type {
+                        border-right: none;
+                        margin-left:2%;
+                        width:12%;
+                    }
+                }
             }
         }
 

@@ -2,14 +2,25 @@
     <section id="MainContent">
         <!--<h2>{{subTitle}}</h2>-->
 
-        <!--NHS ENGLAND-->
-        <div class="row">
-            <h2 class="col span_11 marginBNone">Performance Summary for NHS England</h2>
-            <div class="col span_1 marginBNone relative">
-                <div class="seperator"></div>
-                No Trend
+        <div class="row columnTitles">
+            <div class="col span_5 paddingLNone">
+                <h4>Aspects of NHS constitution</h4>
+            </div>
+            <div class="col span_6 borderL">
+                <h4>No. of indicators per RAG rating</h4>
+            </div>
+            <div class="col span_1 borderL">
+                <h4>No trend</h4>
             </div>
         </div>
+
+        <!--NHS ENGLAND-->
+        <div class="row">
+            <h2 class="col span_12 marginBNone">Performance Summary for NHS England</h2>
+        </div>
+
+        {{performance-summary-rag-titles}}
+
         {{#each indicator in nhsEnglandRAGTotals}}
         <div class="row borderT marginTL paddingBNone paddingBS chart">
             <div class="col span_4 alignL">{{indicator.title}}</div>
@@ -21,72 +32,34 @@
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
 
-                    <div class="red block">
-                        <div class="currentValue">{{indicator.current.red}}</div>
-                        <div class="previousValue">{{indicator.previous.red}}</div>
-                    </div>
+                    {{performance-summary-block color="red" current=indicator.previous.red previous=indicator.previous.red}}
+                    {{performance-summary-block color="redAmber" current=indicator.previous.amberRed previous=indicator.previous.amberRed}}
+                    {{performance-summary-block color="amber" current=indicator.previous.amber previous=indicator.previous.amber}}
+                    {{performance-summary-block color="amberGreen" current=indicator.previous.amberGreen previous=indicator.previous.amberGreen}}
+                    {{performance-summary-block color="green" current=indicator.previous.green previous=indicator.previous.green}}
 
-                    <div class="redAmber block">
-                        <div class="currentValue">{{indicator.current.amberRed}}</div>
-                        <div class="previousValue">{{indicator.previous.amberRed}}</div>
-                    </div>
-
-                    <div class="amber block">
-                        <div class="currentValue">{{indicator.current.amber}}</div>
-                        <div class="previousValue">{{indicator.previous.amber}}</div>
-                    </div>
-
-                    <div class="amberGreen block">
-                        <div class="currentValue">{{indicator.current.amberGreen}}</div>
-                        <div class="previousValue">{{indicator.previous.amberGreen}}</div>
-                    </div>
-
-                    <div class="green block">
-                        <div class="currentValue">{{indicator.current.green}}</div>
-                        <div class="previousValue">{{indicator.previous.green}}</div>
-                    </div>
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">
                 <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">{{indicator.current.missing}}</div>
-                        <div class="previousValue">{{indicator.previous.missing}}</div>
-                    </div>
+                    {{performance-summary-block color="blue" current=indicator.previous.missing previous=indicator.previous.missing}}
                 </div>
             </div>
         </div>
         {{/each}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <!--NHS-->
         <div class="row marginTL borderT paddingTL">
             <h2 class="col span_11 marginBNone">Performance Summary for NHS</h2>
             <div class="col span_1 marginBNone relative">
-                <div class="seperator"></div>
-                No Trend
+                <!--<div class="seperator"></div>
+                No Trend-->
+                &nbsp;
             </div>
         </div>
-        <!--<div class="row borderT borderB">
-            <div class="col span_11 alignL bold">Performance Summary for NHS</div>
-            <div class="col span_1 relative">
-                <div class="seperator"></div>
-                No Trend
-            </div>
-        </div>-->
+
+        {{performance-summary-rag-titles}}
+
         <!--Dynamic Page indicators-->
         {{#each page in pages}}
         <div class="row borderT marginTL paddingBNone paddingBS chart">
@@ -97,10 +70,7 @@
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
                     {{#each rag in page.ragStatus}}
-                        <div {{bind-attr class="rag.colour :block"}}>
-                            <div class="currentValue">{{rag.count}}</div>
-                            <div class="previousValue">{{rag.previous}}</div>
-                        </div>
+                        {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
                     {{/each}}
                 </div>
             </div>
@@ -123,14 +93,9 @@
             <div class="col span_1 alignC borderL borderR relative">&nbsp;</div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
-
                     {{#each rag in pageRAGTotals}}
-                    <div {{bind-attr class="rag.colour :block"}}>
-                        <div class="currentValue">{{rag.count}}</div>
-                        <div class="previousValue">{{rag.previous}}</div>
-                    </div>
+                    {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
                     {{/each}}
-
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">

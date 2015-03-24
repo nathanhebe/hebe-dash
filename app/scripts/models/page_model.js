@@ -79,19 +79,6 @@ Dashboard.PageModel = Ember.Object.extend({
         }
     }.property('_ragStatus'),
 
-    //_indicatorsByRAGDESC: null,
-    //indicatorsByRAGDESC: function () {
-    //    var indicators = this.get('indicators');
-
-    //    //songsController = Ember.ArrayController.create({
-    //    //    content: songs,
-    //    //    sortProperties: ['ragColour'],
-    //    //    sortAscending: false
-    //    //});
-    //    //_.sortBy(indicators, function (o) { return o.get('ragColour'); });
-
-    //    return indicators;
-    //}.property()
     _data: null,
     data: function () {
         if (this.get('_data') === null) {
@@ -132,13 +119,13 @@ Dashboard.PageModel = Ember.Object.extend({
                                             switch (rag) {
                                                 case "A/R":
                                                     return 'redAmber';
-                                                case "R": 
+                                                case "R":
                                                     return 'red';
-                                                case "A": 
+                                                case "A":
                                                     return 'amber';
-                                                case "A/G": 
+                                                case "A/G":
                                                     return 'amberGreen';
-                                                case "G": 
+                                                case "G":
                                                     return 'green';
                                             }
                                         };
@@ -166,8 +153,25 @@ Dashboard.PageModel = Ember.Object.extend({
                         }
                     }
                     return obj.get('_data');
+                case "page_supplimentary_text":
+                    var obj = this;
+                    if (this.get('_data') === null) {
+                        if (this.get('ckanID') !== null) {
+                            var ckanID = this.get('ckanID');
+                            $.ajax({
+                               // url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
+                                url: 'http://54.154.11.196/dataset/4e0ecf43-d6cd-432c-876e-016e325fbb0c/resource/4803b5a5-36a6-43b7-b001-462efde0dde2/download/introduction.txt'
+                            }).then(function (response) {
+                                var text = Handlebars.Utils.escapeExpression(response);
+                                text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+                                text = new Handlebars.SafeString(text);
+                                obj.set('_data', text);
+                            });
+                        }
+                    }
+                    return obj.get('_data');
             }
         }
-        return this.get('_rows');
+        return this.get('_data');
     }.property('_data')
 });

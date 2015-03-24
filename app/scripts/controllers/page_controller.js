@@ -81,13 +81,6 @@ Dashboard.PageController = Ember.ObjectController.extend({
             }
         }
     }.property('_nhsEnglandRAGTotals')
-
-    //fullNameChanged: function () {
-    //    // deal with the change
-    //    console.log('Indicator Changed');
-    //    this.set('_hasValues',true);
-    //}.observes('indicators')
-    //.on('init')
 });
 
 Ember.Handlebars.helper('ragColour', function (value, options) {
