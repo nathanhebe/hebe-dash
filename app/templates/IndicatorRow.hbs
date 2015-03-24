@@ -18,21 +18,6 @@
 </div>
 
 
-<div class="accordionContent" {{bind-attr data-indicator-id=id}}>
-    {{#if subTitle}}
-        <p class="marginTL"><span class="bold">Full title: </span>{{title}}</p>
-    {{/if}}
-    {{#if valueUnitDescription}}
-        <p class="marginTL"><span class="bold">Units of measurement: </span>{{valueUnitDescription}}</p>
-    {{/if}}
-    {{#if description}}
-        <p class="bold marginTL">Comments:</p>
-        <p class="borderB marginTL paddingBS small">{{description}}</p>
-    {{/if}}
-    <p class="bold marginTL">Compare performance for Key indicator over time:</p>
-    <div class="chart marginTL">
-        {{#if currentValue}}
-        {{heat-map data=indicator}}
-        {{/if}}
-    </div>
-</div>
+
+{{indicator-row-chart model=this indicator=indicator}}
+

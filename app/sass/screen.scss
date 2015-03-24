@@ -280,6 +280,11 @@ body > .ember-view {
             }
         }
 
+        .noAccordionHandle {
+            width: 30%;
+            display: inline-block;
+        }
+
         .accordionContent {
             display: none;
         }
