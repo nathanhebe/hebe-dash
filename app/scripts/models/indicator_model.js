@@ -199,7 +199,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                 return this.calculateRAG();
             }
 
-            console.log('current = ' + current + ', previous = ' + previous);
+            //console.log('current = ' + current + ', previous = ' + previous);
 
             if (current == null || previous == null || current.value === null || previous.value === null) {
                 return 'blue';

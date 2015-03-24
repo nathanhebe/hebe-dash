@@ -1,0 +1,20 @@
+<div id="SiteWrapper" class="siteWrapper">
+    <span data-wrapping-around-header-outlet="true">
+        {{header-main}}
+    </span>   
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        {{outlet}}
+
+        <div id="MainWrapper" class="boardReport">
+            <section id="MainContent">
+                <h2>Sorry, you don't appear to have the required permissions for the NHS England Data Catalogue</h2>
+                <p>Please contact <a href="mailto:mohammed.khaliq@nhs.net">mohammed.khaliq@nhs.net</a> if you believe you should have the correct permissions.</p>
+                <p class="paddingTL">...or try logging in again at <a href="https://data.england.nhs.uk">the NHS England Data Catalogue</a>.</p>
+            </section>
+        </div>
+</div>
+
+

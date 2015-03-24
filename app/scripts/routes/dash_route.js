@@ -1,5 +1,6 @@
-Dashboard.DashRoute = Ember.Route.extend({
+Dashboard.DashRoute = Dashboard.AuthenticatedRoute.extend({
     model: function (params) {
+        this._super();
         var dashID = params.dashID;
         return Dashboard.DashboardModel.find(dashID);
     },
@@ -49,7 +50,7 @@ Dashboard.DashRoute = Ember.Route.extend({
         },
 
         closeModal: function () {
-            console.log('DashRoute > closeModal');
+            //console.log('DashRoute > closeModal');
             return this.disconnectOutlet({
                 outlet: 'modal',
                 parentView: 'application'

@@ -269,7 +269,7 @@ module.exports = function (grunt) {
                 options: {
                     patterns: [
                         {
-                            match: /(isLoggedIn = true;)/g,
+                            match: /(isLoggedIn = false;)/g,
                             replacement: 'isLoggedIn = {% if c.userobj %}true{% else %}false{% endif %};'
                         }
                     ]
