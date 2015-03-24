@@ -1,10 +1,10 @@
 
     <div class="row marginTL" {{bind-attr data-indicator-id=id}}>
         <div class="col span_2 borderT borderB borderL radiusL noWrap">
-            <span class="accordionHandle">&nbsp;</span>
+            <span {{bind-attr class="showChart:accordionHandle:noAccordionHandle"}}>&nbsp;</span>
             {{periodOfCoverage}}
         </div>
-        <div class="col span_7 borderL borderT borderB borderR ellipses">{{mainTitle}}</div>
+        <div class="col span_6 borderL borderT borderB borderR ellipses">{{mainTitle}}</div>
         <div class="col span_1 insideMarginR borderT borderB borderR radiusR">
             <div class="currentValue">
                 {{getRAGTarget}}{{#if getRAGTarget}}{{valueString}}{{else}}&nbsp;{{/if}}
@@ -15,27 +15,18 @@
                 {{currentVal}}{{valueString}}
             </div>
         </div>
-        <div {{bind-attr class="ragColour :col :span_1 :indicator :paddingLNone :radiusR_XL trend"}}>
+        <div {{bind-attr class="ragColour :col :span_1 :indicator :paddingLNone :radiusR"}}>
             <div class="previousValue">{{previousVal}}{{valueString}}</div>
         </div>
-    </div>
 
 
-    <div class="accordionContent" {{bind-attr data-indicator-id=id}}>
-        {{#if subTitle}}
-            <p class="marginTL"><span class="bold">Full title: </span>{{title}}</p>
-        {{/if}}
-        {{#if valueUnitDescription}}
-            <p class="marginTL"><span class="bold">Units of measurement: </span>{{valueUnitDescription}}</p>
-        {{/if}}
-        {{#if description}}
-            <p class="bold marginTL">Comments:</p>
-            <p class="borderB marginTL paddingBS small">{{description}}</p>
-        {{/if}}
-        <p class="bold marginTL">Compare performance for Key indicator over time:</p>
-        <div class="chart marginTL">
-            {{#if currentValue}}
-            {{heat-map data=indicator}}
-            {{/if}}
+        <div {{bind-attr class=":col :span_1 :indicator :trendCol trend"}}>
+            &nbsp;
         </div>
+
     </div>
+
+
+    {{indicator-row-chart model=this indicator=indicator}}
+
+    

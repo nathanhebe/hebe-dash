@@ -13,20 +13,18 @@
                 <span class="accordionHandle noBackground">&nbsp;</span>
                 Date
             </div>
-            <div class="col span_7 borderL">Aspect of Outcomes</div>
+            <div class="col span_6 borderL">Aspect of Outcomes</div>
             <div class="col span_1 ">&nbsp;</div>
             <div class="col span_1 borderL">Current</div>
             <div class="col span_1 borderL">Previous</div>
+            <div class="col span_1 borderL">Trend</div>
         </div>
 
         {{#each indicator in indicators}}
 
-
         {{#if indicator.hasValue}}
         {{/if}}
-
             {{render "IndicatorRow" indicator}}
-
         {{/each}}
 
     </section>

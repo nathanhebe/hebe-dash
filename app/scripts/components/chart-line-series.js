@@ -1,24 +1,15 @@
 ﻿/* jshint undef: true, unused: true */
 /* global $, d3, c3 */
 
-Dashboard.HeatMapComponent = Ember.Component.extend({
-    //margin: { top: 50, right: 0, bottom: 100, left: 30 },
-    //width: 900,
-    //height: 280,
-
+Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
     isDrawn: false,
 
     draw: function (myData) {
-        //this.set('data', myData);
-        //console.log(this.get('data'));
         var chartID = '#' + myData.get('chartID');
-        //console.log('Loading C3');
         var valueType = myData.get('valueString');
         var values = myData.get('_dataValues');
-
         var YMin = 0;
         var YMax = 0;
-
         var maxVal = Math.max.apply(values, $.map(values,
                 function (indicatorValue) {
                     return indicatorValue.value;
@@ -35,8 +26,6 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
                 }));
 
             minVal = minVal / 100;
-
-
             if (minVal > ragTarget) {
                 minVal = ragTarget;
             }
@@ -44,12 +33,8 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
             if (maxVal < ragTarget) {
                 maxVal = ragTarget;
             }
-
-
             minVal = minVal - 0.01;
             maxVal = maxVal + 0.01;
-
-
             YMax = maxVal;
             YMin = minVal;
         }
@@ -145,7 +130,7 @@ Dashboard.HeatMapComponent = Ember.Component.extend({
         var chart = $(chartID);
 
         var accordionContent = chart.parents('.accordionContent');
-        var handle = accordionContent.siblings('div[data-indicator-id="' + data.get('id') + '"]');
+        var handle = accordionContent.parent().siblings('.row[data-indicator-id="' + data.get('id') + '"]');
         var obj = this;
         handle.click(function () {
             if (!obj.get('isDrawn')) {
