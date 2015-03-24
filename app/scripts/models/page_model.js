@@ -159,8 +159,9 @@ Dashboard.PageModel = Ember.Object.extend({
                         if (this.get('ckanID') !== null) {
                             var ckanID = this.get('ckanID');
                             $.ajax({
-                               // url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
-                                url: 'http://54.154.11.196/dataset/4e0ecf43-d6cd-432c-876e-016e325fbb0c/resource/4803b5a5-36a6-43b7-b001-462efde0dde2/download/introduction.txt'
+                                // url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
+                                //4803b5a5-36a6-43b7-b001-462efde0dde2
+                                url: 'http://54.154.11.196/dataset/4e0ecf43-d6cd-432c-876e-016e325fbb0c/resource/'+ckanID+'/download'
                             }).then(function (response) {
                                 var text = Handlebars.Utils.escapeExpression(response);
                                 text = text.replace(/(\r\n|\n|\r)/gm, '<br>');

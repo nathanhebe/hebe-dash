@@ -4,7 +4,7 @@
             <span {{bind-attr class="showChart:accordionHandle:noAccordionHandle"}}>&nbsp;</span>
             {{periodOfCoverage}}
         </div>
-        <div class="col span_7 borderL borderT borderB borderR ellipses">{{mainTitle}}</div>
+        <div class="col span_6 borderL borderT borderB borderR ellipses">{{mainTitle}}</div>
         <div class="col span_1 insideMarginR borderT borderB borderR radiusR">
             <div class="currentValue">
                 {{getRAGTarget}}{{#if getRAGTarget}}{{valueString}}{{else}}&nbsp;{{/if}}
@@ -15,9 +15,15 @@
                 {{currentVal}}{{valueString}}
             </div>
         </div>
-        <div {{bind-attr class="ragColour :col :span_1 :indicator :paddingLNone :radiusR_XL trend"}}>
+        <div {{bind-attr class="ragColour :col :span_1 :indicator :paddingLNone :radiusR"}}>
             <div class="previousValue">{{previousVal}}{{valueString}}</div>
         </div>
+
+
+        <div {{bind-attr class=":col :span_1 :indicator :trendCol trend"}}>
+            &nbsp;
+        </div>
+
     </div>
 
 

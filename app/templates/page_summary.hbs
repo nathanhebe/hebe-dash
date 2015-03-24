@@ -76,10 +76,7 @@
             </div>
             <div class="col span_1 borderL paddingRNone">
                 <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
+                    {{performance-summary-block color="blue" current=5 previous=0}}
                 </div>
             </div>
         </div>
@@ -94,16 +91,13 @@
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
                     {{#each rag in pageRAGTotals}}
-                    {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
+                        {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
                     {{/each}}
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">
                 <div class="blockRow blockRow1">
-                    <div class="block blue">
-                        <div class="currentValue">5</div>
-                        <div class="previousValue">0</div>
-                    </div>
+                    {{performance-summary-block color="blue" current=5 previous=0}}
                 </div>
             </div>
         </div>
