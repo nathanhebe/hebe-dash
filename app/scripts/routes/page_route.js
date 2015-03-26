@@ -11,6 +11,7 @@ Dashboard.PageRoute = Dashboard.AuthenticatedRoute.extend({
         this.set('dashID', dashID);
         this.set('annexID', annexID);
         this.set('pageID', pageID);
+        var obj = this;
 
         var dash = this.modelFor('dash');
         if (dash == null) {
@@ -19,11 +20,14 @@ Dashboard.PageRoute = Dashboard.AuthenticatedRoute.extend({
                 // the dash root has not previously been loaded so the model isn't setup
                 // load the model based on the first url segment
             return Dashboard.DashboardModel.find(dashID).then(function (dash) {
-                //console.log('Loaded dash = ' + dash);
                 var resourceID = dash.get('ckanResourceID');
                 if (resourceID != null) {
                     return Dashboard.ReportModel.find(resourceID).then(function (annexes) {
-                        return annexes.findBy('id', annexID).pages.findBy('id', pageID);
+                        var page = annexes.findBy('id', annexID).pages.findBy('id', pageID);
+                        if (page.get('type') === 'page_summary') {
+                            page.set('ragPages', annexes.findBy('id', 'annex_b').pages);
+                        }
+                        return page;
                     });
                 }
             });
@@ -31,7 +35,11 @@ Dashboard.PageRoute = Dashboard.AuthenticatedRoute.extend({
             var resourceID = dash.get('ckanResourceID');
             if (resourceID != null) {
                 var model = Dashboard.ReportModel.find(resourceID).then(function (annexes) {
-                    return annexes.findBy('id', annexID).pages.findBy('id', pageID);
+                    var page = annexes.findBy('id', annexID).pages.findBy('id', pageID);
+                    if (page.get('type') === 'page_summary') {
+                        page.set('ragPages', annexes.findBy('id', 'annex_b').pages);
+                    }
+                    return page;
                 });
                 return model;
             }

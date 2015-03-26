@@ -52,7 +52,7 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
             }
         });
 
-
+        var valueTypeString = (myData.get('valueType') === '%' ? 'Percentage' : 'Value');
         var regions = [];
         if (myData.get('ragType') === 'Constitutional') {
             // constitution only...
@@ -93,6 +93,11 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
                     type: 'timeseries',
                     tick: {
                         format: '%b %Y'
+                    },
+                    label: {
+                        text: 'Change over time',
+                        position: 'outer-left',
+                        padding: { top: 18, bottom: 0 },
                     }
                 },
                 y: {
@@ -101,7 +106,12 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
                     },
                     min: YMin,
                     max: YMax,
-                    padding: { top: 18, bottom: 0 }
+                    padding: { top: 18, bottom: 0 },
+
+                    label: {
+                        text: valueTypeString + ' achieved',
+                        position: 'outer-bottom'
+                    }
                 }
             },
             grid: { y: { show: true } },
@@ -114,7 +124,7 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
             },
 
             padding: {
-                right:20
+                right: 20
             },
 
             regions: regions
@@ -123,6 +133,8 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         d3.select('.c3-axis.c3-axis-x').attr('clip-path', "");
         this.set('isDrawn', true);
     },
+
+
 
     didInsertElement: function () {
         var data = this.get('controller.data');

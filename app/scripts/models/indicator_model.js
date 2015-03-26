@@ -118,12 +118,15 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             return this.get('_dataValues');
         } else {
             var obj = this;
+            var ckanURL = Dashboard.get('settings').get('ckanUrl');
+            var dataID = Dashboard.get('settings').get('dataID');
 
             $.ajax({
-                //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "a358a675-fabf-4b6b-9163-f88d2b26e776" WHERE "Indicator id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "Year" DESC '
-                //url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "ed59dfc4-3076-4e84-806e-7a47d2321f36" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "year" DESC '
-                //url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "bbbd5e7a-54ae-44d7-9426-8edb02a51cbe" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "date" DESC '
-                url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "56879843-edf2-4b66-a8e1-f27a91befb7a" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
+                url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
+
+
+              //  url: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + dataID + '" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
+
             })
             .then(function (response) {
                 var results = [];
@@ -331,22 +334,38 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
             var ragTarget = this.get('ragTarget');
             ragTarget = (this.get('valueString') === '%' ? (ragTarget * 100) : ragTarget);
-            console.log('ragTarget : ' + ragTarget);
+            var direction = this.get('desiredDirection');
             var upper = ragTarget + 1;
-            //var lower = ragTarget - 1;
+            var lower = ragTarget - 1;
 
-            if (this.get('valueString') !== "%") {
-                if (current > ragTarget) {
-                    return 'red';
-                } else {
-                    return 'green';
+            if (direction === 'Up') {
+                if (this.get('valueString') !== "%") {
+                    if (current < lower) {
+                        return 'red';
+                    } else if (current > ragTarget) {
+                        return 'green';
+                    }
                 }
-            }
 
-            if (current > upper) {
-                rag = 'green';
-            } else if (current < ragTarget) {
-                rag = 'red';
+                if (current < lower) {
+                    rag = 'red';
+                } else if (current > ragTarget) {
+                    rag = 'green';
+                }
+            } else {
+                if (this.get('valueString') !== "%") {
+                    if (current > upper) {
+                        return 'red';
+                    } else if (current < ragTarget) {
+                        return 'green';
+                    }
+                }
+
+                if (current > upper) {
+                    rag = 'red';
+                } else if (current < ragTarget) {
+                    rag = 'green';
+                }
             }
         }
         return rag;

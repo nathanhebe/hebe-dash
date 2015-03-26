@@ -14,5 +14,5 @@ Dashboard.IndicatorRowController = Ember.ObjectController.extend({
 
 });
 
-Dashboard.IndicatorrowconstitutionController = Dashboard.IndicatorRowController.extend({
+Dashboard.IndicatorRowConstitutionController = Dashboard.IndicatorRowController.extend({
 });

@@ -2,17 +2,24 @@
 
 <div class="accordionContent" {{bind-attr data-indicator-id=model.id}}>
     {{#if model.subTitle}}
-    <p class="marginTL"><span class="bold">Full title: </span>{{model.title}}</p>
+    <p class="marginTS small"><span class="bold">Full title: </span>{{model.title}}</p>
     {{/if}}
     {{#if model.valueUnitDescription}}
-    <p class="marginTL"><span class="bold">Units of measurement: </span>{{valueUnitDescription}}</p>
+    <p class="marginTS small"><span class="bold">Units of measurement: </span>{{model.valueUnitDescription}}</p>
+    {{/if}}
+    {{#if model.ragTypeOfData}}
+    <p class="marginTS small"><span class="bold">Collected: </span>{{model.ragTypeOfData}}</p>
     {{/if}}
     {{#if model.description}}
-    <p class="bold marginTL">Comments:</p>
-    <p class="borderB marginTL paddingBS small">{{model.description}}</p>
+        <p class="bold marginTS small">Comments:</p>
+        <p class="borderB marginTS paddingBS small">{{model.description}}</p>
     {{/if}}
-    <p class="bold marginTL">Compare performance for Key indicator over time:</p>
-    <p class="marginTL"><span class="bold">X = </span>Change over time <span class="bold">Y = </span>{{ this.valueTypeString }} achieved</p>
+
+
+    <!--<p class="bold marginTS small">Compare performance for Key indicator over time:</p>
+    <p class="marginTS small"><span class="bold">X = </span>Change over time <span class="bold">Y = </span>{{ this.valueTypeString }} achieved</p>-->
+
+
     <div class="chart marginTL">
         {{#if model.currentValue}}
             {{chart-line-series data=indicator}}
