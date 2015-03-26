@@ -1,6 +1,7 @@
 Dashboard.PageController = Ember.ObjectController.extend({
     _pages: null,
     dashID: null,
+    noRAGTotal: null,
     pages: function () {
         if (this.get('_pages') !== null) {
             return this.get('_pages');
@@ -16,44 +17,43 @@ Dashboard.PageController = Ember.ObjectController.extend({
     pageRAGTotals: function () {
         var pages = this.get('pages');
         if (pages != null) {
-            var rags = {};
+            var rags = [];
             pages.forEach(function (page) {
                 var status = page.get('ragStatus');
                 //status.forEach(function (rag) {
-                for (var i = 0; i < status.length; i++) {
-                    var rag = status[i];
-                    var colour = rag.colour;
-                    //if (rags[colour] === undefined) {
-                    if (rags[i] === undefined) {
-                        rags[i] = {
-                            colour: rag.colour,
-                            count: rag.count,
-                            previous: rag.previous
-                        };
+                status.forEach(function (rag) {
+                    var ragForThisColour = rags.findBy('colour', rag.colour);
+                    if (ragForThisColour == null) {
+                        rags.push(rag);
                     } else {
-                        rags[i].count = parseInt(rags[i].count, 10) + parseInt(rag.count, 10);
-                        rags[i].previous = parseInt(rags[i].previous, 10) + parseInt(rag.previous, 10);
+                        ragForThisColour.count = ragForThisColour.count + rag.count;
+                        ragForThisColour.previous = ragForThisColour.previous + rag.previous;
                     }
-                }
+                });
             });
-            rags[1] = {
-                colour: 'missing',
-                count: "",
-                previous: "N/A"
-            };
-            rags[3] = {
-                colour: 'missing',
-                count: "",
-                previous: "N/A"
-            };
-            var tmp = [];
-            for (var key in rags) {
-                tmp.push(rags[key]);
+
+            var noRag = rags.findBy('colour', 'noRAG');
+            if (noRag != null) {
+                this.set('noRAGTotal', noRag);
             }
-            return tmp;
+
+            return rags;
         }
         return [];
-    }.property('_pages'),
+    }.property('_pages', '_pages.@each.ragStatus'),
+
+    pageragTotalsData: function () {
+        if (this.get('pageRAGTotals') != null) {
+            var noTrend = this.get('pageRAGTotals').filter(function (rag) {
+                if (rag.colour != 'noRAG') {
+                    return true;
+                }
+                return false;
+            });
+            return noTrend;
+        }
+        return [];
+    }.property('pageRAGTotals'),
 
     _nhsEnglandRAGTotals: null,
     nhsEnglandRAGTotals: function () {

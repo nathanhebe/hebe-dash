@@ -34,7 +34,7 @@
                 <div class="blockRow blockRow5">
 
                     {{performance-summary-block color="red" current=indicator.previous.red previous=indicator.previous.red}}
-                    {{performance-summary-block color="redAmber" current=indicator.previous.amberRed previous=indicator.previous.amberRed}}
+                    {{performance-summary-block color="amberRed" current=indicator.previous.amberRed previous=indicator.previous.amberRed}}
                     {{performance-summary-block color="amber" current=indicator.previous.amber previous=indicator.previous.amber}}
                     {{performance-summary-block color="amberGreen" current=indicator.previous.amberGreen previous=indicator.previous.amberGreen}}
                     {{performance-summary-block color="green" current=indicator.previous.green previous=indicator.previous.green}}
@@ -70,14 +70,14 @@
             </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
-                    {{#each rag in page.ragStatus}}
+                    {{#each rag in page.ragStatusData}}
                         {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
                     {{/each}}
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">
                 <div class="blockRow blockRow1">
-                    {{performance-summary-block color="blue" current=5 previous=0}}
+                    {{performance-summary-block color="blue" current=page.noRAGStatus.count previous=page.noRAGStatus.previous}}
                 </div>
             </div>
         </div>
@@ -91,14 +91,14 @@
             <div class="col span_1 alignC borderL borderR relative">&nbsp;</div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
-                    {{#each rag in pageRAGTotals}}
+                    {{#each rag in pageragTotalsData}}
                         {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
                     {{/each}}
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">
                 <div class="blockRow blockRow1">
-                    {{performance-summary-block color="blue" current=5 previous=0}}
+                    {{performance-summary-block color="blue" current=noRAGTotal.count previous=noRAGTotal.previous}}
                 </div>
             </div>
         </div>

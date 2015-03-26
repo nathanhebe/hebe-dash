@@ -39,47 +39,47 @@ Dashboard.PageModel = Ember.Object.extend({
 
     _ragStatus: null,
     ragStatus: function () {
-        if (this.get('_ragStatus') !== null) {
-            return this.get('_ragStatus');
-        } else {
+        //console.log('GET RAG ' + this.get('id'));
+        var status = [
+            { colour: 'red', count: 0, previous: 0 },
+            { colour: 'amberRed', count: 0, previous: 0 },
+            { colour: 'amber', count: 0, previous: 0 },
+            { colour: 'amberGreen', count: 0, previous: 0 },
+            { colour: 'green', count: 0, previous: 0 },
+            { colour: 'noRAG', count: 0, previous: 0 },
+        ];
 
-            var status = [
-                {
-                    colour: 'red',
-                    count: utils.random(1, 4),
-                    previous: utils.random(-6, -1)
-                },
-                {
-                    colour: 'missing',
-                    count: '',
-                    previous: 'N/A'
-                },
-                {
-                    colour: 'amber',
-                    count: utils.random(3, 11),
-                    previous: '+' + utils.random(1, 6)
-                },
-                {
-                    colour: 'missing',
-                    count: '',
-                    previous: 'N/A'
-                },
-                {
-                    colour: 'green',
-                    count: utils.random(10, 18),
-                    previous: '+' + utils.random(4, 10)
+        var output = '';
+        this.get('indicators').forEach(function (indicator) {
+            var rag = indicator.get('ragColour');
+            if (status.findBy('colour', rag) == null) {
+                status.push({ colour: rag, count: 0, previous: 0 })
+            }
+            status.findBy('colour', rag).count++
+        });
+
+        return status;
+    }.property('indicators.@each.currentValue'),
+
+    ragStatusData: function () {
+        if (this.get('ragStatus') != null) {
+            var noTrend = this.get('ragStatus').filter(function (rag) {
+                if (rag.colour != 'noRAG') {
+                    return true;
                 }
-                //,
-                //{
-                //    colour: 'blue',
-                //    count: 2,
-                //    previous: ''
-                //}
-            ];
-            this.set('_ragStatus', status);
-            return this.get('_ragStatus');
+                return false;
+            });
+            return noTrend;
         }
-    }.property('_ragStatus'),
+    }.property('ragStatus'),
+
+    noRAGStatus: function () {
+        if (this.get('ragStatus') != null) {
+            var noTrend = this.get('ragStatus').findBy('colour', 'noRAG');
+            return noTrend;
+        }
+    }.property('ragStatus'),
+
 
     _data: null,
     data: function () {
@@ -122,7 +122,7 @@ Dashboard.PageModel = Ember.Object.extend({
                                         var parseRAG = function (rag) {
                                             switch (rag) {
                                                 case "A/R":
-                                                    return 'redAmber';
+                                                    return 'amberRed';
                                                 case "R":
                                                     return 'red';
                                                 case "A":
