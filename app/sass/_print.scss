@@ -29,5 +29,20 @@
         h1 {
             margin-left: $margin-main/2;
         }
+
+        #NHSEnglandLogo svg {
+            display: none;
+        }
     }
+}
+
+.print-hide {
+    display: none;
+}
+.print-show {
+    display: inline-block;
+}
+
+.borderL--no-print {
+    border-left: 0 !important;
 }
