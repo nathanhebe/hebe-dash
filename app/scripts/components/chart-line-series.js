@@ -15,7 +15,8 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
                     return indicatorValue._val;
                 }));
         YMax = maxVal;
-        var ragTarget = parseFloat(myData.get('ragTarget'));
+
+        var ragTarget = parseFloat(myData.get('targetVal'));
 
         if (valueType === '%') {
             //maxVal = maxVal / 100;
@@ -104,7 +105,8 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
                 },
                 y: {
                     tick: {
-                        format: (valueType === '%' ? d3.format(".1%") : null)
+                        //format: (valueType === '%' ? d3.format("%") : null)
+                        format: function (x) { return x.toString() + (valueType === '%' ? '%': ''); }
                     },
                     min: YMin,
                     max: YMax,

@@ -38,6 +38,11 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         }
     }.property('currentValue'),
 
+    targetVal: function () {
+        var target = (this.get('valueString') === '%' ? (this.get('ragTarget') * 100) : this.get('ragTarget'));
+        return target;
+    }.property('ragTarget'),
+
     previousVal: function () {
         if (this.get('_previousVal') != null) {
             return this.get('_previousVal');
@@ -332,8 +337,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             //    return this.get('ragTarget') * 100;
             //}
 
-            var ragTarget = this.get('ragTarget');
-            ragTarget = (this.get('valueString') === '%' ? (ragTarget * 100) : ragTarget);
+            var ragTarget = this.get('targetVal');
             var direction = this.get('desiredDirection');
             var upper = ragTarget + 1;
             var lower = ragTarget - 1;
