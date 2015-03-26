@@ -54,8 +54,9 @@
 .print-indicator {
     display: none;
 }
-.indicator {
-    padding: 0 !important;
+.trendCol.indicator {
+    text-align: center;
+    padding: 10px 0 0 !important;
     &.up {
         .print-indicator.-up {
             display: inline-block;
@@ -77,4 +78,22 @@
 #MainWrapper .marginTL,
 #NavPage .marginTL {
     margin-top: 0;
+}
+
+#SiteWrapper.boardReport .indicator .currentValue,
+#MainWrapper.boardReport .indicator .currentValue,
+#NavPage.boardReport .indicator .currentValue {
+    font-size: 100%;
+}
+
+#SiteWrapper .borderL,
+#MainWrapper .borderL,
+#NavPage .borderL {
+    border-left: 0;
+}
+
+#SiteWrapper .borderR,
+#MainWrapper .borderR,
+#NavPage .borderR {
+    border-right: 0;
 }
