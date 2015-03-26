@@ -3017,4 +3017,26 @@ the other stylesheets. Remember, keep it light: Speed is Important.
   .print-nhs-logo {
     float: right;
   }
+
+  /* line 54, ../sass/_print.scss */
+  .print-indicator {
+    display: none;
+  }
+
+  /* line 57, ../sass/_print.scss */
+  .indicator {
+    padding: 0 !important;
+  }
+  /* line 60, ../sass/_print.scss */
+  .indicator.up .print-indicator.-up {
+    display: inline-block;
+  }
+  /* line 65, ../sass/_print.scss */
+  .indicator.even .print-indicator.-even {
+    display: inline-block;
+  }
+  /* line 70, ../sass/_print.scss */
+  .indicator.down .print-indicator.-down {
+    display: inline-block;
+  }
 }
