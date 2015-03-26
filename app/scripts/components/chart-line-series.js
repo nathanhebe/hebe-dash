@@ -12,20 +12,20 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         var YMax = 0;
         var maxVal = Math.max.apply(values, $.map(values,
                 function (indicatorValue) {
-                    return indicatorValue.value;
+                    return indicatorValue._val;
                 }));
         YMax = maxVal;
         var ragTarget = parseFloat(myData.get('ragTarget'));
 
         if (valueType === '%') {
-            maxVal = maxVal / 100;
+            //maxVal = maxVal / 100;
 
             var minVal = Math.min.apply(values, $.map(values,
                 function (indicatorValue) {
-                    return indicatorValue.value;
+                    return indicatorValue._val;
                 }));
 
-            minVal = minVal / 100;
+            //minVal = minVal / 100;
             if (minVal > ragTarget) {
                 minVal = ragTarget;
             }
@@ -33,8 +33,10 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
             if (maxVal < ragTarget) {
                 maxVal = ragTarget;
             }
-            minVal = minVal - 0.01;
-            maxVal = maxVal + 0.01;
+            minVal = minVal - 1;
+            maxVal = maxVal + 2;
+            //minVal = minVal - 0.01;
+            //maxVal = maxVal + 0.01;
             YMax = maxVal;
             YMin = minVal;
         }
@@ -46,9 +48,9 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
 
         var lineVals = values.map(function (val) {
             if (valueType === '%') {
-                return val.value / 100;
+                return val._val;
             } else {
-                return val.value;
+                return val._val;
             }
         });
 
