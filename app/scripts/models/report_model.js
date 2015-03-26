@@ -9,10 +9,10 @@ Dashboard.ReportModel.reopenClass({
         var data = {
             resource_id: resource_id
         };
+        var ckanURL = Dashboard.get('settings').get('ckanUrl');
         return $.ajax({
-            url: 'http://54.154.11.196/api/action/datastore_search',
-            data: data,
-            dataType: 'jsonp',
+            url: ckanURL + '/api/action/datastore_search',
+            data: data
         })
         .then(
             function (response) {
@@ -58,13 +58,14 @@ Dashboard.ReportModel.reopenClass({
     },
 
     findAll: function (){ //resource_id) {
-        var data = {
-            resource_id: 'f441a675-1d3c-43d8-aa8d-c1059381c0e8', // the resource id
-        };
+        //var data = {
+        //    resource_id: 'f441a675-1d3c-43d8-aa8d-c1059381c0e8', // the resource id
+        //};
+        var ckanURL = Dashboard.get('settings').get('ckanUrl');
+        var ckanURL = Dashboard.get('settings').get('ckanUrl');
         return $.ajax({
-            url: 'http://54.154.11.196/api/action/datastore_search',
-            data: data,
-            dataType: 'jsonp',
+            url: ckanURL + '/api/action/datastore_search',
+            data: data
         })
         .then(
         function (response) {

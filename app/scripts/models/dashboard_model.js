@@ -39,10 +39,11 @@ Dashboard.DashboardModel = Ember.Object.extend({
                         var data = {
                             resource_id: resourceID
                         };
+                        var ckanURL = Dashboard.get('settings').get('ckanUrl');
+
                         $.ajax({
-                            url: 'http://54.154.11.196/api/action/datastore_search',
-                            data: data,
-                            dataType: 'jsonp',
+                            url: ckanURL + '/api/action/datastore_search',
+                            data: data
                         })
                         .then(
                             function (response) {
@@ -73,18 +74,23 @@ Dashboard.DashboardModel = Ember.Object.extend({
 });
 
 Dashboard.DashboardModel.reopenClass({
+    needs: ['settings'],
+
     find: function (dashID) {
         return this.findAll().then(function (data) {
             return data.filterBy('id', dashID)[0];
         });
     },
     findAll: function () {
+        var ckanURL = Dashboard.get('settings').get('ckanUrl');
+        var directoryID = Dashboard.get('settings').get('directoryID');
+
         var data = {
-            resource_id: 'e8a418c8-c879-4dd9-b36f-ecb9b6d65678', // the resource id
+            resource_id: directoryID //'e8a418c8-c879-4dd9-b36f-ecb9b6d65678', // the resource id
         };
 
         return $.ajax({
-            url: 'http://54.154.11.196/api/action/datastore_search',
+            url: ckanURL + '/api/action/datastore_search',
             data: data,
         })
         .then(

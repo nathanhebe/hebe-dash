@@ -279,7 +279,7 @@ module.exports = function (grunt) {
                     ]
                 },
                 files: [
-                    { src: 'ckan/dashboard.html', dest: 'ckan/dashboard.html' }
+                    { src: 'ckan/boardreport.html', dest: 'ckan/boardreport.html' }
                 ]
             }
 
@@ -325,17 +325,24 @@ module.exports = function (grunt) {
                 options: {
                     processContent: function (content, srcpath) {
                         return content
-                            .replace(/"images/g, '"/dashboard/images')
-                            .replace(/"scripts/g, '"/dashboard/scripts')
-                            .replace(/"styles\//g, '"/dashboard/styles/');
+                            .replace(/"images\//g, '"/boardreport-asset-pipeline/images/')
+                            .replace(/"scripts\//g, '"/boardreport-asset-pipeline/scripts/')
+                            .replace(/"styles\//g, '"/boardreport-asset-pipeline/styles/');
                     }
                 }
+            },
+            ckanImages: {
+                expand: true,
+                dot: true,
+                cwd: '<%= yeoman.dist %>',
+                dest: 'ckan',
+                src: ["images/*.*"],
             }
         },
         rename: {
             ckan: {
                 files: [
-                    { src: ['ckan/index.html'], dest: 'ckan/dashboard.html' },
+                    { src: ['ckan/index.html'], dest: 'ckan/boardreport.html' },
                 ]
             }
         },
@@ -437,6 +444,7 @@ module.exports = function (grunt) {
         'build',
         'clean:ckan',
         'copy:ckan',
+        'copy:ckanImages',
         'rename:ckan',
         'replace:ckan',
     ])

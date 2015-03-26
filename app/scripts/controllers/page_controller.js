@@ -5,26 +5,14 @@ Dashboard.PageController = Ember.ObjectController.extend({
         if (this.get('_pages') !== null) {
             return this.get('_pages');
         } else {
-            var obj = this;
-            Dashboard.ReportModel.findAll()
-                .then(function (report) {
-                    var pages = report.annexes.findBy('id', 'annex_b').pages;
-                    //console.log('pages = ' + pages);
-                    obj.set('_pages', pages);
-                });
+            // ragPages should be set in page route from the model hook
+            var ragPages = this.get('ragPages');
+            console.log(ragPages);
+            this.set('_pages', ragPages)
+            return this.get('_pages');
         }
-        //var status = [];
+    }.property('_pages', 'ragPages'),
 
-        //pages.forEach(function (page) {
-        //    status.push({});
-        //    page.indicators.forEach(function(indicator){
-        //        status.push({
-
-        //        });
-        //    });
-        //});
-
-    }.property('_pages'),
     pageRAGTotals: function () {
         var pages = this.get('pages');
         if (pages != null) {

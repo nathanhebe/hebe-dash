@@ -4,8 +4,10 @@ Dashboard.IndexRoute = Ember.Route.extend({
         return Dashboard.DashboardModel.findAll();
     },
     afterModel: function (dashes, transition) {
-        if (dashes.get('length') > 0) {
-            this.replaceWith('dash', dashes.get('lastObject').get('id'));
+        if (dashes != null && dashes != undefined) {
+            if (dashes.get('length') > 0) {
+                this.replaceWith('dash', dashes.get('lastObject').get('id'));
+            }
         }
     }
 });

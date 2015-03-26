@@ -12,8 +12,12 @@
     </svg>
     <div class="listWrapper radiusB">
         <ul>
-            {{#each reports}}
-            <li>{{#link-to 'dash' this.id}}{{this.title}}{{/link-to}}</li>
+            {{#each report in reports}}
+                {{#if currentPageID}}
+                    <li>{{#link-to 'page' report.id currentAnnexID currentPageID}}{{report.title}}{{/link-to}}</li>
+                {{else}}
+                    <li>{{#link-to 'dash' report.id}}{{report.title}}{{/link-to}}</li>
+                {{/if}}
             {{/each}}
         </ul>
     </div>

@@ -1,0 +1,17 @@
+﻿
+<div class="row">
+    <div class="col span_10">
+        {{#if subTitle}}
+            <h2>{{subTitle}}</h2>
+        {{/if}}
+    </div>
+    <div class="col span_2 marginLNone marginRNone paddingLNone paddingRNone">
+        {{#if showPicker}}
+            {{board-report-picker currentAnnexID=currentAnnexID currentPageID=currentPageID}}
+        {{/if}}
+    </div>
+</div>
+
+{{#if description}}
+<div class="marginBL marginTL">{{description}}</div>
+{{/if}}

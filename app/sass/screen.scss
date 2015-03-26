@@ -129,6 +129,12 @@ body > .ember-view {
     .missing {
         background-color: $color-bg-light;
     }
+
+    .noRAG {
+        background-color: $color-bg-light;
+        color:$color-font-main;
+    }
+
     /* Fullscreen Modal */
     .modalHighlightedive {
         z-index: 4;
@@ -360,6 +366,10 @@ body > .ember-view {
         .indicator {
             position: relative;
             color: $color-font-light;
+
+            &.noRAG {
+                color:$color-font-main;
+            }
 
             .currentValue {
                 font-size: $font-size-heading;
