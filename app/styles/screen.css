@@ -3039,4 +3039,11 @@ the other stylesheets. Remember, keep it light: Speed is Important.
   .indicator.down .print-indicator.-down {
     display: inline-block;
   }
+
+  /* line 76, ../sass/_print.scss */
+  #SiteWrapper .marginTL,
+  #MainWrapper .marginTL,
+  #NavPage .marginTL {
+    margin-top: 0;
+  }
 }
