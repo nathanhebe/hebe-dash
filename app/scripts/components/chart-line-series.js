@@ -12,7 +12,7 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         var YMax = 0;
         var maxVal = Math.max.apply(values, $.map(values,
                 function (indicatorValue) {
-                    return indicatorValue._val;
+                    return indicatorValue.get('val');
                 }));
         YMax = maxVal;
 
@@ -48,11 +48,8 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         });
 
         var lineVals = values.map(function (val) {
-            if (valueType === '%') {
-                return val._val;
-            } else {
-                return val._val;
-            }
+            var value = val.get('val');
+            return value;
         });
 
         var valueTypeString = (myData.get('valueType') === '%' ? 'Percentage' : 'Value');

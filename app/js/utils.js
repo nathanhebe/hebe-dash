@@ -50,14 +50,19 @@
     };
 
     return {
-        init: function(){
+        init: function () {
             setupExtensionFunctions();
         },
-        random: function (min,max) {
+        random: function (min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);
         },
-        isArray: function(target){
+        isArray: function (target) {
             return (Object.prototype.toString.call(target) === '[object Array]');
+        },
+        parseNumber: function (string) {
+            var str = string.toString();
+            var number = str.replace(/[^0-9\.]+/g, '');
+            return parseFloat(number);
         },
         public_function2: function () {
         }
