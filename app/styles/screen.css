@@ -2548,7 +2548,7 @@ body > .ember-view {
 }
 /* line 920, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .group__headings, #MainWrapper.boardReport .supplimentary .group__headings, #NavPage.boardReport .supplimentary .group__headings {
-  padding-left: 9.333333333%;
+  padding-left: 4.75%;
 }
 /* line 924, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .dataRow, #MainWrapper.boardReport .supplimentary .dataRow, #NavPage.boardReport .supplimentary .dataRow {
@@ -2618,9 +2618,8 @@ body > .ember-view {
 #SiteWrapper.boardReport .risks .groupLabel, #MainWrapper.boardReport .risks .groupLabel, #NavPage.boardReport .risks .groupLabel {
   background: #ECECEC;
   height: 100%;
-  width: 8%;
 }
-/* line 1001, ../sass/screen.scss */
+/* line 1000, ../sass/screen.scss */
 #SiteWrapper.boardReport .risks .groupLabel .verticalText, #MainWrapper.boardReport .risks .groupLabel .verticalText, #NavPage.boardReport .risks .groupLabel .verticalText {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -2632,7 +2631,7 @@ body > .ember-view {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 1016, ../sass/screen.scss */
+/* line 1015, ../sass/screen.scss */
 #SiteWrapper.dashboard, #MainWrapper.dashboard, #NavPage.dashboard {
   /******************************************************************
   Site Name:
@@ -2814,7 +2813,7 @@ body > .ember-view {
   transform: rotateY(180deg);
 }
 
-/* line 1025, ../sass/screen.scss */
+/* line 1024, ../sass/screen.scss */
 #NavPage {
   width: 100%;
   height: 100%;
