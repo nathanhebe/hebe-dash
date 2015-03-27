@@ -134,7 +134,11 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
 
         d3.select('.c3-axis.c3-axis-x').attr('clip-path', "");
         this.set('isDrawn', true);
+
+        d3.selectAll('.c3-axis-x-label').attr('y', "2.5em");
     },
+
+
 
 
 
