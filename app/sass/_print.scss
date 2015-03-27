@@ -29,5 +29,71 @@
         h1 {
             margin-left: $margin-main/2;
         }
+
+        #NHSEnglandLogo svg {
+            display: none;
+        }
     }
+}
+
+.print-hide {
+    display: none;
+}
+.print-show {
+    display: inline-block;
+}
+
+.borderL--no-print {
+    border-left: 0 !important;
+}
+
+.print-nhs-logo {
+    float: right;
+}
+
+.print-indicator {
+    display: none;
+}
+.trendCol.indicator {
+    text-align: center;
+    padding: 10px 0 0 !important;
+    &.up {
+        .print-indicator.-up {
+            display: inline-block;
+        }
+    }
+    &.even {
+        .print-indicator.-even {
+            display: inline-block;
+        }
+    }
+    &.down {
+        .print-indicator.-down {
+            display: inline-block;
+        }
+    }
+}
+
+#SiteWrapper .marginTL,
+#MainWrapper .marginTL,
+#NavPage .marginTL {
+    margin-top: 0;
+}
+
+#SiteWrapper.boardReport .indicator .currentValue,
+#MainWrapper.boardReport .indicator .currentValue,
+#NavPage.boardReport .indicator .currentValue {
+    font-size: 100%;
+}
+
+#SiteWrapper .borderL,
+#MainWrapper .borderL,
+#NavPage .borderL {
+    border-left: 0;
+}
+
+#SiteWrapper .borderR,
+#MainWrapper .borderR,
+#NavPage .borderR {
+    border-right: 0;
 }

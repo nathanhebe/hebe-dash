@@ -1,4 +1,4 @@
-﻿/* jshint undef: true, unused: true */
+/* jshint undef: true, unused: true */
 /* global $, d3, c3 */
 
 Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
@@ -12,10 +12,11 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         var YMax = 0;
         var maxVal = Math.max.apply(values, $.map(values,
                 function (indicatorValue) {
-                    return indicatorValue._val;
+                    return indicatorValue.get('val');
                 }));
         YMax = maxVal;
-        var ragTarget = parseFloat(myData.get('ragTarget'));
+
+        var ragTarget = parseFloat(myData.get('targetVal'));
 
         if (valueType === '%') {
             //maxVal = maxVal / 100;
@@ -47,11 +48,8 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         });
 
         var lineVals = values.map(function (val) {
-            if (valueType === '%') {
-                return val._val;
-            } else {
-                return val._val;
-            }
+            var value = val.get('val');
+            return value;
         });
 
         var valueTypeString = (myData.get('valueType') === '%' ? 'Percentage' : 'Value');
@@ -104,7 +102,8 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
                 },
                 y: {
                     tick: {
-                        format: (valueType === '%' ? d3.format(".1%") : null)
+                        //format: (valueType === '%' ? d3.format("%") : null)
+                        format: function (x) { return x.toString() + (valueType === '%' ? '%': ''); }
                     },
                     min: YMin,
                     max: YMax,

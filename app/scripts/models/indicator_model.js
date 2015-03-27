@@ -5,7 +5,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     targetValue: null,
     _currentValue: null,
     _currentVal: null,
-    previousValue: null,
+    _previousValue: null,
     _previousVal: null,
     _dataValues: null,
     _currentDate: null,
@@ -16,10 +16,28 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     currentValue: function () {
         if (this.get('_currentValue') != null) {
             return this.get('_currentValue');
-        } else {
+        } else if (this.get('_dataValues') == null) {
             this.get('dataValues');
+            return null;
+        } else {
+            var current = this.get('_dataValues')[0];
+            this.set('_currentValue', current);
+            return this.get('currentValue');
         }
-    }.property('_currentValue'),
+    }.property('_dataValues','_currentValue'),
+
+    previousValue: function () {
+        if (this.get('_previousValue') != null) {
+            return this.get('_previousValue');
+        } else if (this.get('_dataValues') == null) {
+            this.get('dataValues');
+            return null;
+        } else {
+            var previous = this.get('_dataValues')[1];
+            this.set('_previousValue', previous);
+            return this.get('_previousValue');
+        }
+    }.property('_dataValues', '_previousValue'),
 
     currentVal: function () {
         if (this.get('_currentVal') != null) {
@@ -37,6 +55,11 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             return val;
         }
     }.property('currentValue'),
+
+    targetVal: function () {
+        var target = (this.get('valueString') === '%' ? (this.get('ragTarget') * 100) : this.get('ragTarget'));
+        return target;
+    }.property('ragTarget'),
 
     previousVal: function () {
         if (this.get('_previousVal') != null) {
@@ -125,7 +148,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                 url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
 
 
-              //  url: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + dataID + '" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
+                //  url: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + dataID + '" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
 
             })
             .then(function (response) {
@@ -135,9 +158,10 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                     results.push(Dashboard.IndicatorValueModel.create(_.extend(record, { valueType: valueType })));
                 });
                 obj.setProperties({
-                    _dataValues: results,
-                    _currentValue: results[0],
-                    previousValue: results[1]
+                    _dataValues: results
+                    //,
+                    //_currentValue: results[0],
+                    //_previousValue: results[1]
                 });
                 return obj.get('_dataValues');
             });
@@ -177,18 +201,35 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         return 'notrend';
     }.property('_currentVal', '_previousVal'),
 
+    valueString: function () {
+        return (this.get('valueType') === 'int' ? '' : this.get('valueType'));
+    }.property('valueType'),
+
+    regionalInfo: function () {
+        // e.g. https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "dc7afa72-9d36-42da-b66a-851fe3e55855" WHERE "Level description" LIKE 'North Yorkshire' AND "Gender" = 'Female'  
+    },
+
     ragColour: function () {
-        if (this.get('_ragColour') != null) {
-            return this.get('_ragColour');
-        } else {
+        if (this.get('currentValue') != null) {
+            console.log('ragColour');
             var colour = null;
-            //switch this.get('ragType')
             var current = this.get('currentValue');
             var previous = this.get('previousValue');
+            colour = this.calculateRAG();
 
-            this.set('_ragColour', this.calculateRAG());
-            return this.get('_ragColour');
+            //console.log('ragColour: ' + this.get('id') + ' : ' + colour);
+            if (colour != this.get('_ragColour') && colour != null) {
+                this.set('_ragColour', colour);
+                return this.get('_ragColour');
+            }
         }
+
+
+
+        //if (this.get('_ragColour') != null) {
+        //    return this.get('_ragColour');
+        //} else {
+        //}
 
 
         //if (this.get('ragType') === "Constitutional") {
@@ -226,23 +267,18 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         //    return this.get('_ragColour');
         //}
         //}
-    }.property('currentVal', 'previousVal'),
-
-    valueString: function () {
-        return (this.get('valueType') === 'int' ? '' : this.get('valueType'));
-    }.property('valueType'),
-
-    regionalInfo: function () {
-        // e.g. https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "dc7afa72-9d36-42da-b66a-851fe3e55855" WHERE "Level description" LIKE 'North Yorkshire' AND "Gender" = 'Female'  
-    },
+    }.property('currentValue'),
 
     calculateRAG: function () {
         switch (this.get('ragType')) {
             case "Constitutional":
+                //console.log('constitutionalRAG');
                 return this.get('constitutionalRAG');
             case "Standard":
+                //console.log('standardRAG');
                 return this.get('standardRAG');
             case "Confidence":
+                //console.log('confidenceRAG');
                 return this.get('confidenceRAG');
             default:
                 return 'noRAG';
@@ -323,7 +359,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     },
 
     constitutionalRAG: function () {
-        console.log('constitutionalRAG');
         var rag = null;
         if (this.get('currentValue') != null) {
             rag = 'amber';
@@ -332,8 +367,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             //    return this.get('ragTarget') * 100;
             //}
 
-            var ragTarget = this.get('ragTarget');
-            ragTarget = (this.get('valueString') === '%' ? (ragTarget * 100) : ragTarget);
+            var ragTarget = this.get('targetVal');
             var direction = this.get('desiredDirection');
             var upper = ragTarget + 1;
             var lower = ragTarget - 1;
@@ -372,7 +406,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     }.property('ragTarget', 'valueString', 'currentValue'),
 
     standardRAG: function () {
-        console.log('standardRAG');
         //STANDARD
         //SAME AS ABOVE - BUT UCI/LCI ETC ARE CALCULATED BASED ON (% Change to use if no CI COLF FEEDSHEET) (1%)
 
@@ -413,7 +446,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     }.property('ragTarget', 'valueString', 'currentValue'),
 
     confidenceRAG: function () {
-        console.log('confidenceRAG');
         //period of reporting
         //UCI
 
@@ -438,7 +470,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             var direction = this.get('desiredDirection');
             var uci = current.get('upperCI');
             var lci = current.get('lowerCI');
-            console.log('uci:' + uci + ',lci:' + lci + ',val:' + currentVal);
+            //console.log('uci:' + uci + ',lci:' + lci + ',val:' + currentVal);
             rag = 'amber';
             if (direction === 'Up') {
                 if (currentVal > uci) {
@@ -453,7 +485,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                     rag = 'red';
                 }
             }
-            console.log('RAG ' + rag);
+            //console.log('RAG ' + rag);
 
         }
         return rag;
