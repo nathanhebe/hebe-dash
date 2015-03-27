@@ -210,19 +210,25 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     },
 
     ragColour: function () {
+        if (this.get('currentValue') != null) {
+            console.log('ragColour');
+            var colour = null;
+            var current = this.get('currentValue');
+            var previous = this.get('previousValue');
+            colour = this.calculateRAG();
+
+            //console.log('ragColour: ' + this.get('id') + ' : ' + colour);
+            if (colour != this.get('_ragColour') && colour != null) {
+                this.set('_ragColour', colour);
+                return this.get('_ragColour');
+            }
+        }
+
+
+
         //if (this.get('_ragColour') != null) {
         //    return this.get('_ragColour');
         //} else {
-        var colour = null;
-        //switch this.get('ragType')
-        var current = this.get('currentValue');
-        var previous = this.get('previousValue');
-        colour = this.calculateRAG();
-
-        //console.log('ragColour: ' + this.get('id') + ' : ' + colour);
-
-        this.set('_ragColour', colour);
-        return this.get('_ragColour');
         //}
 
 

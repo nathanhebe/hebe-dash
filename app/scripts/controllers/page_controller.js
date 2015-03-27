@@ -1,6 +1,7 @@
 Dashboard.PageController = Ember.ObjectController.extend({
     _pages: null,
     dashID: null,
+
     pageRAGs: null,
     pageNoRAG: null,
 
@@ -14,30 +15,6 @@ Dashboard.PageController = Ember.ObjectController.extend({
             return this.get('_pages');
         }
     }.property('_pages', 'ragPages'),
-
-    calculatePageRAG: function () {
-        console.log('calculatePageRAG');
-        var rags = [];
-
-        this.get('_pages').forEach(function (page) {
-            var pageCopy = Object.create(page);
-            var mainRAGs = pageCopy.get('rags');
-            //var mainRAGs = obj.mainRAGs;
-            //var noTrendRAG = obj.noTrendRAG;
-            for (var p = 0; p < mainRAGs.length; p++) {
-                var colour = mainRAGs[p];
-                var ragColour = rags.findBy('colour', colour.colour);
-                if (ragColour == null) {
-                    rags.push(colour);
-                } else {
-                    ragColour.count++;
-                }
-            }
-        });
-
-        this.set('pageRAGs', rags);
-
-    }.observes('_pages.@each.rags'),
 
     _nhsEnglandRAGTotals: null,
     nhsEnglandRAGTotals: function () {

@@ -37,8 +37,22 @@ Dashboard.PageModel = Ember.Object.extend({
         return this.get('_rows');
     }.property('_rows'),
 
-    mainRAGs: null,
-    noTrendRAG: null,
+    _mainRAGs: null,
+    _noTrendRAG: null,
+
+    mainRAGs: function () {
+        if (this.get('_mainRAGs') == null) {
+            this.calculateRAG();
+        }
+        return this.get('_mainRAGs');
+    }.property('_mainRAGs'),
+
+    noTrendRAG: function () {
+        if (this.get('_noTrendRAG') == null) {
+            this.calculateRAG();
+        }
+        return this.get('_noTrendRAG');
+    }.property('noTrendRAG'),
 
     calculateRAG: function () {
         console.log('RAG STATUS');
@@ -70,37 +84,29 @@ Dashboard.PageModel = Ember.Object.extend({
         });
         var noTrendRAG = status.findBy('colour', 'noRAG');
 
-        this.set('mainRAGs', mainRAGs);
-        this.set('noTrendRAG', noTrendRAG);
+        this.set('_mainRAGs', mainRAGs);
+        this.set('_noTrendRAG', noTrendRAG);
 
-        var obj = Ember.Object.create(
-            {
-                mainRAGs: mainRAGs,
-                noTrendRAG: noTrendRAG
-            }
-        );
+    }.observes('indicators.@each._ragColour'),
 
-        return obj;
-    },
-
-    rags: function () {
-        console.log('ragColour');
-        return this.calculateRAG().mainRAGs;
-    }.property('indicators.@each._ragColour'),
+    //rags: function () {
+    //    console.log('ragColour');
+    //    return this.calculateRAG().mainRAGs;
+    //}.property('indicators.@each._ragColour'),
 
 
-    _changed: 0,
-    changed: function (key, value) {
-        if (value) {
-            this.set('_changed', value);
-        }
-        return this.get('_changed');
-    }.property(),
+    //_changed: 0,
+    //changed: function (key, value) {
+    //    if (value) {
+    //        this.set('_changed', value);
+    //    }
+    //    return this.get('_changed');
+    //}.property(),
 
-    indicatorChanged: function () {
-        this.set('changed', +new Date());
-        console.log('item changed!');
-    }.observes('indicators.@each.ragColour'),
+    //indicatorChanged: function () {
+    //    this.set('changed', +new Date());
+    //    console.log('item changed!');
+    //}.observes('indicators.@each.ragColour'),
 
 
 
