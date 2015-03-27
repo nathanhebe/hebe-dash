@@ -1,5 +1,5 @@
 /* jshint undef: true, unused: true */
-/* global $, utilsv */
+/* global $, utils */
 
 Dashboard.IndicatorValueModel = Ember.Object.extend({
     _val: null,
@@ -7,10 +7,10 @@ Dashboard.IndicatorValueModel = Ember.Object.extend({
         if (this.get('_val') == null) {
             switch (this.get('valueType')) {
                 default:
-                    this.set('_val', this.get('value'));
+                    this.set('_val', utils.parseNumber(this.get('value')));
                     break;
                 case '%':
-                    this.set('_val', this.get('value') * 100);
+                    this.set('_val', utils.parseNumber(this.get('value')) * 100);
                     break;
             }
             return this.get('_val');
