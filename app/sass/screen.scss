@@ -106,7 +106,7 @@ body > .ember-view {
         background-color: $color-rag-red;
     }
 
-    .redAmber {
+    .amberRed {
         background-color: $color-rag-red-amber;
     }
 
@@ -357,6 +357,7 @@ body > .ember-view {
 
         .accordionContent {
             display: none;
+            padding-top: 0.3em;
         }
 
         .noBackground {
@@ -917,7 +918,7 @@ body > .ember-view {
             }
 
             .group__headings {
-                padding-left: 9.333333333%;
+                padding-left: 4.75%;
             }
 
             .dataRow {
@@ -1004,6 +1005,8 @@ body > .ember-view {
                     transform: rotate(-90deg);
                     width: 1em;
                     margin-top: 4em;
+                    margin-left: auto;
+                    margin-right: auto;
                 }
             }
         }

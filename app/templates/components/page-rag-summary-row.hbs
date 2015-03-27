@@ -1,0 +1,18 @@
+﻿<div class="row borderT marginTL paddingBNone paddingBS chart">
+    <div class="col span_4 alignL">{{page.title}}</div>
+    <div class="col span_1 alignC borderL borderR relative">
+        {{#link-to 'page' dashID page.parentID page.id }}View{{/link-to}}
+    </div>
+    <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
+        <div class="blockRow blockRow5">
+            {{#each rag in page.mainRAGs}}
+                {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="col span_1 borderL paddingRNone">
+        <div class="blockRow blockRow1">
+            {{performance-summary-block color="blue" current=page.noTrend.count previous=page.noTrend.previous}}
+        </div>
+    </div>
+</div>

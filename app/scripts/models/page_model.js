@@ -37,49 +37,80 @@ Dashboard.PageModel = Ember.Object.extend({
         return this.get('_rows');
     }.property('_rows'),
 
-    _ragStatus: null,
-    ragStatus: function () {
-        if (this.get('_ragStatus') !== null) {
-            return this.get('_ragStatus');
-        } else {
+    _mainRAGs: null,
+    _noTrendRAG: null,
 
-            var status = [
-                {
-                    colour: 'red',
-                    count: utils.random(1, 4),
-                    previous: utils.random(-6, -1)
-                },
-                {
-                    colour: 'missing',
-                    count: '',
-                    previous: 'N/A'
-                },
-                {
-                    colour: 'amber',
-                    count: utils.random(3, 11),
-                    previous: '+' + utils.random(1, 6)
-                },
-                {
-                    colour: 'missing',
-                    count: '',
-                    previous: 'N/A'
-                },
-                {
-                    colour: 'green',
-                    count: utils.random(10, 18),
-                    previous: '+' + utils.random(4, 10)
-                }
-                //,
-                //{
-                //    colour: 'blue',
-                //    count: 2,
-                //    previous: ''
-                //}
-            ];
-            this.set('_ragStatus', status);
-            return this.get('_ragStatus');
+    mainRAGs: function () {
+        if (this.get('_mainRAGs') == null) {
+            this.calculateRAG();
         }
-    }.property('_ragStatus'),
+        return this.get('_mainRAGs');
+    }.property('_mainRAGs'),
+
+    noTrendRAG: function () {
+        if (this.get('_noTrendRAG') == null) {
+            this.calculateRAG();
+        }
+        return this.get('_noTrendRAG');
+    }.property('noTrendRAG'),
+
+    calculateRAG: function () {
+        console.log('RAG STATUS');
+        var status = [
+            { colour: 'red', count: 0, previous: 0 },
+            { colour: 'amberRed', count: 0, previous: 0 },
+            { colour: 'amber', count: 0, previous: 0 },
+            { colour: 'amberGreen', count: 0, previous: 0 },
+            { colour: 'green', count: 0, previous: 0 },
+            { colour: 'noRAG', count: 0, previous: 0 },
+        ];
+
+        var id = this.get('id');
+        this.get('indicators').forEach(function (indicator) {
+            var colour = indicator.get('ragColour');
+
+            if (status.findBy('colour', colour) == null) {
+                status.push({ colour: colour, count: 0, previous: 0 })
+            }
+
+            status.findBy('colour', colour).count++;
+        });
+
+        var mainRAGs = status.filter(function (rag) {
+            if (rag.colour != 'noRAG') {
+                return true;
+            }
+            return false;
+        });
+        var noTrendRAG = status.findBy('colour', 'noRAG');
+
+        this.set('_mainRAGs', mainRAGs);
+        this.set('_noTrendRAG', noTrendRAG);
+
+    }.observes('indicators.@each._ragColour'),
+
+    //rags: function () {
+    //    console.log('ragColour');
+    //    return this.calculateRAG().mainRAGs;
+    //}.property('indicators.@each._ragColour'),
+
+
+    //_changed: 0,
+    //changed: function (key, value) {
+    //    if (value) {
+    //        this.set('_changed', value);
+    //    }
+    //    return this.get('_changed');
+    //}.property(),
+
+    //indicatorChanged: function () {
+    //    this.set('changed', +new Date());
+    //    console.log('item changed!');
+    //}.observes('indicators.@each.ragColour'),
+
+
+
+
 
     _data: null,
     data: function () {
@@ -122,7 +153,7 @@ Dashboard.PageModel = Ember.Object.extend({
                                         var parseRAG = function (rag) {
                                             switch (rag) {
                                                 case "A/R":
-                                                    return 'redAmber';
+                                                    return 'amberRed';
                                                 case "R":
                                                     return 'red';
                                                 case "A":
