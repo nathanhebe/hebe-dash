@@ -7,10 +7,13 @@ Dashboard.IndicatorValueModel = Ember.Object.extend({
         if (this.get('_val') == null) {
             switch (this.get('valueType')) {
                 default:
-                    this.set('_val', utils.parseNumber(this.get('value')));
+                    var value = utils.parseNumber(this.get('value'));
+                    this.set('_val', value);
                     break;
                 case '%':
-                    this.set('_val', utils.parseNumber(this.get('value')) * 100);
+                    var value = utils.parseNumber(this.get('value')) * 100;
+                    value = parseFloat(value).toPrecisionDigits(3);
+                    this.set('_val', value);
                     break;
             }
             return this.get('_val');

@@ -1566,7 +1566,7 @@ body > .ember-view {
   background-color: #D0021B;
 }
 /* line 109, ../sass/screen.scss */
-#SiteWrapper .amberRed, #MainWrapper .amberRed, #NavPage .amberRed {
+#SiteWrapper .amberRed, #SiteWrapper .redAmber, #MainWrapper .amberRed, #MainWrapper .redAmber, #NavPage .amberRed, #NavPage .redAmber {
   background-color: #EB8D57;
 }
 /* line 113, ../sass/screen.scss */

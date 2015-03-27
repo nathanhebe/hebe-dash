@@ -142,14 +142,9 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         } else {
             var obj = this;
             var ckanURL = Dashboard.get('settings').get('ckanUrl');
-            var dataID = Dashboard.get('settings').get('dataID');
-
+            var dataUrl = Dashboard.get('settings').get('dataUrl');
             $.ajax({
-                url: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
-
-
-                //  url: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + dataID + '" WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
-
+                url: dataUrl + ' WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
             })
             .then(function (response) {
                 var results = [];
