@@ -1587,7 +1587,7 @@ body > .ember-view {
 }
 /* line 133, ../sass/screen.scss */
 #SiteWrapper .noRAG, #MainWrapper .noRAG, #NavPage .noRAG {
-  background-color: #E7E7E7;
+  background-color: #D4D4D4;
   color: #000000;
 }
 /* line 139, ../sass/screen.scss */
@@ -1852,10 +1852,10 @@ body > .ember-view {
 /* line 198, ../sass/screen.scss */
 #SiteWrapper .chooseBoardReport .icon, #MainWrapper .chooseBoardReport .icon, #NavPage .chooseBoardReport .icon {
   position: absolute;
-  top: 0.5em;
+  top: 0.65em;
   right: 1em;
 }
-/* line 204, ../sass/screen.scss */
+/* line 205, ../sass/screen.scss */
 #SiteWrapper .chooseBoardReport button, #MainWrapper .chooseBoardReport button, #NavPage .chooseBoardReport button {
   padding: 1em;
   -moz-transition-property: all;
@@ -1873,11 +1873,11 @@ body > .ember-view {
   width: 100%;
   text-align: left;
 }
-/* line 211, ../sass/screen.scss */
+/* line 212, ../sass/screen.scss */
 #SiteWrapper .chooseBoardReport .listWrapper, #MainWrapper .chooseBoardReport .listWrapper, #NavPage .chooseBoardReport .listWrapper {
   position: relative;
 }
-/* line 214, ../sass/screen.scss */
+/* line 215, ../sass/screen.scss */
 #SiteWrapper .chooseBoardReport .listWrapper ul, #MainWrapper .chooseBoardReport .listWrapper ul, #NavPage .chooseBoardReport .listWrapper ul {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
@@ -1910,17 +1910,17 @@ body > .ember-view {
   width: 100%;
   position: absolute;
 }
-/* line 224, ../sass/screen.scss */
+/* line 225, ../sass/screen.scss */
 #SiteWrapper .chooseBoardReport .listWrapper ul li, #MainWrapper .chooseBoardReport .listWrapper ul li, #NavPage .chooseBoardReport .listWrapper ul li {
   padding: 1em;
   border-bottom: solid 1px #E7E7E7;
 }
-/* line 228, ../sass/screen.scss */
+/* line 229, ../sass/screen.scss */
 #SiteWrapper .chooseBoardReport .listWrapper ul li a, #MainWrapper .chooseBoardReport .listWrapper ul li a, #NavPage .chooseBoardReport .listWrapper ul li a {
   color: #CCCCCC;
   text-decoration: none;
 }
-/* line 237, ../sass/screen.scss */
+/* line 238, ../sass/screen.scss */
 #SiteWrapper .chooseBoardReport:hover button, #MainWrapper .chooseBoardReport:hover button, #NavPage .chooseBoardReport:hover button {
   -moz-border-radius-bottomleft: 0px;
   -webkit-border-bottom-left-radius: 0px;
@@ -1929,62 +1929,62 @@ body > .ember-view {
   -webkit-border-bottom-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-/* line 242, ../sass/screen.scss */
+/* line 243, ../sass/screen.scss */
 #SiteWrapper .chooseBoardReport:hover .listWrapper ul, #MainWrapper .chooseBoardReport:hover .listWrapper ul, #NavPage .chooseBoardReport:hover .listWrapper ul {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   visibility: visible;
 }
-/* line 253, ../sass/screen.scss */
+/* line 254, ../sass/screen.scss */
 #SiteWrapper.boardReport #annex_c, #MainWrapper.boardReport #annex_c, #NavPage.boardReport #annex_c {
   display: none;
 }
-/* line 257, ../sass/screen.scss */
+/* line 258, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary, #MainWrapper.boardReport.boardReportSummary, #NavPage.boardReport.boardReportSummary {
   /* override some of the standard block styles to account for :first-of-type now they're in ember-view componenet tags */
 }
-/* line 258, ../sass/screen.scss */
+/* line 259, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .missing.block, #MainWrapper.boardReport.boardReportSummary .missing.block, #NavPage.boardReport.boardReportSummary .missing.block {
   background-color: #F7F7F7;
   color: #F7F7F7;
 }
-/* line 265, ../sass/screen.scss */
+/* line 266, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block, #SiteWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block, #MainWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block, #MainWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block, #NavPage.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block, #NavPage.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block {
   margin-left: 0.5em;
 }
-/* line 268, ../sass/screen.scss */
+/* line 269, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block .currentValue, #SiteWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block .currentValue, #MainWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block .currentValue, #MainWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block .currentValue, #NavPage.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block .currentValue, #NavPage.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block .currentValue {
   position: absolute;
   top: -10px;
 }
-/* line 273, ../sass/screen.scss */
+/* line 274, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block .previousValue, #SiteWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block .previousValue, #MainWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block .previousValue, #MainWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block .previousValue, #NavPage.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view .block .previousValue, #NavPage.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view .block .previousValue {
   right: auto;
   left: 1em;
   font-size: 80%;
 }
-/* line 284, ../sass/screen.scss */
+/* line 285, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view:first-of-type .block.blue, #SiteWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view:first-of-type .block.blue, #MainWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view:first-of-type .block.blue, #MainWrapper.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view:first-of-type .block.blue, #NavPage.boardReport.boardReportSummary .chart .blockRow.blockRow5 .ember-view:first-of-type .block.blue, #NavPage.boardReport.boardReportSummary .chart .blockRow.blockRow1 .ember-view:first-of-type .block.blue {
   margin-left: 0px;
 }
-/* line 291, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .columnTitles, #MainWrapper.boardReport.boardReportSummary .columnTitles, #NavPage.boardReport.boardReportSummary .columnTitles {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   border-top: solid 1px #E7E7E7;
   border-bottom: solid 1px #E7E7E7;
 }
-/* line 297, ../sass/screen.scss */
+/* line 298, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .columnTitles .col, #MainWrapper.boardReport.boardReportSummary .columnTitles .col, #NavPage.boardReport.boardReportSummary .columnTitles .col {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
-/* line 304, ../sass/screen.scss */
+/* line 305, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .ragTitles .col, #MainWrapper.boardReport.boardReportSummary .ragTitles .col, #NavPage.boardReport.boardReportSummary .ragTitles .col {
   padding-top: 0;
   padding-bottom: 0;
 }
-/* line 309, ../sass/screen.scss */
+/* line 310, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .ragTitles .colHeader, #MainWrapper.boardReport.boardReportSummary .ragTitles .colHeader, #NavPage.boardReport.boardReportSummary .ragTitles .colHeader {
   float: left;
   width: 17%;
@@ -1993,13 +1993,13 @@ body > .ember-view {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
-/* line 317, ../sass/screen.scss */
+/* line 318, ../sass/screen.scss */
 #SiteWrapper.boardReport.boardReportSummary .ragTitles .colHeader:last-of-type, #MainWrapper.boardReport.boardReportSummary .ragTitles .colHeader:last-of-type, #NavPage.boardReport.boardReportSummary .ragTitles .colHeader:last-of-type {
   border-right: none;
   margin-left: 2%;
   width: 12%;
 }
-/* line 326, ../sass/screen.scss */
+/* line 327, ../sass/screen.scss */
 #SiteWrapper.boardReport .seperator, #MainWrapper.boardReport .seperator, #NavPage.boardReport .seperator {
   position: absolute;
   border: solid 1px #E7E7E7;
@@ -2007,12 +2007,12 @@ body > .ember-view {
   bottom: 10%;
   left: 0px;
 }
-/* line 333, ../sass/screen.scss */
+/* line 334, ../sass/screen.scss */
 #SiteWrapper.boardReport .seperator.right, #MainWrapper.boardReport .seperator.right, #NavPage.boardReport .seperator.right {
   right: 0px;
   left: auto;
 }
-/* line 339, ../sass/screen.scss */
+/* line 340, ../sass/screen.scss */
 #SiteWrapper.boardReport .accordionHandle, #MainWrapper.boardReport .accordionHandle, #NavPage.boardReport .accordionHandle {
   background-image: url(../images/IndicatorTriangle_right@2x.png);
   background-size: 25%;
@@ -2022,38 +2022,38 @@ body > .ember-view {
   display: inline-block;
   cursor: pointer;
 }
-/* line 348, ../sass/screen.scss */
+/* line 349, ../sass/screen.scss */
 #SiteWrapper.boardReport .accordionHandle.active, #MainWrapper.boardReport .accordionHandle.active, #NavPage.boardReport .accordionHandle.active {
   background-image: url(../images/IndicatorTriangle_down@2x.png);
 }
-/* line 353, ../sass/screen.scss */
+/* line 354, ../sass/screen.scss */
 #SiteWrapper.boardReport .noAccordionHandle, #MainWrapper.boardReport .noAccordionHandle, #NavPage.boardReport .noAccordionHandle {
   width: 30%;
   display: inline-block;
 }
-/* line 358, ../sass/screen.scss */
+/* line 359, ../sass/screen.scss */
 #SiteWrapper.boardReport .accordionContent, #MainWrapper.boardReport .accordionContent, #NavPage.boardReport .accordionContent {
   display: none;
   padding-top: 0.3em;
 }
-/* line 363, ../sass/screen.scss */
+/* line 364, ../sass/screen.scss */
 #SiteWrapper.boardReport .noBackground, #MainWrapper.boardReport .noBackground, #NavPage.boardReport .noBackground {
   background: none;
 }
-/* line 367, ../sass/screen.scss */
+/* line 368, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator, #MainWrapper.boardReport .indicator, #NavPage.boardReport .indicator {
   position: relative;
   color: #ffffff;
 }
-/* line 371, ../sass/screen.scss */
+/* line 372, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator.noRAG, #MainWrapper.boardReport .indicator.noRAG, #NavPage.boardReport .indicator.noRAG {
   color: #000000;
 }
-/* line 375, ../sass/screen.scss */
+/* line 376, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator .currentValue, #MainWrapper.boardReport .indicator .currentValue, #NavPage.boardReport .indicator .currentValue {
   font-size: 160%;
 }
-/* line 379, ../sass/screen.scss */
+/* line 380, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator .previousValue, #MainWrapper.boardReport .indicator .previousValue, #NavPage.boardReport .indicator .previousValue {
   /*margin:($margin-main / 4) 0;*/
   border-left: solid 1px #E7E7E7;
@@ -2062,41 +2062,41 @@ body > .ember-view {
   width: 100%;
   text-align: center;
 }
-/* line 388, ../sass/screen.scss */
+/* line 389, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator .icon, #MainWrapper.boardReport .indicator .icon, #NavPage.boardReport .indicator .icon {
   position: absolute;
   right: 0px;
   top: 0px;
 }
-/* line 394, ../sass/screen.scss */
+/* line 395, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator.up, #SiteWrapper.boardReport .indicator.even, #SiteWrapper.boardReport .indicator.down, #MainWrapper.boardReport .indicator.up, #MainWrapper.boardReport .indicator.even, #MainWrapper.boardReport .indicator.down, #NavPage.boardReport .indicator.up, #NavPage.boardReport .indicator.even, #NavPage.boardReport .indicator.down {
   background-image: url(../images/IndicatorArrow_up@2x.png);
   background-size: auto 90%;
   background-position: 95% center;
   background-repeat: no-repeat;
 }
-/* line 400, ../sass/screen.scss */
+/* line 401, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator.up.even, #SiteWrapper.boardReport .indicator.even.even, #SiteWrapper.boardReport .indicator.down.even, #MainWrapper.boardReport .indicator.up.even, #MainWrapper.boardReport .indicator.even.even, #MainWrapper.boardReport .indicator.down.even, #NavPage.boardReport .indicator.up.even, #NavPage.boardReport .indicator.even.even, #NavPage.boardReport .indicator.down.even {
   background-image: url(../images/IndicatorArrow_even@2x.png);
 }
-/* line 404, ../sass/screen.scss */
+/* line 405, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator.up.down, #SiteWrapper.boardReport .indicator.even.down, #SiteWrapper.boardReport .indicator.down.down, #MainWrapper.boardReport .indicator.up.down, #MainWrapper.boardReport .indicator.even.down, #MainWrapper.boardReport .indicator.down.down, #NavPage.boardReport .indicator.up.down, #NavPage.boardReport .indicator.even.down, #NavPage.boardReport .indicator.down.down {
   background-image: url(../images/IndicatorArrow_down@2x.png);
 }
-/* line 408, ../sass/screen.scss */
+/* line 409, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator.up.trendCol, #SiteWrapper.boardReport .indicator.even.trendCol, #SiteWrapper.boardReport .indicator.down.trendCol, #MainWrapper.boardReport .indicator.up.trendCol, #MainWrapper.boardReport .indicator.even.trendCol, #MainWrapper.boardReport .indicator.down.trendCol, #NavPage.boardReport .indicator.up.trendCol, #NavPage.boardReport .indicator.even.trendCol, #NavPage.boardReport .indicator.down.trendCol {
   background-position: 20% center;
   background-image: url(../images/IndicatorArrow_black_up@2x.png);
 }
-/* line 412, ../sass/screen.scss */
+/* line 413, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator.up.trendCol.even, #SiteWrapper.boardReport .indicator.even.trendCol.even, #SiteWrapper.boardReport .indicator.down.trendCol.even, #MainWrapper.boardReport .indicator.up.trendCol.even, #MainWrapper.boardReport .indicator.even.trendCol.even, #MainWrapper.boardReport .indicator.down.trendCol.even, #NavPage.boardReport .indicator.up.trendCol.even, #NavPage.boardReport .indicator.even.trendCol.even, #NavPage.boardReport .indicator.down.trendCol.even {
   background-image: url(../images/IndicatorArrow_black_even@2x.png);
 }
-/* line 416, ../sass/screen.scss */
+/* line 417, ../sass/screen.scss */
 #SiteWrapper.boardReport .indicator.up.trendCol.down, #SiteWrapper.boardReport .indicator.even.trendCol.down, #SiteWrapper.boardReport .indicator.down.trendCol.down, #MainWrapper.boardReport .indicator.up.trendCol.down, #MainWrapper.boardReport .indicator.even.trendCol.down, #MainWrapper.boardReport .indicator.down.trendCol.down, #NavPage.boardReport .indicator.up.trendCol.down, #NavPage.boardReport .indicator.even.trendCol.down, #NavPage.boardReport .indicator.down.trendCol.down {
   background-image: url(../images/IndicatorArrow_black_down@2x.png);
 }
-/* line 423, ../sass/screen.scss */
+/* line 424, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart, #MainWrapper.boardReport .chart, #NavPage.boardReport .chart {
   padding-top: 0.5em;
   /*padding-bottom:0px;*/
@@ -2115,22 +2115,22 @@ body > .ember-view {
   /*-- Legend --*/
   /*-- Tooltip --*/
 }
-/* line 427, ../sass/screen.scss */
+/* line 428, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3 svg, #MainWrapper.boardReport .chart .c3 svg, #NavPage.boardReport .chart .c3 svg {
   font: 10px sans-serif;
 }
-/* line 431, ../sass/screen.scss */
+/* line 432, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3 path, #SiteWrapper.boardReport .chart .c3 line, #MainWrapper.boardReport .chart .c3 path, #MainWrapper.boardReport .chart .c3 line, #NavPage.boardReport .chart .c3 path, #NavPage.boardReport .chart .c3 line {
   fill: none;
   stroke: #000;
 }
-/* line 436, ../sass/screen.scss */
+/* line 437, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3 text, #MainWrapper.boardReport .chart .c3 text, #NavPage.boardReport .chart .c3 text {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
 }
-/* line 442, ../sass/screen.scss */
+/* line 443, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-legend-item-tile,
 #SiteWrapper.boardReport .chart .c3-xgrid-focus,
 #SiteWrapper.boardReport .chart .c3-ygrid,
@@ -2146,115 +2146,115 @@ body > .ember-view {
 #NavPage.boardReport .chart .c3-bars path {
   shape-rendering: crispEdges;
 }
-/* line 450, ../sass/screen.scss */
+/* line 451, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-chart-arc path, #MainWrapper.boardReport .chart .c3-chart-arc path, #NavPage.boardReport .chart .c3-chart-arc path {
   stroke: #fff;
 }
-/* line 454, ../sass/screen.scss */
+/* line 455, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-chart-arc text, #MainWrapper.boardReport .chart .c3-chart-arc text, #NavPage.boardReport .chart .c3-chart-arc text {
   fill: #fff;
   font-size: 13px;
 }
-/* line 477, ../sass/screen.scss */
+/* line 478, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-grid line, #MainWrapper.boardReport .chart .c3-grid line, #NavPage.boardReport .chart .c3-grid line {
   stroke: #aaa;
 }
-/* line 481, ../sass/screen.scss */
+/* line 482, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-grid text, #MainWrapper.boardReport .chart .c3-grid text, #NavPage.boardReport .chart .c3-grid text {
   fill: #aaa;
 }
-/* line 485, ../sass/screen.scss */
+/* line 486, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-xgrid, #SiteWrapper.boardReport .chart .c3-ygrid, #MainWrapper.boardReport .chart .c3-xgrid, #MainWrapper.boardReport .chart .c3-ygrid, #NavPage.boardReport .chart .c3-xgrid, #NavPage.boardReport .chart .c3-ygrid {
   stroke-dasharray: 3 3;
 }
-/* line 495, ../sass/screen.scss */
+/* line 496, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-text.c3-empty, #MainWrapper.boardReport .chart .c3-text.c3-empty, #NavPage.boardReport .chart .c3-text.c3-empty {
   fill: #808080;
   font-size: 2em;
 }
-/* line 500, ../sass/screen.scss */
+/* line 501, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-line, #MainWrapper.boardReport .chart .c3-line, #NavPage.boardReport .chart .c3-line {
   stroke-width: 1px;
 }
-/* line 504, ../sass/screen.scss */
+/* line 505, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-circle._expanded_, #MainWrapper.boardReport .chart .c3-circle._expanded_, #NavPage.boardReport .chart .c3-circle._expanded_ {
   stroke-width: 1px;
   stroke: white;
 }
-/* line 509, ../sass/screen.scss */
+/* line 510, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-selected-circle, #MainWrapper.boardReport .chart .c3-selected-circle, #NavPage.boardReport .chart .c3-selected-circle {
   fill: white;
   stroke-width: 2px;
 }
-/* line 514, ../sass/screen.scss */
+/* line 515, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-bar, #MainWrapper.boardReport .chart .c3-bar, #NavPage.boardReport .chart .c3-bar {
   stroke-width: 0;
 }
-/* line 518, ../sass/screen.scss */
+/* line 519, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-bar._expanded_, #MainWrapper.boardReport .chart .c3-bar._expanded_, #NavPage.boardReport .chart .c3-bar._expanded_ {
   fill-opacity: 0.75;
 }
-/* line 522, ../sass/screen.scss */
+/* line 523, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-chart-arcs-title, #MainWrapper.boardReport .chart .c3-chart-arcs-title, #NavPage.boardReport .chart .c3-chart-arcs-title {
   dominant-baseline: middle;
   font-size: 1.3em;
 }
-/* line 527, ../sass/screen.scss */
+/* line 528, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-target.c3-focused, #MainWrapper.boardReport .chart .c3-target.c3-focused, #NavPage.boardReport .chart .c3-target.c3-focused {
   opacity: 1;
 }
-/* line 531, ../sass/screen.scss */
+/* line 532, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-target.c3-focused path.c3-line, #SiteWrapper.boardReport .chart .c3-target.c3-focused path.c3-step, #MainWrapper.boardReport .chart .c3-target.c3-focused path.c3-line, #MainWrapper.boardReport .chart .c3-target.c3-focused path.c3-step, #NavPage.boardReport .chart .c3-target.c3-focused path.c3-line, #NavPage.boardReport .chart .c3-target.c3-focused path.c3-step {
   stroke-width: 2px;
 }
-/* line 535, ../sass/screen.scss */
+/* line 536, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-target.c3-defocused, #MainWrapper.boardReport .chart .c3-target.c3-defocused, #NavPage.boardReport .chart .c3-target.c3-defocused {
   opacity: 0.3 !important;
 }
-/* line 539, ../sass/screen.scss */
+/* line 540, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-region, #MainWrapper.boardReport .chart .c3-region, #NavPage.boardReport .chart .c3-region {
   fill: steelblue;
   /*fill-opacity: .9;*/
 }
-/* line 544, ../sass/screen.scss */
+/* line 545, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-region.regionYR, #MainWrapper.boardReport .chart .c3-region.regionYR, #NavPage.boardReport .chart .c3-region.regionYR {
   fill: #D0021B;
   /*fill-opacity: .9;*/
 }
-/* line 549, ../sass/screen.scss */
+/* line 550, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-region.regionYA, #MainWrapper.boardReport .chart .c3-region.regionYA, #NavPage.boardReport .chart .c3-region.regionYA {
   fill: #F5A623;
   /*fill-opacity: .9;*/
 }
-/* line 554, ../sass/screen.scss */
+/* line 555, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-region.regionYG, #MainWrapper.boardReport .chart .c3-region.regionYG, #NavPage.boardReport .chart .c3-region.regionYG {
   fill: #7ED321;
   /*fill-opacity: .9;*/
 }
-/* line 559, ../sass/screen.scss */
+/* line 560, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-brush .extent, #MainWrapper.boardReport .chart .c3-brush .extent, #NavPage.boardReport .chart .c3-brush .extent {
   /*fill-opacity: .1;*/
 }
-/* line 566, ../sass/screen.scss */
+/* line 567, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-legend-item, #MainWrapper.boardReport .chart .c3-legend-item, #NavPage.boardReport .chart .c3-legend-item {
   font-size: 12px;
 }
-/* line 570, ../sass/screen.scss */
+/* line 571, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-legend-item-hidden, #MainWrapper.boardReport .chart .c3-legend-item-hidden, #NavPage.boardReport .chart .c3-legend-item-hidden {
   opacity: 0.15;
 }
-/* line 574, ../sass/screen.scss */
+/* line 575, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-legend-background, #MainWrapper.boardReport .chart .c3-legend-background, #NavPage.boardReport .chart .c3-legend-background {
   opacity: 0.75;
   fill: white;
   stroke: lightgray;
   stroke-width: 1;
 }
-/* line 581, ../sass/screen.scss */
+/* line 582, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-tooltip-container, #MainWrapper.boardReport .chart .c3-tooltip-container, #NavPage.boardReport .chart .c3-tooltip-container {
   z-index: 10;
 }
-/* line 585, ../sass/screen.scss */
+/* line 586, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-tooltip, #MainWrapper.boardReport .chart .c3-tooltip, #NavPage.boardReport .chart .c3-tooltip {
   border-collapse: collapse;
   border-spacing: 0;
@@ -2265,11 +2265,11 @@ body > .ember-view {
   box-shadow: 7px 7px 12px -9px #777777;
   opacity: 0.9;
 }
-/* line 596, ../sass/screen.scss */
+/* line 597, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-tooltip tr, #MainWrapper.boardReport .chart .c3-tooltip tr, #NavPage.boardReport .chart .c3-tooltip tr {
   border: 1px solid #CCC;
 }
-/* line 600, ../sass/screen.scss */
+/* line 601, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-tooltip th, #MainWrapper.boardReport .chart .c3-tooltip th, #NavPage.boardReport .chart .c3-tooltip th {
   background-color: #aaa;
   font-size: 14px;
@@ -2277,92 +2277,92 @@ body > .ember-view {
   text-align: left;
   color: #FFF;
 }
-/* line 608, ../sass/screen.scss */
+/* line 609, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-tooltip td, #MainWrapper.boardReport .chart .c3-tooltip td, #NavPage.boardReport .chart .c3-tooltip td {
   font-size: 13px;
   padding: 3px 6px;
   background-color: #fff;
   border-left: 1px dotted #999;
 }
-/* line 615, ../sass/screen.scss */
+/* line 616, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-tooltip td > span, #MainWrapper.boardReport .chart .c3-tooltip td > span, #NavPage.boardReport .chart .c3-tooltip td > span {
   display: inline-block;
   width: 10px;
   height: 10px;
   margin-right: 6px;
 }
-/* line 622, ../sass/screen.scss */
+/* line 623, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-tooltip td.value, #MainWrapper.boardReport .chart .c3-tooltip td.value, #NavPage.boardReport .chart .c3-tooltip td.value {
   text-align: right;
 }
-/* line 626, ../sass/screen.scss */
+/* line 627, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-area, #MainWrapper.boardReport .chart .c3-area, #NavPage.boardReport .chart .c3-area {
   stroke-width: 0;
   opacity: 0.2;
 }
-/* line 631, ../sass/screen.scss */
+/* line 632, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-chart-arcs .c3-chart-arcs-background, #MainWrapper.boardReport .chart .c3-chart-arcs .c3-chart-arcs-background, #NavPage.boardReport .chart .c3-chart-arcs .c3-chart-arcs-background {
   fill: #e0e0e0;
   stroke: none;
 }
-/* line 636, ../sass/screen.scss */
+/* line 637, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-unit, #MainWrapper.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-unit, #NavPage.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-unit {
   fill: #000;
   font-size: 16px;
 }
-/* line 641, ../sass/screen.scss */
+/* line 642, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-max, #MainWrapper.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-max, #NavPage.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-max {
   fill: #777;
 }
-/* line 645, ../sass/screen.scss */
+/* line 646, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-min, #MainWrapper.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-min, #NavPage.boardReport .chart .c3-chart-arcs .c3-chart-arcs-gauge-min {
   fill: #777;
 }
-/* line 649, ../sass/screen.scss */
+/* line 650, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .c3-chart-arc .c3-gauge-value, #MainWrapper.boardReport .chart .c3-chart-arc .c3-gauge-value, #NavPage.boardReport .chart .c3-chart-arc .c3-gauge-value {
   fill: #000;
   /*  font-size: 28px !important;*/
 }
-/* line 654, ../sass/screen.scss */
+/* line 655, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .indicatorChart, #MainWrapper.boardReport .chart .indicatorChart, #NavPage.boardReport .chart .indicatorChart {
   width: 98%;
   padding: 0px;
   margin: 0px auto;
 }
-/* line 660, ../sass/screen.scss */
+/* line 661, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .sampleImage, #MainWrapper.boardReport .chart .sampleImage, #NavPage.boardReport .chart .sampleImage {
   width: 100%;
 }
-/* line 664, ../sass/screen.scss */
+/* line 665, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .left, #MainWrapper.boardReport .chart .left, #NavPage.boardReport .chart .left {
   width: 49%;
 }
-/* line 667, ../sass/screen.scss */
+/* line 668, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .left:first-of-type, #MainWrapper.boardReport .chart .left:first-of-type, #NavPage.boardReport .chart .left:first-of-type {
   text-align: right;
 }
-/* line 672, ../sass/screen.scss */
+/* line 673, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .col, #MainWrapper.boardReport .chart .col, #NavPage.boardReport .chart .col {
   padding-top: 0px;
   padding-bottom: 0px;
   height: 80px;
   line-height: 80px;
 }
-/* line 681, ../sass/screen.scss */
+/* line 682, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .blockRow.blockRow1 .block, #MainWrapper.boardReport .chart .blockRow.blockRow1 .block, #NavPage.boardReport .chart .blockRow.blockRow1 .block {
   width: 100%;
   padding-left: 15%;
 }
-/* line 688, ../sass/screen.scss */
+/* line 689, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .blockRow.blockRow5 .block, #MainWrapper.boardReport .chart .blockRow.blockRow5 .block, #NavPage.boardReport .chart .blockRow.blockRow5 .block {
   width: 18%;
   margin-left: 2%;
 }
-/* line 689, ../sass/screen.scss */
+/* line 690, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .blockRow.blockRow5 .block:first-of-type, #MainWrapper.boardReport .chart .blockRow.blockRow5 .block:first-of-type, #NavPage.boardReport .chart .blockRow.blockRow5 .block:first-of-type {
   margin-left: 0;
 }
-/* line 699, ../sass/screen.scss */
+/* line 700, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .block, #MainWrapper.boardReport .chart .block, #NavPage.boardReport .chart .block {
   position: relative;
   height: 80px;
@@ -2375,165 +2375,165 @@ body > .ember-view {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 709, ../sass/screen.scss */
+/* line 710, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .block .currentValue, #MainWrapper.boardReport .chart .block .currentValue, #NavPage.boardReport .chart .block .currentValue {
   font-size: 160%;
 }
-/* line 713, ../sass/screen.scss */
+/* line 714, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .block .previousValue, #MainWrapper.boardReport .chart .block .previousValue, #NavPage.boardReport .chart .block .previousValue {
   position: absolute;
   right: 10%;
   bottom: 15%;
   line-height: 1em;
 }
-/* line 720, ../sass/screen.scss */
+/* line 721, ../sass/screen.scss */
 #SiteWrapper.boardReport .chart .block a, #MainWrapper.boardReport .chart .block a, #NavPage.boardReport .chart .block a {
   color: #ffffff;
 }
-/* line 728, ../sass/screen.scss */
+/* line 729, ../sass/screen.scss */
 #SiteWrapper.boardReport .reportIndex .row .col, #SiteWrapper.boardReport .reportIndex .hr .col, #SiteWrapper.boardReport .reportIndex .finance .group:before .col, #SiteWrapper.boardReport .finance .reportIndex .group:before .col, #MainWrapper.boardReport .finance #SiteWrapper.boardReport .reportIndex .group:before .col, #NavPage.boardReport .finance #SiteWrapper.boardReport .reportIndex .group:before .col, #MainWrapper.boardReport .reportIndex .row .col, #MainWrapper.boardReport .reportIndex .hr .col, #SiteWrapper.boardReport .finance #MainWrapper.boardReport .reportIndex .group:before .col, #MainWrapper.boardReport .reportIndex .finance .group:before .col, #MainWrapper.boardReport .finance .reportIndex .group:before .col, #NavPage.boardReport .finance #MainWrapper.boardReport .reportIndex .group:before .col, #NavPage.boardReport .reportIndex .row .col, #NavPage.boardReport .reportIndex .hr .col, #SiteWrapper.boardReport .finance #NavPage.boardReport .reportIndex .group:before .col, #MainWrapper.boardReport .finance #NavPage.boardReport .reportIndex .group:before .col, #NavPage.boardReport .reportIndex .finance .group:before .col, #NavPage.boardReport .finance .reportIndex .group:before .col {
   height: auto;
 }
-/* line 731, ../sass/screen.scss */
+/* line 732, ../sass/screen.scss */
 #SiteWrapper.boardReport .reportIndex .row .col p, #SiteWrapper.boardReport .reportIndex .hr .col p, #SiteWrapper.boardReport .reportIndex .finance .group:before .col p, #SiteWrapper.boardReport .finance .reportIndex .group:before .col p, #MainWrapper.boardReport .finance #SiteWrapper.boardReport .reportIndex .group:before .col p, #NavPage.boardReport .finance #SiteWrapper.boardReport .reportIndex .group:before .col p, #MainWrapper.boardReport .reportIndex .row .col p, #MainWrapper.boardReport .reportIndex .hr .col p, #SiteWrapper.boardReport .finance #MainWrapper.boardReport .reportIndex .group:before .col p, #MainWrapper.boardReport .reportIndex .finance .group:before .col p, #MainWrapper.boardReport .finance .reportIndex .group:before .col p, #NavPage.boardReport .finance #MainWrapper.boardReport .reportIndex .group:before .col p, #NavPage.boardReport .reportIndex .row .col p, #NavPage.boardReport .reportIndex .hr .col p, #SiteWrapper.boardReport .finance #NavPage.boardReport .reportIndex .group:before .col p, #MainWrapper.boardReport .finance #NavPage.boardReport .reportIndex .group:before .col p, #NavPage.boardReport .reportIndex .finance .group:before .col p, #NavPage.boardReport .finance .reportIndex .group:before .col p {
   padding-bottom: 1em;
 }
-/* line 740, ../sass/screen.scss */
+/* line 741, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group, #MainWrapper.boardReport .finance .group, #NavPage.boardReport .finance .group {
   margin-top: 0;
   padding-top: 1em;
   border-top: solid 1px #E7E7E7;
   border-top-width: 4px;
 }
-/* line 746, ../sass/screen.scss */
+/* line 747, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group:first-of-type, #MainWrapper.boardReport .finance .group:first-of-type, #NavPage.boardReport .finance .group:first-of-type {
   border-top: none;
 }
-/* line 750, ../sass/screen.scss */
+/* line 751, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group:before, #MainWrapper.boardReport .finance .group:before, #NavPage.boardReport .finance .group:before {
   content: ' ';
   display: block;
 }
-/* line 757, ../sass/screen.scss */
+/* line 758, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group .row .col, #SiteWrapper.boardReport .finance .group .hr .col, #SiteWrapper.boardReport .finance .group .group:before .col, #MainWrapper.boardReport .finance .group .row .col, #MainWrapper.boardReport .finance .group .hr .col, #MainWrapper.boardReport .finance .group .group:before .col, #NavPage.boardReport .finance .group .row .col, #NavPage.boardReport .finance .group .hr .col, #NavPage.boardReport .finance .group .group:before .col {
   padding-top: 1.25em;
 }
-/* line 763, ../sass/screen.scss */
+/* line 764, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group .row .col:last-of-type, #SiteWrapper.boardReport .finance .group .hr .col:last-of-type, #SiteWrapper.boardReport .finance .group .group:before .col:last-of-type, #MainWrapper.boardReport .finance .group .row .col:last-of-type, #MainWrapper.boardReport .finance .group .hr .col:last-of-type, #MainWrapper.boardReport .finance .group .group:before .col:last-of-type, #NavPage.boardReport .finance .group .row .col:last-of-type, #NavPage.boardReport .finance .group .hr .col:last-of-type, #NavPage.boardReport .finance .group .group:before .col:last-of-type {
   padding-top: 1em;
 }
-/* line 768, ../sass/screen.scss */
+/* line 769, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group .row:first-of-type, #SiteWrapper.boardReport .finance .group .hr:first-of-type, #SiteWrapper.boardReport .finance .group .group:first-of-type:before, #MainWrapper.boardReport .finance .group .row:first-of-type, #MainWrapper.boardReport .finance .group .hr:first-of-type, #MainWrapper.boardReport .finance .group .group:first-of-type:before, #NavPage.boardReport .finance .group .row:first-of-type, #NavPage.boardReport .finance .group .hr:first-of-type, #NavPage.boardReport .finance .group .group:first-of-type:before {
   margin-top: 0.5em;
   font-weight: 600;
 }
-/* line 772, ../sass/screen.scss */
+/* line 773, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group .row:first-of-type .col, #SiteWrapper.boardReport .finance .group .hr:first-of-type .col, #SiteWrapper.boardReport .finance .group .group:first-of-type:before .col, #MainWrapper.boardReport .finance .group .row:first-of-type .col, #MainWrapper.boardReport .finance .group .hr:first-of-type .col, #MainWrapper.boardReport .finance .group .group:first-of-type:before .col, #NavPage.boardReport .finance .group .row:first-of-type .col, #NavPage.boardReport .finance .group .hr:first-of-type .col, #NavPage.boardReport .finance .group .group:first-of-type:before .col {
   font-size: 80%;
 }
-/* line 775, ../sass/screen.scss */
+/* line 776, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group .row:first-of-type .col:first-of-type, #SiteWrapper.boardReport .finance .group .hr:first-of-type .col:first-of-type, #SiteWrapper.boardReport .finance .group .group:first-of-type:before .col:first-of-type, #MainWrapper.boardReport .finance .group .row:first-of-type .col:first-of-type, #MainWrapper.boardReport .finance .group .hr:first-of-type .col:first-of-type, #MainWrapper.boardReport .finance .group .group:first-of-type:before .col:first-of-type, #NavPage.boardReport .finance .group .row:first-of-type .col:first-of-type, #NavPage.boardReport .finance .group .hr:first-of-type .col:first-of-type, #NavPage.boardReport .finance .group .group:first-of-type:before .col:first-of-type {
   font-size: 100%;
 }
-/* line 782, ../sass/screen.scss */
+/* line 783, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group .row:last-of-type .col, #SiteWrapper.boardReport .finance .group .hr:last-of-type .col, #SiteWrapper.boardReport .finance .group .group:last-of-type:before .col, #MainWrapper.boardReport .finance .group .row:last-of-type .col, #MainWrapper.boardReport .finance .group .hr:last-of-type .col, #MainWrapper.boardReport .finance .group .group:last-of-type:before .col, #NavPage.boardReport .finance .group .row:last-of-type .col, #NavPage.boardReport .finance .group .hr:last-of-type .col, #NavPage.boardReport .finance .group .group:last-of-type:before .col {
   height: 70px;
 }
-/* line 786, ../sass/screen.scss */
+/* line 787, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance .group .row:last-of-type .col:last-of-type, #SiteWrapper.boardReport .finance .group .hr:last-of-type .col:last-of-type, #SiteWrapper.boardReport .finance .group .group:last-of-type:before .col:last-of-type, #MainWrapper.boardReport .finance .group .row:last-of-type .col:last-of-type, #MainWrapper.boardReport .finance .group .hr:last-of-type .col:last-of-type, #MainWrapper.boardReport .finance .group .group:last-of-type:before .col:last-of-type, #NavPage.boardReport .finance .group .row:last-of-type .col:last-of-type, #NavPage.boardReport .finance .group .hr:last-of-type .col:last-of-type, #NavPage.boardReport .finance .group .group:last-of-type:before .col:last-of-type {
   border-bottom: none;
   height: auto;
 }
-/* line 795, ../sass/screen.scss */
+/* line 796, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table, #MainWrapper.boardReport .finance table, #NavPage.boardReport .finance table {
   width: 100%;
   border-collapse: separate;
 }
-/* line 801, ../sass/screen.scss */
+/* line 802, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table:first-of-type thead th, #MainWrapper.boardReport .finance table:first-of-type thead th, #NavPage.boardReport .finance table:first-of-type thead th {
   padding-top: 0px;
 }
-/* line 809, ../sass/screen.scss */
+/* line 810, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tr td, #SiteWrapper.boardReport .finance table tr th, #MainWrapper.boardReport .finance table tr td, #MainWrapper.boardReport .finance table tr th, #NavPage.boardReport .finance table tr td, #NavPage.boardReport .finance table tr th {
   text-align: center;
   padding: 1em 0.5em;
   border-left: solid 1px #CCCCCC;
   font-weight: 600;
 }
-/* line 815, ../sass/screen.scss */
+/* line 816, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tr td:first-of-type, #SiteWrapper.boardReport .finance table tr th:first-of-type, #MainWrapper.boardReport .finance table tr td:first-of-type, #MainWrapper.boardReport .finance table tr th:first-of-type, #NavPage.boardReport .finance table tr td:first-of-type, #NavPage.boardReport .finance table tr th:first-of-type {
   text-align: left;
   font-weight: 100;
 }
-/* line 820, ../sass/screen.scss */
+/* line 821, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tr td:last-of-type, #SiteWrapper.boardReport .finance table tr th:last-of-type, #MainWrapper.boardReport .finance table tr td:last-of-type, #MainWrapper.boardReport .finance table tr th:last-of-type, #NavPage.boardReport .finance table tr td:last-of-type, #NavPage.boardReport .finance table tr th:last-of-type {
   border-left: none;
 }
-/* line 824, ../sass/screen.scss */
+/* line 825, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tr td.indicator, #SiteWrapper.boardReport .finance table tr th.indicator, #MainWrapper.boardReport .finance table tr td.indicator, #MainWrapper.boardReport .finance table tr th.indicator, #NavPage.boardReport .finance table tr td.indicator, #NavPage.boardReport .finance table tr th.indicator {
   font-size: 140%;
 }
-/* line 830, ../sass/screen.scss */
+/* line 831, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tr:nth-child(even) td, #MainWrapper.boardReport .finance table tr:nth-child(even) td, #NavPage.boardReport .finance table tr:nth-child(even) td {
   border-top: solid 1px #CCCCCC;
   border-bottom: solid 1px #CCCCCC;
 }
-/* line 834, ../sass/screen.scss */
+/* line 835, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tr:nth-child(even) td:first-of-type, #MainWrapper.boardReport .finance table tr:nth-child(even) td:first-of-type, #NavPage.boardReport .finance table tr:nth-child(even) td:first-of-type {
   border-left: none;
 }
-/* line 843, ../sass/screen.scss */
+/* line 844, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table thead tr th, #MainWrapper.boardReport .finance table thead tr th, #NavPage.boardReport .finance table thead tr th {
   border: none;
   font-weight: 100;
   padding-top: 2em;
 }
-/* line 848, ../sass/screen.scss */
+/* line 849, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table thead tr th:first-of-type, #MainWrapper.boardReport .finance table thead tr th:first-of-type, #NavPage.boardReport .finance table thead tr th:first-of-type {
   font-weight: 600;
 }
-/* line 856, ../sass/screen.scss */
+/* line 857, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tbody tr:first-of-type, #MainWrapper.boardReport .finance table tbody tr:first-of-type, #NavPage.boardReport .finance table tbody tr:first-of-type {
   background-color: #E7E7E7;
 }
-/* line 859, ../sass/screen.scss */
+/* line 860, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tbody tr:first-of-type td, #MainWrapper.boardReport .finance table tbody tr:first-of-type td, #NavPage.boardReport .finance table tbody tr:first-of-type td {
   border-top: solid 1px #CCCCCC;
 }
-/* line 862, ../sass/screen.scss */
+/* line 863, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tbody tr:first-of-type td:last-of-type, #MainWrapper.boardReport .finance table tbody tr:first-of-type td:last-of-type, #NavPage.boardReport .finance table tbody tr:first-of-type td:last-of-type {
   -moz-border-radius-topright: 10px;
   -webkit-border-top-right-radius: 10px;
   border-top-right-radius: 10px;
 }
-/* line 868, ../sass/screen.scss */
+/* line 869, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tbody tr:last-of-type, #MainWrapper.boardReport .finance table tbody tr:last-of-type, #NavPage.boardReport .finance table tbody tr:last-of-type {
   background-color: #E7E7E7;
 }
-/* line 871, ../sass/screen.scss */
+/* line 872, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tbody tr:last-of-type td, #MainWrapper.boardReport .finance table tbody tr:last-of-type td, #NavPage.boardReport .finance table tbody tr:last-of-type td {
   border-bottom: solid 1px #CCCCCC;
 }
-/* line 875, ../sass/screen.scss */
+/* line 876, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tbody tr:last-of-type td:first-of-type, #MainWrapper.boardReport .finance table tbody tr:last-of-type td:first-of-type, #NavPage.boardReport .finance table tbody tr:last-of-type td:first-of-type {
   border-left: solid 1px #CCCCCC;
   font-weight: 600;
   text-transform: uppercase;
 }
-/* line 881, ../sass/screen.scss */
+/* line 882, ../sass/screen.scss */
 #SiteWrapper.boardReport .finance table tbody tr:last-of-type td:last-of-type, #MainWrapper.boardReport .finance table tbody tr:last-of-type td:last-of-type, #NavPage.boardReport .finance table tbody tr:last-of-type td:last-of-type {
   -moz-border-radius-bottomright: 10px;
   -webkit-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* line 891, ../sass/screen.scss */
+/* line 892, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .groupLabel, #MainWrapper.boardReport .supplimentary .groupLabel, #NavPage.boardReport .supplimentary .groupLabel {
   vertical-align: middle;
   width: auto;
   padding-top: 0;
   padding-bottom: 0;
 }
-/* line 901, ../sass/screen.scss */
+/* line 902, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .group, #MainWrapper.boardReport .supplimentary .group, #NavPage.boardReport .supplimentary .group {
   width: 100%;
   display: table;
@@ -2541,16 +2541,16 @@ body > .ember-view {
   padding-bottom: 0;
   margin-bottom: 2em;
 }
-/* line 914, ../sass/screen.scss */
+/* line 915, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .group > .col, #MainWrapper.boardReport .supplimentary .group > .col, #NavPage.boardReport .supplimentary .group > .col {
   display: table-cell;
   float: none;
 }
-/* line 920, ../sass/screen.scss */
+/* line 921, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .group__headings, #MainWrapper.boardReport .supplimentary .group__headings, #NavPage.boardReport .supplimentary .group__headings {
   padding-left: 4.75%;
 }
-/* line 924, ../sass/screen.scss */
+/* line 925, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .dataRow, #MainWrapper.boardReport .supplimentary .dataRow, #NavPage.boardReport .supplimentary .dataRow {
   padding-top: 0;
   padding-bottom: 0;
@@ -2564,7 +2564,7 @@ body > .ember-view {
   display: table;
   clear: both;
 }
-/* line 936, ../sass/screen.scss */
+/* line 937, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary .block, #MainWrapper.boardReport .supplimentary .block, #NavPage.boardReport .supplimentary .block {
   color: #ffffff;
   font-size: 190%;
@@ -2573,32 +2573,32 @@ body > .ember-view {
   line-height: 60px;
   padding-left: 0.5em;
 }
-/* line 945, ../sass/screen.scss */
+/* line 946, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary table, #MainWrapper.boardReport .supplimentary table, #NavPage.boardReport .supplimentary table {
   width: 100%;
   border-collapse: separate;
 }
-/* line 951, ../sass/screen.scss */
+/* line 952, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary table thead tr th, #MainWrapper.boardReport .supplimentary table thead tr th, #NavPage.boardReport .supplimentary table thead tr th {
   border-bottom: solid 1px #E7E7E7;
   border-top: solid 1px #E7E7E7;
   padding-top: 2em;
   font-weight: 600;
 }
-/* line 961, ../sass/screen.scss */
+/* line 962, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary table tbody tr, #MainWrapper.boardReport .supplimentary table tbody tr, #NavPage.boardReport .supplimentary table tbody tr {
   border: solid 1px #E7E7E7;
 }
-/* line 964, ../sass/screen.scss */
+/* line 965, ../sass/screen.scss */
 #SiteWrapper.boardReport .supplimentary table tbody tr td, #MainWrapper.boardReport .supplimentary table tbody tr td, #NavPage.boardReport .supplimentary table tbody tr td {
   padding-top: 1em;
   padding-bottom: 1em;
 }
-/* line 974, ../sass/screen.scss */
+/* line 975, ../sass/screen.scss */
 #SiteWrapper.boardReport .businessArea .accordionHandle, #MainWrapper.boardReport .businessArea .accordionHandle, #NavPage.boardReport .businessArea .accordionHandle {
   width: 50%;
 }
-/* line 978, ../sass/screen.scss */
+/* line 979, ../sass/screen.scss */
 #SiteWrapper.boardReport .businessArea .block, #MainWrapper.boardReport .businessArea .block, #NavPage.boardReport .businessArea .block {
   color: #ffffff;
   font-size: 190%;
@@ -2607,19 +2607,19 @@ body > .ember-view {
   line-height: 60px;
   padding-left: 0.5em;
 }
-/* line 987, ../sass/screen.scss */
+/* line 988, ../sass/screen.scss */
 #SiteWrapper.boardReport .businessArea .summary, #MainWrapper.boardReport .businessArea .summary, #NavPage.boardReport .businessArea .summary {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 996, ../sass/screen.scss */
+/* line 997, ../sass/screen.scss */
 #SiteWrapper.boardReport .risks .groupLabel, #MainWrapper.boardReport .risks .groupLabel, #NavPage.boardReport .risks .groupLabel {
   background: #ECECEC;
   height: 100%;
 }
-/* line 1000, ../sass/screen.scss */
+/* line 1001, ../sass/screen.scss */
 #SiteWrapper.boardReport .risks .groupLabel .verticalText, #MainWrapper.boardReport .risks .groupLabel .verticalText, #NavPage.boardReport .risks .groupLabel .verticalText {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -2631,7 +2631,7 @@ body > .ember-view {
   margin-left: auto;
   margin-right: auto;
 }
-/* line 1015, ../sass/screen.scss */
+/* line 1016, ../sass/screen.scss */
 #SiteWrapper.dashboard, #MainWrapper.dashboard, #NavPage.dashboard {
   /******************************************************************
   Site Name:
@@ -2813,7 +2813,7 @@ body > .ember-view {
   transform: rotateY(180deg);
 }
 
-/* line 1024, ../sass/screen.scss */
+/* line 1025, ../sass/screen.scss */
 #NavPage {
   width: 100%;
   height: 100%;

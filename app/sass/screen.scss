@@ -131,7 +131,7 @@ body > .ember-view {
     }
 
     .noRAG {
-        background-color: $color-bg-light;
+        background-color: $color-bg-medium;
         color:$color-font-main;
     }
 
@@ -197,7 +197,8 @@ body > .ember-view {
 
         .icon {
             position: absolute;
-            top: $margin-main/4;
+            top: 0.65em;
+            // top: $margin-main/4;
             right: $margin-main/2;
         }
 
