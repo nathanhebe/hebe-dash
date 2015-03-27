@@ -1,0 +1,16 @@
+﻿/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: 768px and up Stylesheet
+******************************************************************/
+
+body {
+    font-size: 85%;
+    
+    #SiteWrapper {
+        .chooseBoardReport .icon, #MainWrapper .chooseBoardReport .icon, #NavPage .chooseBoardReport .icon {
+            top:0.3em;
+        }
+    }
+}

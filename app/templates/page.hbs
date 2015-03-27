@@ -2,11 +2,17 @@
 <div id="MainWrapper" class="boardReport">
     <section id="MainContent">
         <div class="row">
-            <h2 class="col span_10">{{subTitle}}</h2>
-            <div class="col span_2 marginLNone marginRNone paddingLNone paddingRNone">
-                {{board-report-picker currentAnnexID=this.annexID currentPageID=this.pageID}}
+            <h2 class="col span_12">{{subTitle}}</h2>
+            <div style="display:none;">
+                <div class="col span_2 marginLNone marginRNone paddingLNone paddingRNone">
+                    {{board-report-picker currentAnnexID=this.annexID currentPageID=this.pageID}}
+                </div>
             </div>
         </div>
+
+
+
+
 
         <div class="row borderT borderB bold">
             <div class="col span_2">
@@ -24,7 +30,7 @@
 
         {{#if indicator.hasValue}}
         {{/if}}
-            {{render "IndicatorRow" indicator}}
+        {{render "IndicatorRow" indicator}}
         {{/each}}
 
     </section>

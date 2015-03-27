@@ -1,4 +1,4 @@
-/* Welcome to Compass.
+﻿/* Welcome to Compass.
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
@@ -85,7 +85,7 @@ body > .ember-view {
 
     h2 {
         font-size: $font-size-heading-sub;
-        margin-bottom: $margin-main / 2;
+        margin-bottom: $margin-main;
         font-weight: $font-weight-bold;
     }
 
@@ -186,6 +186,8 @@ body > .ember-view {
     }
 
     #MainContent {
+        overflow-y: auto;
+        height:100%;
     }
 
     .chooseBoardReport {
@@ -226,7 +228,7 @@ body > .ember-view {
                     border-bottom: $border-main;
 
                     a {
-                        color: $color-grey-darker;
+                        color: $color-bg-dark;
                         text-decoration: none;
                     }
                 }
@@ -365,6 +367,7 @@ body > .ember-view {
         }
 
         .key {
+            display:none;
             color: $color-bg-dark;
         }
 
@@ -1104,6 +1107,11 @@ the other stylesheets. Remember, keep it light: Speed is Important.
     @import "breakpoints/768lower";
 }
 
+@media only screen and (max-width: 1024px) {
+    // styles in 768up.scss
+    @import "breakpoints/1024lower";
+}
+
 @media only screen and (max-height: 440px) {
     // styles for iPhone 4 & lower
     @import "breakpoints/440Heightlower";
@@ -1117,6 +1125,8 @@ the other stylesheets. Remember, keep it light: Speed is Important.
 .print-show {
     display: none;
 }
+
+
 @media print {
     @page {
         size: landscape;
