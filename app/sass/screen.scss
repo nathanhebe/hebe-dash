@@ -85,7 +85,7 @@ body > .ember-view {
 
     h2 {
         font-size: $font-size-heading-sub;
-        margin-bottom: $margin-main;
+        margin-bottom: $margin-main / 2;
         font-weight: $font-weight-bold;
     }
 
@@ -131,10 +131,9 @@ body > .ember-view {
     }
 
     .noRAG {
-        background-color: $color-bg-light;
-        color:$color-font-main;
+        background-color: $color-bg-medium;
+        color: $color-font-main;
     }
-
     /* Fullscreen Modal */
     .modalHighlightedive {
         z-index: 4;
@@ -364,12 +363,16 @@ body > .ember-view {
             background: none;
         }
 
+        .key {
+            color: $color-bg-dark;
+        }
+
         .indicator {
             position: relative;
             color: $color-font-light;
 
             &.noRAG {
-                color:$color-font-main;
+                color: $color-font-main;
             }
 
             .currentValue {
@@ -974,6 +977,8 @@ body > .ember-view {
             .accordionHandle {
                 width: 50%;
             }
+
+
 
             .block {
                 color: $color-font-light;
