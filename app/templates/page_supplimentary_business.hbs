@@ -3,17 +3,29 @@
     <section id="MainContent">
         {{page-subtitle-description subTitle=subTitle description=description}}
 
-
         <div class="supplimentary businessArea">
-            
             <h2>Performance against NHS England Business Plan Business Areas and Customer Contact</h2>
             
+
             <div class="row borderT borderB marginBL dataRow">
                 <div class="col span_1 borderR">Area</div>
                 <div class="col span_4 borderR">Title</div>
                 <div class="col span_2 borderR">Status & Trend</div>
                 <div class="col span_5">Comment</div>
             </div>
+
+            <div class="row">
+                <div class="col span_12 small alignL">
+                    <div class="paddingLL">
+                        R = Red &nbsp;
+                        R = Amber Red &nbsp;
+                        A = Amber &nbsp;
+                        A/G = Amber Green &nbsp;
+                        G=Green &nbsp;
+                    </div>
+                </div>
+            </div>
+
 
             {{#if rows}}
             {{#each row in rows}}

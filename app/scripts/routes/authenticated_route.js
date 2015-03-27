@@ -20,12 +20,13 @@ Dashboard.AuthenticatedRoute = Ember.Route.extend({
                     //url: ckanURL + '/api/action/resource_show?id=56879843-edf2-4b66-a8e1-f27a91befb7a',
                     url: ckanURL + '/api/action/resource_show?id=' + directoryID,
                     //url: 'https://data.england.nhs.uk/api/action/resource_show?id=56879843-edf2-4b66-a8e1-f27a91befb7a',
-                    //xhrFields: {
-                    //    withCredentials: true
-                    //}
+                    xhrFields: {
+                        withCredentials: true
+                    }
                 })
                 .error(function (response) {
-                    if (response.status === 403) {
+                    //if (response.status === 403) {
+                    if (response.status !== 200) {
                         //console.log('MADE REQUEST - NO PERMISSION');
                         obj.set('hasPermission', false)
                         obj.transitionTo('permissions');

@@ -1,5 +1,6 @@
-Dashboard.IndexRoute = Ember.Route.extend({
+Dashboard.IndexRoute = Dashboard.AuthenticatedRoute.extend({
     model: function () {
+        this._super();
         var route = this;
         return Dashboard.DashboardModel.findAll();
     },
