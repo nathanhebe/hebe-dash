@@ -37,8 +37,11 @@ Dashboard.PageModel = Ember.Object.extend({
         return this.get('_rows');
     }.property('_rows'),
 
-    _ragStatus: null,
-    ragStatus: function () {
+    mainRAGs: null,
+    noTrendRAG: null,
+
+    calculateRAG: function () {
+        console.log('RAG STATUS');
         var status = [
             { colour: 'red', count: 0, previous: 0 },
             { colour: 'amberRed', count: 0, previous: 0 },
@@ -56,33 +59,51 @@ Dashboard.PageModel = Ember.Object.extend({
                 status.push({ colour: colour, count: 0, previous: 0 })
             }
 
-            status.findBy('colour', colour).count++
+            status.findBy('colour', colour).count++;
         });
-        return status
-    }.property('indicators.@each.currentValue'),
 
-    ragStatusData: function () {
-        if (this.get('ragStatus') != null) {
-            var noTrend = this.get('ragStatus').filter(function (rag) {
-                //if (rag.colour == 'red') {
-                //    console.log('RED = ' + rag.count);
-                //}
-                if (rag.colour != 'noRAG') {
-                    return true;
-                }
-                return false;
-            });
-            return noTrend;
-        }
-        return [];
-    }.property('ragStatus'),
+        var mainRAGs = status.filter(function (rag) {
+            if (rag.colour != 'noRAG') {
+                return true;
+            }
+            return false;
+        });
+        var noTrendRAG = status.findBy('colour', 'noRAG');
 
-    noRAGStatus: function () {
-        if (this.get('ragStatus') != null) {
-            var noTrend = this.get('ragStatus').findBy('colour', 'noRAG');
-            return noTrend;
+        this.set('mainRAGs', mainRAGs);
+        this.set('noTrendRAG', noTrendRAG);
+
+        var obj = Ember.Object.create(
+            {
+                mainRAGs: mainRAGs,
+                noTrendRAG: noTrendRAG
+            }
+        );
+
+        return obj;
+    },
+
+    rags: function () {
+        console.log('ragColour');
+        return this.calculateRAG().mainRAGs;
+    }.property('indicators.@each._ragColour'),
+
+
+    _changed: 0,
+    changed: function (key, value) {
+        if (value) {
+            this.set('_changed', value);
         }
-    }.property('ragStatus'),
+        return this.get('_changed');
+    }.property(),
+
+    indicatorChanged: function () {
+        this.set('changed', +new Date());
+        console.log('item changed!');
+    }.observes('indicators.@each.ragColour'),
+
+
+
 
 
     _data: null,

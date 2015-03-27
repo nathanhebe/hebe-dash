@@ -74,14 +74,14 @@
             <div class="col span_1 alignC  relative">&nbsp;</div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
-                    {{#each rag in pageRAGTotals}}
+                    {{#each rag in pageRAGs}}
                         {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
                     {{/each}}
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">
                 <div class="blockRow blockRow1">
-                    {{performance-summary-block color="blue" current=noRAGTotal.count previous=noRAGTotal.previous}}
+                    {{performance-summary-block color="blue" current=pageNoRAG.count previous=pageNoRAG.previous}}
                 </div>
             </div>
         </div>

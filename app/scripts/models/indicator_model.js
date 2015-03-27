@@ -39,7 +39,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         }
     }.property('_dataValues', '_previousValue'),
 
-
     currentVal: function () {
         if (this.get('_currentVal') != null) {
             return this.get('_currentVal');
