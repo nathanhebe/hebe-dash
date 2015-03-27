@@ -39,7 +39,6 @@ Dashboard.PageModel = Ember.Object.extend({
 
     _ragStatus: null,
     ragStatus: function () {
-        //console.log('GET RAG ' + this.get('id'));
         var status = [
             { colour: 'red', count: 0, previous: 0 },
             { colour: 'amberRed', count: 0, previous: 0 },
@@ -49,21 +48,25 @@ Dashboard.PageModel = Ember.Object.extend({
             { colour: 'noRAG', count: 0, previous: 0 },
         ];
 
-        var output = '';
+        var id = this.get('id');
         this.get('indicators').forEach(function (indicator) {
-            var rag = indicator.get('ragColour');
-            if (status.findBy('colour', rag) == null) {
-                status.push({ colour: rag, count: 0, previous: 0 })
-            }
-            status.findBy('colour', rag).count++
-        });
+            var colour = indicator.get('ragColour');
 
-        return status;
+            if (status.findBy('colour', colour) == null) {
+                status.push({ colour: colour, count: 0, previous: 0 })
+            }
+
+            status.findBy('colour', colour).count++
+        });
+        return status
     }.property('indicators.@each.currentValue'),
 
     ragStatusData: function () {
         if (this.get('ragStatus') != null) {
             var noTrend = this.get('ragStatus').filter(function (rag) {
+                //if (rag.colour == 'red') {
+                //    console.log('RED = ' + rag.count);
+                //}
                 if (rag.colour != 'noRAG') {
                     return true;
                 }
@@ -71,6 +74,7 @@ Dashboard.PageModel = Ember.Object.extend({
             });
             return noTrend;
         }
+        return [];
     }.property('ragStatus'),
 
     noRAGStatus: function () {

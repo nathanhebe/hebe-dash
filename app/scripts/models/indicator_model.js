@@ -220,7 +220,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         var previous = this.get('previousValue');
         colour = this.calculateRAG();
 
-        console.log('ragColour: ' + this.get('id') + ' : ' + colour);
+        //console.log('ragColour: ' + this.get('id') + ' : ' + colour);
 
         this.set('_ragColour', colour);
         return this.get('_ragColour');
@@ -465,7 +465,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             var direction = this.get('desiredDirection');
             var uci = current.get('upperCI');
             var lci = current.get('lowerCI');
-            console.log('uci:' + uci + ',lci:' + lci + ',val:' + currentVal);
+            //console.log('uci:' + uci + ',lci:' + lci + ',val:' + currentVal);
             rag = 'amber';
             if (direction === 'Up') {
                 if (currentVal > uci) {
@@ -480,7 +480,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
                     rag = 'red';
                 }
             }
-            console.log('RAG ' + rag);
+            //console.log('RAG ' + rag);
 
         }
         return rag;
