@@ -25,9 +25,9 @@
         {{#each indicator in nhsEnglandRAGTotals}}
         <div class="row borderT marginTL paddingBNone paddingBS chart">
             <div class="col span_4 alignL">{{indicator.title}}</div>
-            <div class="col span_1 alignC borderL borderR relative">
+            <div class="col span_1 alignC borderL borderL--no-print borderR relative">
                 {{#if indicator.id}}
-                    {{#link-to 'page' model.dashID 'annex_d' indicator.id }}View{{/link-to}}
+                    {{#link-to 'page' model.dashID 'annex_d' indicator.id classNames="print-hide" }}View{{/link-to}}
                 {{/if}}
             </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
@@ -65,8 +65,8 @@
         {{#each page in pages}}
         <div class="row borderT marginTL paddingBNone paddingBS chart">
             <div class="col span_4 alignL">{{page.title}}</div>
-            <div class="col span_1 alignC borderL borderR relative">
-                {{#link-to 'page' model.dashID page.parentID page.id }}View{{/link-to}}
+            <div class="col span_1 alignC borderL borderL--no-print borderR relative">
+                {{#link-to 'page' model.dashID page.parentID page.id }}View{{/link-to}}<!--classNames="print-hide"-->
             </div>
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">

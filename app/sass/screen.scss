@@ -1102,6 +1102,12 @@ the other stylesheets. Remember, keep it light: Speed is Important.
 // end of media query
 
 
+.print-hide {
+    display: inline-block;
+}
+.print-show {
+    display: none;
+}
 @media print {
     @page {
         size: landscape;
