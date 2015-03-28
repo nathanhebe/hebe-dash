@@ -16,25 +16,31 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     _title: null,
     title: function (key, titleString) {
         if (arguments.length === 1) {
-            console.log('getting title');
             return this.get('_title');
         } else { 
-            console.log('settings title: '+titleString);
             titleString = titleString.fixChars();
-            console.log('settings title: ' + titleString);
             this.set('_title', titleString);
             return titleString; 
         }
     }.property('_title'),
 
-    mainTitle: function () {
-        return this.get('title');
 
-        console.log('getting mainTitle: ' + this.get('_title'));
+    _subTitle: null,
+    subTitle: function (key, titleString) {
+        if (arguments.length === 1) {
+            return this.get('_subTitle');
+        } else {
+            titleString = titleString.fixChars();
+            this.set('_subTitle', titleString);
+            return titleString;
+        }
+    }.property('_title'),
+
+
+    mainTitle: function () {
         var title = (this.get('subTitle') == null || this.get('subTitle').length === 0
             ? this.get('_title') : this.get('subTitle'));
         return title;
-
     }.property("_title", "subTitle"),
 
 
