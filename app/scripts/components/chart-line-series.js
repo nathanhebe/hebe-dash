@@ -7,7 +7,20 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
     draw: function (myData) {
         var chartID = '#' + myData.get('chartID');
         var valueType = myData.get('valueString');
-        var values = myData.get('_dataValues');
+        var values = myData.get('activeDateValues'); // myData.get('_dataValues');
+
+        //var date_now = new Date();
+        //// make surec values only for last 13 months
+        //values = $.map(values,function(val) {
+        //    var start_date = val.end_date;
+        //    var a = moment(date_now);
+        //    var b = moment(start_date);
+        //    var diffMonths = a.diff(b, 'months');
+        //    if (diffMonths < 14) {
+        //        return val;
+        //    }
+        //});
+
         var YMin = 0;
         var YMax = 0;
         var maxVal = Math.max.apply(values, $.map(values,
@@ -19,14 +32,12 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         var ragTarget = parseFloat(myData.get('targetVal'));
 
         if (valueType === '%') {
-            //maxVal = maxVal / 100;
-
             var minVal = Math.min.apply(values, $.map(values,
                 function (indicatorValue) {
                     return indicatorValue._val;
-                }));
+                })
+            );
 
-            //minVal = minVal / 100;
             if (minVal > ragTarget) {
                 minVal = ragTarget;
             }
@@ -36,8 +47,6 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
             }
             minVal = minVal - 1;
             maxVal = maxVal + 2;
-            //minVal = minVal - 0.01;
-            //maxVal = maxVal + 0.01;
             YMax = maxVal;
             YMin = minVal;
         }
@@ -103,7 +112,7 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
                 y: {
                     tick: {
                         //format: (valueType === '%' ? d3.format("%") : null)
-                        format: function (x) { return x.toString() + (valueType === '%' ? '%': ''); }
+                        format: function (x) { return x.toString() + (valueType === '%' ? '%' : ''); }
                     },
                     min: YMin,
                     max: YMax,
@@ -136,10 +145,6 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
 
         d3.selectAll('.c3-axis-x-label').attr('y', "2.5em");
     },
-
-
-
-
 
     didInsertElement: function () {
         var data = this.get('controller.data');

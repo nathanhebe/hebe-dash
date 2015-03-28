@@ -13,6 +13,34 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     _trend: null,
     _ragColour: null,
 
+    _title: null,
+    title: function (key, titleString) {
+        if (arguments.length === 1) {
+            console.log('getting title');
+            return this.get('_title');
+        } else { 
+            console.log('settings title: '+titleString);
+            titleString = titleString.fixChars();
+            console.log('settings title: ' + titleString);
+            this.set('_title', titleString);
+            return titleString; 
+        }
+    }.property('_title'),
+
+    mainTitle: function () {
+        return this.get('title');
+
+        console.log('getting mainTitle: ' + this.get('_title'));
+        var title = (this.get('subTitle') == null || this.get('subTitle').length === 0
+            ? this.get('_title') : this.get('subTitle'));
+        return title;
+
+    }.property("_title", "subTitle"),
+
+
+
+
+
     currentValue: function () {
         if (this.get('_currentValue') != null) {
             return this.get('_currentValue');
@@ -135,6 +163,29 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             return false;
         }
     }.property('currentValue'),
+
+    showChart: function () {
+        return (this.get('currentValue') != null && this.get('previousValue') != null && this.get('activeDateValues') != null && this.get('activeDateValues').length > 1);
+    }.property('activeDateValues','currentValue','previousValue'),
+
+    activeDateValues: function () {
+        // only return values within the currnet date range
+        var dateRangeMonths = 13;
+        var date_now = new Date();
+        values = this.get('_dataValues');
+        if(values != null){
+            values = $.map(values, function (val) {
+                var start_date = val.end_date;
+                var a = moment(date_now);
+                var b = moment(start_date);
+                var diffMonths = a.diff(b, 'months');
+                if (diffMonths <= dateRangeMonths) {
+                    return val;
+                }
+            });
+        }
+        return values;
+    }.property('_dataValues'),
 
     dataValues: function () {
         if (this.get('_dataValues') != null) {

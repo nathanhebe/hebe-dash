@@ -35,7 +35,7 @@
         if (typeof String.prototype.fixChars != 'function') {
             String.prototype.fixChars = function (str) {
                 //todo: replace any dodgy characters here
-                return this.replace('ÂŁ', '£');
+                return this.replace('ÂŁ', '£').replace('__', "'");
             };
         }
 
