@@ -33,14 +33,14 @@ Dashboard.PageController = Ember.ObjectController.extend({
 
     calculateMainRAGs: function () {
         var mainRAGs = [
-            { colour: 'red', count: 0, previous: 0 },
-            { colour: 'amberRed', count: 0, previous: 0 },
-            { colour: 'amber', count: 0, previous: 0 },
-            { colour: 'amberGreen', count: 0, previous: 0 },
-            { colour: 'green', count: 0, previous: 0 }
+            { colour: 'red', count: 0, previous: 0, change: 0 },
+            { colour: 'amberRed', count: 0, previous: 0, change: 0 },
+            { colour: 'amber', count: 0, previous: 0, change: 0 },
+            { colour: 'amberGreen', count: 0, previous: 0, change: 0 },
+            { colour: 'green', count: 0, previous: 0, change: 0 }
         ];
 
-        var noTrendRAG = { colour: 'noRAG', count: 0, previous: 0 };
+        var noTrendRAG = { colour: 'noRAG', count: 0, previous: 0, change: 0 };
 
         this.get('pages').forEach(function (page) {
             var pageRAGs = page.get('mainRAGs');
@@ -48,6 +48,10 @@ Dashboard.PageController = Ember.ObjectController.extend({
                 pageRAGs.forEach(function (colour) {
                     if (mainRAGs.findBy('colour', colour.colour) != null) {
                         mainRAGs.findBy('colour', colour.colour).count += colour.count;
+                        mainRAGs.findBy('colour', colour.colour).previous += colour.previous;
+                        if (colour.change != null) {
+                            mainRAGs.findBy('colour', colour.colour).change += colour.change;
+                        }
                     }
                 });
             }
@@ -55,6 +59,10 @@ Dashboard.PageController = Ember.ObjectController.extend({
             var pageNoRAG = page.get('noTrendRAG');
             if (pageNoRAG != null) {
                 noTrendRAG.count += pageNoRAG.count;
+                noTrendRAG.previous += pageNoRAG.previous;
+                if (pageNoRAG.change != null) {
+                    noTrendRAG.change += pageNoRAG.change;
+                }
             }
 
         });

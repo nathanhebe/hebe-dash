@@ -72,13 +72,13 @@
             <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
                 <div class="blockRow blockRow5">
                     {{#each rag in totalMainRAGs}}
-                        {{performance-summary-block color=rag.colour current=rag.count previous=rag.previous}}
+                        {{performance-summary-block color=rag.colour current=rag.count previous=rag.change}}
                     {{/each}}
                 </div>
             </div>
             <div class="col span_1 borderL paddingRNone">
                 <div class="blockRow blockRow1">
-                    {{performance-summary-block color="blue" current=totalNoTrendRAG.count previous=totalNoTrendRAG.previous}}
+                    {{performance-summary-block color="blue" current=totalNoTrendRAG.count previous=totalNoTrendRAG.change}}
                 </div>
             </div>
         </div>
