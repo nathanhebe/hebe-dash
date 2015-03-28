@@ -37,57 +37,76 @@ Dashboard.PageModel = Ember.Object.extend({
         return this.get('_rows');
     }.property('_rows'),
 
-    _mainRAGs: null,
-    _noTrendRAG: null,
 
-    mainRAGs: function () {
-        if (this.get('_mainRAGs') == null) {
-            this.calculateRAG();
-        }
-        return this.get('_mainRAGs');
-    }.property('_mainRAGs'),
 
-    noTrendRAG: function () {
-        if (this.get('_noTrendRAG') == null) {
-            this.calculateRAG();
-        }
-        return this.get('_noTrendRAG');
-    }.property('noTrendRAG'),
+
+
+    watchRAGChanges: false,
 
     calculateRAG: function () {
-        console.log('RAG STATUS');
-        var status = [
-            { colour: 'red', count: 0, previous: 0 },
-            { colour: 'amberRed', count: 0, previous: 0 },
-            { colour: 'amber', count: 0, previous: 0 },
-            { colour: 'amberGreen', count: 0, previous: 0 },
-            { colour: 'green', count: 0, previous: 0 },
-            { colour: 'noRAG', count: 0, previous: 0 },
-        ];
+        if (this.get('watchRAGChanges') === true) {
+            console.log('calculateRAG');
+            var status = [
+                { colour: 'red', count: 0, previous: 0 },
+                { colour: 'amberRed', count: 0, previous: 0 },
+                { colour: 'amber', count: 0, previous: 0 },
+                { colour: 'amberGreen', count: 0, previous: 0 },
+                { colour: 'green', count: 0, previous: 0 },
+                { colour: 'noRAG', count: 0, previous: 0 },
+            ];
 
-        var id = this.get('id');
-        this.get('indicators').forEach(function (indicator) {
-            var colour = indicator.get('ragColour');
+            this.get('indicators').forEach(function (indicator) {
+                var colour = indicator.get('ragColour');
 
-            if (status.findBy('colour', colour) == null) {
-                status.push({ colour: colour, count: 0, previous: 0 })
+                if (status.findBy('colour', colour) == null) {
+                    status.push({ colour: colour, count: 0, previous: 0 })
+                }
+
+                status.findBy('colour', colour).count++;
+            });
+
+            var mainRAGs = status.filter(function (rag) {
+                if (rag.colour != 'noRAG') {
+                    return true;
+                }
+                return false;
+            });
+            var noTrendRAG = status.findBy('colour', 'noRAG');
+
+            this.set('noTrendRAG', noTrendRAG);
+            this.set('mainRAGs', mainRAGs);
+        }
+    }.observes('indicators.@each.ragColour','watchRAGChanges'),
+
+
+    _mainRAGs: null,
+    mainRAGs: function (key, newMainRAGs) {
+        if (arguments.length === 1) {
+            if (this.get('_mainRAGs') == null) {
+                this.calculateRAG();
             }
+            return this.get('_mainRAGs');
+        } else {
+            this.set('_mainRAGs', newMainRAGs);
+            return newMainRAGs;
+        }
+    }.property('_mainRAGs'),
 
-            status.findBy('colour', colour).count++;
-        });
 
-        var mainRAGs = status.filter(function (rag) {
-            if (rag.colour != 'noRAG') {
-                return true;
+    _noTrendRAG: null,
+    noTrendRAG: function (key, newNoTrendRAG) {
+        if (arguments.length === 1) {
+            if (this.get('_noTrendRAG') == null) {
+                this.calculateRAG();
             }
-            return false;
-        });
-        var noTrendRAG = status.findBy('colour', 'noRAG');
+            return this.get('_noTrendRAG');
+        } else {
+            this.set('_noTrendRAG', newNoTrendRAG);
+            return newNoTrendRAG;
+        }
+    }.property('_noTrendRAG'),
 
-        this.set('_mainRAGs', mainRAGs);
-        this.set('_noTrendRAG', noTrendRAG);
 
-    }.observes('indicators.@each._ragColour'),
 
     //rags: function () {
     //    console.log('ragColour');

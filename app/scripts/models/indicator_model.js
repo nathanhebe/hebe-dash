@@ -7,7 +7,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     _currentVal: null,
     _previousValue: null,
     _previousVal: null,
-    _dataValues: null,
     _currentDate: null,
     _periodOfCoverage: null,
     _trend: null,
@@ -24,7 +23,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         }
     }.property('_title'),
 
-
     _subTitle: null,
     subTitle: function (key, titleString) {
         if (arguments.length === 1) {
@@ -36,42 +34,37 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         }
     }.property('_title'),
 
-
     mainTitle: function () {
         var title = (this.get('subTitle') == null || this.get('subTitle').length === 0
             ? this.get('_title') : this.get('subTitle'));
         return title;
     }.property("_title", "subTitle"),
 
-
-
-
-
     currentValue: function () {
         if (this.get('_currentValue') != null) {
             return this.get('_currentValue');
-        } else if (this.get('_dataValues') == null) {
+        } else if (this.get('dataValues') == null) {
             this.get('dataValues');
             return null;
         } else {
-            var current = this.get('_dataValues')[0];
+            var current = this.get('dataValues')[0];
             this.set('_currentValue', current);
             return this.get('currentValue');
         }
-    }.property('_dataValues','_currentValue'),
+    }.property('dataValues','_currentValue'),
 
     previousValue: function () {
         if (this.get('_previousValue') != null) {
             return this.get('_previousValue');
-        } else if (this.get('_dataValues') == null) {
+        } else if (this.get('dataValues') == null) {
             this.get('dataValues');
             return null;
         } else {
-            var previous = this.get('_dataValues')[1];
+            var previous = this.get('dataValues')[1];
             this.set('_previousValue', previous);
             return this.get('_previousValue');
         }
-    }.property('_dataValues', '_previousValue'),
+    }.property('dataValues', '_previousValue'),
 
     currentVal: function () {
         if (this.get('_currentVal') != null) {
@@ -146,13 +139,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         }
     }.property('currentDate', '_currentValue'),
 
-    getRAGTarget: function () {
-        if (this.get('ragTarget') !== null && this.get('valueString') === '%') {
-            return this.get('ragTarget') * 100;
-        }
-        return this.get('ragTarget');
-    }.property('ragTarget'),
-
     chartID: function () {
         return 'Chart' + this.get('id');
     }.property(),
@@ -178,7 +164,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         // only return values within the currnet date range
         var dateRangeMonths = 13;
         var date_now = new Date();
-        values = this.get('_dataValues');
+        values = this.get('dataValues');
         if(values != null){
             values = $.map(values, function (val) {
                 var start_date = val.end_date;
@@ -191,34 +177,52 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             });
         }
         return values;
-    }.property('_dataValues'),
+    }.property('dataValues'),
 
-    dataValues: function () {
-        if (this.get('_dataValues') != null) {
+
+
+
+
+
+
+
+    _dataValues: null,
+    dataValues: function (key, newDataValues) {
+        if (arguments.length === 1) {
+            if (this.get('_dataValues') == null) {
+                this.getDataValues();
+            }
             return this.get('_dataValues');
         } else {
-            var obj = this;
-            var ckanURL = Dashboard.get('settings').get('ckanUrl');
-            var dataUrl = Dashboard.get('settings').get('dataUrl');
-            $.ajax({
-                url: dataUrl + ' WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
-            })
-            .then(function (response) {
-                var results = [];
-                var valueType = obj.get('valueType');
-                response.result.records.forEach(function (record) {
-                    results.push(Dashboard.IndicatorValueModel.create(_.extend(record, { valueType: valueType })));
-                });
-                obj.setProperties({
-                    _dataValues: results
-                    //,
-                    //_currentValue: results[0],
-                    //_previousValue: results[1]
-                });
-                return obj.get('_dataValues');
-            });
+            this.set('_dataValues', newDataValues);
+            return newDataValues;
         }
-    }.property(),
+    }.property('_dataValues'),
+
+    getDataValues: function(){
+        var obj = this;
+        var ckanURL = Dashboard.get('settings').get('ckanUrl');
+        var dataUrl = Dashboard.get('settings').get('dataUrl');
+        $.ajax({
+            url: dataUrl + ' WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '
+        })
+        .then(function (response) {
+            var results = [];
+            var valueType = obj.get('valueType');
+            response.result.records.forEach(function (record) {
+                results.push(Dashboard.IndicatorValueModel.create(_.extend(record, { valueType: valueType })));
+            });
+            obj.setProperties({
+                dataValues: results
+            });
+        });
+    },
+
+
+
+
+
+
 
     trend: function () {
         if (this.get('currentVal') != null && this.get('previousVal') != null) {
@@ -253,297 +257,310 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         return 'notrend';
     }.property('_currentVal', '_previousVal'),
 
-    valueString: function () {
-        return (this.get('valueType') === 'int' ? '' : this.get('valueType'));
-    }.property('valueType'),
+valueString: function () {
+    return (this.get('valueType') === 'int' ? '' : this.get('valueType'));
+}.property('valueType'),
 
-    regionalInfo: function () {
-        // e.g. https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "dc7afa72-9d36-42da-b66a-851fe3e55855" WHERE "Level description" LIKE 'North Yorkshire' AND "Gender" = 'Female'  
-    },
+    
 
-    ragColour: function () {
-        if (this.get('currentValue') != null) {
-            console.log('ragColour');
-            var colour = null;
-            var current = this.get('currentValue');
-            var previous = this.get('previousValue');
-            colour = this.calculateRAG();
+getRAGTarget: function () {
+    if (this.get('ragTarget') !== null && this.get('valueString') === '%') {
+        return this.get('ragTarget') * 100;
+    }
+    return this.get('ragTarget');
+}.property('ragTarget'),
 
-            //console.log('ragColour: ' + this.get('id') + ' : ' + colour);
-            if (colour != this.get('_ragColour') && colour != null) {
-                this.set('_ragColour', colour);
-                return this.get('_ragColour');
+ragColour: function () {
+
+    if (this.get('currentValue') != null) {
+        var colour = null;
+        var current = this.get('currentValue');
+        var previous = this.get('previousValue');
+        colour = this.calculateRAG();
+
+        if (this.get('id') === '65') {
+            console.log(this.get('id') + ' - ' + this.get('currentVal') + ' - ' + colour);
+        }
+        if (colour != this.get('_ragColour') && colour != null) {
+            this.set('_ragColour', colour);
+        }
+    }
+    //else {
+    //    //console.log('currentValue is null');
+    //    this.set('_ragColour', null);
+    //}
+    ////console.log('ragColour: ' + this.get('_ragColour'));
+    return this.get('_ragColour');
+}.property('currentValue'),
+
+calculateRAG: function () {
+    switch (this.get('ragType')) {
+        case "Constitutional":
+            //console.log('constitutionalRAG');
+            return this.get('constitutionalRAG');
+        case "Standard":
+            //console.log('standardRAG');
+            return this.get('standardRAG');
+        case "Confidence":
+            //console.log('confidenceRAG');
+            return this.get('confidenceRAG');
+        default:
+            return 'noRAG';
+    }
+    /*
+    Type of data (col Q in feedsheet is for ValueType in our config
+    Units (colP in feedsheet would be good for additional metadata on UI for the indicators)
+    Org. Level Data (ColH in feedsheet)
+        - can be used on Dashboards etc to inform to what level data can be drilled down
+
+    ragPercentChangeToUse Add a percent change value (most will be 1% - but at least can be overriden per indicator if required (% Change to use if no CI ColF in Feedsheet))
+
+    Frequency of data (imply the range from E.g type of data)
+
+    
+    3 = ConsitutionalStandard
+    2 = Confidence Intervals
+    1 = standard
+
+    Feedsheet > Current Rag > Rag Classification > Rag Type
+
+    if confidence interval?
+        period of reporting
+            UCI
+
+            LCI
+
+            IMPORTANT - select the operator based on the DESIRED DIRECTION FIELD (e.g. up  = >   down  = <
+            IMPORTANT - The Previous period is defined by RAG Methodology (colX in feedsheet)
+                        - compare this to tType of Data (colN in feedsheet) to decide how far back comparative period
+
+
+
+
+            if(current.LCI > previous 
+
+            if(LCI2 > LCI1) {
+                green
+            } else if(UCI1 > UCI2) {
+                red
+            } else {
+                amber
             }
-        }
 
 
-
-        //if (this.get('_ragColour') != null) {
-        //    return this.get('_ragColour');
-        //} else {
-        //}
-
-
-        //if (this.get('ragType') === "Constitutional") {
-        //    return this.calculateRAG();
-        //}
-
-        ////console.log('current = ' + current + ', previous = ' + previous);
-
-        //if (current == null || previous == null || current.get('val') === null || previous.get('val') === null) {
-        //    return 'blue';
-        //} else {
-        //    current = current.get('val');
-        //    previous = previous.get('val');
-        //}
-        //var ragVal = 1;
-        //var diff = current - previous;
-        //var diffPercent = (diff / previous) * 100;
-
-        //if (!isNaN(diffPercent)) {
-        //    if (diffPercent < -(ragVal)) {
-        //        colour = 'red';
-        //    }
-        //    else if (diffPercent < 0) {
-        //        colour = 'amber';
-        //    } else if (diffPercent <= ragVal) {
-        //        colour = 'amberGreen';
-        //    } else if (diffPercent > ragVal) {
-        //        colour = 'green';
-        //    }
-        //}
-        //if (colour == null) {
-        //    return 'blue';
-        //} else {
-        //    this.set('_ragColour', colour);
-        //    return this.get('_ragColour');
-        //}
-        //}
-    }.property('currentValue'),
-
-    calculateRAG: function () {
-        switch (this.get('ragType')) {
-            case "Constitutional":
-                //console.log('constitutionalRAG');
-                return this.get('constitutionalRAG');
-            case "Standard":
-                //console.log('standardRAG');
-                return this.get('standardRAG');
-            case "Confidence":
-                //console.log('confidenceRAG');
-                return this.get('confidenceRAG');
-            default:
-                return 'noRAG';
-        }
-        /*
-        Type of data (col Q in feedsheet is for ValueType in our config
-        Units (colP in feedsheet would be good for additional metadata on UI for the indicators)
-        Org. Level Data (ColH in feedsheet)
-            - can be used on Dashboards etc to inform to what level data can be drilled down
-
-        ragPercentChangeToUse Add a percent change value (most will be 1% - but at least can be overriden per indicator if required (% Change to use if no CI ColF in Feedsheet))
-
-        Frequency of data (imply the range from E.g type of data)
-
-        
-        3 = ConsitutionalStandard
-        2 = Confidence Intervals
-        1 = standard
-
-        Feedsheet > Current Rag > Rag Classification > Rag Type
-
-        if confidence interval?
-            period of reporting
-                UCI
-
-                LCI
-
-                IMPORTANT - select the operator based on the DESIRED DIRECTION FIELD (e.g. up  = >   down  = <
-                IMPORTANT - The Previous period is defined by RAG Methodology (colX in feedsheet)
-                            - compare this to tType of Data (colN in feedsheet) to decide how far back comparative period
-
-
-
-
-                if(current.LCI > previous 
-
-                if(LCI2 > LCI1) {
-                    green
-                } else if(UCI1 > UCI2) {
-                    red
-                } else {
-                    amber
-                }
-
-
-            STANDARD
-                SAME AS ABOVE - BUT UCI/LCI ETC ARE CALCULATED BASED ON (% Change to use if no CI COLF FEEDSHEET) (1%)
-                
-                SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE ragPercentChangeToUse FROM THE CONFIG
-
-                (IF DESIRED DIRECTION IS UP)
-                is Val2 > Val1 (+1%) = GREEN
-                Is Val2 < Val -(1%) = red
-                Else Amber
-
-                (IF DESIRED DIRECTION IS DOWN)
-                Is Val2 < Val1 (-1%) = green
-                Va2 > Val2 + 1% = red
-                else Amber
-
-
-
-            CONSTITUTIONAL 
+        STANDARD
+            SAME AS ABOVE - BUT UCI/LCI ETC ARE CALCULATED BASED ON (% Change to use if no CI COLF FEEDSHEET) (1%)
+            
             SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE ragPercentChangeToUse FROM THE CONFIG
-                e.g. instead of +/- 1%    +/-PercentValue
 
-            (if equalled it - they've achieved it)
-            If the value is less than the stated value  (RAGTarget - FEEDSHEET > CURRENT RAG > Col D)
-            Values  change very rarely - ADD TO METADATA
+            (IF DESIRED DIRECTION IS UP)
+            is Val2 > Val1 (+1%) = GREEN
+            Is Val2 < Val -(1%) = red
+            Else Amber
 
-            if(current > RAGTarget + 1%) = green
-            else if(current < RAGTarget) = red
-            else amber
+            (IF DESIRED DIRECTION IS DOWN)
+            Is Val2 < Val1 (-1%) = green
+            Va2 > Val2 + 1% = red
+            else Amber
 
 
 
-        */
-    },
+        CONSTITUTIONAL 
+        SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE ragPercentChangeToUse FROM THE CONFIG
+            e.g. instead of +/- 1%    +/-PercentValue
 
-    constitutionalRAG: function () {
-        var rag = null;
-        if (this.get('currentValue') != null) {
-            rag = 'amber';
-            var current = this.get('currentValue').get('val'); //this.get('currentValue').get('val');
-            //if (this.get('ragTarget') != null && this.get('valueString') == '%') {
-            //    return this.get('ragTarget') * 100;
-            //}
+        (if equalled it - they've achieved it)
+        If the value is less than the stated value  (RAGTarget - FEEDSHEET > CURRENT RAG > Col D)
+        Values  change very rarely - ADD TO METADATA
 
-            var ragTarget = this.get('targetVal');
-            var direction = this.get('desiredDirection');
-            var upper = ragTarget + 1;
-            var lower = ragTarget - 1;
+        if(current > RAGTarget + 1%) = green
+        else if(current < RAGTarget) = red
+        else amber
 
-            if (direction === 'Up') {
-                if (this.get('valueString') !== "%") {
-                    if (current < lower) {
-                        return 'red';
-                    } else if (current > ragTarget) {
-                        return 'green';
-                    }
-                }
 
+
+    */
+},
+
+constitutionalRAG: function () {
+    var rag = null;
+    if (this.get('currentValue') != null) {
+        rag = 'amber';
+        var current = this.get('currentValue').get('val'); //this.get('currentValue').get('val');
+        //if (this.get('ragTarget') != null && this.get('valueString') == '%') {
+        //    return this.get('ragTarget') * 100;
+        //}
+
+        var ragTarget = this.get('targetVal');
+        var direction = this.get('desiredDirection');
+        var upper = ragTarget + 1;
+        var lower = ragTarget - 1;
+
+        if (direction === 'Up') {
+            if (this.get('valueString') !== "%") {
                 if (current < lower) {
-                    rag = 'red';
+                    return 'red';
                 } else if (current > ragTarget) {
-                    rag = 'green';
+                    return 'green';
                 }
-            } else {
-                if (this.get('valueString') !== "%") {
-                    if (current > upper) {
-                        return 'red';
-                    } else if (current < ragTarget) {
-                        return 'green';
-                    }
-                }
+            }
 
+            if (current < lower) {
+                rag = 'red';
+            } else if (current > ragTarget) {
+                rag = 'green';
+            }
+        } else {
+            if (this.get('valueString') !== "%") {
                 if (current > upper) {
-                    rag = 'red';
+                    return 'red';
                 } else if (current < ragTarget) {
-                    rag = 'green';
+                    return 'green';
                 }
             }
-        }
-        return rag;
-    }.property('ragTarget', 'valueString', 'currentValue'),
 
-    standardRAG: function () {
-        //STANDARD
-        //SAME AS ABOVE - BUT UCI/LCI ETC ARE CALCULATED BASED ON (% Change to use if no CI COLF FEEDSHEET) (1%)
-
-        //SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE ragPercentChangeToUse FROM THE CONFIG
-
-        //(IF DESIRED DIRECTION IS UP)
-        //is Val2 > Val1 (+1%) = GREEN
-        //Is Val2 < Val -(1%) = red
-        //Else Amber
-
-        //(IF DESIRED DIRECTION IS DOWN)
-        //Is Val2 < Val1 (-1%) = green
-        //Va2 > Val2 + 1% = red
-        //else Amber
-        var rag = null;
-        if (this.get('currentValue') != null && this.get('previousValue') != null) {
-            var current = this.get('currentValue').get('val');
-            var previous = this.get('previousValue').get('val');
-            var direction = this.get('desiredDirection');
-            var percent = (this.get('ragPercentChangeToUse') != null ? this.get('ragPercentChangeToUse') : 0.01);
-            rag = 'amber';
-            if (direction === 'Up') {
-                if (current > (previous * (1 + percent))) {
-                    rag = 'green';
-                } else if (current < (previous * (1 - percent))) {
-                    rag = 'red';
-                }
-            } else {
-                if (current < (previous * (1 - percent))) {
-                    rag = 'green';
-                } else if (current > (previous * (1 + percent))) {
-                    rag = 'red';
-                }
+            if (current > upper) {
+                rag = 'red';
+            } else if (current < ragTarget) {
+                rag = 'green';
             }
         }
-        return rag;
+    }
+    return rag;
+}.property('ragTarget', 'valueString', 'currentValue'),
 
-    }.property('ragTarget', 'valueString', 'currentValue'),
+standardRAG: function () {
+    //STANDARD
+    //SAME AS ABOVE - BUT UCI/LCI ETC ARE CALCULATED BASED ON (% Change to use if no CI COLF FEEDSHEET) (1%)
 
-    confidenceRAG: function () {
-        //period of reporting
-        //UCI
+    //SET THE PERCENTAGE USED IN THE CALCULATIONS BELOW TO THE ragPercentChangeToUse FROM THE CONFIG
 
-        //LCI
+    //(IF DESIRED DIRECTION IS UP)
+    //is Val2 > Val1 (+1%) = GREEN
+    //Is Val2 < Val -(1%) = red
+    //Else Amber
 
-        //IMPORTANT - select the operator based on the DESIRED DIRECTION FIELD (e.g. up  = >   down  = <
-        //IMPORTANT - The Previous period is defined by RAG Methodology (colX in feedsheet)
-        //            - compare this to tType of Data (colN in feedsheet) to decide how far back comparative period
-        //if(current.LCI > previous 
-        //    if(LCI2 > LCI1) {
-        //        green
-        //    } else if(UCI1 > UCI2) {
-        //        red
-        //    } else {
-        //        amber
-        //    }
-
-        var rag = null;
-        if (this.get('currentValue') != null) {
-            var current = this.get('currentValue');
-            var currentVal = current.get('val');
-            var direction = this.get('desiredDirection');
-            var uci = current.get('upperCI');
-            var lci = current.get('lowerCI');
-            //console.log('uci:' + uci + ',lci:' + lci + ',val:' + currentVal);
-            rag = 'amber';
-            if (direction === 'Up') {
-                if (currentVal > uci) {
-                    rag = 'green';
-                } else if (currentVal < lci) {
-                    rag = 'red';
-                }
-            } else {
-                if (currentVal < uci) {
-                    rag = 'green';
-                } else if (currentVal > lci) {
-                    rag = 'red';
-                }
+    //(IF DESIRED DIRECTION IS DOWN)
+    //Is Val2 < Val1 (-1%) = green
+    //Va2 > Val2 + 1% = red
+    //else Amber
+    var rag = null;
+    if (this.get('currentValue') != null && this.get('previousValue') != null) {
+        var current = this.get('currentValue').get('val');
+        var previous = this.get('previousValue').get('val');
+        var direction = this.get('desiredDirection');
+        var percent = (this.get('ragPercentChangeToUse') != null ? this.get('ragPercentChangeToUse') : 0.01);
+        rag = 'amber';
+        if (direction === 'Up') {
+            if (current > (previous * (1 + percent))) {
+                rag = 'green';
+            } else if (current < (previous * (1 - percent))) {
+                rag = 'red';
             }
-            //console.log('RAG ' + rag);
-
+        } else {
+            if (current < (previous * (1 - percent))) {
+                rag = 'green';
+            } else if (current > (previous * (1 + percent))) {
+                rag = 'red';
+            }
         }
-        return rag;
-    }.property('ragTarget', 'valueString', 'currentValue')
+    }
+    return rag;
+
+}.property('ragTarget', 'valueString', 'currentValue'),
+
+confidenceRAG: function () {
+    //period of reporting
+    //UCI
+
+    //LCI
+
+    //IMPORTANT - select the operator based on the DESIRED DIRECTION FIELD (e.g. up  = >   down  = <
+    //IMPORTANT - The Previous period is defined by RAG Methodology (colX in feedsheet)
+    //            - compare this to tType of Data (colN in feedsheet) to decide how far back comparative period
+    //if(current.LCI > previous 
+    //    if(LCI2 > LCI1) {
+    //        green
+    //    } else if(UCI1 > UCI2) {
+    //        red
+    //    } else {
+    //        amber
+    //    }
+
+    var rag = null;
+    if (this.get('currentValue') != null) {
+        var current = this.get('currentValue');
+        var currentVal = current.get('val');
+        var direction = this.get('desiredDirection');
+        var uci = current.get('upperCI');
+        var lci = current.get('lowerCI');
+        //console.log('uci:' + uci + ',lci:' + lci + ',val:' + currentVal);
+        rag = 'amber';
+        if (direction === 'Up') {
+            if (currentVal > uci) {
+                rag = 'green';
+            } else if (currentVal < lci) {
+                rag = 'red';
+            }
+        } else {
+            if (currentVal < uci) {
+                rag = 'green';
+            } else if (currentVal > lci) {
+                rag = 'red';
+            }
+        }
+        //console.log('RAG ' + rag);
+
+    }
+    return rag;
+}.property('ragTarget', 'valueString', 'currentValue')
 });
 
 Dashboard.IndicatorModel.reopenClass({
     values: null
 });
+
+
+
+
+//if (this.get('_ragColour') != null) {
+//    return this.get('_ragColour');
+//} else {
+//}
+
+
+//if (this.get('ragType') === "Constitutional") {
+//    return this.calculateRAG();
+//}
+
+////console.log('current = ' + current + ', previous = ' + previous);
+
+//if (current == null || previous == null || current.get('val') === null || previous.get('val') === null) {
+//    return 'blue';
+//} else {
+//    current = current.get('val');
+//    previous = previous.get('val');
+//}
+//var ragVal = 1;
+//var diff = current - previous;
+//var diffPercent = (diff / previous) * 100;
+
+//if (!isNaN(diffPercent)) {
+//    if (diffPercent < -(ragVal)) {
+//        colour = 'red';
+//    }
+//    else if (diffPercent < 0) {
+//        colour = 'amber';
+//    } else if (diffPercent <= ragVal) {
+//        colour = 'amberGreen';
+//    } else if (diffPercent > ragVal) {
+//        colour = 'green';
+//    }
+//}
+//if (colour == null) {
+//    return 'blue';
+//} else {
+//    this.set('_ragColour', colour);
+//    return this.get('_ragColour');
+//}
+//}

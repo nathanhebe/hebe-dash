@@ -7,7 +7,7 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
     draw: function (myData) {
         var chartID = '#' + myData.get('chartID');
         var valueType = myData.get('valueString');
-        var values = myData.get('activeDateValues'); // myData.get('_dataValues');
+        var values = myData.get('activeDateValues'); // myData.get('dataValues');
 
         //var date_now = new Date();
         //// make surec values only for last 13 months

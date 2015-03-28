@@ -2,8 +2,78 @@ Dashboard.PageController = Ember.ObjectController.extend({
     _pages: null,
     dashID: null,
 
-    pageRAGs: null,
-    pageNoRAG: null,
+    _totalMainRAGs: null,
+    totalMainRAGs: function (key, newMainRAGs) {
+        if (arguments.length === 1) {
+            if (this.get('_totalMainRAGs') == null) {
+                this.calculateMainRAGs();
+            }
+            return this.get('_totalMainRAGs');
+        } else {
+            this.set('_totalMainRAGs', newMainRAGs);
+            return newMainRAGs;
+        }
+    }.property('_totalMainRAGs'),
+
+
+    _totalNoTrendRAG: null,
+    totalNoTrendRAG: function (key, newNoTrendRAG) {
+        if (arguments.length === 1) {
+            if (this.get('_totalNoTrendRAG') == null) {
+                this.calculateMainRAGs();
+            }
+            return this.get('_totalNoTrendRAG');
+        } else {
+            this.set('_totalNoTrendRAG', newNoTrendRAG);
+            return newNoTrendRAG;
+        }
+    }.property('_totalNoTrendRAG'),
+
+
+
+    calculateMainRAGs: function () {
+        var mainRAGs = [
+            { colour: 'red', count: 0, previous: 0 },
+            { colour: 'amberRed', count: 0, previous: 0 },
+            { colour: 'amber', count: 0, previous: 0 },
+            { colour: 'amberGreen', count: 0, previous: 0 },
+            { colour: 'green', count: 0, previous: 0 }
+        ];
+
+        var noTrendRAG = { colour: 'noRAG', count: 0, previous: 0 };
+
+        this.get('pages').forEach(function (page) {
+            var pageRAGs = page.get('mainRAGs');
+            if (pageRAGs != null) {
+                pageRAGs.forEach(function (colour) {
+                    if (mainRAGs.findBy('colour', colour.colour) != null) {
+                        mainRAGs.findBy('colour', colour.colour).count += colour.count;
+                    }
+                });
+            }
+
+            var pageNoRAG = page.get('noTrendRAG');
+            if (pageNoRAG != null) {
+                noTrendRAG.count += pageNoRAG.count;
+            }
+
+        });
+
+
+
+
+
+        this.set('totalMainRAGs', mainRAGs);
+        this.set('totalNoTrendRAG', noTrendRAG);
+    }.observes('pages.@each.mainRAGs'),
+
+
+
+
+
+
+
+
 
     pages: function () {
         if (this.get('_pages') !== null) {
