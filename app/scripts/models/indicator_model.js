@@ -34,6 +34,17 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         }
     }.property('_title'),
 
+    _description: null,
+    description: function (key, descriptionString) {
+        if (arguments.length === 1) {
+            return this.get('_description');
+        } else {
+            descriptionString = descriptionString.fixChars();
+            this.set('_description', descriptionString);
+            return descriptionString;
+        }
+    }.property('_description'),
+
     mainTitle: function () {
         var title = (this.get('subTitle') == null || this.get('subTitle').length === 0
             ? this.get('_title') : this.get('subTitle'));
@@ -125,14 +136,15 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         } else {
             var current = this.get('currentValue');
             if (current != null) {
-                var period_of_coverage = current.start_date; //current.period_of_coverage;
-                var ragType = this.get('ragType');
-                if (ragType === "Constitutional" && period_of_coverage !== null && period_of_coverage !== '') {
-                    this.set('_periodOfCoverage', period_of_coverage);
-                } else {
-                    var date = this.get('currentDate');
-                    this.set('_periodOfCoverage', date);
-                }
+                var period_of_coverage = current.date; //current.period_of_coverage;
+                this.set('_periodOfCoverage', period_of_coverage);
+                //var ragType = this.get('ragType');
+                //if (ragType === "Constitutional" && period_of_coverage !== null && period_of_coverage !== '') {
+                //    this.set('_periodOfCoverage', period_of_coverage);
+                //} else {
+                //    var date = this.get('currentDate');
+                //    this.set('_periodOfCoverage', date);
+                //}
             }
             return this.get('_periodOfCoverage');
         }
@@ -160,30 +172,39 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     }.property('activeDateValues', 'currentValue', 'previousValue'),
 
     activeDateValues: function () {
-        // only return values within the currnet date range
-        var dateRangeMonths = 14;
-        var date_now = new Date();
-        values = this.get('dataValues');
-        if (values != null) {
-            values = $.map(values, function (val) {
-                var start_date = val.end_date;
-                var a = moment(date_now);
-                var b = moment(start_date);
-                var diffMonths = a.diff(b, 'months');
-                if (diffMonths <= dateRangeMonths) {
-                    return val;
+        // only return values within the current date range
+        var values = this.get('dataValues');
+        var dataType = this.get('ragTypeOfData');
+
+        switch (dataType) {
+            default:
+                var dateRangeMonths = 14;
+                var date_now = new Date();
+                if (values != null) {
+                    values = $.map(values, function (val) {
+                        var start_date = val.end_date;
+                        var a = moment(date_now);
+                        var b = moment(start_date);
+                        var diffMonths = a.diff(b, 'months');
+                        if (diffMonths <= dateRangeMonths) {
+                            return val;
+                        }
+                    });
                 }
-            });
+                break;
+            case 'Financial':
+            case 'Calendar':
+            case 'Quarterly':
+                var date_now = new Date();
+                if (values != null) {
+                    // only display up to last 5 data points
+                    values = values.slice(0, 5);
+                }
+                break;
         }
+
         return values;
     }.property('dataValues'),
-
-
-
-
-
-
-
 
     _dataValues: null,
     dataValues: function (key, newDataValues) {
@@ -217,14 +238,14 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         });
     },
 
-
-
-
-
-
-
     trend: function () {
         if (this.get('currentVal') != null && this.get('previousVal') != null) {
+            var ragType = this.get('ragType');
+            var numberOfDataPoints = this.get('dataValues').length;
+            if (ragType == 'None' || numberOfDataPoints <= 2) {
+                return 'noTrend';
+            }
+
             var current = this.get('currentVal');
             var previous = this.get('previousVal');
             var direction = this.get('desiredDirection');
@@ -260,8 +281,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
         return (this.get('valueType') === 'int' ? '' : this.get('valueType'));
     }.property('valueType'),
 
-
-
     getRAGTarget: function () {
         if (this.get('ragTarget') !== null && this.get('valueString') === '%') {
             return this.get('ragTarget') * 100;
@@ -276,9 +295,6 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             var previous = this.get('previousValue');
             colour = this.calculateRAG();
 
-            if (this.get('id') === '65') {
-                console.log(this.get('id') + ' - ' + this.get('currentVal') + ' - ' + colour);
-            }
             if (colour != this.get('_ragColour') && colour != null) {
                 this.set('_ragColour', colour);
             }
@@ -325,6 +341,16 @@ Dashboard.IndicatorModel = Ember.Object.extend({
     },
 
     calculateRAG: function () {
+        var ragType = this.get('ragType');
+        if (ragType == 'None') {
+            return 'none';
+        }
+
+        var numberOfDataPoints = this.get('dataValues').length;
+        if (numberOfDataPoints <= 2) {
+            return 'noRAG';
+        }
+
         switch (this.get('ragType')) {
             case "Constitutional":
                 return this.constitutionalRAG();

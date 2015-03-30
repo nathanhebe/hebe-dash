@@ -22,12 +22,17 @@
         if (typeof Number.prototype.toPrecisionDigits != 'function') {
             Number.prototype.toPrecisionDigits = function (len) {
                 var str = this.toString();
-                var digits = str.replace(/\D/g, '');
-                if (digits.length > 3) {
-                    var strChars = str.replace(/\d/g, '');
-                    var result = str.substring(0, (len + strChars.length));
-                    return result;
+                if (str.indexOf('.') > -1) {
+                    var digits = str.replace(/\D/g, '');
+                    if (digits.length > 3) {
+                        var strChars = str.replace(/\d/g, '');
+                        var result = str.substring(0, (len + strChars.length));
+                        return result;
+                    }
                 }
+
+                // rounding
+
                 return str;
             };
         }
@@ -35,8 +40,7 @@
         if (typeof String.prototype.fixChars != 'function') {
             String.prototype.fixChars = function (str) {
                 //todo: replace any dodgy characters here
-                return this.replace('ÂŁ', '£')
-                    .replace('__', "'");
+                return this.replace('ÂŁ', '£').replace('__', "'");
             };
         }
 

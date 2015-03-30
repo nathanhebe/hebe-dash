@@ -9,18 +9,6 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         var valueType = myData.get('valueString');
         var values = myData.get('activeDateValues'); // myData.get('dataValues');
 
-        //var date_now = new Date();
-        //// make surec values only for last 13 months
-        //values = $.map(values,function(val) {
-        //    var start_date = val.end_date;
-        //    var a = moment(date_now);
-        //    var b = moment(start_date);
-        //    var diffMonths = a.diff(b, 'months');
-        //    if (diffMonths < 14) {
-        //        return val;
-        //    }
-        //});
-
         var YMin = 0;
         var YMax = 0;
         var maxVal = Math.max.apply(values, $.map(values,
@@ -52,7 +40,18 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         }
 
         var xAxis = values.map(function (val) {
-            var dateString = (val.start_date.indexOf('T') === -1 ? val.start_date : val.start_date.substr(0, val.start_date.indexOf('T')));
+            // for yearly - use the end_date
+            var dataType = myData.get('ragTypeOfData');
+            switch (dataType) {
+                default:
+                    // monthly
+                    var dateString = (val.start_date.indexOf('T') === -1 ? val.start_date : val.start_date.substr(0, val.start_date.indexOf('T')));
+                    break;
+                case 'Financial':
+                case 'Calendar':
+                    var dateString = (val.end_date.indexOf('T') === -1 ? val.end_date : val.end_date.substr(0, val.end_date.indexOf('T')));
+                    break;
+            }
             return dateString;
         });
 

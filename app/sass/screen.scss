@@ -126,14 +126,17 @@ body > .ember-view {
         background-color: $color-rag-blue;
     }
 
-    .missing {
+    .missing, .none {
         background-color: $color-bg-light;
+        color:$color-font-main;
     }
 
     .noRAG {
-        background-color: $color-bg-medium;
-        color:$color-font-main;
+        background-color: $color-rag-blue;
+        color:$color-font-light;
     }
+
+
     /* Fullscreen Modal */
     .modalHighlightedive {
         z-index: 4;
@@ -386,7 +389,12 @@ body > .ember-view {
             color: $color-font-light;
 
             &.noRAG {
+                /*color:$color-font-main;*/
+            }
+
+            &.none {
                 color:$color-font-main;
+
             }
 
             .currentValue {
