@@ -277,7 +277,8 @@ body > .ember-view {
                             left: $margin-main/2;
                             font-size: $font-size-small;
 
-                            .textLabel {
+                            .changeLabel {
+                                font-size:$font-size-super-small;
                             }
                         }
                     }

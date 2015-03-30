@@ -20,7 +20,9 @@ Dashboard.HeaderController = Ember.ObjectController.extend({
         },
 
         prepareForPrint: function () {
-            window.print();
+            this.transitionToRoute('print', this.get('dashID'));
+           // window.print();
+
         }
 
     },

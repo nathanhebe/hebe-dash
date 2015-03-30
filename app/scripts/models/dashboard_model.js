@@ -74,8 +74,6 @@ Dashboard.DashboardModel = Ember.Object.extend({
 });
 
 Dashboard.DashboardModel.reopenClass({
-    needs: ['settings'],
-
     find: function (dashID) {
         return this.findAll().then(function (data) {
             return data.filterBy('id', dashID)[0];

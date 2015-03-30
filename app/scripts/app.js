@@ -8,10 +8,15 @@ Ember.Application.initializer({
 
         application.set('settings', Ember.Object.create({
 
-            // testing
-             ckanUrl: 'http://52.17.101.212',//'http://ec2-52-16-158-169.eu-west-1.compute.amazonaws.com',
-             directoryID: 'b58a1a75-695e-4d35-9790-8f871657b662',
-             dataUrl: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" ',
+            // dev
+            ckanUrl: 'http://52.17.101.212',//'http://ec2-52-16-158-169.eu-west-1.compute.amazonaws.com',
+            directoryID: 'b58a1a75-695e-4d35-9790-8f871657b662',
+            dataUrl: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" ',
+
+            //// testing
+            //ckanUrl: '//' + hostURL,
+            //directoryID: 'b58a1a75-695e-4d35-9790-8f871657b662',
+            //dataUrl: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + dataID + '"',
 
             // live
             //ckanUrl: '//' + hostURL,
@@ -40,4 +45,9 @@ Ember.View.reopen({
     afterRenderEvent: function () {
         // implement this hook in your own subclasses and run your jQuery logic there
     }
+});
+
+
+Ember.Handlebars.helper('addPlusSign', function (value, options) {
+    return new Ember.Handlebars.SafeString((value == null ? "" : (value > 0 ? '+' + value.toString() : value.toString())));
 });

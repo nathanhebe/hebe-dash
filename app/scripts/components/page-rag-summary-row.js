@@ -10,6 +10,9 @@ Dashboard.PageRagSummaryRowComponent = Ember.Component.extend({
         }
     },
 
+
     
 
 });
+
+

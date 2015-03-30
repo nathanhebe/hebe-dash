@@ -1,0 +1,19 @@
+<div id="SiteWrapper" class="siteWrapper">
+    <span data-wrapping-around-header-outlet="true">
+        {{header-main}}
+    </span>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    {{outlet}}
+    <div id="MainWrapper" class="boardReport">
+        <section id="MainContent">
+            {{#each annex in this.data}}
+                {{#each item in annex.pages}}
+                    {{view Dashboard.ReportPageView itemBinding="item" controller=Dashboard.PageController}}
+                {{/each}}
+            {{/each}}
+        </section>
+    </div>
+</div>
+

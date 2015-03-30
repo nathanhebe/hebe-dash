@@ -57,16 +57,18 @@ Dashboard.PageModel = Ember.Object.extend({
 
             this.get('indicators').forEach(function (indicator) {
                 var colour = indicator.get('ragColour');
-                if (status.findBy('colour', colour) == null) {
-                    status.push({ colour: colour, count: 0, previous: 0 })
+                if (colour != null && status.findBy('colour', colour) != null) {
+                    //console.log('colour ' + colour);
+                    status.findBy('colour', colour).count++;
+                    // status.push({ colour: colour, count: 0, previous: 0 })
                 }
-                status.findBy('colour', colour).count++;
 
                 var previousColour = indicator.previousRagColour();
-                if (status.findBy('colour', previousColour) == null) {
-                    status.push({ colour: previousColour, count: 0, previous: 0 })
+                if (previousColour != null && status.findBy('colour', previousColour) != null) {
+                    //console.log('previous colour '+colour);
+                    status.findBy('colour', previousColour).previous++;
+                    // status.push({ colour: previousColour, count: 0, previous: 0 })
                 }
-                status.findBy('colour', previousColour).previous++;
             });
 
             status.forEach(function (rag) {

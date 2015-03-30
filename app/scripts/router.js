@@ -1,4 +1,5 @@
 Dashboard.Router.map(function () {
+    this.resource('print', { path: '/print/:dashID' });
     this.resource('dash', { path: '/:dashID' });
     this.resource('page', { path: '/:dashID/:annexID/:pageID' });
     this.route('permissions');
