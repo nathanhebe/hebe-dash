@@ -22,18 +22,14 @@
         if (typeof Number.prototype.toPrecisionDigits != 'function') {
             Number.prototype.toPrecisionDigits = function (len) {
                 var str = this.toString();
-                if (str.indexOf('.') > -1) {
-                    var digits = str.replace(/\D/g, '');
-                    if (digits.length > 3) {
-                        var strChars = str.replace(/\d/g, '');
-                        var result = str.substring(0, (len + strChars.length));
-                        return result;
-                    }
-                }
-
-                // rounding
-
-                return str;
+                // figure out how many decimal places we want
+                var numberOfDecimalPlaces = (
+                    str.indexOf('.') === -1 ? 
+                        0 : 
+                        (3 - (str.indexOf('.')))
+                    );
+                var rounded = utils.evenRound(this, numberOfDecimalPlaces);
+                return rounded;
             };
         }
         // str.fixChars
@@ -68,6 +64,16 @@
             var str = string.toString();
             var number = str.replace(/[^0-9\.]+/g, '');
             return parseFloat(number);
+        },
+        evenRound: function (num, decimalPlaces) {
+            var d = decimalPlaces || 0;
+            var m = Math.pow(10, d);
+            var n = +(d ? num * m : num).toFixed(8); // Avoid rounding errors
+            var i = Math.floor(n), f = n - i;
+            var e = 1e-8; // Allow for rounding errors in f
+            var r = (f > 0.5 - e && f < 0.5 + e) ?
+                ((i % 2 == 0) ? i : i + 1) : Math.round(n);
+            return d ? r / m : r;
         },
         public_function2: function () {
         }
