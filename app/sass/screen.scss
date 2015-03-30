@@ -232,6 +232,10 @@ body > .ember-view {
                         text-decoration: none;
                     }
                 }
+
+                li:last-of-type {
+                        border-bottom: none;
+                    }
             }
         }
 
