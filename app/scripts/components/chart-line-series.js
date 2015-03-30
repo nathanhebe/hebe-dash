@@ -101,7 +101,7 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
                 x: {
                     type: 'timeseries',
                     tick: {
-                        format: '%b %Y'
+                        format: '%b-%y'
                     },
                     label: {
                         text: 'Change over time',
