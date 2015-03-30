@@ -27,7 +27,7 @@
                                     <div class="col borderT span_1 alignC">{{row.col2}}</div>
                                     <div class="col borderT span_1 alignC">{{row.col3}}</div>
                                     <div class="col borderT span_1 alignC insideMarginR">{{row.col4}}</div>
-                                    <div class="col span_1 indicator amber even marginTXS marginBXS radiusR_XL">
+                                    <div {{bind-attr class=":col :span_1 :indicator row.ragClassName :even :marginTXS :marginBXS :radiusR_XL"}}>
                                         <div class="currentValue"><!--{{ragColour row.rag}}-->{{row.rag}}</div>
                                     </div>
                                 </div>

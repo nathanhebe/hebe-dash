@@ -1,5 +1,4 @@
-﻿    <button class="button">View previous reports</button>
-    <svg class="icon" width="25px" height="29px" viewBox="0 0 25 29" version="1.1" xmlns="http://www.w3.org/2000/svg">
+﻿    <!--<svg class="icon" width="25px" height="29px" viewBox="0 0 25 29" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="Annex-B:-1.3---Outcomes-&amp;-Inequalities" transform="translate(-1361.000000, -207.000000)" fill="#FFFFFF">
                 <g id="Drop-down-open" transform="translate(1114.000000, 197.000000)">
@@ -9,15 +8,13 @@
                 </g>
             </g>
         </g>
-    </svg>
-    <div class="listWrapper radiusB">
-        <ul>
-            {{#each report in reports}}
-                {{#if currentPageID}}
-                    <li>{{#link-to 'page' report.id currentAnnexID currentPageID}}{{report.title}}{{/link-to}}</li>
-                {{else}}
-                    <li>{{#link-to 'dash' report.id}}{{report.title}}{{/link-to}}</li>
-                {{/if}}
-            {{/each}}
-        </ul>
-    </div>
+    </svg>-->
+    {{#drop-down-button title="View previous reports" icon="/images/Icon_BoardReportPicker@2x.png"}}
+    {{#each report in reports}}
+            {{#if currentPageID}}
+                <li>{{#link-to 'page' report.id currentAnnexID currentPageID}}{{report.title}}{{/link-to}}</li>
+            {{else}}
+                <li>{{#link-to 'dash' report.id}}{{report.title}}{{/link-to}}</li>
+            {{/if}}
+        {{/each}}
+    {{/drop-down-button}}

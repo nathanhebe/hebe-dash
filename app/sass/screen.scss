@@ -190,7 +190,7 @@ body > .ember-view {
         height:100%;
     }
 
-    .chooseBoardReport {
+    .dropDownButton {
         width: auto;
         font-size: $font-size-small;
         font-weight: $font-weight-light;
@@ -201,6 +201,7 @@ body > .ember-view {
             top: 0.65em;
             // top: $margin-main/4;
             right: $margin-main/2;
+            height:2em;
         }
 
         button {

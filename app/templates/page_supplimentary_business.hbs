@@ -3,21 +3,16 @@
     <section id="MainContent">
         {{page-subtitle-description subTitle=subTitle description=description}}
 
-        <div class="row key">
-            <div class="col span_12 small alignL">
-                <div class="paddingLL">
-                    R = Red &nbsp;
-                    R = Amber Red &nbsp;
-                    A = Amber &nbsp;
-                    A/G = Amber Green &nbsp;
-                    G=Green &nbsp;
+        <div class="supplimentary businessArea">
+            <div class="row marginTNone">
+                <div class="col span_10 small alignL">
+                    <h2>Performance against NHS England Business Plan Business Areas and Customer Contact</h2>
+                </div>
+                <div class="col span_2  colourWhite alignL paddingTNone">
+                    {{table-key}}
                 </div>
             </div>
-        </div>
 
-        <div class="supplimentary businessArea">
-            <h2>Performance against NHS England Business Plan Business Areas and Customer Contact</h2>
-            
 
             <div class="row borderT borderB marginBL dataRow">
                 <div class="col span_1 borderR">Area</div>
@@ -29,13 +24,13 @@
             {{#if rows}}
             {{#each row in rows}}
             {{#unless row.title}}
-                <h2 class="marginBL marginTL">{{row.busArea}}</h2>
-                {{else}}
-                    {{business-area-row row=row}}
-                {{/unless}}
+            <h2 class="marginBL marginTL">{{row.busArea}}</h2>
+            {{else}}
+            {{business-area-row row=row}}
+            {{/unless}}
             {{/each}}
             {{else}}
-                <p>Sorry there isn't any data in this resource yet</p>
+            <p>Sorry there isn't any data in this resource yet</p>
             {{/if}}
 
         </div>

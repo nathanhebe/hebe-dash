@@ -1,22 +1,11 @@
 ﻿/* jshint undef: true, unused: true */
 
-Dashboard.BoardReportPickerComponent = Ember.Component.extend({
-    needs: "dashboard",
-    dashboard: Ember.computed.alias("controllers.dashboard"),
+Dashboard.DropDownButtonComponent = Ember.Component.extend({
+    classNames: ['dropDownButton'],
+    classNameBindings: ['isActive'],
 
-    _reports: null,
-    reports: function () {
-        if (this.get('_reports') != null) {
-            return this.get('_reports');
-        } else {
-            var obj = this;
-            Dashboard.DashboardModel.findAll().then(function (data) {
-                var reports = data.filterBy('type','BoardReport')
-                obj.set('_reports', reports);
-                return data;
-            });
-        }
-    }.property('_reports'),
+    isActive: false,
+
 
     //mouseEnter: function () {
     //    //this.set('isActive', true);

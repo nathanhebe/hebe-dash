@@ -1,0 +1,11 @@
+﻿    <button class="button">{{title}}</button>
+
+    {{#if icon}}
+        <img {{bind-attr src="icon"}}  class="icon" />
+    {{/if}}
+
+    <div class="listWrapper radiusB">
+        <ul>
+            {{yield}}
+        </ul>
+    </div>

@@ -4,8 +4,18 @@
         <!--<a href="/" class="col span_1 backLink marginTS"><img src="images/BackArrow@2x.png" /></a>-->
         {{#link-to 'index' classNames="col span_1 backLink marginTS"}}<img src="images/BackArrow@2x.png" />{{/link-to}}
 
-        <h1 class="col span_8">{{title}}</h1>
-        <div {{action 'prepareForPrint'}} class="button col span_3 marginTL marginBL">Produce Report for Print</div>
+        <h1 class="col span_9">{{title}}</h1>
+        
+        
+        <!--<div {{action 'prepareForPrint'}} class="button col span_3 marginTL marginBL">Produce Report for Print</div>-->
+        
+        <div class="button col span_2 marginTL marginBL paddingRNone paddingTNone paddingBNone paddingLNone alignL">
+            {{#drop-down-button title="Print Board Report"}}
+            <li><a {{action 'prepareForPrint'}}>Print this page</a></li>
+            <li><a {{action 'prepareForPrint'}}>Produce Report for Print</a></li>
+            {{/drop-down-button}}
+        </div>
+        
         <a href="javascript:;" id="NHSEnglandLogo" class="print-show">
         	<img src="images/NHSLogo-print.png" alt="NHS England" width="130" height="81" class="print-nhs-logo" />
         </a>
