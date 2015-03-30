@@ -1,32 +1,32 @@
 
-    <div class="row marginTL" {{bind-attr data-indicator-id=id}}>
-        <div class="col span_2 borderT borderB borderL radiusL noWrap">
-            <span {{bind-attr class="showChart:accordionHandle:noAccordionHandle"}}>&nbsp;</span>
-            {{periodOfCoverage}}
-        </div>
-        <div class="col span_6 borderL borderT borderB borderR ellipses">{{mainTitle}}</div>
-        <div class="col span_1 insideMarginR borderT borderB borderR radiusR">
-            <div class="currentValue">
-                {{getRAGTarget}}{{#if getRAGTarget}}{{valueString}}{{else}}&nbsp;{{/if}}
-            </div>
-        </div>
-        <div {{bind-attr title="valueUnitDescription"}} {{bind-attr class="ragColour :col :span_1 :radiusL :indicator"}}>
-            <div class="currentValue">
-                {{currentVal}}{{valueString}}
-            </div>
-        </div>
-        <div {{bind-attr class="ragColour :col :span_1 :indicator :paddingLNone :radiusR"}}>
-            <div class="previousValue">{{previousVal}}{{valueString}}</div>
-        </div>
-
-
-        <div {{bind-attr class=":col :span_1 :indicator :trendCol trend"}}>
-            <img src="images/IndicatorArrow_black_down@2x.png" alt="Down" width="37" height="38" class="print-show print-indicator -down" />
-            <img src="images/IndicatorArrow_black_even@2x.png" alt="Down" width="37" height="38" class="print-show print-indicator -even" />
-            <img src="images/IndicatorArrow_black_up@2x.png" alt="Down" width="37" height="38" class="print-show print-indicator -up" />&nbsp;
-        </div>
-
+    <div class="row marginTL indicatorRow" {{bind-attr data-indicator-id=id}}>
+    <div class="col span_2 borderT borderB borderL radiusL noWrap">
+        <span {{bind-attr class="showChart:accordionHandle:noAccordionHandle"}}>&nbsp;</span>
+        {{periodOfCoverage}}
     </div>
+    <div class="col span_6 borderL borderT borderB borderR ellipses">{{mainTitle}}</div>
+    <div class="col span_1 insideMarginR borderT borderB borderR radiusR">
+        <div class="currentValue">
+            {{getRAGTarget}}{{#if getRAGTarget}}{{valueString}}{{else}}&nbsp;{{/if}}
+        </div>
+    </div>
+    <div {{bind-attr title="valueUnitDescription"}} {{bind-attr class="ragColour :col :span_1 :radiusL :indicator"}}>
+        <div class="currentValue">
+            {{currentVal}}{{valueString}}
+        </div>
+    </div>
+    <div {{bind-attr class="ragColour :col :span_1 :indicator :paddingLNone :radiusR"}}>
+        <div class="previousValue">{{previousVal}}{{valueString}}</div>
+    </div>
+
+
+    <div {{bind-attr class=":col :span_1 :indicator :trendCol trend"}}>
+        <img src="images/IndicatorArrow_black_down@2x.png" alt="Down" width="37" height="38" class="print-show print-indicator -down" />
+        <img src="images/IndicatorArrow_black_even@2x.png" alt="Down" width="37" height="38" class="print-show print-indicator -even" />
+        <img src="images/IndicatorArrow_black_up@2x.png" alt="Down" width="37" height="38" class="print-show print-indicator -up" />&nbsp;
+    </div>
+
+</div>
 
 
     {{indicator-row-chart model=this indicator=indicator}}

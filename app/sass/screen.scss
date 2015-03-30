@@ -377,6 +377,10 @@ body > .ember-view {
             color: $color-bg-dark;
         }
 
+        .indicatorRow {
+            cursor:pointer;
+        }
+
         .indicator {
             position: relative;
             color: $color-font-light;

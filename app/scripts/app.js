@@ -10,7 +10,8 @@ Ember.Application.initializer({
 
             // dev
             ckanUrl: 'http://52.17.101.212',//'http://ec2-52-16-158-169.eu-west-1.compute.amazonaws.com',
-            directoryID: 'f28ddf02-0ef8-4a89-8151-f348447d6433',
+            //directoryID: 'f28ddf02-0ef8-4a89-8151-f348447d6433',
+            directoryID: 'b58a1a75-695e-4d35-9790-8f871657b662',
             dataUrl: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" ',
 
             //// testing

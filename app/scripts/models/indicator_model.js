@@ -161,7 +161,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
     activeDateValues: function () {
         // only return values within the currnet date range
-        var dateRangeMonths = 13;
+        var dateRangeMonths = 14;
         var date_now = new Date();
         values = this.get('dataValues');
         if (values != null) {
@@ -347,36 +347,37 @@ Dashboard.IndicatorModel = Ember.Object.extend({
             var current = valueToUse;
             var ragTarget = this.get('targetVal');
             var direction = this.get('desiredDirection');
-            var upper = ragTarget + 1;
-            var lower = ragTarget - 1;
+            var percentChange = (this.get('ragPercentChangeToUse') != null ? this.get('ragPercentChangeToUse') : 0.01) * 100;
+            var upper = ragTarget + percentChange; // percentChangedesired
+            var lower = ragTarget - percentChange;
 
             if (direction === 'Up') {
                 if (this.get('valueString') !== "%") {
-                    if (current < lower) {
+                    if (current < ragTarget) {
                         return 'red';
-                    } else if (current > ragTarget) {
+                    } else if (current >= ragTarget) {
                         return 'green';
                     }
-                }
-
-                if (current < lower) {
-                    rag = 'red';
-                } else if (current > ragTarget) {
-                    rag = 'green';
+                } else {
+                    if (current < ragTarget) {
+                        rag = 'red';
+                    } else if (current > upper) {
+                        rag = 'green';
+                    }
                 }
             } else {
                 if (this.get('valueString') !== "%") {
-                    if (current > upper) {
+                    if (current > ragTarget) {
                         return 'red';
-                    } else if (current < ragTarget) {
+                    } else if (current <= ragTarget) {
                         return 'green';
                     }
-                }
-
-                if (current > upper) {
-                    rag = 'red';
-                } else if (current < ragTarget) {
-                    rag = 'green';
+                } else {
+                    if (current > ragTarget) {
+                        rag = 'red';
+                    } else if (current <= lower) {
+                        rag = 'green';
+                    }
                 }
             }
         }
