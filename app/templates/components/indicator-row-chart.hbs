@@ -1,5 +1,4 @@
-﻿{{#if model.showChart}}
-
+﻿
 <div class="accordionContent" {{bind-attr data-indicator-id=model.id}}>
     {{#if model.subTitle}}
     <p class="marginTS small"><span class="bold">Full title: </span>{{model.title}}</p>
@@ -19,12 +18,12 @@
     <!--<p class="bold marginTS small">Compare performance for Key indicator over time:</p>
     <p class="marginTS small"><span class="bold">X = </span>Change over time <span class="bold">Y = </span>{{ this.valueTypeString }} achieved</p>-->
 
-
-    <div class="chart marginTL">
-        {{#if model.currentValue}}
-            {{chart-line-series data=indicator}}
-        {{/if}}
-    </div>
+    {{#if model.showChart}}
+        <div class="chart marginTL">
+            {{#if model.currentValue}}
+                {{chart-line-series data=indicator}}
+            {{/if}}
+        </div>
+    {{/if}}
 </div>
 
-{{/if}}
