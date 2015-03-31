@@ -2,11 +2,13 @@
 
 Dashboard.ReportPageView = Ember.View.extend({
 
+    controller: Dashboard.PageController,
+
 
     templateName: function () {
-        console.log(this.get('item.type'));
-        return this.get('item.type');
-    }.property('item.type').cacheable(),
+        console.log(this.get('content.type'));
+        return this.get('content.type');
+    }.property('content.type').cacheable(),
 
     _templateChanged: function () {
         this.rerender();

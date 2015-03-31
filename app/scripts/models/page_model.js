@@ -153,13 +153,13 @@ Dashboard.PageModel = Ember.Object.extend({
 
         var sorted = _.sortBy(indicators, function (item1) {
             var sortVals = {
-                red: 0,
-                redAmber: 2,
-                amber: 4,
+                red: 12,
+                redAmber: 10,
+                amber: 8,
                 amberGreen: 6,
-                green: 8,
-                noRAG: 10,
-                none: 12
+                green: 4,
+                noRAG: 14,
+                none: 16
             };
             console.log('sortedIndicators: ' + sortVals[item1.get('ragColour')]);
             return sortVals[item1.get('ragColour')];

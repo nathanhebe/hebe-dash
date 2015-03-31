@@ -10,7 +10,7 @@
         <section id="MainContent">
             {{#each annex in this.data}}
                 {{#each item in annex.pages}}
-                    {{view Dashboard.ReportPageView itemBinding="item" controller=Dashboard.PageController}}
+                    {{view Dashboard.ReportPageView  contentBinding="this"}}
                 {{/each}}
             {{/each}}
         </section>

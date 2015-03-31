@@ -1,7 +1,21 @@
 <div id="MainWrapper" class="boardReport boardReportSummary">
     <section id="MainContent">
-        {{page-subtitle-description description=description}}
 
+        <h1>
+            this:
+            {{title}}
+            {{description}}
+        </h1>
+
+        <h1>
+            item:{{item.title}}
+        </h1>
+
+        <h1>
+            content: {{content.title}}
+        </h1>
+
+        {{page-subtitle-description description=description}}
 
         <div class="row columnTitles">
             <div class="col span_5 paddingLNone">
