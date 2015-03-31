@@ -86,7 +86,7 @@ Dashboard.PageModel = Ember.Object.extend({
             this.set('noTrendRAG', noTrendRAG);
             this.set('mainRAGs', mainRAGs);
         }
-    }.observes('indicators.@each.ragColour','watchRAGChanges'),
+    }.observes('indicators.@each.ragColour', 'watchRAGChanges'),
 
 
     _mainRAGs: null,
@@ -138,16 +138,34 @@ Dashboard.PageModel = Ember.Object.extend({
     //}.observes('indicators.@each.ragColour'),
 
 
-    _sortedIndicators: null,
-    sortedIndicators: function (key, initialIndicators) {
+    _indicators: null,
+    indicators: function (key, initialIndicators) {
         if (arguments.length === 1) {
-            return this.get('_sortedIndicators');
+            return this.get('_indicators');
         } else {
-            var sorted = initialIndicators.sortBy('ragColour');
-            this.set('_sortedIndicators', sorted);
+            this.set('_indicators', initialIndicators);
             return initialIndicators;
         }
-    }.property('_sortedIndicators', 'indicators'),
+    }.property('_indicators'),
+
+    sortedIndicators: function () {
+        var indicators = this.get('indicators');
+
+        var sorted = _.sortBy(indicators, function (item1) {
+            var sortVals = {
+                red: 0,
+                redAmber: 2,
+                amber: 4,
+                amberGreen: 6,
+                green: 8,
+                noRAG: 10,
+                none: 12
+            };
+            console.log('sortedIndicators: ' + sortVals[item1.get('ragColour')]);
+            return sortVals[item1.get('ragColour')];
+        });
+        return sorted;
+    }.property('indicators.@each.ragColour'),
 
 
 
