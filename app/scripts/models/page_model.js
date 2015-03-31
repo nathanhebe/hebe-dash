@@ -138,6 +138,16 @@ Dashboard.PageModel = Ember.Object.extend({
     //}.observes('indicators.@each.ragColour'),
 
 
+    _sortedIndicators: null,
+    sortedIndicators: function (key, initialIndicators) {
+        if (arguments.length === 1) {
+            return this.get('_sortedIndicators');
+        } else {
+            var sorted = initialIndicators.sortBy('ragColour');
+            this.set('_sortedIndicators', sorted);
+            return initialIndicators;
+        }
+    }.property('_sortedIndicators', 'indicators'),
 
 
 
