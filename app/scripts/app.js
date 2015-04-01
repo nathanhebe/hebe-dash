@@ -10,14 +10,14 @@ Ember.Application.initializer({
         application.set('settings', Ember.Object.create({
 
             // dev
-            //ckanUrl: 'http://52.17.101.212',//'http://ec2-52-16-158-169.eu-west-1.compute.amazonaws.com',
-            //directoryID: 'a1dad755-81df-4832-81cb-093f03beb9e8',
-            //dataUrl: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" ',
+            ckanUrl: 'http://52.17.101.212',
+            directoryID: '4b7e71f7-d2bc-4246-a2f0-13061ea1360a',
+            dataUrl: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "6b50a572-7684-4dc9-8a3e-f4cdfac77714" ',
 
             //// testing
-            ckanUrl: ckanUrl,
-            directoryID: 'a1dad755-81df-4832-81cb-093f03beb9e8',
-            dataUrl: ckanUrl + '/api/action/datastore_search_sql?sql=SELECT * from "6fded5d7-6e24-4223-8182-26ec00423882"',
+            //ckanUrl: ckanUrl,
+            //directoryID: 'a1dad755-81df-4832-81cb-093f03beb9e8',
+            //dataUrl: ckanUrl + '/api/action/datastore_search_sql?sql=SELECT * from "6fded5d7-6e24-4223-8182-26ec00423882"',
 
             // live
             //ckanUrl: '//' + hostURL,

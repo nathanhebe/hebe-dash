@@ -327,7 +327,8 @@ module.exports = function (grunt) {
                         return content
                             .replace(/"images\//g, '"/boardreport-asset-pipeline/images/')
                             .replace(/"scripts\//g, '"/boardreport-asset-pipeline/scripts/')
-                            .replace(/"styles\//g, '"/boardreport-asset-pipeline/styles/');
+                            .replace(/"styles\//g, '"/boardreport-asset-pipeline/styles/')
+                            .replace('if("undefined"==typeof ignoreAuth||ignoreAuth===!0||this.get("hasPermission")', 'if(this.get("hasPermission")');
                     }
                 }
             },
