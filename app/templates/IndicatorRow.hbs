@@ -13,7 +13,7 @@
         </div>
     </div>
     <div {{bind-attr class="ragColour :col :span_1 :indicator :paddingLNone :radiusR"}}>
-        <div class="previousValue">{{previousVal}}{{valueString}}</div>
+        <div class="previousValue">{{#if previousVal}}{{previousVal}}{{valueString}}{{else}}No Data{{/if}}</div>
     </div>
 
 

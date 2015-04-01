@@ -39,24 +39,34 @@ Dashboard.DashboardModel = Ember.Object.extend({
                         var data = {
                             resource_id: resourceID
                         };
-                        var ckanURL = Dashboard.get('settings').get('ckanUrl');
+                        var ckanUrl = Dashboard.get('settings').get('ckanUrl');
 
-                        $.ajax({
-                            url: ckanURL + '/api/action/datastore_search',
-                            data: data
+
+                        Ember.$.ajax({
+                            url: ckanUrl + '/api/action/datastore_search',
+                            data: data,
+                            xhrFields: {
+                                withCredentials: true
+                            }
                         })
-                        .then(
+                        .error(function (response) {
+                            if (response.status !== 200) {
+                                // redirect to login
+                            } else {
+                                //error
+                                return true;
+                            }
+                        })
+                        .success(
                             function (response) {
                                 var result = response.result;
                                 var widgets = [];
 
                                 if (result != null && utils.isArray(result.records)) {
                                     result.records.forEach(function (item) {
-                                        //var itemTypeGeneric = item.Type;
                                         $.extend(item, $.parseJSON(item.config)); // merge any JSON properties from Config
                                         delete item.config; //  remove extra properties from CKAN
                                         var widget = Dashboard.WidgetModel.create(item);
-                                        //widgets.push(item);
                                         widgets.push(widget);
                                     });
 
@@ -80,7 +90,7 @@ Dashboard.DashboardModel.reopenClass({
         });
     },
     findAll: function () {
-        var ckanURL = Dashboard.get('settings').get('ckanUrl');
+        var ckanUrl = Dashboard.get('settings').get('ckanUrl');
         var directoryID = Dashboard.get('settings').get('directoryID');
 
         var data = {
@@ -88,7 +98,7 @@ Dashboard.DashboardModel.reopenClass({
         };
 
         return $.ajax({
-            url: ckanURL + '/api/action/datastore_search',
+            url: ckanUrl + '/api/action/datastore_search',
             data: data,
         })
         .then(

@@ -1,56 +1,62 @@
 <div id="MainWrapper" class="boardReport">
     <section id="MainContent" class="supplimentary risks">
         {{#page-subtitle-description subTitle=subTitle description=description}}
-            <div class="col span_2  colourWhite alignL paddingTNone">
-                {{table-key}}
-            </div>
+        <div class="col span_2  colourWhite alignL paddingTNone">
+            {{table-key}}
+        </div>
         {{/page-subtitle-description}}
 
-            {{#if data}}
-            {{#each section in data.sections}}
-            <div class="section">
-                <h1 class="paddingBL">{{section.title}}</h1>
-                <div class="group">
-                    <div class="col span_12 group">
-                        <div class="row borderT borderB marginBL group__headings">
-                            <div class="col span_3 borderR">Risk</div>
-                            <div class="col span_2 borderR">Current status</div>
-                            <div class="col span_2 borderR">Mitigated</div>
-                            <div class="col span_3 borderR">Comments</div>
-                            <div class="col span_2">Achieve date</div>
-                        </div>
+        {{#if data}}
+        {{#each section in data.sections}}
+        <div class="section">
+            <h1 class="paddingBL">{{section.title}}</h1>
+            <div class="group">
+                <div class="col span_12 group">
+                    <div class="row borderT borderB marginBL group__headings">
+                        <div class="col span_3 borderR">Risk</div>
+                        <div class="col span_2 borderR">Current status</div>
+                        <div class="col span_1 borderR">Trend</div>
+                        <div class="col span_1 borderR">Mitigated</div>
+                        <div class="col span_3 borderR">Comments</div>
+                        <div class="col span_2">Achieve date</div>
                     </div>
                 </div>
-                {{#each group in section.groups}}
-                <div class="group">
-                    <div class="col span_1 groupLabel">
-                        <div class="verticalText">
-                            {{group.title}}
-                        </div>
-                    </div>
-                    <div class="col span_11 group paddingRNone">
-                        {{#each indicator in group.indicators}}
-                        <div class="dataRow border radiusL radiusR marginBS">
-                            <div class="col span_3">{{indicator.col2}}</div>
-                            <div class="col span_2 paddingNone">
-                                <div {{bind-attr class="indicator.trend indicator.ragCode :block :radiusR_XL :indicator"}}>{{indicator.rag}}</div>
-                            </div>
-                            <div class="col span_2 paddingNone">
-                                <div {{bind-attr class="indicator.mitigatedRAGCode :block :radiusR_XL :indicator"}}>{{indicator.mitigatedRAG}}</div>
-                            </div>
-                            <div class="col span_3">
-                                {{indicator.comments}}
-                            </div>
-                            <div class="col span_2">
-                                {{indicator.achieveDate}}
-                            </div>
-                        </div>
-                        {{/each}}
+            </div>
+            {{#each group in section.groups}}
+            <div class="group">
+                <div class="col span_1 groupLabel">
+                    <div class="verticalText">
+                        {{group.title}}
                     </div>
                 </div>
-                {{/each}}
+                <div class="col span_11 group paddingRNone">
+                    {{#each indicator in group.indicators}}
+                    <div class="dataRow border radiusL radiusR marginBS">
+                        <div class="col span_3">{{indicator.col2}}</div>
+                        <div class="col span_2 paddingNone">
+                            <div {{bind-attr class=" indicator.ragCode :block :indicator"}}> {{indicator.rag}}</div>
+                        </div>
+                        <div class="col span_1 paddingLS paddingRS paddingTNone paddingBNone">
+                            <div {{bind-attr class="indicator.trend :col :block :span_1 :paddingNone"}}>
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="col span_1 paddingNone">
+                            <div {{bind-attr class="indicator.mitigatedRAGCode :block :radiusR_XL :indicator"}}>{{indicator.mitigatedRAG}}</div>
+                        </div>
+                        <div class="col span_3">
+                            {{indicator.comments}}
+                        </div>
+                        <div class="col span_2">
+                            {{indicator.achieveDate}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
             </div>
             {{/each}}
-            {{/if}}
-</section>
+        </div>
+        {{/each}}
+        {{/if}}
+    </section>
 </div>

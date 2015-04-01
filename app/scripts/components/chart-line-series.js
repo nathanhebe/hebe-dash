@@ -33,8 +33,12 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
             if (maxVal < ragTarget) {
                 maxVal = ragTarget;
             }
-            minVal = minVal - 1;
+
+            if (ragTarget !== 0) {
+                minVal = minVal - 1;
+            }
             maxVal = maxVal + 2;
+
             YMax = maxVal;
             YMin = minVal;
         }
@@ -64,15 +68,22 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
         var regions = [];
         if (myData.get('ragType') === 'Constitutional') {
             // constitution only...
-            var amber = ragTarget + 0.0099;
-            var green = ragTarget + 0.01;
+            var amber = ragTarget + 0.9; //0.0099;
+            var green = ragTarget + 1;
             var opacity = 0.3;
             if (valueType === '%') {
-                regions = [
-                            { axis: 'y', start: 0, end: ragTarget, class: 'regionYR', opacity: opacity },
-                            { axis: 'y', start: ragTarget, end: amber, class: 'regionYA', opacity: opacity },
-                            { axis: 'y', start: green, class: 'regionYG', opacity: opacity },
-                ];
+                if (ragTarget === 0) {
+                    regions = [
+                        { axis: 'y', start: 0, class: 'regionYR', opacity: opacity }
+                    ]
+                } else {
+                    regions = [
+                        { axis: 'y', start: 0, end: ragTarget, class: 'regionYR', opacity: opacity },
+                        { axis: 'y', start: ragTarget, end: amber, class: 'regionYA', opacity: opacity },
+                        { axis: 'y', start: green, class: 'regionYG', opacity: opacity },
+                    ];
+                }
+
             } else {
                 regions = [
                             { axis: 'y', start: 0, end: ragTarget, class: 'regionYG', opacity: opacity },
@@ -118,7 +129,7 @@ Dashboard.ChartLineSeriesComponent = Ember.Component.extend({
                     padding: { top: 18, bottom: 0 },
 
                     label: {
-                        text: valueTypeString + ' achieved',
+                        text: (myData.get('valueUnitDescription') != null ? myData.get('valueUnitDescription') : valueTypeString + ' achieved'),
                         position: 'outer-bottom'
                     }
                 }

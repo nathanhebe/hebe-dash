@@ -4,9 +4,9 @@ Dashboard.AuthenticatedRoute = Ember.Route.extend({
 
     model: function () {
         // LIVE
-    //    if (!this.get('hasPermission')) {
+        if (!this.get('hasPermission')) {
         // TEST   
-        if (typeof ignoreAuth != 'undefined' && ignoreAuth !== true && !this.get('hasPermission')) {
+        //if (typeof ignoreAuth != 'undefined' && ignoreAuth !== true && !this.get('hasPermission')) {
             // isLoggedIn will be set to true in index.html if in ckan environment and has valid user object
             if (isLoggedIn == null || isLoggedIn === false) {
                 // display error message and instructions to login
@@ -16,12 +16,12 @@ Dashboard.AuthenticatedRoute = Ember.Route.extend({
                 // make a request to https://data.england.nhs.uk/api/action/resource_show?id=56879843-edf2-4b66-a8e1-f27a91befb7a
                 // if response code is unauth 
                 // display error message and instructions to ask for permissions
-                var ckanURL = Dashboard.get('settings').get('ckanUrl');
+                var ckanUrl = Dashboard.get('settings').get('ckanUrl');
                 var directoryID = Dashboard.get('settings').get('directoryID');
                 Ember.$.ajax({
                     //type:'post',
-                    //url: ckanURL + '/api/action/resource_show?id=56879843-edf2-4b66-a8e1-f27a91befb7a',
-                    url: ckanURL + '/api/action/resource_show?id=' + directoryID,
+                    //url: ckanUrl + '/api/action/resource_show?id=56879843-edf2-4b66-a8e1-f27a91befb7a',
+                    url: ckanUrl + '/api/action/resource_show?id=' + directoryID,
                     //url: 'https://data.england.nhs.uk/api/action/resource_show?id=56879843-edf2-4b66-a8e1-f27a91befb7a',
                     xhrFields: {
                         withCredentials: true

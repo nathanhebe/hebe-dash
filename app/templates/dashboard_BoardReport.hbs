@@ -4,17 +4,18 @@
             <div class="col span_6">
                 <h1>{{title}}</h1>
             </div>
-            <div class="col span_3 smallText paddingTXL">
+            <div class="col span_2 marginLNone paddingTS paddingLNone">
                 <!--Last updated 11/03/2015-->
-                &nbsp;
+                {{#drop-down-button title="Print Board Report"}}
+                <li><a {{action 'prepareForPrint'}}>Print this page</a></li>
+                <li><a {{action 'prepareForPrint'}}>Produce Report for Print</a></li>
+                {{/drop-down-button}}
             </div>
-            <!--<div class="col span_3 button">
-                Produce Report for Print
-            </div>-->
-            <div class="col span_3 marginLNone paddingTS marginRNone paddingLNone paddingRNone">
-                {{board-report-picker}}
+            <div class="col span_1">&nbsp;</div>
+                <div class="col span_3 marginLNone paddingTS marginRNone paddingLNone paddingRNone">
+                    {{board-report-picker}}
+                </div>
             </div>
-        </div>
         <div class="row marginTL">
             {{#each annex in data}}
             <div class="col span_4" {{bind-attr id="annex.id"}}>

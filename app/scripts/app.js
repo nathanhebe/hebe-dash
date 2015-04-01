@@ -5,24 +5,24 @@ Ember.Application.initializer({
     initialize: function (container, application) {
         var hostURL = window.location.host;
         var dataID = '68ebcbee-177f-42b5-a31e-8f706d4ebf50'; // live resource id for data
+        var ckanUrl = '//' + hostURL;
 
         application.set('settings', Ember.Object.create({
 
             // dev
-            ckanUrl: 'http://52.17.101.212',//'http://ec2-52-16-158-169.eu-west-1.compute.amazonaws.com',
-            //directoryID: 'f28ddf02-0ef8-4a89-8151-f348447d6433',
-            directoryID: 'b58a1a75-695e-4d35-9790-8f871657b662',
-            dataUrl: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" ',
+            //ckanUrl: 'http://52.17.101.212',//'http://ec2-52-16-158-169.eu-west-1.compute.amazonaws.com',
+            //directoryID: 'a1dad755-81df-4832-81cb-093f03beb9e8',
+            //dataUrl: 'https://data.england.nhs.uk/api/action/datastore_search_sql?sql=SELECT * from "68ebcbee-177f-42b5-a31e-8f706d4ebf50" ',
 
             //// testing
-            //ckanUrl: '//' + hostURL,
-            //directoryID: 'f28ddf02-0ef8-4a89-8151-f348447d6433',
-            //dataUrl: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + dataID + '"',
+            ckanUrl: ckanUrl,
+            directoryID: 'a1dad755-81df-4832-81cb-093f03beb9e8',
+            dataUrl: ckanUrl + '/api/action/datastore_search_sql?sql=SELECT * from "6fded5d7-6e24-4223-8182-26ec00423882"',
 
             // live
             //ckanUrl: '//' + hostURL,
             //directoryID: '10cff1d7-c4ce-496d-b6fe-45fb0e647179',
-            //dataUrl: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + dataID + '"',
+            //dataUrl: ckanUrl + '/api/action/datastore_search_sql?sql=SELECT * from "' + dataID + '"',
 
         }))
     }

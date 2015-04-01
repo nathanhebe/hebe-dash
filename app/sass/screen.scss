@@ -35,15 +35,18 @@ body, html {
 
 body {
     background-color: $color-bg;
+
     > .ember-view {
         width: 100%;
         height: 100%;
         padding-top: 145px;
     }
+
     &.subPage {
         > .ember-view {
             padding-top: 129px;
         }
+
         .site-header {
             height: 129px;
         }
@@ -105,7 +108,7 @@ body {
 
     h2 {
         font-size: $font-size-heading-sub;
-        margin-bottom: $margin-main;
+        margin-bottom: $margin-main/4;
         font-weight: $font-weight-bold;
     }
 
@@ -148,15 +151,13 @@ body {
 
     .missing, .none {
         background-color: $color-bg-light;
-        color:$color-font-main;
+        color: $color-font-main;
     }
 
     .noRAG {
         background-color: $color-rag-blue;
-        color:$color-font-light;
+        color: $color-font-light;
     }
-
-
     /* Fullscreen Modal */
     .modalHighlightedive {
         z-index: 4;
@@ -210,7 +211,7 @@ body {
 
     #MainContent {
         overflow-y: auto;
-        height:100%;
+        height: 100%;
     }
 
     .dropDownButton {
@@ -224,7 +225,7 @@ body {
             top: 0.65em;
             // top: $margin-main/4;
             right: $margin-main/2;
-            height:2em;
+            height: 2em;
         }
 
         button {
@@ -258,9 +259,9 @@ body {
                 }
 
                 li:last-of-type {
-                        border-bottom: none;
-                        @include border-bottom-radius(10px);
-                    }
+                    border-bottom: none;
+                    @include border-bottom-radius(10px);
+                }
             }
         }
 
@@ -307,7 +308,7 @@ body {
                             font-size: $font-size-small;
 
                             .changeLabel {
-                                font-size:$font-size-super-small;
+                                font-size: $font-size-super-small;
                             }
                         }
                     }
@@ -350,6 +351,20 @@ body {
                         border-right: none;
                         margin-left: 2%;
                         width: 12%;
+                    }
+                }
+            }
+
+            .summaryRow {
+
+                & > .row:last-of-type {
+                    .col:first-of-type {
+                        font-weight: $font-weight-bold;
+                    }
+
+                    .viewCol {
+                        border-left: none;
+                        border-right: none;
                     }
                 }
             }
@@ -397,12 +412,12 @@ body {
         }
 
         .key {
-            display:none;
+            display: none;
             color: $color-bg-dark;
         }
 
         .indicatorRow {
-            cursor:pointer;
+            cursor: pointer;
         }
 
         .indicator {
@@ -414,9 +429,8 @@ body {
             }
 
             &.none {
-                color:$color-font-main;
+                color: $color-font-main;
                 background-color: $color-bg-medium;
-
             }
 
             .currentValue {
@@ -437,35 +451,36 @@ body {
                 right: 0px;
                 top: 0px;
             }
+        }
 
-            &.up, &.even, &.down {
-                background-image: url(../images/IndicatorArrow_up@2x.png);
-                background-size: auto 90%;
-                background-position: 95% center;
-                background-repeat: no-repeat;
+        .up, .even, .down {
+            background-image: url(../images/IndicatorArrow_black_up@2x.png);
+            background-size: auto 90%;
+            background-position: 95% center;
+            background-repeat: no-repeat;
+
+            &.even {
+                background-image: url(../images/IndicatorArrow_black_even@2x.png);
+            }
+
+            &.down {
+                background-image: url(../images/IndicatorArrow_black_down@2x.png);
+            }
+
+            &.trendCol {
+                background-position: 20% center;
+                background-image: url(../images/IndicatorArrow_black_up@2x.png);
 
                 &.even {
-                    background-image: url(../images/IndicatorArrow_even@2x.png);
+                    background-image: url(../images/IndicatorArrow_black_even@2x.png);
                 }
 
                 &.down {
-                    background-image: url(../images/IndicatorArrow_down@2x.png);
-                }
-
-                &.trendCol {
-                    background-position: 20% center;
-                    background-image: url(../images/IndicatorArrow_black_up@2x.png);
-
-                    &.even {
-                        background-image: url(../images/IndicatorArrow_black_even@2x.png);
-                    }
-
-                    &.down {
-                        background-image: url(../images/IndicatorArrow_black_down@2x.png);
-                    }
+                    background-image: url(../images/IndicatorArrow_black_down@2x.png);
                 }
             }
         }
+
 
         .chart {
             padding-top: ($margin-main / 4);
@@ -783,6 +798,9 @@ body {
         }
 
         .finance {
+            padding-bottom: $margin-main/2;
+            border-bottom: $border-main;
+            border-bottom-width: 4px;
 
             .group {
                 margin-top: 0;
@@ -978,6 +996,22 @@ body {
                 /* padding-top: ($margin-main / 2);
                 padding-bottom: ($margin-main / 2);*/
                 min-height: 60px;
+
+                .indicator {
+                    @include border-top-radius(10px);
+                    @include border-bottom-radius(10px);
+                    text-align: center;
+                }
+
+                .block {
+                    width: 100%;
+                    padding-left: 0px;
+                }
+
+                .even, .up, .down {
+                    background-size: contain;
+                    background-position: center center;
+                }
             }
 
             .block {
@@ -1034,10 +1068,15 @@ body {
             }
 
             .summary {
-                width: 100%;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+
+            .accordionHandle {
+                width: 100%;
+                height: auto;
+                background-size: 50%;
             }
         }
 
@@ -1162,6 +1201,7 @@ the other stylesheets. Remember, keep it light: Speed is Important.
 .print-hide {
     display: inline-block;
 }
+
 .print-show {
     display: none;
 }

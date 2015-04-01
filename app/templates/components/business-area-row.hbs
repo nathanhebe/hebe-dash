@@ -1,13 +1,28 @@
-﻿<div class="row border radiusL radiusR marginBS" {{bind-attr data-indicator-id=row.busArea}}>
+﻿<div class="row border dataRow radiusL radiusR marginBS" {{bind-attr data-indicator-id=row.busArea}}>
     <div class="col span_1 paddingLNone paddingRNone paddingTS paddingBS height60">
-        <div {{bind-attr class="row.comment:accordionHandle :left :half :center :borderR :fullHeight"}}>&nbsp;</div>
-        <div class="left half center paddingTS">{{row.busArea}}</div>
+        <div class="center paddingTS">{{row.busArea}}</div>
     </div>
     <div class="col span_4 borderL">{{row.title}}</div>
-    <div class="col span_2 paddingNone">
-        <div {{bind-attr class="row.trend row.ragCode :block :radiusR_XL :indicator"}}>{{row.rag}}</div>
+    <div class="col span_1 paddingNone">
+        <div {{bind-attr class="row.ragCode :indicator"}}>
+            <div class="block">
+                {{row.rag}}
+            </div>
+        </div>
     </div>
-    <div class="col span_5 small paddingTL"><div class="summary">{{row.comment}}</div></div>
+    <div class="col span_1 paddingNone">
+        <div {{bind-attr class="row.trend :block"}}>&nbsp;</div>
+    </div>
+    <div class="col span_5 small paddingTS paddingBS">
+        <div class="row">
+            <div class="col span_1">
+                <div {{bind-attr class="row.comment:accordionHandle"}}>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="summary col span_11">{{row.comment}}</div>
+        </div>
+    </div>
     <div class="clear"></div>
     <div class="accordionContent paddingLL paddingTL paddingRL paddingBL" {{bind-attr data-indicator-id=row.busArea}}>
         <p class="bold marginTL">Comments:</p>

@@ -221,7 +221,7 @@ Dashboard.IndicatorModel = Ember.Object.extend({
 
     getDataValues: function () {
         var obj = this;
-        var ckanURL = Dashboard.get('settings').get('ckanUrl');
+        var ckanUrl = Dashboard.get('settings').get('ckanUrl');
         var dataUrl = Dashboard.get('settings').get('dataUrl');
         $.ajax({
             url: dataUrl + ' WHERE "indicator_id" = ' + "'" + obj.get('id') + "'" + ' ORDER BY "start_date" DESC '

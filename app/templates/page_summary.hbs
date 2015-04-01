@@ -1,20 +1,6 @@
 <div id="MainWrapper" class="boardReport boardReportSummary">
     <section id="MainContent">
 
-        <h1>
-            this:
-            {{title}}
-            {{description}}
-        </h1>
-
-        <h1>
-            item:{{item.title}}
-        </h1>
-
-        <h1>
-            content: {{content.title}}
-        </h1>
-
         {{page-subtitle-description description=description}}
 
         <div class="row columnTitles">
@@ -32,33 +18,33 @@
         </div>
 
         {{performance-summary-rag-titles}}
-
-        {{#each indicator in nhsEnglandRAGTotals}}
-        <div class="row borderT marginTL paddingBNone paddingBS chart">
-            <div class="col span_4 alignL">{{indicator.title}}</div>
-            <div class="col span_1 alignC borderL borderL--no-print borderR relative">
-                {{#if indicator.id}}
+        <div class="summaryRow">
+            {{#each indicator in nhsEnglandRAGTotals}}
+            <div class="row borderT marginTL paddingBNone paddingBS chart">
+                <div class="col span_4 alignL">{{indicator.title}}</div>
+                <div class="col span_1 alignC viewCol borderL borderL--no-print borderR relative">
+                    {{#if indicator.id}}
                     {{#link-to 'page' model.dashID 'annex_d' indicator.id classNames="print-hide" }}View{{/link-to}}
-                {{/if}}
-            </div>
-            <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
-                <div class="blockRow blockRow5">
-
-                    {{performance-summary-block color="red" current=indicator.previous.red previous=indicator.previous.red}}
-                    {{performance-summary-block color="amberRed" current=indicator.previous.amberRed previous=indicator.previous.amberRed}}
-                    {{performance-summary-block color="amber" current=indicator.previous.amber previous=indicator.previous.amber}}
-                    {{performance-summary-block color="amberGreen" current=indicator.previous.amberGreen previous=indicator.previous.amberGreen}}
-                    {{performance-summary-block color="green" current=indicator.previous.green previous=indicator.previous.green}}
-
+                    {{/if}}
+                </div>
+                <div class="col span_6 paddingTNone paddingRNone fpaddingBNone">
+                    <div class="blockRow blockRow5">
+                        {{performance-summary-block color="red" current=indicator.previous.red previous=indicator.previous.red}}
+                        {{performance-summary-block color="amberRed" current=indicator.previous.amberRed previous=indicator.previous.amberRed}}
+                        {{performance-summary-block color="amber" current=indicator.previous.amber previous=indicator.previous.amber}}
+                        {{performance-summary-block color="amberGreen" current=indicator.previous.amberGreen previous=indicator.previous.amberGreen}}
+                        {{performance-summary-block color="green" current=indicator.previous.green previous=indicator.previous.green}}
+                    </div>
+                </div>
+                <div class="col span_1 borderL paddingRNone">
+                    <div class="blockRow blockRow1">
+                        {{performance-summary-block color="blue" current=indicator.previous.missing previous=indicator.previous.missing}}
+                    </div>
                 </div>
             </div>
-            <div class="col span_1 borderL paddingRNone">
-                <div class="blockRow blockRow1">
-                    {{performance-summary-block color="blue" current=indicator.previous.missing previous=indicator.previous.missing}}
-                </div>
-            </div>
+            {{/each}}
         </div>
-        {{/each}}
+
 
         <!--NHS-->
         <div class="row marginTL borderT paddingTL">

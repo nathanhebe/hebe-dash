@@ -14,10 +14,10 @@ Dashboard.PageModel = Ember.Object.extend({
                     if (this.get('_rows') === null) {
                         if (this.get('ckanID') !== null) {
                             var ckanID = obj.get('ckanID');
-                            var ckanURL = Dashboard.get('settings').get('ckanUrl');
+                            var ckanUrl = Dashboard.get('settings').get('ckanUrl');
 
                             $.ajax({
-                                url: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
+                                url: ckanUrl + '/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
                             })
                             .then(function (response) {
                                 var results = [];
@@ -184,10 +184,10 @@ Dashboard.PageModel = Ember.Object.extend({
                     if (this.get('_data') === null) {
                         if (this.get('ckanID') !== null) {
                             var ckanID = this.get('ckanID');
-                            var ckanURL = Dashboard.get('settings').get('ckanUrl');
+                            var ckanUrl = Dashboard.get('settings').get('ckanUrl');
 
                             $.ajax({
-                                url: ckanURL + '/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
+                                url: ckanUrl + '/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
                             }).then(function (response) {
                                 var data = { sections: [] };
                                 var section;
@@ -248,7 +248,7 @@ Dashboard.PageModel = Ember.Object.extend({
                     if (this.get('_data') === null) {
                         if (this.get('ckanID') !== null) {
                             var ckanID = this.get('ckanID');
-                            var ckanURL = Dashboard.get('settings').get('ckanUrl');
+                            var ckanUrl = Dashboard.get('settings').get('ckanUrl');
                             $.ajax({
                                 // url: 'http://54.154.11.196/api/action/datastore_search_sql?sql=SELECT * from "' + ckanID + '"'
                                 //4803b5a5-36a6-43b7-b001-462efde0dde2
@@ -257,7 +257,7 @@ Dashboard.PageModel = Ember.Object.extend({
 
                                 // http://52.16.158.169/dataset/cb6fe8e4-66e3-4c03-80b1-20b850c84251/resource/60bf1f30-1a6c-4482-a8ee-d76d791fc1bd/download/boardreportperformancereportintro.txt
 
-                                // url: ckanURL + '/dataset/4e0ecf43-d6cd-432c-876e-016e325fbb0c/resource/' + ckanID + '/download'
+                                // url: ckanUrl + '/dataset/4e0ecf43-d6cd-432c-876e-016e325fbb0c/resource/' + ckanID + '/download'
 
                                 url: 'http://52.16.158.169/dataset/cb6fe8e4-66e3-4c03-80b1-20b850c84251/resource/60bf1f30-1a6c-4482-a8ee-d76d791fc1bd/download/boardreportperformancereportintro.txt'
 
